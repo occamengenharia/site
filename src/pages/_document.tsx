@@ -47,10 +47,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
           />
 
-          <link
-            rel="icon"
-            href="https://occamengenharia.com/images/logoazul.png"
-          />
+          <link rel="icon" href="/banner.png" />
         </Head>
         <body>
           <Main />

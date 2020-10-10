@@ -1,13 +1,10 @@
-import Head from 'next/head'
-
-import { Container } from '../styles/pages/Home'
+import { Container } from '@/styles/pages/Home'
+import SEO from '@/components/SEO'
 
 const Home: React.FC = () => {
   return (
     <Container>
-      <Head>
-        <title>Homepage</title>
-      </Head>
+      <SEO title="HOME" image="/banner.png" />
 
       <h1>Next Starter structure</h1>
     </Container>
