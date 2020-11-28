@@ -1,7 +1,10 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 import nodemailer from 'nodemailer'
 
-export default async (request: NowRequest, response: NowResponse) => {
+export default async (
+  request: NowRequest,
+  response: NowResponse
+): Promise<NowResponse> => {
   const { email, subject } = request.body
 
   const transporter = nodemailer.createTransport({

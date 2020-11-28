@@ -14,7 +14,7 @@ const SEO = ({
   image,
   shouldExcludeTitleSufix = false,
   shouldIndexPage = true
-}: SEOProps) => {
+}: SEOProps): JSX.Element => {
   const pageTitle = `${title} ${
     !shouldExcludeTitleSufix ? '| OCCAM Engenharia' : ''
   }`
