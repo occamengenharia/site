@@ -1,19 +1,37 @@
 import { Container } from '@/styles/pages/Home'
 import SEO from '@/components/SEO'
-import { useTheme } from '@/hooks/theme'
+
+import Link from '@/components/Link'
+import { FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa'
+import BtnTheme from '@/components/BtnTheme'
 
 const Home: React.FC = () => {
-  const { toggleTheme, theme } = useTheme()
-
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
   return (
     <Container>
       <SEO title="HOME" image="/banner.png" description={description} />
-
-      <h1>Next Starter structure</h1>
-      <button onClick={toggleTheme}>
-        {theme === 'dark' ? 'light' : 'dark'}
-      </button>
+      <main>
+        <section>
+          <h1>OOOPS...</h1>
+          <h4>Ainda estamos trabalhando nesse site</h4>
+          <p>Não deixe de acompanhar a gente nas redes sociais</p>
+          <BtnTheme />
+          <Link icon={FaInstagram} href="/">
+            Instagram
+          </Link>
+          <Link icon={FaLinkedin} href="/">
+            Linkedin
+          </Link>
+          <Link icon={FaGithub} href="https://github.com/occamengenharia">
+            Github
+          </Link>
+        </section>
+        <img
+          className="img-hero"
+          src="/Isometric.png"
+          alt="Homens trabalando com tecnologia"
+        />
+      </main>
     </Container>
   )
 }
