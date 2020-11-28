@@ -3,11 +3,7 @@ import SEO from '@/components/SEO'
 import { useTheme } from '@/hooks/theme'
 
 const Home: React.FC = () => {
-  const { toggleTheme, theme, componentMounted } = useTheme()
-
-  if (!componentMounted) {
-    return <div />
-  }
+  const { toggleTheme, theme } = useTheme()
 
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
   return (

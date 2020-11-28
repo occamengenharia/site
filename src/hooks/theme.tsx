@@ -11,7 +11,6 @@ import { light, dark } from '../styles/theme'
 interface IThemeContextData {
   theme: string
   toggleTheme(): void
-  componentMounted: boolean
 }
 
 const ThemeContext = createContext({
@@ -20,7 +19,6 @@ const ThemeContext = createContext({
 
 const ThemeProvider: React.FC = ({ children }) => {
   const [theme, setTheme] = useState('light')
-  const [componentMounted, setComponentMounted] = useState(false)
 
   useEffect(() => {
     const localTheme = window.localStorage.getItem('occamsite:theme')
@@ -30,7 +28,6 @@ const ThemeProvider: React.FC = ({ children }) => {
       setTheme('light')
       window.localStorage.setItem('occamsite:theme', 'light')
     }
-    setComponentMounted(true)
   }, [])
 
   const toggleTheme = useCallback(() => {
@@ -44,7 +41,7 @@ const ThemeProvider: React.FC = ({ children }) => {
   }, [theme])
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, componentMounted }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <StyledThemeProvider theme={theme === 'light' ? light : dark}>
         {children}
       </StyledThemeProvider>
