@@ -14,7 +14,7 @@ export const Container = styled.div`
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       h1 {
         font-size: 6.4rem;
         color: ${props => props.theme.colors.secundary};
@@ -27,28 +27,27 @@ export const Container = styled.div`
 
       p {
         margin-top: 0.8rem;
+        margin-bottom: 3.2rem;
         font-size: 1.2rem;
         line-height: 32px;
         color: ${props => props.theme.colors.text};
       }
+
+      > img {
+        width: 60%;
+        margin-top: 6.4rem;
+      }
     }
-    .img-hero {
+    > img {
       display: none;
     }
     @media (min-width: ${props => props.theme.breakpoints.md}px) {
       width: min(90vw, 1100px);
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      grid-template-rows: auto;
-      grid-gap: 2rem;
-      padding-left: 3rem; //pra ajustar com a img
-      .img-hero {
+      display: flex;
+
+      > img {
         display: initial;
-        grid-column: 2;
-        width: 800px;
-      }
-      > section {
-        grid-column: 1;
+        max-height: 80rem;
       }
     }
   }

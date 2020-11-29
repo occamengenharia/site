@@ -1,11 +1,11 @@
 import { Main } from './styles'
 import { useTheme } from '@/hooks/theme'
-import { CgDarkMode } from 'react-icons/cg'
+import { CgMoon, CgSun } from 'react-icons/cg'
 const BtnTheme: React.FC = () => {
-  const { toggleTheme } = useTheme()
+  const { toggleTheme, theme } = useTheme()
   return (
     <Main onClick={toggleTheme}>
-      <CgDarkMode />
+      {theme === 'light' ? <CgMoon /> : <CgSun />}
     </Main>
   )
 }

@@ -12,6 +12,7 @@
     "next": "^10.0.3",
     "next-images": "^1.6.0",
     "nodemailer": "^6.4.14",
+    "polished": "^4.0.5",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-icons": "^4.1.0",

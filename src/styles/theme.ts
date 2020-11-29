@@ -9,7 +9,8 @@ const metrics = {
 
   variables: {
     transition: 0.8,
-    borderRadius: 0.8
+    borderRadius: 0.8,
+    hover: 0.04
   }
 }
 

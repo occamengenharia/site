@@ -16,21 +16,25 @@ const Home: React.FC = () => {
           <h4>Ainda estamos trabalhando nesse site</h4>
           <p>Não deixe de acompanhar a gente nas redes sociais</p>
           <BtnTheme />
-          <Link icon={FaInstagram} href="/">
-            Instagram
-          </Link>
-          <Link icon={FaLinkedin} href="/">
-            Linkedin
-          </Link>
-          <Link icon={FaGithub} href="https://github.com/occamengenharia">
-            Github
-          </Link>
+          <Link
+            icon={FaInstagram}
+            href="https://www.instagram.com/occamengenharia/"
+            text="Instagram"
+          />
+          <Link
+            icon={FaLinkedin}
+            href="https://www.linkedin.com/company/occamengenharia/"
+            text="Linkedin"
+          />
+          <Link
+            icon={FaGithub}
+            href="https://github.com/occamengenharia"
+            text="Github"
+          />
+
+          <img src="occam.png" alt="OCCAM Engenharia" />
         </section>
-        <img
-          className="img-hero"
-          src="/Isometric.png"
-          alt="Homens trabalando com tecnologia"
-        />
+        <img src="/Isometric.png" alt="Homens trabalando com tecnologia" />
       </main>
     </Container>
   )

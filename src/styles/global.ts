@@ -26,7 +26,9 @@ export default createGlobalStyle`
   body {
     background: ${props => props.theme.colors.background};
     color: ${props => props.theme.colors.text};
-    font: 400 16px Ubuntu, sans-serif;
+    font: 400 1.6rem Ubuntu, sans-serif;
+
+  transition: all ${({ theme }) => theme.variables.transition}s ;
   }
   h1 {
     font: 700 2.4rem Ubuntu, sans-serif;
