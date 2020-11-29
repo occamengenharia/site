@@ -1,32 +1,37 @@
-import { createGlobalStyle, DefaultTheme } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 
-interface IBodyProps extends DefaultTheme {
-  theme: {
-    colors: {
-      background: string
-      text: string
-      primary: string
-    }
-
-    breakpoints: {
-      xs: number
-      sm: number
-      md: number
-      lg: number
-      xl: number
-    }
-  }
-}
-
-export default createGlobalStyle<IBodyProps>`
-  * {
+export default createGlobalStyle`
+  *,
+  *:before,
+  *:after  {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-decoration:none;
+    list-style:none;
+    font-size:62.5%;
   }
+  textarea:focus,
+  input:focus,
+  select:focus,
+  button:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+  }
+  a, button {
+  text-decoration: none;
+  cursor: pointer;
+}
   body {
     background: ${props => props.theme.colors.background};
     color: ${props => props.theme.colors.text};
-    font: 400 16px 'Ubuntu', sans-serif;
+    font: 400 16px Ubuntu, sans-serif;
+  }
+  h1 {
+    font: 700 2.4rem Ubuntu, sans-serif;
+  }
+  h2 {
+    font: 500 2rem Ubuntu, sans-serif;
   }
 `
