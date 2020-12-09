@@ -13,25 +13,38 @@ const metrics = {
     hover: 0.04
   }
 }
+const basicColors = {
+  error: '#E45B5B',
+  sucess: '#78C516',
+  borderDivision: '#E2E2E2',
+  inputBackground: '#F1F1F1',
+  details: '#CECECE'
+}
 
 export const light = {
   colors: {
-    background: '#F7F7F7',
-    text: '#121214',
-    primary: '#0773C6',
-    secundary: '#014BB4'
+    background: '#FEFEFE',
+    text: '#201E1E',
+    primary: '#014BB4',
+    secundary: '#0773C6',
+    backgorudElevation: '#F7F7F7',
+    buttonBackgorud: '#014BB4',
+    inputHighlight: '#0773C6',
+    ...basicColors
   },
-
   ...metrics
 }
 
 export const dark = {
   colors: {
-    background: '#121214',
-    text: '#E6E7E9',
-    primary: '#0773C6',
-    secundary: '#014BB4'
+    background: '#001636',
+    text: '#E2E2E2',
+    primary: '#00255A',
+    secundary: '#234677',
+    backgorudElevation: '#041021',
+    inputHighlight: '#4AA5EB',
+    buttonBackgorud: '#F7F7F7',
+    ...basicColors
   },
-
   ...metrics
 }

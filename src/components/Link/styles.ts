@@ -9,7 +9,7 @@ export const Main = styled.a`
   color: ${props => props.theme.colors.background};
   height: 48px;
   width: 100%;
-  background: ${props => props.theme.colors.secundary};
+  background: ${props => props.theme.colors.buttonBackgorud};
   svg {
     font-size: 1.6rem;
     margin-left: 1.6rem;
@@ -26,7 +26,7 @@ export const Main = styled.a`
   transition: all ${props => props.theme.variables.transition}s;
   &:hover {
     background: ${({ theme }) =>
-      darken(theme.variables.hover, theme.colors.secundary)};
+      darken(theme.variables.hover, theme.colors.buttonBackgorud)};
   }
 
   & + & {

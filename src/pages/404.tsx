@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import { Container } from '@/styles/pages/Home'
+import { Container } from '@/styles/pages/Links'
 
 const NotFound: React.FC = () => {
   return (
