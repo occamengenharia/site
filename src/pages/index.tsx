@@ -1,15 +1,25 @@
-import * as Styles from '@/styles/pages/Home'
+import {
+  Page,
+  Initial,
+  Actuation,
+  Members,
+  About,
+  Footer
+} from '@/styles/pages/Home'
 import { FaCaretRight, FaCaretLeft } from 'react-icons/fa'
 import SEO from '@/components/SEO'
 import Header from '@/components/Header/Header'
 import Member from '@/components/MembersHome/index'
 
+import Link from '@/components/Link'
+import { BsFillQuestionCircleFill } from 'react-icons/bs'
 const Home: React.FC = () => {
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
+
   return (
-    <Styles.Page>
-      <Styles.Initial>
-        <Header></Header>
+    <Page>
+      <Initial>
+        <Header />
         <main>
           <h1>Soluções Simples, Resultados Inovadores</h1>
           <div>
@@ -22,15 +32,54 @@ const Home: React.FC = () => {
             </div>
           </div>
         </main>
-      </Styles.Initial>
-      <Styles.Actuation>Area de Atuacao</Styles.Actuation>
-      <Styles.Members>
+      </Initial>
+      <Actuation>
+        <main>
+          <h3>Áreas de Atuação</h3>
+          <section>
+            <img
+              src="Smartphone.svg"
+              alt="Imagem de uma mão segurando um telefone"
+            />
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry standard dummy text
+              ever since the 1500s, when an unknown{' '}
+            </p>
+          </section>
+          <section>
+            <img
+              src="Computador.svg"
+              alt="Imagem de um monitor e um tablet representando desenvolvimento web"
+            />
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industrys standard dummy text
+              ever since the 1500s, when an unknown{' '}
+            </p>
+          </section>
+          <section>
+            <img
+              src="/Engrenagem.svg"
+              alt="Imagem de uma engrenagem com um botão de reproduzir no centro"
+            />
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industrys standard dummy text
+              ever since the 1500s, when an unknown{' '}
+            </p>
+          </section>
+
+          <Link icon={BsFillQuestionCircleFill} href="" text="Saiba mais" />
+        </main>
+      </Actuation>
+      <Members>
         <div>Nossa Equipe</div>
-        <Member></Member>
+        <Member />
         <div>Histórico de Membros</div>
-      </Styles.Members>
-      <Styles.Footer>footer</Styles.Footer>
-    </Styles.Page>
+      </Members>
+      <Footer>footer</Footer>
+    </Page>
   )
 }
 
