@@ -9,6 +9,10 @@ export const Page = styled.div`
     height: 100%;
     position: relative;
   }
+
+  #footer {
+    height: 150vh;
+  }
 `
 
 export const Initial = styled.div`

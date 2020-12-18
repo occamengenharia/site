@@ -32,7 +32,7 @@ const Home: React.FC = () => {
         </Initial>
         <Actuation>Area de Atuacao</Actuation>
         <Members>Mombros</Members>
-        <SectionFooter>
+        <SectionFooter id="footer">
           <Footer />
         </SectionFooter>
       </Page>
