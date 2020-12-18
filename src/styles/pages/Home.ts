@@ -14,7 +14,11 @@ export const Initial = styled.div``
 export const Actuation = styled.div`
   background: ${props => props.theme.colors.primary};
 `
-export const Members = styled.div``
+export const Members = styled.div`
+  >div{
+    font-size: 48px;
+  }
+`
 export const AboutUs = styled.div`
   background: ${props => props.theme.colors.primary};
 `

@@ -13,6 +13,17 @@ export const HeaderStyle = styled.section`
     display: flex;
     gap: 3.2rem;
   }
+
+  @media only screen and (max-width:650px){
+    img {
+      width: 136px;
+      height: 32px;
+    }
+
+    h1 {
+      display: none;
+    }
+  }
 `
 
 export const HeadText = styled.h1`
@@ -23,5 +34,8 @@ export const HeadText = styled.h1`
 export const LogoStyle = styled.img`
     width: 208px;
     height: 48px;
+`
 
+export const BurguerMenu = styled.button`
+  display: none;
 `

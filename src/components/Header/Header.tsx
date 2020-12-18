@@ -1,5 +1,4 @@
-import { HeaderStyle, HeadText, LogoStyle } from './styles';
-
+import { HeaderStyle, HeadText, LogoStyle, BurguerMenu } from './styles';
 
 export default function Header(){
     return(
