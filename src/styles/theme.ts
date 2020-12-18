@@ -11,7 +11,7 @@ const metrics = {
     transition: 0.8,
     borderRadius: 0.8,
     hover: 0.04
-  },
+  }
 }
 const basicColors = {
   error: '#E45B5B',

@@ -1,16 +1,26 @@
-import * as Styles from '@/styles/pages/Home'
-import {FaCaretRight, FaCaretLeft} from 'react-icons/fa';
+import {
+  Page,
+  Initial,
+  Actuation,
+  Members,
+  AboutUs,
+  SectionFooter
+} from '@/styles/pages/Home'
+import { FaCaretRight, FaCaretLeft } from 'react-icons/fa'
 import SEO from '@/components/SEO'
+import { Footer } from '@/components'
 
 const Home: React.FC = () => {
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
   return (
-    <Styles.Page>
-        <Styles.Initial>
+    <>
+      <SEO title="Home" description={description} image="/occam.png" />
+      <Page>
+        <Initial>
           <main>
             <h1>Soluções Simples, Resultados Inovadores</h1>
             <div>
-              <img src="animacao.gif" alt="logo animada OCCAM"/>
+              <img src="animacao.gif" alt="logo animada OCCAM" />
 
               <div>
                 <FaCaretLeft />
@@ -19,11 +29,14 @@ const Home: React.FC = () => {
               </div>
             </div>
           </main>
-        </Styles.Initial>
-        <Styles.Actuation>Area de Atuacao</Styles.Actuation>
-        <Styles.Members>Mombros</Styles.Members>
-        <Styles.Footer>footer</Styles.Footer>
-    </Styles.Page>
+        </Initial>
+        <Actuation>Area de Atuacao</Actuation>
+        <Members>Mombros</Members>
+        <SectionFooter>
+          <Footer />
+        </SectionFooter>
+      </Page>
+    </>
   )
 }
 

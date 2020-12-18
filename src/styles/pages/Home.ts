@@ -16,76 +16,75 @@ export const Initial = styled.div`
   align-items: center;
   justify-content: center;
 
-
-  main{
+  main {
     display: flex;
     flex-direction: column;
     align-items: center;
     max-width: 27.2rem;
 
-    h1{
+    h1 {
       font-size: 4.8rem;
       text-align: center;
       margin-bottom: 4.8rem;
 
-      color: ${props => props.theme.colors.primary}
+      color: ${props => props.theme.colors.primary};
     }
 
-    div{
-  transition: all 0.5s;
+    div {
+      transition: all 0.5s;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100%;
-      
+
       box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.25);
 
-      img{
+      img {
         width: 27.2rem;
-        height: 15.4rem;  
+        height: 15.4rem;
       }
-      div{
-
+      div {
         background-color: ${props => props.theme.colors.secundary};
         width: 100%;
         padding: 0.8rem 0;
 
-        span{
+        span {
           color: ${props => props.theme.colors.background};
         }
 
-        svg{
+        svg {
           display: none;
         }
       }
     }
 
-    @media only screen and (min-width: ${props => props.theme.breakpoints.lg}px){
+    @media only screen and (min-width: ${props =>
+        props.theme.breakpoints.lg}px) {
       flex-direction: row;
       justify-content: space-between;
       max-width: 103.2rem;
 
-      h1{
+      h1 {
         font-size: 9.6rem;
         margin: 0;
         text-align: left;
       }
 
-      div{
-        img{
+      div {
+        img {
           width: 41.6rem;
           height: 23.4rem;
         }
 
-        div{
+        div {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
 
           padding: 1.2rem;
 
-          svg{
+          svg {
             display: initial;
             color: ${props => props.theme.colors.background};
             width: 1.6rem;
@@ -95,7 +94,6 @@ export const Initial = styled.div`
       }
     }
   }
-
 `
 
 export const Actuation = styled.div`
@@ -106,4 +104,4 @@ export const Members = styled.div``
 export const AboutUs = styled.div`
   background: ${props => props.theme.colors.primary};
 `
-export const Footer = styled.div``
+export const SectionFooter = styled.div``

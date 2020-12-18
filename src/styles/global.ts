@@ -45,7 +45,7 @@ export default createGlobalStyle`
   }
 
   p, i, strong, legend, label {
-    font: 500 2.4rem Ubuntu, sans-serif; 
+    font: 500 2.4rem Ubuntu, sans-serif;
   }
 
   span{
