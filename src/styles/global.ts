@@ -20,20 +20,39 @@ export default createGlobalStyle`
     outline: 0;
   }
   a, button {
-  text-decoration: none;
-  cursor: pointer;
-}
+    text-decoration: none;
+    cursor: pointer;
+  }
   body {
     background: ${props => props.theme.colors.background};
     color: ${props => props.theme.colors.text};
     font: 400 1.6rem Ubuntu, sans-serif;
-
   transition: all ${({ theme }) => theme.variables.transition}s ;
   }
   h1 {
-    font: 700 2.4rem Ubuntu, sans-serif;
+    font: 700 6.4rem Ubuntu, sans-serif;
   }
   h2 {
-    font: 500 2rem Ubuntu, sans-serif;
+    font: 700 5.4rem Ubuntu, sans-serif;
+  }
+  h3 {
+    font: 700 3.2rem Ubuntu, sans-serif;
+  }
+  p, i, strong, legend, label {
+    font: 500 2.4rem Ubuntu, sans-serif;
+  }
+  span{
+    font: 500 1.2rem Ubuntu, sans-serif;
+  }
+  @media (min-width: ${props => props.theme.breakpoints.md}px) {
+    h1 {
+      font-size:9.6rem;
+    }
+    h2 {
+      font-size:8rem;
+    }
+    h3 {
+      font-size:4.8rem;
+    }
   }
 `
