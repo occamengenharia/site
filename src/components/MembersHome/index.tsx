@@ -1,25 +1,21 @@
 import { useState } from 'react'
-import { MemberStyle, IconStyle, Links } from './styles'
+import { MemberStyle, Links } from './styles'
+import { FaGithub, FaLinkedin } from 'react-icons/fa'
 
-
-export default function Member(){
+export default function Member() {
   const [name, setName] = useState([])
   const [job, setJob] = useState([])
+  async function ChangeMember() {}
 
-
-  async function ChangeMember(){
-
-  }
-
-  return(
+  return (
     <MemberStyle>
-      <img src='/banner.png'></img>
+      <img src="/banner.png"></img>
       <section>
         <div>Gabriel Prando</div>
         <div>Diretor de Projetos</div>
         <Links>
-          <IconStyle src='/gitlogo.png'></IconStyle>
-          <IconStyle src='/linkedinlogo.png'></IconStyle>
+          <FaGithub />
+          <FaLinkedin />
         </Links>
       </section>
     </MemberStyle>

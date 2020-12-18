@@ -7,9 +7,9 @@ export const MemberStyle = styled.section`
   width: 100vw;
   max-width: 1032px;
   align-items: center;
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
 
-  >img {
+  > img {
     width: 416px;
     height: 416px;
   }
@@ -19,19 +19,19 @@ export const MemberStyle = styled.section`
     font-weight: bold;
   }
 
-  div + div{
+  div + div {
     font-size: 24px;
     font-weight: normal;
   }
 `
-export const IconStyle = styled.img`
-  width: 32px;
-  height: 32px;
-`
-
 export const Links = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap:1.6rem;
+  gap: 1.6rem;
+
+  svg {
+    font-size: 3.2rem;
+    color: ${props => props.theme.colors.primary};
+  }
 `
