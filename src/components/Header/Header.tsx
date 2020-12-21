@@ -17,8 +17,12 @@ export default function Header() {
         <HeadText>Sobre Nós</HeadText>
         <HeadText>Contato</HeadText>
       </div>
-      <Burger onClick={handleClick}>
+      <Burger onClick={handleClick} val={openMenu}>
         <GiHamburgerMenu />
+        <div>Áreas de Atuação</div>
+        <div>Membros</div>
+        <div>Sobre Nós</div>
+        <div>Contato</div>
       </Burger>
     </HeaderStyle>
   )

@@ -19,7 +19,7 @@ export const MemberStyle = styled.section`
     font-weight: bold;
   }
 
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 991px) {
     max-width: 280px;
     height: 422px;
     flex-direction: column;

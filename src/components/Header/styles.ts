@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const HeaderStyle = styled.section`
   padding: 1.6rem;
@@ -46,8 +46,34 @@ export const LogoStyle = styled.img`
   width: 208px;
   height: 48px;
 `
+interface props {
+  val: boolean
+}
 
-export const Burger = styled.button`
+export const Burger = styled.button<props>`
+  background: #ffffff;
+
+  div {
+    ${props =>
+      props.val
+        ? css`
+            display: flex;
+          `
+        : css`
+            display: none;
+          `}
+    font-size: 1.2rem;
+    border: 1px black solid;
+    border-radius: 4px;
+    height: 2.4rem;
+    width: 12rem;
+    align-items: center;
+    justify-content: center;
+  }
+  div + div {
+    margin-top: 2px;
+  }
+
   svg {
     background: #ffffff;
     color: ${props => props.theme.colors.primary};

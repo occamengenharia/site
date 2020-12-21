@@ -114,7 +114,7 @@ export const Members = styled.div`
     align-self: center;
   }
 
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 991px) {
     max-width: 280px;
     > h3 {
       font-size: 32px;
