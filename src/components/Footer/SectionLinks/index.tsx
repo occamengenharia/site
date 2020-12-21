@@ -30,9 +30,11 @@ const SectionLinks: React.FC<SectionLinksProps> = ({ data }) => {
 
       {links.map(link =>
         link.external ? (
-          <a href={link.url}>{link.name}</a>
+          <a key={link.url} href={link.url}>
+            {link.name}
+          </a>
         ) : (
-          <Link href={link.url}>
+          <Link key={link.url} href={link.url}>
             <a>{link.name}</a>
           </Link>
         )
