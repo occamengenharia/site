@@ -78,6 +78,25 @@ const Home: React.FC = () => {
         <Member />
         <div>Histórico de Membros</div>
       </Members>
+      <About>
+        <div>
+          <h4>
+          Sobre Nós
+          </h4>
+          <span>
+          Desde 2014 trabalhando para
+          desenvolver atividades que
+          possam ampliar e melhorar a
+          qualidade de vida da
+          comunidade ao seu redor.
+          </span>
+          <h5>Saiba Mais</h5>
+        </div>
+        <img
+            src="/Computer_and_hands.png"
+            alt="mãos sobre um computador"
+          />
+      </About>
       <Footer>footer</Footer>
     </Page>
   )
