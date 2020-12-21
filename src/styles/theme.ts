@@ -18,7 +18,8 @@ const basicColors = {
   sucess: '#78C516',
   borderDivision: '#E2E2E2',
   inputBackground: '#F1F1F1',
-  details: '#CECECE'
+  details: '#CECECE',
+  text2: '#858585'
 }
 
 export const light = {

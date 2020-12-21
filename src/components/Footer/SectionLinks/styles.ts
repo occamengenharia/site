@@ -9,7 +9,7 @@ export const Container = styled.section<ContainerProps>`
   flex-direction: column;
 
   padding-bottom: 1.6rem;
-  border-bottom: 1px solid ${props => props.theme.colors.text};
+  border-bottom: 1px solid ${props => props.theme.colors.text2};
 
   width: 90%;
   margin: 4rem auto 0;
@@ -49,10 +49,13 @@ export const Container = styled.section<ContainerProps>`
 
       color: ${props => props.theme.colors.text};
     }
+    p {
+      font-size: 1.6rem;
+    }
   }
 
   a {
-    color: ${props => props.theme.colors.text};
+    color: ${props => props.theme.colors.text2};
     font-size: 1.6rem;
   }
 

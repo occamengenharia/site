@@ -32,6 +32,12 @@ export const SectionImage = styled.section`
   span {
     margin-top: 1.6rem;
     max-width: 24rem;
+    color: ${props => props.theme.colors.text2};
+
+    p {
+      font-size: 1.2rem;
+      color: ${props => props.theme.colors.text2};
+    }
   }
 
   img {
@@ -55,6 +61,7 @@ export const SocialLinks = styled.section`
 
   span {
     margin-top: 2.4rem;
+    color: ${props => props.theme.colors.text2};
   }
 
   @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
@@ -64,7 +71,7 @@ export const SocialLinks = styled.section`
     padding-top: 2.4rem;
     margin: 16rem 0 4.8rem;
 
-    border-top: 1px solid ${props => props.theme.colors.text};
+    border-top: 1px solid ${props => props.theme.colors.text2};
 
     span {
       margin-top: 0;
@@ -75,7 +82,7 @@ export const SocialLinks = styled.section`
 export const SocialLinksIcons = styled.section`
   a {
     svg {
-      color: ${props => props.theme.colors.text};
+      color: ${props => props.theme.colors.text2};
       font-size: 2.4rem;
     }
   }

@@ -4,7 +4,8 @@ import {
   Actuation,
   Members,
   AboutUs,
-  SectionFooter
+  SectionFooter,
+  Marquee
 } from '@/styles/pages/Home'
 import { FaCaretRight, FaCaretLeft } from 'react-icons/fa'
 import SEO from '@/components/SEO'
@@ -33,6 +34,13 @@ const Home: React.FC = () => {
         <Actuation>Area de Atuacao</Actuation>
         <Members>Mombros</Members>
         <SectionFooter id="footer">
+          <Marquee>
+            <section>
+              <img src="occam.png" alt="" />
+              <img src="occam.png" alt="" />
+              <img src="occam.png" alt="" />
+            </section>
+          </Marquee>
           <Footer />
         </SectionFooter>
       </Page>

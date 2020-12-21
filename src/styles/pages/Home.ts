@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 export const Page = styled.div`
   scroll-snap-type: y mandatory;
   height: 100vh;
@@ -12,6 +12,12 @@ export const Page = styled.div`
 
   #footer {
     height: 150vh;
+  }
+
+  @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
+    #footer {
+      height: 100vh;
+    }
   }
 `
 
@@ -109,3 +115,37 @@ export const AboutUs = styled.div`
   background: ${props => props.theme.colors.primary};
 `
 export const SectionFooter = styled.div``
+
+const animation = keyframes`
+  0% {
+      transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+`
+
+export const Marquee = styled.div`
+  margin: 2rem auto 0;
+  width: 100%;
+  max-width: 120rem;
+  max-height: 10rem;
+  overflow: hidden;
+  white-space: nowrap;
+
+  padding: 2px;
+  section {
+    display: inline-block;
+    padding-left: 100%;
+    animation: ${animation} 15s linear infinite;
+
+    img {
+      width: 18rem;
+      max-height: 10rem;
+
+      & + img {
+        margin-left: 6.8rem;
+      }
+    }
+  }
+`

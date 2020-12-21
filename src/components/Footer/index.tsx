@@ -17,7 +17,13 @@ const Footer: React.FC = () => {
       <InternalLinks>
         <SectionImage>
           <img src="/occam.png" alt="OCCAM Engenharia" />
-          <span>Empresa júnior de Engenharia de computação. ENDEREÇO</span>
+          <span>
+            Empresa júnior de Engenharia de computação.{' '}
+            <p>
+              POLITEC – Sala 492 | Avenida Elisa Rosa Colla Padoan , 100 –
+              Fraron. Pato Branco 85503-390.
+            </p>
+          </span>
         </SectionImage>
 
         {links.map(link => (
