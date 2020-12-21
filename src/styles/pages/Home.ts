@@ -191,7 +191,77 @@ export const Members = styled.div`
   }
 `
 
-export const About = styled.div``
+export const About = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 0;
+    height: 0;
+  }
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  h4 {
+    font-size: 3.2rem;
+    margin-bottom: 9.9rem;
+    color: ${props => props.theme.colors.borderDivision};
+  }
+  span {
+    font-size: 2.4rem;
+    margin-bottom: 14.3rem;
+    width: 27.2rem;
+    height: 19.6rem;
+    color: ${props => props.theme.colors.borderDivision};
+  }
+  h5 {
+    font-size: 1.6rem;
+    color: ${props => props.theme.colors.borderDivision};
+  }
+  @media (min-width: ${props => props.theme.breakpoints.md}px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    span {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    h4 {
+      font-size: 4.8rem;
+      margin-top: 9.6rem;
+      margin-bottom: 0rem;
+      margin-left: 20.3rem;
+      color: ${props => props.theme.colors.borderDivision};
+    }
+
+    span {
+      font-size: 2.4rem;
+      margin-top: 15.1rem;
+      margin-bottom: 0rem;
+      margin-left: 20.3rem;
+      width: 346px;
+      height: 143px;
+      color: ${props => props.theme.colors.borderDivision};
+    }
+
+    h5 {
+      font-size: 1.2rem;
+      margin-top: 10.4rem;
+      margin-bottom: 0rem;
+      margin-left: 20.4rem;
+      color: ${props => props.theme.colors.borderDivision};
+    }
+    img {
+      width: 56.6rem;
+      height: 100%;
+    }
+  }
+`
 
 export const SectionFooter = styled.div`
   display: flex;
