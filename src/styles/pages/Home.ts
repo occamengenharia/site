@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 export const Page = styled.div`
   scroll-snap-type: y mandatory;
@@ -7,11 +7,21 @@ export const Page = styled.div`
   scroll-behavior: smooth;
 
   > div {
-    scroll-snap-align: start;
+    scroll-snap-align: end;
     height: 100%;
     position: relative;
     &:nth-child(even) {
       background: ${props => props.theme.colors.primary};
+    }
+  }
+
+  #footer {
+    height: 150vh;
+  }
+
+  @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
+    #footer {
+      height: 100vh;
     }
   }
 `
@@ -182,4 +192,99 @@ export const Members = styled.div`
 `
 
 export const About = styled.div``
-export const Footer = styled.div``
+
+export const SectionFooter = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  /* padding-bottom: 6.4rem; */
+
+  @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
+    justify-content: space-between;
+
+    padding-bottom: 6.4rem;
+  }
+`
+
+const animation = keyframes`
+  0% {
+      transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+`
+
+export const Marquee = styled.aside`
+  display: flex;
+  flex-direction: column;
+
+  background: ${props => props.theme.colors.primary};
+
+  div {
+    margin: 0 auto 7.2rem;
+    width: 100%;
+
+    max-height: 10rem;
+    max-width: 120rem;
+
+    h1 {
+      font-size: 32px;
+      color: ${props => props.theme.colors.borderDivision};
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 0;
+      background: transparent;
+
+      font-size: 1.2rem;
+      color: ${props => props.theme.colors.borderDivision};
+      svg {
+        color: ${props => props.theme.colors.borderDivision};
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  aside {
+    margin: 0 auto;
+    padding: 2rem 0 9.6rem;
+    width: 100%;
+
+    max-height: 10rem;
+    max-width: 120rem;
+
+    overflow: hidden;
+    white-space: nowrap;
+
+    section {
+      display: inline-block;
+      padding-left: 100%;
+      animation: ${animation} 15s linear infinite;
+
+      img {
+        width: 18rem;
+        height: 10rem;
+
+        & + img {
+          margin-left: 6.8rem;
+        }
+      }
+    }
+  }
+
+  @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
+    aside {
+      section {
+        img + img {
+          margin-left: 20rem;
+        }
+      }
+    }
+  }
+`

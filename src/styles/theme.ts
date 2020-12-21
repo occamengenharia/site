@@ -11,14 +11,15 @@ const metrics = {
     transition: 0.8,
     borderRadius: 0.8,
     hover: 0.04
-  },
+  }
 }
 const basicColors = {
   error: '#E45B5B',
   sucess: '#78C516',
   borderDivision: '#E2E2E2',
   inputBackground: '#F1F1F1',
-  details: '#CECECE'
+  details: '#CECECE',
+  text2: '#858585'
 }
 
 export const light = {
