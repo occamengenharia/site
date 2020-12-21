@@ -19,12 +19,28 @@ export const MemberStyle = styled.section`
     font-weight: bold;
   }
 
-  div + div {
-    font-size: 24px;
-    font-weight: normal;
+  @media only screen and (max-width: 900px) {
+    max-width: 280px;
+    height: 422px;
+    flex-direction: column;
+    align-content: center;
+
+    > img {
+      width: 272px;
+      height: 272px;
+    }
+
+    div {
+      font-size: 24px;
+    }
+
+    label {
+      font-size: 16px;
+    }
   }
 `
 export const Links = styled.section`
+  padding-top: 16px;
   display: flex;
   justify-content: center;
   align-items: center;

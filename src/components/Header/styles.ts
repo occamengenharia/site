@@ -14,7 +14,13 @@ export const HeaderStyle = styled.section`
     gap: 3.2rem;
   }
 
-  @media only screen and (max-width: 650px) {
+  button {
+    display: none;
+  }
+
+  @media only screen and (max-width: 991px) {
+    max-width: 31.2rem;
+
     img {
       width: 136px;
       height: 32px;
@@ -22,6 +28,11 @@ export const HeaderStyle = styled.section`
 
     h1 {
       display: none;
+    }
+
+    button {
+      display: flex;
+      flex-direction: column;
     }
   }
 `
@@ -36,6 +47,10 @@ export const LogoStyle = styled.img`
   height: 48px;
 `
 
-export const BurguerMenu = styled.button`
-  display: none;
+export const Burger = styled.button`
+  svg {
+    background: #ffffff;
+    color: ${props => props.theme.colors.primary};
+    font-size: 1.6rem;
+  }
 `

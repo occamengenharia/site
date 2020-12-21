@@ -25,9 +25,9 @@ const Home: React.FC = () => {
       </Styles.Initial>
       <Styles.Actuation>Area de Atuacao</Styles.Actuation>
       <Styles.Members>
-        <div>Nossa Equipe</div>
+        <h3>Nossa Equipe</h3>
         <Member></Member>
-        <div>Histórico de Membros</div>
+        <span>Histórico de Membros</span>
       </Styles.Members>
       <Styles.Footer>footer</Styles.Footer>
     </Styles.Page>

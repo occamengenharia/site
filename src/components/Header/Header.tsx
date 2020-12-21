@@ -1,6 +1,13 @@
-import { HeaderStyle, HeadText, LogoStyle, BurguerMenu } from './styles'
+import { HeaderStyle, HeadText, LogoStyle, Burger } from './styles'
+import { GiHamburgerMenu } from 'react-icons/gi'
+import { useState } from 'react'
 
 export default function Header() {
+  const [openMenu, setOpenMenu] = useState(false)
+
+  function handleClick() {
+    setOpenMenu(!openMenu)
+  }
   return (
     <HeaderStyle>
       <LogoStyle src="/occam.png"></LogoStyle>
@@ -10,6 +17,9 @@ export default function Header() {
         <HeadText>Sobre Nós</HeadText>
         <HeadText>Contato</HeadText>
       </div>
+      <Burger onClick={handleClick}>
+        <GiHamburgerMenu />
+      </Burger>
     </HeaderStyle>
   )
 }
