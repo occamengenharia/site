@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const HeaderStyle = styled.section`
   padding: 1.6rem;
   margin: 0 auto;
+  margin-bottom: 5.6rem;
   width: 100vw;
   max-width: 1032px;
   display: flex;
