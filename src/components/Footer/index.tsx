@@ -35,13 +35,13 @@ const Footer: React.FC = () => {
         <span>Copyright 2020</span>
 
         <SocialLinksIcons>
-          <a href="/">
+          <a href="https://www.instagram.com/occamengenharia/">
             <FaInstagram />
           </a>
-          <a href="/">
+          <a href="https://github.com/occamengenharia/">
             <FaGithub />
           </a>
-          <a href="/">
+          <a href="https://br.linkedin.com/company/occamengenharia">
             <FaLinkedin />
           </a>
         </SocialLinksIcons>
