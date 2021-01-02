@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const HeaderStyle = styled.section`
   padding: 1.6rem;
@@ -14,7 +14,13 @@ export const HeaderStyle = styled.section`
     gap: 3.2rem;
   }
 
-  @media only screen and (max-width: 650px) {
+  button {
+    display: none;
+  }
+
+  @media only screen and (max-width: 991px) {
+    max-width: 31.2rem;
+
     img {
       width: 136px;
       height: 32px;
@@ -22,6 +28,11 @@ export const HeaderStyle = styled.section`
 
     h1 {
       display: none;
+    }
+
+    button {
+      display: flex;
+      flex-direction: column;
     }
   }
 `
@@ -35,7 +46,37 @@ export const LogoStyle = styled.img`
   width: 208px;
   height: 48px;
 `
+interface props {
+  val: boolean
+}
 
-export const BurguerMenu = styled.button`
-  display: none;
+export const Burger = styled.button<props>`
+  background: #ffffff;
+
+  div {
+    ${props =>
+      props.val
+        ? css`
+            display: flex;
+          `
+        : css`
+            display: none;
+          `}
+    font-size: 1.2rem;
+    border: 1px black solid;
+    border-radius: 4px;
+    height: 2.4rem;
+    width: 12rem;
+    align-items: center;
+    justify-content: center;
+  }
+  div + div {
+    margin-top: 2px;
+  }
+
+  svg {
+    background: #ffffff;
+    color: ${props => props.theme.colors.primary};
+    font-size: 1.6rem;
+  }
 `
