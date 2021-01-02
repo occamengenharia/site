@@ -5,6 +5,7 @@ const BtnTheme: React.FC = () => {
   const { toggleTheme, theme } = useTheme()
   return (
     <Main onClick={toggleTheme}>
+      aaaa
       {theme === 'light' ? <CgMoon /> : <CgSun />}
     </Main>
   )

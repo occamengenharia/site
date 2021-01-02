@@ -8,15 +8,18 @@ import {
 
 import links from './links'
 
+import { useTheme } from '@/hooks/theme'
 import SectionLinkss from './SectionLinks'
 import { FaInstagram, FaGithub, FaLinkedin } from 'react-icons/fa'
 
 const Footer: React.FC = () => {
+  const { theme } = useTheme()
+
   return (
     <Container>
       <InternalLinks>
         <SectionImage>
-          <img src="/occam.png" alt="OCCAM Engenharia" />
+          <img src={`logo/${theme}.svg`} alt="OCCAM Engenharia" />
           <span>
             Empresa júnior de Engenharia de computação.{' '}
             <p>
