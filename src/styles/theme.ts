@@ -1,4 +1,4 @@
-const metrics = {
+export const metrics = {
   breakpoints: {
     xs: 480,
     sm: 576,
