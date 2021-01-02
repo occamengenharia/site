@@ -1,3 +1,5 @@
+/* eslint-disable no-tabs */
+const user_subscribe_ps = `
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" style="width:100%;font-family:arial, 'helvetica neue', helvetica, sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0">
  <head>
@@ -92,7 +94,7 @@ a[x-apple-data-detectors] {
                   <td valign="top" align="center" style="padding:0;Margin:0;width:560px">
                    <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                      <tr style="border-collapse:collapse">
-                      <td style="padding:0;Margin:0;font-size:0px" align="center"><img class="adapt-img" src="images/69751608242078229.png" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="170"></td>
+                      <td style="padding:0;Margin:0;font-size:0px" align="center"><img class="adapt-img" src="http://localhost:3000/emails/logo-blue.png" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="170"></td>
                      </tr>
                    </table></td>
                  </tr>
@@ -112,7 +114,20 @@ a[x-apple-data-detectors] {
                   <td valign="top" align="center" style="padding:0;Margin:0;width:560px">
                    <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                      <tr style="border-collapse:collapse">
-                      <td bgcolor="#0351B8" align="center" style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:24px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:36px;color:#F9F8F8;font-weight:bold;text-shadow:0.1em 0.1em 0.2em black">SEUS DADOS DE INSCRIÇÂO</p></td>
+                      <td bgcolor="#0351B8" align="center" style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:24px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:36px;color:#F9F8F8;font-weight:bold;text-shadow:0.1em 0.1em 0.2em black">CONFIRMAÇÂO DE INSCRIÇÂO</p></td>
+                     </tr>
+                   </table></td>
+                 </tr>
+               </table></td>
+             </tr>
+             <tr style="border-collapse:collapse">
+              <td align="left" style="padding:0;Margin:0;padding-top:20px;padding-left:20px;padding-right:20px">
+               <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                 <tr style="border-collapse:collapse">
+                  <td valign="top" align="center" style="padding:0;Margin:0;width:560px">
+                   <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                     <tr style="border-collapse:collapse">
+                      <td align="left" style="padding:0;Margin:0;padding-top:10px;padding-left:35px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:24px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:24px;color:#0351B8;font-weight:bold">Dados</p></td>
                      </tr>
                    </table></td>
                  </tr>
@@ -231,7 +246,7 @@ a[x-apple-data-detectors] {
                   <td valign="top" align="center" style="padding:0;Margin:0;width:560px">
                    <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                      <tr style="border-collapse:collapse">
-                      <td align="center" style="padding:0;Margin:0;padding-top:15px;padding-bottom:20px;font-size:0px"><img class="adapt-img" src="images/61111608316799893.png" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="95"></td>
+                      <td align="center" style="padding:0;Margin:0;padding-top:15px;padding-bottom:20px;font-size:0px"><img class="adapt-img" src="http://localhost:3000/emails/logo-gray.png" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="95"></td>
                      </tr>
                      <tr style="border-collapse:collapse">
                       <td align="center" style="padding:0;Margin:0"><h1 style="Margin:0;line-height:12px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:8px;font-style:normal;font-weight:normal;color:#333333"><strong>Comunidade</strong></h1><h2 style="Margin:0;line-height:12px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:8px;font-style:normal;font-weight:normal;color:#333333">Tem alguma dúvida? A OCCAM pode te ajudar. Visite:&nbsp;<a href="https://occamengenharia.com/" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:8px;text-decoration:underline;color:blue">occamengenharia.com</a></h2><h2 style="Margin:0;line-height:12px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:8px;font-style:normal;font-weight:normal;color:#333333">Em caso de qualquer dúvida, fique à vontade para responder esse email com a sua dúvida</h2><h2 style="Margin:0;line-height:12px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:8px;font-style:normal;font-weight:normal;color:#333333">Responderemos o mais breve possível</h2><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333"><br></p><h1 style="Margin:0;line-height:12px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:8px;font-style:normal;font-weight:normal;color:#333333"><strong>Ouvidoria</strong></h1><h2 style="Margin:0;line-height:12px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:8px;font-style:normal;font-weight:normal;color:#333333">Se você não ficou satisfeito com a solução do nosso time de atendimento, ligue para (46) 3220-2668 em dias úteis, das 9h às 18h,</h2><h2 style="Margin:0;line-height:12px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:8px;font-style:normal;font-weight:normal;color:#333333">Horário de São Paulo.</h2><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333"><br></p><h2 style="Margin:0;line-height:12px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:8px;font-style:normal;font-weight:normal;color:#333333">OCCAM ENGENHARIA</h2><h2 style="Margin:0;line-height:12px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:8px;font-style:normal;font-weight:normal;color:#333333">POLITEC – Sala 492 | Avenida Elisa Rosa Colla Padoan , 100 – Fraron.</h2><h2 style="Margin:0;line-height:12px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:8px;font-style:normal;font-weight:normal;color:#333333">Caso não queira mais receber nossos emails, por favor nos informe.</h2><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333"><br></p></td>
@@ -240,9 +255,9 @@ a[x-apple-data-detectors] {
                       <td align="center" style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px;font-size:0px">
                        <table class="es-table-not-adapt es-social" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                          <tr style="border-collapse:collapse">
-                          <td valign="top" align="center" style="padding:0;Margin:0;padding-right:10px"><img title="Facebook" src="images/facebook-logo-black.png" alt="Fb" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
-                          <td valign="top" align="center" style="padding:0;Margin:0;padding-right:10px"><img title="Twitter" src="images/twitter-logo-black.png" alt="Tw" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
-                          <td valign="top" align="center" style="padding:0;Margin:0"><img title="Instagram" src="images/instagram-logo-black.png" alt="Inst" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
+                          <td valign="top" align="center" style="padding:0;Margin:0;padding-right:10px"><img title="Facebook" src="http://localhost:3000/emails/github-logo-black.png" alt="Fb" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
+                          <td valign="top" align="center" style="padding:0;Margin:0;padding-right:10px"><img title="Twitter" src="http://localhost:3000/emails/linkedin-logo-black.png" alt="Tw" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
+                          <td valign="top" align="center" style="padding:0;Margin:0"><img title="Instagram" src="http://localhost:3000/emails/instagram-logo-black.png" alt="Inst" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
                          </tr>
                        </table></td>
                      </tr>
@@ -271,3 +286,7 @@ a[x-apple-data-detectors] {
   </div>
  </body>
 </html>
+
+`
+
+export default user_subscribe_ps

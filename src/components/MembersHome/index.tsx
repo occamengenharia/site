@@ -12,7 +12,7 @@ export default function Member() {
       <img src="/banner.png"></img>
       <section>
         <div>Gabriel Prando</div>
-        <div>Diretor de Projetos</div>
+        <label>Diretor de Projetos</label>
         <Links>
           <FaGithub />
           <FaLinkedin />

@@ -186,8 +186,22 @@ export const Actuation = styled.div`
   }
 `
 export const Members = styled.div`
-  > div {
-    font-size: 48px;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  gap: 4.8rem;
+  max-width: 1032px;
+  color: ${props => props.theme.colors.primary};
+
+  > span {
+    align-self: center;
+  }
+
+  @media only screen and (max-width: 991px) {
+    max-width: 280px;
+    > h3 {
+      font-size: 32px;
+    }
   }
 `
 
