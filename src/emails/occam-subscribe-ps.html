@@ -17,7 +17,7 @@
     <meta name="x-apple-disable-message-reformatting" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta content="telephone=no" name="format-detection" />
-    <title>Template Mensagem</title>
+    <title>email</title>
     <!--[if (mso 16)]>
       <style type="text/css">
         a {
@@ -41,6 +41,17 @@
       </xml>
     <![endif]-->
     <style type="text/css">
+      .rollover div {
+        font-size: 0;
+      }
+      .rollover:hover .rollover-first {
+        max-height: 0px !important;
+        display: none !important;
+      }
+      .rollover:hover .rollover-second {
+        max-height: none !important;
+        display: inline-block !important;
+      }
       #outlook a {
         padding: 0;
       }
@@ -243,7 +254,8 @@
         button.es-button {
           font-size: 20px !important;
           display: block !important;
-          border-width: 10px 0px 10px 0px !important;
+          border-left-width: 0px !important;
+          border-right-width: 0px !important;
         }
       }
     </style>
@@ -258,7 +270,7 @@
       margin: 0;
     "
   >
-    <div class="es-wrapper-color" style="background-color: #f6f6f6">
+    <div class="es-wrapper-color" style="background-color: #fbf7f7">
       <!--[if gte mso 9]>
         <v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
           <v:fill type="tile" color="#fbf7f7"></v:fill>
@@ -489,7 +501,7 @@
                                         text-shadow: 0.1em 0.1em 0.2em black;
                                       "
                                     >
-                                      NOVA MENSAGEM
+                                      NOVA INSCRIÇÂO EFETUADA
                                     </p>
                                   </td>
                                 </tr>
@@ -563,7 +575,7 @@
                                         font-weight: bold;
                                       "
                                     >
-                                      Mensagem
+                                      Dados
                                     </p>
                                   </td>
                                 </tr>
@@ -684,6 +696,108 @@
                                       "
                                       align="left"
                                     >
+                                      <b>CURSO:&nbsp;</b>%%COURSE%%<br />
+                                    </p>
+                                  </td>
+                                </tr>
+                                <tr style="border-collapse: collapse">
+                                  <td
+                                    align="left"
+                                    style="
+                                      padding: 0;
+                                      margin: 0;
+                                      padding-left: 35px;
+                                    "
+                                  >
+                                    <p
+                                      style="
+                                        margin: 0;
+                                        -webkit-text-size-adjust: none;
+                                        -ms-text-size-adjust: none;
+                                        mso-line-height-rule: exactly;
+                                        font-size: 14px;
+                                        font-family: arial, 'helvetica neue',
+                                          helvetica, sans-serif;
+                                        line-height: 28px;
+                                        color: #666666;
+                                      "
+                                      align="left"
+                                    >
+                                      <b>RA: </b>%%RA%%
+                                    </p>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr style="border-collapse: collapse">
+                            <td
+                              valign="top"
+                              align="center"
+                              style="padding: 0; margin: 0; width: 560px"
+                            >
+                              <table
+                                width="100%"
+                                cellspacing="0"
+                                cellpadding="0"
+                                role="presentation"
+                                style="
+                                  mso-table-lspace: 0pt;
+                                  mso-table-rspace: 0pt;
+                                  border-collapse: collapse;
+                                  border-spacing: 0px;
+                                "
+                              >
+                                <tr style="border-collapse: collapse">
+                                  <td
+                                    align="left"
+                                    style="
+                                      padding: 0;
+                                      margin: 0;
+                                      padding-left: 35px;
+                                    "
+                                  >
+                                    <p
+                                      style="
+                                        margin: 0;
+                                        -webkit-text-size-adjust: none;
+                                        -ms-text-size-adjust: none;
+                                        mso-line-height-rule: exactly;
+                                        font-size: 14px;
+                                        font-family: arial, 'helvetica neue',
+                                          helvetica, sans-serif;
+                                        line-height: 28px;
+                                        color: #666666;
+                                      "
+                                      align="left"
+                                    >
+                                      <b>PERÍODO: </b>%%PERIOD%%
+                                    </p>
+                                  </td>
+                                </tr>
+                                <tr style="border-collapse: collapse">
+                                  <td
+                                    align="left"
+                                    style="
+                                      padding: 0;
+                                      margin: 0;
+                                      padding-left: 35px;
+                                    "
+                                  >
+                                    <p
+                                      style="
+                                        margin: 0;
+                                        -webkit-text-size-adjust: none;
+                                        -ms-text-size-adjust: none;
+                                        mso-line-height-rule: exactly;
+                                        font-size: 14px;
+                                        font-family: arial, 'helvetica neue',
+                                          helvetica, sans-serif;
+                                        line-height: 28px;
+                                        color: #666666;
+                                      "
+                                      align="left"
+                                    >
                                       <b>EMAIL:</b>&nbsp;%%EMAIL%%
                                     </p>
                                   </td>
@@ -732,7 +846,7 @@
                                       "
                                       align="left"
                                     >
-                                      <b>TELEFONE:&nbsp;</b>%%PHONE%%
+                                      <b>SETOR:&nbsp;</b>%%SECTOR%%
                                     </p>
                                   </td>
                                 </tr>
@@ -836,16 +950,20 @@
                                         -webkit-text-size-adjust: none;
                                         -ms-text-size-adjust: none;
                                         mso-line-height-rule: exactly;
-                                        font-size: 16px;
+                                        font-size: 12px;
                                         font-family: arial, 'helvetica neue',
                                           helvetica, sans-serif;
-                                        line-height: 24px;
+                                        line-height: 18px;
                                         color: #666666;
                                         border-top: 1px solid black;
                                         padding-top: 16px;
                                       "
                                     >
-                                      <b>Mensagem:</b>
+                                      <strong
+                                        >1 - Possui algum conhecimento, mesmo
+                                        que básico em linguagens de
+                                        programação?</strong
+                                      >
                                     </p>
                                   </td>
                                 </tr>
@@ -871,16 +989,241 @@
                                         color: #666666;
                                       "
                                     >
-                                      <br />%%ANSWER%%
+                                      %%ANSWER1%%
+                                    </p>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr style="border-collapse: collapse">
+                            <td
+                              valign="top"
+                              align="center"
+                              style="padding: 0; margin: 0; width: 560px"
+                            >
+                              <table
+                                width="100%"
+                                cellspacing="0"
+                                cellpadding="0"
+                                role="presentation"
+                                style="
+                                  mso-table-lspace: 0pt;
+                                  mso-table-rspace: 0pt;
+                                  border-collapse: collapse;
+                                  border-spacing: 0px;
+                                "
+                              >
+                                <tr style="border-collapse: collapse">
+                                  <td
+                                    align="left"
+                                    style="
+                                      padding: 0;
+                                      margin: 0;
+                                      padding-left: 35px;
+                                    "
+                                  >
+                                    <p
+                                      style="
+                                        margin: 0;
+                                        -webkit-text-size-adjust: none;
+                                        -ms-text-size-adjust: none;
+                                        mso-line-height-rule: exactly;
+                                        font-size: 12px;
+                                        font-family: arial, 'helvetica neue',
+                                          helvetica, sans-serif;
+                                        line-height: 18px;
+                                        color: #666666;
+                                      "
+                                    >
+                                      <strong
+                                        >3 - Você estaria disposto a dedicar seu
+                                        tempo aprendendo uma nova
+                                        linguagem?</strong
+                                      >
                                     </p>
                                   </td>
                                 </tr>
                                 <tr style="border-collapse: collapse">
                                   <td
-                                    align="center"
-                                    height="128"
-                                    style="padding: 0; margin: 0"
-                                  ></td>
+                                    align="left"
+                                    style="
+                                      padding: 0;
+                                      margin: 0;
+                                      padding-left: 35px;
+                                    "
+                                  >
+                                    <p
+                                      style="
+                                        margin: 0;
+                                        -webkit-text-size-adjust: none;
+                                        -ms-text-size-adjust: none;
+                                        mso-line-height-rule: exactly;
+                                        font-size: 14px;
+                                        font-family: arial, 'helvetica neue',
+                                          helvetica, sans-serif;
+                                        line-height: 28px;
+                                        color: #666666;
+                                      "
+                                    >
+                                      %%ANSWER3%%
+                                    </p>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr style="border-collapse: collapse">
+                            <td
+                              valign="top"
+                              align="center"
+                              style="padding: 0; margin: 0; width: 560px"
+                            >
+                              <table
+                                width="100%"
+                                cellspacing="0"
+                                cellpadding="0"
+                                role="presentation"
+                                style="
+                                  mso-table-lspace: 0pt;
+                                  mso-table-rspace: 0pt;
+                                  border-collapse: collapse;
+                                  border-spacing: 0px;
+                                "
+                              >
+                                <tr style="border-collapse: collapse">
+                                  <td
+                                    align="left"
+                                    style="
+                                      padding: 0;
+                                      margin: 0;
+                                      padding-left: 35px;
+                                    "
+                                  >
+                                    <p
+                                      style="
+                                        margin: 0;
+                                        -webkit-text-size-adjust: none;
+                                        -ms-text-size-adjust: none;
+                                        mso-line-height-rule: exactly;
+                                        font-size: 12px;
+                                        font-family: arial, 'helvetica neue',
+                                          helvetica, sans-serif;
+                                        line-height: 18px;
+                                        color: #666666;
+                                      "
+                                    >
+                                      <strong
+                                        >4 - Qual sua motivação para participar
+                                        do processo seletivo?</strong
+                                      >
+                                    </p>
+                                  </td>
+                                </tr>
+                                <tr style="border-collapse: collapse">
+                                  <td
+                                    align="left"
+                                    style="
+                                      padding: 0;
+                                      margin: 0;
+                                      padding-left: 35px;
+                                    "
+                                  >
+                                    <p
+                                      style="
+                                        margin: 0;
+                                        -webkit-text-size-adjust: none;
+                                        -ms-text-size-adjust: none;
+                                        mso-line-height-rule: exactly;
+                                        font-size: 14px;
+                                        font-family: arial, 'helvetica neue',
+                                          helvetica, sans-serif;
+                                        line-height: 28px;
+                                        color: #666666;
+                                      "
+                                    >
+                                      %%ANSWER4%%
+                                    </p>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr style="border-collapse: collapse">
+                            <td
+                              valign="top"
+                              align="center"
+                              style="padding: 0; margin: 0; width: 560px"
+                            >
+                              <table
+                                width="100%"
+                                cellspacing="0"
+                                cellpadding="0"
+                                role="presentation"
+                                style="
+                                  mso-table-lspace: 0pt;
+                                  mso-table-rspace: 0pt;
+                                  border-collapse: collapse;
+                                  border-spacing: 0px;
+                                "
+                              >
+                                <tr style="border-collapse: collapse">
+                                  <td
+                                    align="left"
+                                    style="
+                                      padding: 0;
+                                      margin: 0;
+                                      padding-left: 35px;
+                                    "
+                                  >
+                                    <p
+                                      style="
+                                        margin: 0;
+                                        -webkit-text-size-adjust: none;
+                                        -ms-text-size-adjust: none;
+                                        mso-line-height-rule: exactly;
+                                        font-size: 12px;
+                                        font-family: arial, 'helvetica neue',
+                                          helvetica, sans-serif;
+                                        line-height: 18px;
+                                        color: #666666;
+                                      "
+                                    >
+                                      <strong
+                                        >5 - Como você pode contribuir para o
+                                        desenvolvimento da empresa Junior, e o
+                                        que você pode fazer para tornar o Brasil
+                                        mais empreendedor?</strong
+                                      >
+                                    </p>
+                                  </td>
+                                </tr>
+                                <tr style="border-collapse: collapse">
+                                  <td
+                                    align="left"
+                                    style="
+                                      padding: 0;
+                                      margin: 0;
+                                      padding-left: 35px;
+                                      padding-bottom: 40px;
+                                    "
+                                  >
+                                    <p
+                                      style="
+                                        margin: 0;
+                                        -webkit-text-size-adjust: none;
+                                        -ms-text-size-adjust: none;
+                                        mso-line-height-rule: exactly;
+                                        font-size: 14px;
+                                        font-family: arial, 'helvetica neue',
+                                          helvetica, sans-serif;
+                                        line-height: 28px;
+                                        color: #666666;
+                                      "
+                                    >
+                                      %%ANSWER5%%
+                                    </p>
+                                  </td>
                                 </tr>
                               </table>
                             </td>
@@ -1250,33 +1593,19 @@
                                             padding-right: 10px;
                                           "
                                         >
-                                          <a
-                                            target="_blank"
-                                            href="https://www.instagram.com/occamengenharia/"
+                                          <img
+                                            title="Facebook"
+                                            src="http://localhost:3000/emails/github-logo-black.png"
+                                            alt="Fb"
+                                            width="32"
                                             style="
-                                              -webkit-text-size-adjust: none;
-                                              -ms-text-size-adjust: none;
-                                              mso-line-height-rule: exactly;
-                                              font-family: arial,
-                                                'helvetica neue', helvetica,
-                                                sans-serif;
-                                              font-size: 14px;
-                                              text-decoration: underline;
-                                              color: #ffffff;
+                                              display: block;
+                                              border: 0;
+                                              outline: none;
+                                              text-decoration: none;
+                                              -ms-interpolation-mode: bicubic;
                                             "
-                                            ><img
-                                              title="Instagram"
-                                              src="http://localhost:3000/emails/instagram-logo-black.png"
-                                              alt="Inst"
-                                              width="32"
-                                              style="
-                                                display: block;
-                                                border: 0;
-                                                outline: none;
-                                                text-decoration: none;
-                                                -ms-interpolation-mode: bicubic;
-                                              "
-                                          /></a>
+                                          />
                                         </td>
                                         <td
                                           valign="top"
@@ -1287,66 +1616,38 @@
                                             padding-right: 10px;
                                           "
                                         >
-                                          <a
-                                            target="_blank"
-                                            href="https://www.linkedin.com/company/occamengenharia/"
+                                          <img
+                                            title="Twitter"
+                                            src="http://localhost:3000/emails/linkedin-logo-black.png"
+                                            alt="Tw"
+                                            width="32"
                                             style="
-                                              -webkit-text-size-adjust: none;
-                                              -ms-text-size-adjust: none;
-                                              mso-line-height-rule: exactly;
-                                              font-family: arial,
-                                                'helvetica neue', helvetica,
-                                                sans-serif;
-                                              font-size: 14px;
-                                              text-decoration: underline;
-                                              color: #ffffff;
+                                              display: block;
+                                              border: 0;
+                                              outline: none;
+                                              text-decoration: none;
+                                              -ms-interpolation-mode: bicubic;
                                             "
-                                            ><img
-                                              title="Linkedin"
-                                              src="http://localhost:3000/emails/linkedin-logo-black.png"
-                                              alt="In"
-                                              width="32"
-                                              style="
-                                                display: block;
-                                                border: 0;
-                                                outline: none;
-                                                text-decoration: none;
-                                                -ms-interpolation-mode: bicubic;
-                                              "
-                                          /></a>
+                                          />
                                         </td>
                                         <td
                                           valign="top"
                                           align="center"
                                           style="padding: 0; margin: 0"
                                         >
-                                          <a
-                                            target="_blank"
-                                            href="https://github.com/occamengenharia"
+                                          <img
+                                            title="Instagram"
+                                            src="http://localhost:3000/emails/instagram-logo-black.png"
+                                            alt="Inst"
+                                            width="32"
                                             style="
-                                              -webkit-text-size-adjust: none;
-                                              -ms-text-size-adjust: none;
-                                              mso-line-height-rule: exactly;
-                                              font-family: arial,
-                                                'helvetica neue', helvetica,
-                                                sans-serif;
-                                              font-size: 14px;
-                                              text-decoration: underline;
-                                              color: #ffffff;
+                                              display: block;
+                                              border: 0;
+                                              outline: none;
+                                              text-decoration: none;
+                                              -ms-interpolation-mode: bicubic;
                                             "
-                                            ><img
-                                              title="GitHub"
-                                              src="http://localhost:3000/emails/github-logo-black.png"
-                                              alt="GitHub"
-                                              width="32"
-                                              style="
-                                                display: block;
-                                                border: 0;
-                                                outline: none;
-                                                text-decoration: none;
-                                                -ms-interpolation-mode: bicubic;
-                                              "
-                                          /></a>
+                                          />
                                         </td>
                                       </tr>
                                     </table>

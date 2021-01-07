@@ -11,7 +11,7 @@ export default async (
   const email = 'emailvagabundooccam@gmail.com'
   const subject = 'teeee'
 
-  const filePath = 'src/emails/message-contact.html'
+  const filePath = 'src/emails/user-subscribe-ps.html'
   const source = fs.readFileSync(filePath, 'utf-8').toString()
   const template = handlebars.compile(source)
   const replacements = {
