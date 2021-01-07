@@ -1,11 +1,24 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 import nodemailer from 'nodemailer'
+import handlebars from 'handlebars'
+import fs from 'fs'
 
 export default async (
   request: NowRequest,
   response: NowResponse
 ): Promise<NowResponse> => {
-  const { email, subject } = request.body
+  // const { email, subject } = request.body
+  const email = 'emailvagabundooccam@gmail.com'
+  const subject = 'teeee'
+
+  const filePath = 'src/emails/message-contact.html'
+  const source = fs.readFileSync(filePath, 'utf-8').toString()
+  const template = handlebars.compile(source)
+  const replacements = {
+    name: 'Erica'
+  }
+
+  const htmlToSend = template(replacements)
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -19,7 +32,7 @@ export default async (
     from: process.env.EMAIL_FROM,
     to: email,
     subject,
-    text: 'Email enviado com node.js'
+    html: htmlToSend
   }
 
   try {
