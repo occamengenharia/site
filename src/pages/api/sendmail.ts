@@ -11,7 +11,7 @@ export default async (
   const email = 'emailvagabundooccam@gmail.com'
   const subject = 'teeee'
 
-  const filePath = 'src/emails/user-subscribe-ps.html'
+  const filePath = 'src/emails/occam-subscribe-ps.html'
   const source = fs.readFileSync(filePath, 'utf-8').toString()
   const template = handlebars.compile(source)
   const replacements = {
@@ -43,5 +43,6 @@ export default async (
   }
 
   response.statusCode = 200
-  return response.json({ ok: true })
+  // return response.json({ ok: true })
+  return response.json({ Hello: 'World' })
 }
