@@ -49,5 +49,5 @@ export default async (
     return response.status(400).json({ error: 'error' })
   }
 
-  return response.status(201)
+  return response.status(204).send('')
 }

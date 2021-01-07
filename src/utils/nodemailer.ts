@@ -21,7 +21,7 @@ const sendMail = async ({ subject, html }: ISendEmail): Promise<string> => {
 
   const emailOptions = {
     from: process.env.EMAIL_FROM,
-    to: 'occamengenharia@gmail.com',
+    to: process.env.EMAIL_TO,
     subject,
     html
   } as nodemailer.SendMailOptions
