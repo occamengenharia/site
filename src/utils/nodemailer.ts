@@ -27,7 +27,6 @@ const sendMail = async ({ subject, html }: ISendEmail): Promise<string> => {
   } as nodemailer.SendMailOptions
 
   try {
-    console.log(emailOptions)
     await transporter.sendMail(emailOptions)
   } catch (error) {
     return 'Erro ao enviar o email'

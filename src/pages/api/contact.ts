@@ -27,7 +27,6 @@ export default async (
   }
 
   const filePath = path.resolve('src', 'emails', 'message-contact.html')
-  console.log(filePath)
   const source = fs.readFileSync(filePath, 'utf-8').toString()
   const template = handlebars.compile(source)
   const replacements = {
@@ -45,7 +44,6 @@ export default async (
   })
 
   if (res.includes('Erro')) {
-    console.log(res)
     return response.status(400).json({ error: 'error' })
   }
 
