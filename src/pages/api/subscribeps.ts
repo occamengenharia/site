@@ -1,10 +1,5 @@
 import { NowRequest, NowResponse } from '@vercel/node'
-import handlebars from 'handlebars'
-
-import fs from 'fs'
-import path from 'path'
-
-import sendMail from '@/utils/nodemailer'
+import { createTemplate, sendMail } from '@/utils/nodemailer'
 
 interface IRequest {
   name: string
@@ -44,10 +39,6 @@ export default async (
     return response.status(403).json({ error: 'Invalid email' })
   }
 
-  const filePath = path.resolve('src', 'emails', 'occam-subscribe-ps.html')
-  const source = fs.readFileSync(filePath, 'utf-8').toString()
-  const template = handlebars.compile(source)
-
   const replacements = {
     name,
     course,
@@ -61,14 +52,29 @@ export default async (
     answer4
   }
 
-  const html = template(replacements)
+  const template_occam = createTemplate('occam-subscribe-ps.html')
+  const template_user = createTemplate('user-subscribe-ps.html')
 
-  const res = await sendMail({
-    html,
+  const html_occam = template_occam(replacements)
+  const html_user = template_user(replacements)
+
+  const res_occam = await sendMail({
+    to: process.env.EMAIL_TO,
+    html: html_occam,
     subject: 'Nova inscrição no processo seletivo OCCAM'
   })
 
-  if (res.includes('Erro')) {
+  const res_user = await sendMail({
+    to: email,
+    html: html_user,
+    subject: 'Confirmação de inscrição processo seletivo OCCAM'
+  })
+
+  if (res_occam.includes('Erro')) {
+    return response.status(400).json({ error: 'error' })
+  }
+
+  if (res_user.includes('Erro')) {
     return response.status(400).json({ error: 'error' })
   }
 
