@@ -65,7 +65,7 @@ export default async (
   })
 
   const res_user_promise = sendMail({
-    to: 'email',
+    to: email,
     html: html_user,
     subject: 'Confirmação de inscrição processo seletivo OCCAM'
   })
