@@ -58,23 +58,21 @@ export default async (
   const html_occam = template_occam(replacements)
   const html_user = template_user(replacements)
 
-  const res_occam = await sendMail({
+  const res_occam_promise = sendMail({
     to: process.env.EMAIL_TO,
     html: html_occam,
     subject: 'Nova inscrição no processo seletivo OCCAM'
   })
 
-  const res_user = await sendMail({
-    to: email,
+  const res_user_promise = sendMail({
+    to: 'email',
     html: html_user,
     subject: 'Confirmação de inscrição processo seletivo OCCAM'
   })
 
-  if (res_occam.includes('Erro')) {
-    return response.status(400).json({ error: 'error' })
-  }
+  const [res_occam, res_user] = await Promise.all([res_occam_promise, res_user_promise])
 
-  if (res_user.includes('Erro')) {
+  if (res_occam.includes('Erro') || res_user.includes('Erro')) {
     return response.status(400).json({ error: 'error' })
   }
 
