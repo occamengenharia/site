@@ -20,7 +20,8 @@
     "react-icons": "^4.1.0",
     "react-responsive-modal": "^6.0.0",
     "react-select": "^3.1.1",
-    "styled-components": "^5.2.0"
+    "styled-components": "^5.2.0",
+    "yup": "^0.32.8"
   },
   "devDependencies": {
     "@types/node": "^14.11.8",

@@ -1,4 +1,14 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const movePlaceholder = keyframes`
+  from{
+    transform: translateX(100%)
+  }
+
+  to{
+    transform: translateX(-130%)
+  }
+`
 
 export const BodyInput = styled.input`
   &[type='number']::-webkit-inner-spin-button {
@@ -29,6 +39,10 @@ export const BodyInput = styled.input`
     box-shadow: 0 0 1px 1px red;
   }
   & + & {
-    margin-top: 1.4rem;
+    margin-top: 1.6rem;
+  }
+
+  ::placeholder {
+    animation: movePlaceholder 12s linear infinite paused;
   }
 `

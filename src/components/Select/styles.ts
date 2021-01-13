@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 export const BodySelect = styled.div`
+  margin: 1.6rem 0;
+
   .react-select-container {
     width: 100%;
     min-width: 10rem;

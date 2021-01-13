@@ -15,8 +15,8 @@ import SEO from '@/components/SEO'
 import Header from '@/components/Header/Header'
 import Member from '@/components/MembersHome/index'
 import Link from '@/components/Link'
-import DataResquest from '@/components/Modals/DataRequest'
-import Sucess from '@/components/Modals/Success'
+import DataRequest from '@/components/Modals/DataRequest'
+import SelectiveProcessForm from '@/components/Modals/SelectiveProcessForm'
 
 const Home: React.FC = () => {
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
@@ -24,6 +24,8 @@ const Home: React.FC = () => {
   return (
     <>
       <SEO title="Home" description={description} image="/occam.png" />
+      {/* <DataRequest isOpened /> */}
+      <SelectiveProcessForm isOpened />
       <Page>
         <Initial>
           <Header />

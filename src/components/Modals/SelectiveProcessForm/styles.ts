@@ -3,22 +3,29 @@ import { MdClose } from 'react-icons/md'
 import { FaCheckCircle } from 'react-icons/fa'
 
 export const ModalContainer = styled.div`
-  padding: 4rem 3.2rem;
+  padding: 4rem 1.2rem;
   text-align: center;
+  max-width: 344rem;
 
-  p {
+  h3 {
     font-weight: bold;
     color: ${props => props.theme.colors.primary};
+    margin-bottom: 7.2rem;
   }
 
   > span {
     color: ${props => props.theme.colors.secundary};
   }
 
-  @media only screen and (min-width: ${props => props.theme.breakpoints.lg}px) {
-    padding: 4.8rem 10rem;
+  @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
+    padding: 4.8rem 7.2rem;
+    max-width: 100rem;
     p {
       font-size: 3.2rem;
+    }
+
+    h3 {
+      margin-bottom: 9.6rem;
     }
   }
 `
@@ -45,8 +52,16 @@ export const Check = styled(FaCheckCircle)`
   color: ${props => props.theme.colors.primary};
 `
 
-export const Link = styled.span`
-  cursor: pointer;
-`
+export const FormButton = styled.div`
+  margin-top: 4.8rem;
+  display: flex;
 
-export const Subtitle = styled.span``
+  @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
+    margin-top: 5.6rem;
+    justify-content: flex-end;
+
+    button {
+      max-width: 41.6rem;
+    }
+  }
+`
