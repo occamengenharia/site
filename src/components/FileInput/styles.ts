@@ -1,9 +1,18 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+interface InputProps {
+  isErrored: boolean
+}
 
-export const Container = styled.div`
+export const Container = styled.div<InputProps>`
   position: relative;
   margin-top: 1.6rem;
   div {
+    ${props =>
+      props.isErrored &&
+      css`
+        box-shadow: 0 0 2px 2px ${props => props.theme.colors.error};
+      `}
+
     position: absolute;
     top: 0px;
     left: 0px;
@@ -34,8 +43,19 @@ export const BodyInput = styled.input`
   opacity: 0;
   z-index: 2;
 
+  background: ${props => props.theme.colors.inputBackground};
   width: 100%;
   height: 5.6rem;
+  min-width: 10rem;
+  margin: 0.3rem 0;
+  padding: 0.6rem 1.2rem;
+  position: relative;
+  border-radius: ${props => props.theme.variables.borderRadius}rem;
+  border: 0;
+  width: 100%;
+  margin: 0.2rem 0;
+  margin: 0.2rem 0 0.8rem 0;
+  outline: 0;
 
   &[error] {
     box-shadow: 0 0 1px 1px red;

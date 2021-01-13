@@ -1,6 +1,16 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-export const BodyTextarea = styled.textarea`
+interface TextAreaProps {
+  isErrored: boolean
+}
+
+export const BodyTextarea = styled.textarea<TextAreaProps>`
+  ${props =>
+    props.isErrored &&
+    css`
+      box-shadow: 0 0 2px 2px ${props => props.theme.colors.error};
+    `}
+
   width: 100%;
   height: 5.6rem;
   background: ${props => props.theme.colors.inputBackground};

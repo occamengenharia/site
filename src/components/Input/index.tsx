@@ -14,16 +14,19 @@ const Input: React.FC<InputProps> = ({ name, ...rest }) => {
       path: 'value'
     })
   }, [fieldName, registerField])
+
   return (
-    <BodyInput
-      ref={inputRef}
-      defaultValue={defaultValue}
-      type="text"
-      id={fieldName}
-      placeholder="informe o placeholder dev"
-      isErrored={error !== ''}
-      {...rest}
-    />
+    <>
+      <BodyInput
+        ref={inputRef}
+        defaultValue={defaultValue}
+        type="text"
+        id={fieldName}
+        placeholder="informe o placeholder dev"
+        isErrored={!!error}
+        {...rest}
+      />
+    </>
   )
 }
 

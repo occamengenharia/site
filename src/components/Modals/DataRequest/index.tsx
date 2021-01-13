@@ -1,6 +1,6 @@
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import 'react-responsive-modal/styles.css'
 import { Modal } from 'react-responsive-modal'
 
@@ -16,6 +16,8 @@ interface DataRequestProps {
 }
 
 const DataRequest: React.FC<DataRequestProps> = ({ isOpened }) => {
+  const formRef = useRef(null)
+
   const [openDataRequest, setOpenDataRequest] = useState<boolean>(isOpened)
   const [openSuccess, setOpenSuccess] = useState<boolean>(false)
 
@@ -44,8 +46,14 @@ const DataRequest: React.FC<DataRequestProps> = ({ isOpened }) => {
 
       handleNextModal()
     } catch (err) {
+      const validationErrors = {}
+
       if (err instanceof Yup.ValidationError) {
-        console.log(err)
+        err.inner.forEach(error => {
+          validationErrors[error.path] = error.message
+        })
+
+        formRef.current.setErrors(validationErrors)
       }
     }
   }
@@ -66,7 +74,7 @@ const DataRequest: React.FC<DataRequestProps> = ({ isOpened }) => {
             Enviaremos um e-mail com todos os seus dados relacionados ao
             processo seletivo
           </span>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit} ref={formRef}>
             <Input name="email" placeholder="Informe seu email" />
             <Button type="submit" text="Enviar" icon={FiSend} />
           </Form>
@@ -82,10 +90,12 @@ const DataRequest: React.FC<DataRequestProps> = ({ isOpened }) => {
         <Close onClick={handleCloseModal} />
         <ModalContainer>
           <Check />
-          <p>Verifique seu email</p>
-          <Link onClick={handlePreviousModal}>
-            Não recebeu o e-mail? tente novamente
-          </Link>
+          <div>
+            <p>Verifique seu email</p>
+            <Link onClick={handlePreviousModal}>
+              Não recebeu o e-mail? tente novamente
+            </Link>
+          </div>
         </ModalContainer>
       </Modal>
     </>

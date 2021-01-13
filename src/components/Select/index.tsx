@@ -42,16 +42,11 @@ const Select: React.FC<Props> = ({ name, multi, ...rest }) => {
       background: '#fff',
       fontSize: 16,
       padding: 16
-    }),
-    multiValue: (provided, state) => ({
-      color: 'red',
-      fontSize: 16,
-      width: 100
     })
   }
 
   return (
-    <BodySelect>
+    <BodySelect isErrored={error}>
       <ReactSelect
         ref={selectRef}
         closeMenuOnSelect={true}

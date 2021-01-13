@@ -1,5 +1,10 @@
-import styled from 'styled-components'
-export const BodySelect = styled.div`
+import styled, { css } from 'styled-components'
+
+interface SelectProps {
+  isErrored: boolean
+}
+
+export const BodySelect = styled.div<SelectProps>`
   margin: 1.6rem 0;
 
   .react-select-container {
@@ -9,6 +14,11 @@ export const BodySelect = styled.div`
     position: relative;
     outline: 0;
     .react-select__control {
+      ${props =>
+        props.isErrored &&
+        css`
+          box-shadow: 0 0 2px 2px ${props => props.theme.colors.error};
+        `}
       background: ${props => props.theme.colors.inputBackground};
       border: 1px solid white;
       border-radius: ${props => props.theme.variables.borderRadius}rem;

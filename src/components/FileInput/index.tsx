@@ -28,7 +28,7 @@ const FileInput: React.FC<FileInputProps> = ({
   }
 
   return (
-    <Container>
+    <Container isErrored={!!error}>
       <BodyInput
         ref={inputRef}
         defaultValue={defaultValue}

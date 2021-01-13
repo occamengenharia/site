@@ -30,6 +30,7 @@ const Textarea: React.FC<TextareaProps> = ({
       id={fieldName}
       ref={textareRef}
       defaultValue={defaultValue}
+      isErrored={!!error}
       {...rest}
     />
   )

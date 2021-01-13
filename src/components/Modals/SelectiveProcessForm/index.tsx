@@ -1,6 +1,6 @@
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import 'react-responsive-modal/styles.css'
 import { Modal } from 'react-responsive-modal'
 
@@ -32,17 +32,19 @@ interface DataRequestProps {
 }
 
 const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
-  const [openForm1, setOpenForm1] = useState<boolean>(isOpened)
+  const formRef = useRef(null)
+
+  const [openForm, setOpenForm] = useState<boolean>(isOpened)
   const [openSuccess, setOpenSuccess] = useState<boolean>(false)
   const [inputVisible, setInputVisible] = useState<boolean>(false)
 
   function handleCloseModal() {
-    setOpenForm1(false)
+    setOpenForm(false)
     setOpenSuccess(false)
   }
 
   function handleOpenSuccess() {
-    setOpenForm1(false)
+    setOpenForm(false)
     setOpenSuccess(true)
 
     setTimeout(() => {
@@ -65,7 +67,6 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
         ra: Yup.number().required(),
         email: Yup.string().email().required(),
         course: Yup.string().required(),
-        department: Yup.string().required(),
         period: Yup.number().required(),
         knowledge: Yup.string().required(),
         wichLanguage: Yup.string().when('knowledge', {
@@ -83,8 +84,14 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
 
       handleOpenSuccess()
     } catch (err) {
+      const validationErrors = {}
+
       if (err instanceof Yup.ValidationError) {
-        console.log(err)
+        err.inner.forEach(error => {
+          validationErrors[error.path] = error.message
+        })
+
+        formRef.current.setErrors(validationErrors)
       }
     }
   }
@@ -92,7 +99,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
   return (
     <>
       <Modal
-        open={openForm1}
+        open={openForm}
         onClose={handleCloseModal}
         center
         showCloseIcon={false}
@@ -101,7 +108,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
         <Close onClick={handleCloseModal} />
         <ModalContainer>
           <h3>Inscrição Processo Seletivo</h3>
-          <Form onSubmit={handleSubmit}>
+          <Form ref={formRef} onSubmit={handleSubmit}>
             <Input name="name" placeholder="Nome completo" />
             <Input name="ra" placeholder="RA" />
             <Input name="email" placeholder="E-mail (preferência gmail)" />
