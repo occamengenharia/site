@@ -65,16 +65,25 @@ export default async (
   })
 
   const res_user_promise = sendMail({
-    to: email,
+    to: 'email',
     html: html_user,
     subject: 'Confirmação de inscrição processo seletivo OCCAM'
   })
 
-  const [res_occam, res_user] = await Promise.all([res_occam_promise, res_user_promise])
+  // const [res_occam, res_user] = await Promise.all([res_occam_promise, res_user_promise])
+  // if (res_occam.includes('Erro') || res_user.includes('Erro')) {
+  //   return response.status(400).json({ error: 'error' })
+  // }
 
-  if (res_occam.includes('Erro') || res_user.includes('Erro')) {
-    return response.status(400).json({ error: 'error' })
-  }
+  const res_promise = await Promise.allSettled([
+    res_occam_promise,
+    res_user_promise,
+    Promise.reject(() => {
+      return response.status(400).json({error: 'error'})
+    })
+  ])
+
+  console.log(res_promise)
 
   return response.status(204).send('')
 }
