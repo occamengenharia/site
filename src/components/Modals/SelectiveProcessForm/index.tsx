@@ -4,7 +4,13 @@ import { useState } from 'react'
 import 'react-responsive-modal/styles.css'
 import { Modal } from 'react-responsive-modal'
 
-import { ModalContainer, Close, Check, FormButton } from './styles'
+import {
+  ModalContainer,
+  Close,
+  Check,
+  FormButton,
+  SuccessModalContainer
+} from './styles'
 
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa'
 
@@ -13,7 +19,13 @@ import FileInput from '@/components/FileInput'
 import Select from '@/components/Select'
 import Textarea from '@/components/Textarea'
 import Button from '@/components/Button'
-import { courseOptions, periodOptions } from './selectOptions'
+import {
+  courseOptions,
+  periodOptions,
+  learnNewLanguageOptions,
+  knowledgeOptions,
+  departmentOptions
+} from './selectOptions'
 
 interface DataRequestProps {
   isOpened: boolean
@@ -22,6 +34,7 @@ interface DataRequestProps {
 const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
   const [openForm1, setOpenForm1] = useState<boolean>(isOpened)
   const [openSuccess, setOpenSuccess] = useState<boolean>(false)
+  const [inputVisible, setInputVisible] = useState<boolean>(false)
 
   function handleCloseModal() {
     setOpenForm1(false)
@@ -31,6 +44,18 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
   function handleOpenSuccess() {
     setOpenForm1(false)
     setOpenSuccess(true)
+
+    setTimeout(() => {
+      setOpenSuccess(false)
+    }, 2000)
+  }
+
+  function handleShowWichLanguageInput(event) {
+    if (event.value === 'knowledgeYes') {
+      setInputVisible(true)
+    } else {
+      setInputVisible(false)
+    }
   }
 
   async function handleSubmit(data) {
@@ -80,10 +105,12 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
             <Input name="name" placeholder="Nome completo" />
             <Input name="ra" placeholder="RA" />
             <Input name="email" placeholder="E-mail (preferência gmail)" />
-            <Select name="course" placeholder="curso" options={courseOptions} />
-            <Input
+            <Select name="course" placeholder="Curso" options={courseOptions} />
+            <Select
               name="department"
-              placeholder="Qual setor da OCCAM Engenharia você gostaria de fazer parte (até duas opções)"
+              placeholder="Setor de preferência (até 2)"
+              options={departmentOptions}
+              multi
             />
             <Select
               name="period"
@@ -93,31 +120,16 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
             <Select
               name="knowledge"
               placeholder="Possui algum conhecimento, mesmo que básico em linguagens de programação?"
-              options={[
-                {
-                  value: 'knowledgeYes',
-                  label: 'Sim'
-                },
-                {
-                  value: 'knowledgeNo',
-                  label: 'Não'
-                }
-              ]}
+              options={knowledgeOptions}
+              onChange={e => handleShowWichLanguageInput(e)}
             />
-            <Input name="wichLanguage" placeholder="Se sim, quais?" />
+            {inputVisible && (
+              <Input name="wichLanguage" placeholder="Se sim, quais?" />
+            )}
             <Select
               name="learnNewLanguage"
               placeholder="Você estaria disposto a dedicar seu tempo aprendendo uma nova linguagem?"
-              options={[
-                {
-                  value: 'learnNewLanguageYes',
-                  label: 'Sim'
-                },
-                {
-                  value: 'learnNewLanguageNo',
-                  label: 'Não'
-                }
-              ]}
+              options={learnNewLanguageOptions}
             />
             <Textarea
               name="motivation"
@@ -151,11 +163,11 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
         styles={{ modal: { borderRadius: 8 } }}
       >
         <Close onClick={handleCloseModal} />
-        <ModalContainer>
+        <SuccessModalContainer>
           <Check />
           <p>Inscrição finalizada</p>
           <span>Enviaremos um e-mail contendo todos seus dados</span>
-        </ModalContainer>
+        </SuccessModalContainer>
       </Modal>
     </>
   )

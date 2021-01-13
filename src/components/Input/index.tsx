@@ -21,6 +21,7 @@ const Input: React.FC<InputProps> = ({ name, ...rest }) => {
       type="text"
       id={fieldName}
       placeholder="informe o placeholder dev"
+      isErrored={error !== ''}
       {...rest}
     />
   )

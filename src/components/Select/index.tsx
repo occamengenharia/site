@@ -7,10 +7,11 @@ import ReactSelect, { OptionTypeBase, Props as SelectProps } from 'react-select'
 import { useField } from '@unform/core'
 interface Props extends SelectProps<OptionTypeBase> {
   name: string
+  multi?: boolean
   label?: string
 }
 
-const Select: React.FC<Props> = ({ name, ...rest }) => {
+const Select: React.FC<Props> = ({ name, multi, ...rest }) => {
   const animatedComponents = makeAnimated()
   const selectRef = useRef(null)
   const { fieldName, defaultValue, registerField, error } = useField(name)
@@ -41,6 +42,11 @@ const Select: React.FC<Props> = ({ name, ...rest }) => {
       background: '#fff',
       fontSize: 16,
       padding: 16
+    }),
+    multiValue: (provided, state) => ({
+      color: 'red',
+      fontSize: 16,
+      width: 100
     })
   }
 
@@ -54,6 +60,7 @@ const Select: React.FC<Props> = ({ name, ...rest }) => {
         className="react-select-container"
         classNamePrefix="react-select"
         styles={optionsStyle}
+        isMulti={multi}
         {...rest}
       />
     </BodySelect>

@@ -9,6 +9,21 @@ export const courseOptions = [
   }
 ]
 
+export const departmentOptions = [
+  {
+    value: 'marketing',
+    label: 'Marketing'
+  },
+  {
+    value: 'projects',
+    label: 'Projetos'
+  },
+  {
+    value: 'rh',
+    label: 'RH'
+  }
+]
+
 export const periodOptions = [
   {
     value: '1',
@@ -49,5 +64,27 @@ export const periodOptions = [
   {
     value: '10',
     label: '10º'
+  }
+]
+
+export const knowledgeOptions = [
+  {
+    value: 'knowledgeYes',
+    label: 'Sim'
+  },
+  {
+    value: 'knowledgeNo',
+    label: 'Não'
+  }
+]
+
+export const learnNewLanguageOptions = [
+  {
+    value: 'learnNewLanguageYes',
+    label: 'Sim'
+  },
+  {
+    value: 'learnNewLanguageNo',
+    label: 'Não'
   }
 ]

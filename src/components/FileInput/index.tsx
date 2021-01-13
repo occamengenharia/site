@@ -1,4 +1,4 @@
-import { useEffect, useRef, InputHTMLAttributes } from 'react'
+import { useEffect, useRef, InputHTMLAttributes, useState } from 'react'
 import { useField } from '@unform/core'
 import { BodyInput, Container } from './styles'
 import Input from '@/components/Input'
@@ -11,6 +11,8 @@ const FileInput: React.FC<FileInputProps> = ({
   placeholder,
   ...rest
 }) => {
+  const [newPlaceholder, setNewPlaceholder] = useState<string>(placeholder)
+
   const inputRef = useRef(null)
   const { fieldName, defaultValue, registerField, error } = useField(name)
   useEffect(() => {
@@ -20,6 +22,11 @@ const FileInput: React.FC<FileInputProps> = ({
       path: 'value'
     })
   }, [fieldName, registerField])
+
+  function handleUserSendFile(event) {
+    setNewPlaceholder(event.target.value)
+  }
+
   return (
     <Container>
       <BodyInput
@@ -28,10 +35,11 @@ const FileInput: React.FC<FileInputProps> = ({
         type="file"
         id={fieldName}
         placeholder="informe o placeholder dev"
+        onChange={e => handleUserSendFile(e)}
         {...rest}
       />
       <div>
-        <Input name="a" placeholder={placeholder} />
+        <label htmlFor={fieldName}>{newPlaceholder}</label>
       </div>
     </Container>
   )

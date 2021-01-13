@@ -1,16 +1,9 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { css } from 'styled-components'
+interface BodyInputProps {
+  isErrored: boolean
+}
 
-const movePlaceholder = keyframes`
-  from{
-    transform: translateX(100%)
-  }
-
-  to{
-    transform: translateX(-130%)
-  }
-`
-
-export const BodyInput = styled.input`
+export const BodyInput = styled.input<BodyInputProps>`
   &[type='number']::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
@@ -18,6 +11,13 @@ export const BodyInput = styled.input`
     -moz-appearance: textfield;
     appearance: textfield;
   }
+
+  ${props =>
+    props.isErrored &&
+    css`
+      box-shadow: 0 0 2px 2px ${props => props.theme.colors.error};
+    `}
+
   background: ${props => props.theme.colors.inputBackground};
   width: 100%;
   height: 5.6rem;
@@ -40,9 +40,5 @@ export const BodyInput = styled.input`
   }
   & + & {
     margin-top: 1.6rem;
-  }
-
-  ::placeholder {
-    animation: movePlaceholder 12s linear infinite paused;
   }
 `
