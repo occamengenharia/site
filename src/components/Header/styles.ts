@@ -15,16 +15,16 @@ export const Main = styled.header`
 export const HeaderContent = styled.section`
   position: initial;
   overflow-y: hidden;
-
+  background: ${({ theme }) => theme.colors.background};
+  transition: ${({ theme }) => theme.variables.transition}s;
   top: 0;
   padding-top: 45;
   z-index: 1;
   padding: 1.6rem;
-  background: transparent;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100vw;
+  width: 100%;
   max-width: 120rem;
   margin: 0 auto;
   overflow: hidden;

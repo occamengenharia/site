@@ -23,6 +23,7 @@ export default createGlobalStyle`
   a, button {
     text-decoration: none;
     cursor: pointer;
+    color: ${props => props.theme.colors.text};
   }
 
   body {
@@ -31,7 +32,9 @@ export default createGlobalStyle`
     font: 400 1.6rem Ubuntu, sans-serif;
   transition: all ${({ theme }) => theme.variables.transition}s ;
   }
-
+  h1,h2,h3{
+    text-align:center;
+  }
   h1 {
     font: 700 6.4rem Ubuntu, sans-serif;
   }
