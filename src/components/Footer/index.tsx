@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
     <Container>
       <InternalLinks>
         <SectionImage>
-          <img src={`logo/${theme}.svg`} alt="OCCAM Engenharia" />
+          <img src={`/logo/${theme}.svg`} alt="OCCAM Engenharia" />
           <span>
             Empresa júnior de Engenharia de computação.{' '}
             <p>

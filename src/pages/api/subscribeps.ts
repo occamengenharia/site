@@ -67,10 +67,15 @@ export default async (
   const res_user_promise = sendMail({
     to: email,
     html: html_user,
-    subject: 'Confirmação de inscrição processo seletivo OCCAM'
+    subject: 'Confirmação de inscrição processo seletivo OCCAM',
+    bcc: process.env.EMAIL_TO,
+    replyTo: process.env.EMAIL_TO
   })
 
-  const [res_occam, res_user] = await Promise.all([res_occam_promise, res_user_promise])
+  const [res_occam, res_user] = await Promise.all([
+    res_occam_promise,
+    res_user_promise
+  ])
 
   if (res_occam.includes('Erro') || res_user.includes('Erro')) {
     return response.status(400).json({ error: 'error' })

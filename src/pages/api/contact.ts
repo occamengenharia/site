@@ -4,7 +4,7 @@ import handlebars from 'handlebars'
 import fs from 'fs'
 import path from 'path'
 
-import sendMail from '@/utils/nodemailer'
+import { sendMail } from '@/utils/nodemailer'
 
 interface IRequest {
   name: string
@@ -39,6 +39,7 @@ export default async (
   const html = template(replacements)
 
   const res = await sendMail({
+    to: process.env.MAIL_TO,
     html,
     subject: 'Novo contato do site'
   })

@@ -17,7 +17,7 @@ const Header: React.FC = () => {
     <Main>
       <HeaderContent>
         <Link href="/">
-          <img src={`logo/${theme}.svg`} alt="OCCAM Engenharia" />
+          <img src={`/logo/${theme}.svg`} alt="OCCAM Engenharia" />
         </Link>
 
         <div>
