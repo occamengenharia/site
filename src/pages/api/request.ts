@@ -72,7 +72,7 @@ export default async (
     to: email,
     html,
     subject: 'Dados inscrição processo seletivo',
-    cc: process.env.MAIL_TO,
+    bcc: process.env.MAIL_TO,
     replyTo: process.env.MAIL_TO
   })
 

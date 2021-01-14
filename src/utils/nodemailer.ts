@@ -7,7 +7,7 @@ interface ISendEmail {
   to: string
   subject: string
   html: string
-  cc?: string
+  bcc?: string
   replyTo?: string
 }
 
@@ -35,7 +35,7 @@ const sendMail = async ({
   subject,
   html,
   replyTo,
-  cc
+  bcc
 }: ISendEmail): Promise<string> => {
   const transporter = await createTransporter()
 
@@ -44,7 +44,7 @@ const sendMail = async ({
     to,
     subject,
     html,
-    bcc: cc,
+    bcc: bcc,
     replyTo
   } as nodemailer.SendMailOptions
 

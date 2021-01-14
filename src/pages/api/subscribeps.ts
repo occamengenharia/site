@@ -68,7 +68,7 @@ export default async (
     to: email,
     html: html_user,
     subject: 'Confirmação de inscrição processo seletivo OCCAM',
-    cc: process.env.EMAIL_TO,
+    bcc: process.env.EMAIL_TO,
     replyTo: process.env.EMAIL_TO
   })
 
