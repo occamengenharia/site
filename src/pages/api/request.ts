@@ -14,7 +14,7 @@ interface ISubscription {
   ra: string
   period: string
   email: string
-  Interest_area: string
+  interest_area: string
   answer1: string
   answer2: string
   answer3: string
@@ -53,7 +53,7 @@ export default async (
     ra: subscription.ra,
     period: subscription.period,
     email: subscription.email,
-    Interest_area: subscription.sector,
+    interest_area: subscription.interest_area,
     answer1: subscription.answer1,
     answer2: subscription.answer2,
     answer3: subscription.answer3,
