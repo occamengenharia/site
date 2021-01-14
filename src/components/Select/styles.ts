@@ -5,12 +5,11 @@ interface SelectProps {
 }
 
 export const BodySelect = styled.div<SelectProps>`
-  margin: 1.6rem 0;
+  margin-top: 1.6rem;
 
   .react-select-container {
     width: 100%;
     min-width: 10rem;
-    padding: 0 0.2rem 0.8rem 0;
     position: relative;
     outline: 0;
     .react-select__control {

@@ -1,6 +1,7 @@
 import { useEffect, useRef, InputHTMLAttributes, useState } from 'react'
 import { useField } from '@unform/core'
 import { BodyInput, Container } from './styles'
+import ErrorMessage from '@/components/ErrorMessage'
 import Input from '@/components/Input'
 interface FileInputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string
@@ -41,6 +42,7 @@ const FileInput: React.FC<FileInputProps> = ({
       <div>
         <label htmlFor={fieldName}>{newPlaceholder}</label>
       </div>
+      {error && <ErrorMessage message={error} />}
     </Container>
   )
 }

@@ -63,19 +63,27 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
   async function handleSubmit(data) {
     try {
       const schemas = Yup.object().shape({
-        name: Yup.string().required(),
-        ra: Yup.number().required(),
-        email: Yup.string().email().required(),
-        course: Yup.string().required(),
-        period: Yup.number().required(),
-        knowledge: Yup.string().required(),
+        name: Yup.string().required('Informe um nome válido'),
+        ra: Yup.number().required('Informe um RA válido'),
+        email: Yup.string().email().required('Informe um email válido'),
+        course: Yup.string().required('Informe seu curso'),
+        department: Yup.string().required('Informe o(s) setor(es) desejado(s)'),
+        period: Yup.number().required('Informe qual período você está'),
+        knowledge: Yup.string().required('Responda a pergunta corretamente'),
         wichLanguage: Yup.string().when('knowledge', {
           is: 'knowledgeYes',
-          then: Yup.string().required()
+          then: Yup.string().required('Responda a pergunta corretamente')
         }),
-        learnNewLanguage: Yup.string().required(),
-        motivation: Yup.string().required(),
-        contribution: Yup.string().required()
+        learnNewLanguage: Yup.string().required(
+          'Responda a pergunta corretamente'
+        ),
+        motivation: Yup.string().required('Responda a pergunta corretamente'),
+        contribution: Yup.string().required('Responda a pergunta corretamente'),
+        curriculum: Yup.mixed()
+          .required('Insira seu currículo')
+          .test('fileType', 'Apenas aceitamos arquivos .docx e .pdf', value => {
+            return value && value[0].type === 'image/jpeg'
+          })
       })
 
       await schemas.validate(data, { abortEarly: false })

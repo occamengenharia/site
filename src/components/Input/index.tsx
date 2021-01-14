@@ -1,6 +1,7 @@
 import { useEffect, useRef, InputHTMLAttributes } from 'react'
 import { useField } from '@unform/core'
 import { BodyInput } from './styles'
+import ErrorMessage from '@/components/ErrorMessage'
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string
 }
@@ -26,6 +27,7 @@ const Input: React.FC<InputProps> = ({ name, ...rest }) => {
         isErrored={!!error}
         {...rest}
       />
+      {error && <ErrorMessage message={error} />}
     </>
   )
 }

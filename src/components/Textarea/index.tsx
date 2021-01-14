@@ -1,5 +1,6 @@
 import { TextareaHTMLAttributes, useEffect, useRef } from 'react'
 import { BodyTextarea } from './styles'
+import ErrorMessage from '@/components/ErrorMessage'
 
 import { useField } from '@unform/core'
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -26,13 +27,16 @@ const Textarea: React.FC<TextareaProps> = ({
   }, [fieldName, registerField])
 
   return (
-    <BodyTextarea
-      id={fieldName}
-      ref={textareRef}
-      defaultValue={defaultValue}
-      isErrored={!!error}
-      {...rest}
-    />
+    <>
+      <BodyTextarea
+        id={fieldName}
+        ref={textareRef}
+        defaultValue={defaultValue}
+        isErrored={!!error}
+        {...rest}
+      />
+      {error && <ErrorMessage message={error} />}
+    </>
   )
 }
 

@@ -5,6 +5,7 @@ import { FaCaretDown } from 'react-icons/fa'
 import { useRef, useEffect } from 'react'
 import ReactSelect, { OptionTypeBase, Props as SelectProps } from 'react-select'
 import { useField } from '@unform/core'
+import ErrorMessage from '@/components/ErrorMessage'
 interface Props extends SelectProps<OptionTypeBase> {
   name: string
   multi?: boolean
@@ -46,19 +47,22 @@ const Select: React.FC<Props> = ({ name, multi, ...rest }) => {
   }
 
   return (
-    <BodySelect isErrored={error}>
-      <ReactSelect
-        ref={selectRef}
-        closeMenuOnSelect={true}
-        components={animatedComponents}
-        placeholder={defaultValue || 'Selecione'}
-        className="react-select-container"
-        classNamePrefix="react-select"
-        styles={optionsStyle}
-        isMulti={multi}
-        {...rest}
-      />
-    </BodySelect>
+    <>
+      <BodySelect isErrored={!!error}>
+        <ReactSelect
+          ref={selectRef}
+          closeMenuOnSelect={true}
+          components={animatedComponents}
+          placeholder={defaultValue || 'Selecione'}
+          className="react-select-container"
+          classNamePrefix="react-select"
+          styles={optionsStyle}
+          isMulti={multi}
+          {...rest}
+        />
+      </BodySelect>
+      {error && <ErrorMessage message={error} />}
+    </>
   )
 }
 

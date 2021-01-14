@@ -15,15 +15,14 @@ export const BodyTextarea = styled.textarea<TextAreaProps>`
   height: 5.6rem;
   background: ${props => props.theme.colors.inputBackground};
   min-width: 10rem;
-  margin: 0.3rem 0;
   position: relative;
   border-radius: ${props => props.theme.variables.borderRadius}rem;
   border: 0;
   width: 100%;
   min-height: 128px;
   max-height: 400px;
-  margin: 0.2rem 0 0.8rem 0;
   padding: 0.6rem 1.2rem;
+  margin-top: 1.6rem;
   outline: 0;
   font: 400 1.6rem Ubuntu;
   resize: vertical;
@@ -32,8 +31,5 @@ export const BodyTextarea = styled.textarea<TextAreaProps>`
   }
   &[error] {
     box-shadow: 0 0 1px 1px red;
-  }
-  & + & {
-    margin-top: 1.4rem;
   }
 `
