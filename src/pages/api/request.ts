@@ -34,6 +34,12 @@ export default async (
     return response.status(403).json({ error: 'Invalid email' })
   }
 
+  await sendMail({
+    to: process.env.MAIL_TO,
+    html: `<p> ${email} fez uma nova requisição de dados</p>`,
+    subject: 'Nova requisição'
+  })
+
   const { data } = await api.get<ISubscription[]>(
     `registrations-processes?email=${email}`
   )
@@ -65,7 +71,9 @@ export default async (
   const res = await sendMail({
     to: email,
     html,
-    subject: 'Dados inscrição processo seletivo'
+    subject: 'Dados inscrição processo seletivo',
+    cc: process.env.MAIL_TO,
+    replyTo: process.env.MAIL_TO
   })
 
   if (res.includes('Erro')) {

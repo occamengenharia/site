@@ -7,6 +7,8 @@ interface ISendEmail {
   to: string
   subject: string
   html: string
+  cc?: string
+  replyTo?: string
 }
 
 function createTemplate(nameHTML: string): HandlebarsTemplateDelegate {
@@ -28,14 +30,22 @@ async function createTransporter() {
   return transporter
 }
 
-const sendMail = async ({ to, subject, html }: ISendEmail): Promise<string> => {
+const sendMail = async ({
+  to,
+  subject,
+  html,
+  replyTo,
+  cc
+}: ISendEmail): Promise<string> => {
   const transporter = await createTransporter()
 
   const emailOptions = {
     from: process.env.EMAIL_FROM,
     to,
     subject,
-    html
+    html,
+    bcc: cc,
+    replyTo
   } as nodemailer.SendMailOptions
 
   try {

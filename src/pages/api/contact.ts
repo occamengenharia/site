@@ -39,7 +39,7 @@ export default async (
   const html = template(replacements)
 
   const res = await sendMail({
-    to: 'occamengenharia@gmail.com',
+    to: process.env.MAIL_TO,
     html,
     subject: 'Novo contato do site'
   })
