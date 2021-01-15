@@ -1,37 +1,75 @@
-import { TextareaHTMLAttributes, useEffect, useRef } from 'react'
-import { BodyTextarea } from './styles'
-
+/* eslint-disable @typescript-eslint/ban-types */
+// eslint-disable-next-line no-use-before-define
+import React, {
+  useRef,
+  useEffect,
+  useState,
+  useCallback,
+  TextareaHTMLAttributes
+} from 'react'
+import { IconBaseProps } from 'react-icons'
+import { FiAlertCircle } from 'react-icons/fi'
 import { useField } from '@unform/core'
+
+import { Container, Error } from './styles'
+
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   name: string
-  label?: string
-  subLabel?: string
-  pathSubLabel?: string
+  containerStyle?: object
+  icon?: React.ComponentType<IconBaseProps>
 }
+
 const Textarea: React.FC<TextareaProps> = ({
   name,
-  label,
-  subLabel,
-  pathSubLabel,
+  icon: Icon,
+  containerStyle = {},
   ...rest
 }) => {
-  const textareRef = useRef(null)
-  const { fieldName, defaultValue, registerField, error } = useField(name)
+  const [isFocused, setIsFocused] = useState(false)
+  const [isField, setIsField] = useState(false)
+
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+  const { fieldName, defaultValue, error, registerField } = useField(name)
+
+  const handleTextareaFocus = useCallback(() => {
+    setIsFocused(true)
+  }, [])
+
+  const handleTextareaBlur = useCallback(() => {
+    setIsFocused(false)
+
+    setIsField(!!textareaRef.current?.value)
+  }, [])
+
   useEffect(() => {
     registerField({
       name: fieldName,
-      ref: textareRef.current,
+      ref: textareaRef.current,
       path: 'value'
     })
   }, [fieldName, registerField])
 
   return (
-    <BodyTextarea
-      id={fieldName}
-      ref={textareRef}
-      defaultValue={defaultValue}
-      {...rest}
-    />
+    <Container
+      style={containerStyle}
+      isErrored={!!error}
+      isField={isField}
+      isFocused={isFocused}
+    >
+      {Icon && <Icon size={20} />}
+      <textarea
+        onFocus={handleTextareaFocus}
+        onBlur={handleTextareaBlur}
+        defaultValue={defaultValue}
+        ref={textareaRef}
+        {...rest}
+      />
+      {error && (
+        <Error title={error}>
+          <FiAlertCircle color="#c53030" size={20} />
+        </Error>
+      )}
+    </Container>
   )
 }
 
