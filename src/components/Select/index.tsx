@@ -2,7 +2,7 @@ import { Container, Error } from './styles'
 // import { Link } from 'react-router-dom';
 import makeAnimated from 'react-select/animated'
 import { FiAlertCircle } from 'react-icons/fi'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState, useCallback } from 'react'
 import ReactSelect, { OptionTypeBase, Props as SelectProps } from 'react-select'
 import { useField } from '@unform/core'
 interface Props extends SelectProps<OptionTypeBase> {
@@ -12,6 +12,9 @@ interface Props extends SelectProps<OptionTypeBase> {
 }
 
 const Select: React.FC<Props> = ({ name, multi, ...rest }) => {
+  const [isFocused, setIsFocused] = useState(false)
+  const [isField, setIsField] = useState(false)
+
   const animatedComponents = makeAnimated()
   const selectRef = useRef(null)
   const { fieldName, defaultValue, registerField, error } = useField(name)
@@ -34,20 +37,36 @@ const Select: React.FC<Props> = ({ name, multi, ...rest }) => {
     })
   }, [fieldName, registerField, rest.isMulti])
 
+  const handleSelectFocus = useCallback(() => {
+    setIsFocused(true)
+  }, [])
+
+  const handleSelectBlur = useCallback(() => {
+    setIsFocused(false)
+
+    setIsField(!!selectRef.current?.value)
+  }, [])
+
   const optionsStyle = {
-    indicatorSeparator: styles => ({ display: 'none' }),
+    indicatorSeparator: () => ({ display: 'none' }),
     option: (provided, state) => ({
       ...provided,
       color: state.isSelected ? '#014BB4' : '#201E1E',
       background: '#fff',
       fontSize: 16,
       padding: 16
-    })
+    }),
+    multiValue: styles => {
+      return {
+        ...styles,
+        fontSize: 16
+      }
+    }
   }
 
   return (
     <>
-      <Container isErrored={!!error}>
+      <Container isErrored={!!error} isFocused={isFocused} isField={isField}>
         <ReactSelect
           ref={selectRef}
           closeMenuOnSelect={true}
@@ -57,6 +76,8 @@ const Select: React.FC<Props> = ({ name, multi, ...rest }) => {
           classNamePrefix="react-select"
           styles={optionsStyle}
           isMulti={multi}
+          onFocus={handleSelectFocus}
+          onBlur={handleSelectBlur}
           {...rest}
         />
         {error && (

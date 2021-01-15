@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components'
 import Tooltip from '../Tooltip'
 
 interface SelectProps {
+  isField: boolean
+  isFocused: boolean
   isErrored: boolean
 }
 
@@ -10,6 +12,13 @@ export const Container = styled.div<SelectProps>`
   margin-top: 1.6rem;
   display: flex;
   align-items: center;
+  padding-right: 1.6rem;
+  padding-left: 0.8rem;
+  border-radius: ${props => props.theme.variables.borderRadius}rem;
+  background: ${props => props.theme.colors.inputBackground};
+  & + div {
+    margin-top: 2.4rem;
+  }
 
   ${props =>
     props.isErrored &&
@@ -17,27 +26,33 @@ export const Container = styled.div<SelectProps>`
       box-shadow: 0 0 2px 2px ${props => props.theme.colors.error};
     `}
 
+  ${props =>
+    props.isFocused &&
+    css`
+      box-shadow: 0 0 2px 2px ${props => props.theme.colors.inputHighlight};
+    `}
+  ${props =>
+    props.isField &&
+    css`
+      color: ${props => props.theme.colors.inputHighlight};
+    `}
+
   .react-select-container {
     width: 100%;
     min-width: 10rem;
     position: relative;
-    outline: 0;
+    text-align: left;
     .react-select__control {
-      background: ${props => props.theme.colors.inputBackground};
-      border-radius: ${props => props.theme.variables.borderRadius}rem;
-      :focus-within {
-        box-shadow: inherit 0 0 1px 1px ${props => props.theme.colors.error};
-      }
-
+      background: transparent;
+      border: none;
+      box-shadow: none;
       .react-select__value-container {
-        height: 5.6rem;
+        height: 6.4rem;
         .react-select__input {
           font: 400 16px Ubuntu;
         }
 
         font-size: 2.5rem;
-      }
-      .react-select__indicators {
       }
     }
     .react-select__menu {
@@ -54,7 +69,7 @@ export const Container = styled.div<SelectProps>`
 export const Error = styled(Tooltip)`
   display: none;
   svg {
-    margin: 0;
+    margin-left: 0.8rem;
   }
   span {
     background: ${props => props.theme.colors.error};

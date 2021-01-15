@@ -1,10 +1,10 @@
 export const courseOptions = [
   {
-    value: 'ads',
+    value: 'ADS',
     label: 'Análise e Desenvolvimento de Sistemas'
   },
   {
-    value: 'cp',
+    value: 'CP',
     label: 'Engenharia de Computação'
   }
 ]
@@ -21,6 +21,14 @@ export const departmentOptions = [
   {
     value: 'rh',
     label: 'RH'
+  },
+  {
+    value: 'finances',
+    label: 'Financeiro'
+  },
+  {
+    value: 'legal',
+    label: 'Jurídico'
   }
 ]
 

@@ -1,8 +1,13 @@
-import { useEffect, useRef, InputHTMLAttributes, useState } from 'react'
+import {
+  useEffect,
+  useRef,
+  InputHTMLAttributes,
+  useState,
+  useCallback
+} from 'react'
 import { useField } from '@unform/core'
-import { BodyInput, Container } from './styles'
-import ErrorMessage from '@/components/ErrorMessage'
-import Input from '@/components/Input'
+import { BodyInput, Container, Error, PlaceHolder } from './styles'
+import { FiAlertCircle } from 'react-icons/fi'
 interface FileInputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string
   placeholder: string
@@ -12,6 +17,8 @@ const FileInput: React.FC<FileInputProps> = ({
   placeholder,
   ...rest
 }) => {
+  const [isFocused, setIsFocused] = useState(false)
+  const [isField, setIsField] = useState(false)
   const [newPlaceholder, setNewPlaceholder] = useState<string>(placeholder)
 
   const inputRef = useRef(null)
@@ -20,16 +27,29 @@ const FileInput: React.FC<FileInputProps> = ({
     registerField({
       name: fieldName,
       ref: inputRef.current,
-      path: 'value'
+      path: 'files[0]',
+      clearValue(ref: HTMLInputElement) {
+        ref.value = ''
+      }
     })
   }, [fieldName, registerField])
+
+  const handleInputFocus = useCallback(() => {
+    setIsFocused(true)
+  }, [])
+
+  const handleInputBlur = useCallback(() => {
+    setIsFocused(false)
+
+    setIsField(!!inputRef.current?.value)
+  }, [])
 
   function handleUserSendFile(event) {
     setNewPlaceholder(event.target.value)
   }
 
   return (
-    <Container isErrored={!!error}>
+    <Container isErrored={!!error} isField={isField} isFocused={isFocused}>
       <BodyInput
         ref={inputRef}
         defaultValue={defaultValue}
@@ -37,12 +57,18 @@ const FileInput: React.FC<FileInputProps> = ({
         id={fieldName}
         placeholder="informe o placeholder dev"
         onChange={e => handleUserSendFile(e)}
+        onBlur={handleInputBlur}
+        onFocus={handleInputFocus}
         {...rest}
       />
-      <div>
+      <PlaceHolder>
         <label htmlFor={fieldName}>{newPlaceholder}</label>
-      </div>
-      {error && <ErrorMessage message={error} />}
+      </PlaceHolder>
+      {error && (
+        <Error title={error}>
+          <FiAlertCircle color="#E45B5B" size={20} />
+        </Error>
+      )}
     </Container>
   )
 }
