@@ -1,11 +1,9 @@
 import { NowRequest, NowResponse } from '@vercel/node'
-import handlebars from 'handlebars'
+import { sendMail, createTemplate } from '@/utils/nodemailer'
 
-import fs from 'fs'
-import path from 'path'
-
-import { sendMail } from '@/utils/nodemailer'
-
+// import handlebars from 'handlebars'
+// import fs from 'fs'
+// import path from 'path'
 interface IRequest {
   name: string
   email: string
@@ -26,9 +24,10 @@ export default async (
     return response.status(403).json({ error: 'Invalid email' })
   }
 
-  const filePath = path.resolve('src', 'emails', 'message-contact.html')
-  const source = fs.readFileSync(filePath, 'utf-8').toString()
-  const template = handlebars.compile(source)
+  // const filePath = path.resolve('src', 'emails', 'message-contact.html')
+  // const source = fs.readFileSync(filePath, 'utf-8').toString()
+  // const template = handlebars.compile(source)
+
   const replacements = {
     name,
     email,
@@ -36,15 +35,16 @@ export default async (
     answer
   }
 
-  const html = template(replacements)
+  const template_contact = createTemplate('message-contact.html')
+  const html_contact = template_contact(replacements)
 
-  const res = await sendMail({
-    to: process.env.MAIL_TO,
-    html,
+  const res_contact = await sendMail({
+    to: process.env.EMAIL_TO,
+    html: html_contact,
     subject: 'Novo contato do site'
   })
 
-  if (res.includes('Erro')) {
+  if (res_contact.includes('Erro')) {
     return response.status(400).json({ error: 'error' })
   }
 
