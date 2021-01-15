@@ -1,15 +1,23 @@
 import styled, { css } from 'styled-components'
-interface BodyInputProps {
+
+import Tooltip from '../Tooltip'
+interface ContainerProps {
+  isFocused: boolean
+  isField: boolean
   isErrored: boolean
 }
 
-export const BodyInput = styled.input<BodyInputProps>`
-  &[type='number']::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-  }
-  &[type='number'] {
-    -moz-appearance: textfield;
-    appearance: textfield;
+export const Container = styled.div<ContainerProps>`
+  background: ${props => props.theme.colors.inputBackground};
+  border-radius: 0.8rem;
+  outline: 0;
+  font-size: 2.4rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 1.6rem;
+  & + div {
+    margin-top: 2.4rem;
   }
 
   ${props =>
@@ -17,26 +25,59 @@ export const BodyInput = styled.input<BodyInputProps>`
     css`
       box-shadow: 0 0 2px 2px ${props => props.theme.colors.error};
     `}
+  ${props =>
+    props.isFocused &&
+    css`
+      box-shadow: 0 0 2px 2px ${props => props.theme.colors.inputHighlight};
+    `}
+  ${props =>
+    props.isField &&
+    css`
+      color: ${props => props.theme.colors.inputHighlight};
+    `}
 
-  background: ${props => props.theme.colors.inputBackground};
-  width: 100%;
-  height: 5.6rem;
-  min-width: 10rem;
-  padding: 0.6rem 1.2rem;
-  margin-top: 1.6rem;
-  position: relative;
-  border-radius: ${props => props.theme.variables.borderRadius}rem;
-  border: 0;
-  width: 100%;
-  outline: 0;
-  font: 400 1.6rem Ubuntu;
-  &:focus {
-    box-shadow: 0 0 2px 2px ${props => props.theme.colors.inputHighlight};
+  input {
+    flex: 1;
+    height: 6.4rem;
+    background: transparent;
+    border: 0;
+
+    &[type='number']::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+    &[type='number'] {
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+
+    &[error] {
+      box-shadow: 0 0 1px 1px red;
+    }
+
+    & + & {
+      margin-top: 1.6rem;
+    }
+
+    &::placeholder {
+      color: ${props => props.theme.colors.text};
+    }
   }
-  &[error] {
-    box-shadow: 0 0 1px 1px red;
+`
+
+export const Error = styled(Tooltip)`
+  display: none;
+  svg {
+    margin: 0;
   }
-  & + & {
-    margin-top: 1.6rem;
+  span {
+    background: ${props => props.theme.colors.error};
+    color: #fff;
+    &::before {
+      border-color: ${props => props.theme.colors.error} transparent;
+    }
+  }
+
+  @media only screen and (min-width: ${props => props.theme.breakpoints.sm}px) {
+    display: initial;
   }
 `

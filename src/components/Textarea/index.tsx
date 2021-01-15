@@ -1,42 +1,41 @@
-import { TextareaHTMLAttributes, useEffect, useRef } from 'react'
-import { BodyTextarea } from './styles'
-import ErrorMessage from '@/components/ErrorMessage'
-
+/* eslint-disable @typescript-eslint/ban-types */
+// eslint-disable-next-line no-use-before-define
+import React, { useRef, useEffect, TextareaHTMLAttributes } from 'react'
+import { FiAlertCircle } from 'react-icons/fi'
 import { useField } from '@unform/core'
+
+import { Container, BodyTextarea, Error } from './styles'
+
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   name: string
-  label?: string
-  subLabel?: string
-  pathSubLabel?: string
 }
-const Textarea: React.FC<TextareaProps> = ({
-  name,
-  label,
-  subLabel,
-  pathSubLabel,
-  ...rest
-}) => {
-  const textareRef = useRef(null)
-  const { fieldName, defaultValue, registerField, error } = useField(name)
+
+const Textarea: React.FC<TextareaProps> = ({ name, ...rest }) => {
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+  const { fieldName, defaultValue, error, registerField } = useField(name)
+
   useEffect(() => {
     registerField({
       name: fieldName,
-      ref: textareRef.current,
+      ref: textareaRef.current,
       path: 'value'
     })
   }, [fieldName, registerField])
 
   return (
-    <>
-      <BodyTextarea
+    <Container isErrored={!!error}>
+      <textarea
         id={fieldName}
-        ref={textareRef}
+        ref={textareaRef}
         defaultValue={defaultValue}
-        isErrored={!!error}
         {...rest}
       />
-      {error && <ErrorMessage message={error} />}
-    </>
+      {error && (
+        <Error title={error}>
+          <FiAlertCircle color="#c53030" size={20} />
+        </Error>
+      )}
+    </Container>
   )
 }
 

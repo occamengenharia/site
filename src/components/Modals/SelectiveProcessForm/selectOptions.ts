@@ -26,43 +26,43 @@ export const departmentOptions = [
 
 export const periodOptions = [
   {
-    value: '1',
+    value: '_1',
     label: '1º'
   },
   {
-    value: '2',
+    value: '_2',
     label: '2º'
   },
   {
-    value: '3',
+    value: '_3',
     label: '3º'
   },
   {
-    value: '4',
+    value: '_4',
     label: '4º'
   },
   {
-    value: '5',
+    value: '_5',
     label: '5º'
   },
   {
-    value: '6',
+    value: '_6',
     label: '6º'
   },
   {
-    value: '7',
+    value: '_7',
     label: '7º'
   },
   {
-    value: '8',
+    value: '_8',
     label: '8º'
   },
   {
-    value: '9',
+    value: '_9',
     label: '9º'
   },
   {
-    value: '10',
+    value: '_10',
     label: '10º'
   }
 ]

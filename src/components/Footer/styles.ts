@@ -2,13 +2,13 @@ import styled from 'styled-components'
 
 export const Container = styled.footer`
   max-width: 120rem;
-  margin: 0 auto;
   padding: 0 1.6rem;
 
   height: 48rem;
 
   @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
     min-height: 51.2rem;
+    margin: 0 auto;
   }
 `
 export const InternalLinks = styled.section`
@@ -31,7 +31,7 @@ export const SectionImage = styled.section`
 
   span {
     margin-top: 1.6rem;
-    max-width: 24rem;
+    max-width: 36rem;
     color: ${props => props.theme.colors.text2};
 
     p {
@@ -41,6 +41,7 @@ export const SectionImage = styled.section`
   }
 
   img {
+    margin: 0 auto;
     width: 20.8rem;
   }
   @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {

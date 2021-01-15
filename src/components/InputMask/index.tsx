@@ -39,7 +39,6 @@ const InputMask: React.FC<InputProps> = ({
         defaultValue={defaultValue}
         type="text"
         id={fieldName}
-        maskChar=""
         {...rest}
       />
       {error && <span>{error}</span>}

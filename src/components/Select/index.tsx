@@ -1,11 +1,10 @@
-import { BodySelect } from './styles'
+import { Container, Error } from './styles'
 // import { Link } from 'react-router-dom';
 import makeAnimated from 'react-select/animated'
-import { FaCaretDown } from 'react-icons/fa'
+import { FiAlertCircle } from 'react-icons/fi'
 import { useRef, useEffect } from 'react'
 import ReactSelect, { OptionTypeBase, Props as SelectProps } from 'react-select'
 import { useField } from '@unform/core'
-import ErrorMessage from '@/components/ErrorMessage'
 interface Props extends SelectProps<OptionTypeBase> {
   name: string
   multi?: boolean
@@ -48,7 +47,7 @@ const Select: React.FC<Props> = ({ name, multi, ...rest }) => {
 
   return (
     <>
-      <BodySelect isErrored={!!error}>
+      <Container isErrored={!!error}>
         <ReactSelect
           ref={selectRef}
           closeMenuOnSelect={true}
@@ -60,8 +59,12 @@ const Select: React.FC<Props> = ({ name, multi, ...rest }) => {
           isMulti={multi}
           {...rest}
         />
-      </BodySelect>
-      {error && <ErrorMessage message={error} />}
+        {error && (
+          <Error title={error}>
+            <FiAlertCircle color="#E45B5B" size={20} />
+          </Error>
+        )}
+      </Container>
     </>
   )
 }

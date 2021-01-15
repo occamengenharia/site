@@ -1,11 +1,21 @@
 import styled, { css } from 'styled-components'
 
+import Tooltip from '../Tooltip'
+
 interface SelectProps {
   isErrored: boolean
 }
 
-export const BodySelect = styled.div<SelectProps>`
+export const Container = styled.div<SelectProps>`
   margin-top: 1.6rem;
+  display: flex;
+  align-items: center;
+
+  ${props =>
+    props.isErrored &&
+    css`
+      box-shadow: 0 0 2px 2px ${props => props.theme.colors.error};
+    `}
 
   .react-select-container {
     width: 100%;
@@ -13,13 +23,7 @@ export const BodySelect = styled.div<SelectProps>`
     position: relative;
     outline: 0;
     .react-select__control {
-      ${props =>
-        props.isErrored &&
-        css`
-          box-shadow: 0 0 2px 2px ${props => props.theme.colors.error};
-        `}
       background: ${props => props.theme.colors.inputBackground};
-      border: 1px solid white;
       border-radius: ${props => props.theme.variables.borderRadius}rem;
       :focus-within {
         box-shadow: inherit 0 0 1px 1px ${props => props.theme.colors.error};
@@ -44,5 +48,23 @@ export const BodySelect = styled.div<SelectProps>`
         }
       }
     }
+  }
+`
+
+export const Error = styled(Tooltip)`
+  display: none;
+  svg {
+    margin: 0;
+  }
+  span {
+    background: ${props => props.theme.colors.error};
+    color: #fff;
+    &::before {
+      border-color: ${props => props.theme.colors.error} transparent;
+    }
+  }
+
+  @media only screen and (min-width: ${props => props.theme.breakpoints.sm}px) {
+    display: initial;
   }
 `

@@ -1,35 +1,86 @@
 import styled, { css } from 'styled-components'
 
-interface TextAreaProps {
+import Tooltip from '../Tooltip'
+interface ContainerProps {
+  isFocused: boolean
+  isField: boolean
   isErrored: boolean
 }
 
-export const BodyTextarea = styled.textarea<TextAreaProps>`
+export const Container = styled.div<ContainerProps>`
+  background: ${props => props.theme.colors.inputBackground};
+  border-radius: 0.8rem;
+  outline: 0;
+  font-size: 2.4rem;
+  width: 100%;
+  display: flex;
+  padding: 1.6rem;
+  & + div {
+    margin-top: 2.4rem;
+  }
+
   ${props =>
     props.isErrored &&
     css`
       box-shadow: 0 0 2px 2px ${props => props.theme.colors.error};
     `}
+  ${props =>
+    props.isFocused &&
+    css`
+      box-shadow: 0 0 2px 2px ${props => props.theme.colors.inputHighlight};
+    `}
+  ${props =>
+    props.isField &&
+    css`
+      color: ${props => props.theme.colors.inputHighlight};
+    `}
 
-  width: 100%;
-  height: 5.6rem;
-  background: ${props => props.theme.colors.inputBackground};
-  min-width: 10rem;
-  position: relative;
-  border-radius: ${props => props.theme.variables.borderRadius}rem;
-  border: 0;
-  width: 100%;
-  min-height: 128px;
-  max-height: 400px;
-  padding: 0.6rem 1.2rem;
-  margin-top: 1.6rem;
-  outline: 0;
-  font: 400 1.6rem Ubuntu;
-  resize: vertical;
-  &:focus {
-    box-shadow: 0 0 1px 1px ${props => props.theme.colors.inputHighlight};
+  textarea {
+    flex: 1;
+    min-height: 12.8rem;
+    resize: none;
+    background: transparent;
+    border: 0;
+    font: 400 1.6rem Ubuntu;
+
+    &[type='number']::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+    &[type='number'] {
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+
+    &[error] {
+      box-shadow: 0 0 1px 1px red;
+    }
+
+    & + & {
+      margin-top: 1.6rem;
+    }
+
+    &::placeholder {
+      color: ${props => props.theme.colors.text};
+    }
   }
-  &[error] {
-    box-shadow: 0 0 1px 1px red;
+`
+
+export const Error = styled(Tooltip)`
+  display: none;
+  height: 2rem;
+  margin-left: 1.6rem;
+  svg {
+    margin: 0;
+  }
+  span {
+    background: ${props => props.theme.colors.error};
+    color: #fff;
+    &::before {
+      border-color: ${props => props.theme.colors.error} transparent;
+    }
+  }
+
+  @media only screen and (min-width: ${props => props.theme.breakpoints.sm}px) {
+    display: initial;
   }
 `

@@ -1,8 +1,13 @@
 import { Form } from '@unform/web'
+import FormData from 'form-data'
 import * as Yup from 'yup'
+import axios from 'axios'
 import { useRef, useState } from 'react'
 import 'react-responsive-modal/styles.css'
 import { Modal } from 'react-responsive-modal'
+
+import getValidationErrors from '@/utils/getValidationErros'
+import api from '@/services/api'
 
 import {
   ModalContainer,
@@ -12,7 +17,7 @@ import {
   SuccessModalContainer
 } from './styles'
 
-import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa'
+import { FaArrowAltCircleRight } from 'react-icons/fa'
 
 import Input from '@/components/Input'
 import FileInput from '@/components/FileInput'
@@ -61,14 +66,17 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
   }
 
   async function handleSubmit(data) {
+    formRef.current?.setErrors({})
+    console.log(data)
     try {
       const schemas = Yup.object().shape({
         name: Yup.string().required('Informe um nome válido'),
-        ra: Yup.number().required('Informe um RA válido'),
+        ra: Yup.string().required('Informe um RA válido'),
         email: Yup.string().email().required('Informe um email válido'),
+        phone: Yup.string().required('Informe seu número de celular'),
         course: Yup.string().required('Informe seu curso'),
-        department: Yup.string().required('Informe o(s) setor(es) desejado(s)'),
-        period: Yup.number().required('Informe qual período você está'),
+        department: Yup.string(),
+        period: Yup.string().required('Informe qual período você está'),
         knowledge: Yup.string().required('Responda a pergunta corretamente'),
         wichLanguage: Yup.string().when('knowledge', {
           is: 'knowledgeYes',
@@ -79,27 +87,47 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
         ),
         motivation: Yup.string().required('Responda a pergunta corretamente'),
         contribution: Yup.string().required('Responda a pergunta corretamente'),
-        curriculum: Yup.mixed()
-          .required('Insira seu currículo')
-          .test('fileType', 'Apenas aceitamos arquivos .docx e .pdf', value => {
-            return value && value[0].type === 'image/jpeg'
-          })
+        curriculum: Yup.mixed().required('Insira seu currículo')
       })
 
       await schemas.validate(data, { abortEarly: false })
 
-      console.log(data)
+      const formData = new FormData()
+      formData.append('name', data.name)
+      formData.append('email', data.email)
+      formData.append('ra', data.ra)
+      formData.append('phone', data.phone)
+      formData.append('course', data.course)
+      formData.append('period', data.period)
+      formData.append('interest_area', data.name || 'projetos')
+      formData.append('answer1', data.knowledge + '' + (data.wichLanguage + ''))
+      formData.append('answer2', data.learnNewLanguage)
+      formData.append('answer3', data.motivation)
+      formData.append('answer4', data.contribution)
+      formData.append('curriculum', data.curriculum)
+
+      const documentHeaders = await formData.getHeaders()
+
+      await api.post('/registrations-processes', formData, documentHeaders)
+      await axios.post('/api/subscribeps', {
+        name: data.name,
+        course: data.course,
+        ra: data.ra,
+        period: data.period,
+        email: data.email,
+        sector: data.sector,
+        answer1: data.knowledge + '' + (data.wichLanguage + ''),
+        answer2: data.learnNewLanguage,
+        answer3: data.motivation,
+        answer4: data.contribution
+      })
 
       handleOpenSuccess()
     } catch (err) {
-      const validationErrors = {}
-
       if (err instanceof Yup.ValidationError) {
-        err.inner.forEach(error => {
-          validationErrors[error.path] = error.message
-        })
+        const errors = getValidationErrors(err)
 
-        formRef.current.setErrors(validationErrors)
+        formRef.current?.setErrors(errors)
       }
     }
   }
@@ -120,6 +148,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
             <Input name="name" placeholder="Nome completo" />
             <Input name="ra" placeholder="RA" />
             <Input name="email" placeholder="E-mail (preferência gmail)" />
+            <Input name="phone" placeholder="Celular" />
             <Select name="course" placeholder="Curso" options={courseOptions} />
             <Select
               name="department"
