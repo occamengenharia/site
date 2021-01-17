@@ -574,7 +574,7 @@
                                       "
                                       align="left"
                                     >
-                                      <b>NOME:&nbsp;</b>%%NAME%%
+                                      <b>NOME:&nbsp;</b>{{ name }}
                                     </p>
                                   </td>
                                 </tr>
@@ -622,7 +622,7 @@
                                       "
                                       align="left"
                                     >
-                                      <b>CURSO:&nbsp;</b>%%COURSE%%<br />
+                                      <b>CURSO:&nbsp;</b>{{ course }}<br />
                                     </p>
                                   </td>
                                 </tr>
@@ -649,82 +649,7 @@
                                       "
                                       align="left"
                                     >
-                                      <b>RA: </b>%%RA%%
-                                    </p>
-                                  </td>
-                                </tr>
-                              </table>
-                            </td>
-                          </tr>
-                          <tr style="border-collapse: collapse">
-                            <td
-                              valign="top"
-                              align="center"
-                              style="padding: 0; margin: 0; width: 560px"
-                            >
-                              <table
-                                width="100%"
-                                cellspacing="0"
-                                cellpadding="0"
-                                role="presentation"
-                                style="
-                                  mso-table-lspace: 0pt;
-                                  mso-table-rspace: 0pt;
-                                  border-collapse: collapse;
-                                  border-spacing: 0px;
-                                "
-                              >
-                                <tr style="border-collapse: collapse">
-                                  <td
-                                    align="left"
-                                    style="
-                                      padding: 0;
-                                      margin: 0;
-                                      padding-left: 35px;
-                                    "
-                                  >
-                                    <p
-                                      style="
-                                        margin: 0;
-                                        -webkit-text-size-adjust: none;
-                                        -ms-text-size-adjust: none;
-                                        mso-line-height-rule: exactly;
-                                        font-size: 14px;
-                                        font-family: arial, 'helvetica neue',
-                                          helvetica, sans-serif;
-                                        line-height: 28px;
-                                        color: #666666;
-                                      "
-                                      align="left"
-                                    >
-                                      <b>PERÍODO: </b>%%PERIOD%%
-                                    </p>
-                                  </td>
-                                </tr>
-                                <tr style="border-collapse: collapse">
-                                  <td
-                                    align="left"
-                                    style="
-                                      padding: 0;
-                                      margin: 0;
-                                      padding-left: 35px;
-                                    "
-                                  >
-                                    <p
-                                      style="
-                                        margin: 0;
-                                        -webkit-text-size-adjust: none;
-                                        -ms-text-size-adjust: none;
-                                        mso-line-height-rule: exactly;
-                                        font-size: 14px;
-                                        font-family: arial, 'helvetica neue',
-                                          helvetica, sans-serif;
-                                        line-height: 28px;
-                                        color: #666666;
-                                      "
-                                      align="left"
-                                    >
-                                      <b>EMAIL:</b>&nbsp;%%EMAIL%%
+                                      <b>RA: </b>{{ ra }}
                                     </p>
                                   </td>
                                 </tr>
@@ -772,7 +697,82 @@
                                       "
                                       align="left"
                                     >
-                                      <b>SETOR:&nbsp;</b>%%SECTOR%%
+                                      <b>PERÍODO: </b>{{ period }}
+                                    </p>
+                                  </td>
+                                </tr>
+                                <tr style="border-collapse: collapse">
+                                  <td
+                                    align="left"
+                                    style="
+                                      padding: 0;
+                                      margin: 0;
+                                      padding-left: 35px;
+                                    "
+                                  >
+                                    <p
+                                      style="
+                                        margin: 0;
+                                        -webkit-text-size-adjust: none;
+                                        -ms-text-size-adjust: none;
+                                        mso-line-height-rule: exactly;
+                                        font-size: 14px;
+                                        font-family: arial, 'helvetica neue',
+                                          helvetica, sans-serif;
+                                        line-height: 28px;
+                                        color: #666666;
+                                      "
+                                      align="left"
+                                    >
+                                      <b>EMAIL:</b>&nbsp;{{ email }}
+                                    </p>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr style="border-collapse: collapse">
+                            <td
+                              valign="top"
+                              align="center"
+                              style="padding: 0; margin: 0; width: 560px"
+                            >
+                              <table
+                                width="100%"
+                                cellspacing="0"
+                                cellpadding="0"
+                                role="presentation"
+                                style="
+                                  mso-table-lspace: 0pt;
+                                  mso-table-rspace: 0pt;
+                                  border-collapse: collapse;
+                                  border-spacing: 0px;
+                                "
+                              >
+                                <tr style="border-collapse: collapse">
+                                  <td
+                                    align="left"
+                                    style="
+                                      padding: 0;
+                                      margin: 0;
+                                      padding-left: 35px;
+                                    "
+                                  >
+                                    <p
+                                      style="
+                                        margin: 0;
+                                        -webkit-text-size-adjust: none;
+                                        -ms-text-size-adjust: none;
+                                        mso-line-height-rule: exactly;
+                                        font-size: 14px;
+                                        font-family: arial, 'helvetica neue',
+                                          helvetica, sans-serif;
+                                        line-height: 28px;
+                                        color: #666666;
+                                      "
+                                      align="left"
+                                    >
+                                      <b>ÁREA DE INTERESSE:&nbsp;</b>{{ interest_area }}
                                     </p>
                                   </td>
                                 </tr>
@@ -915,7 +915,7 @@
                                         color: #666666;
                                       "
                                     >
-                                      %%ANSWER1%%
+                                      {{ answer1 }}
                                     </p>
                                   </td>
                                 </tr>
@@ -963,7 +963,7 @@
                                       "
                                     >
                                       <strong
-                                        >3 - Você estaria disposto a dedicar seu
+                                        >2 - Você estaria disposto a dedicar seu
                                         tempo aprendendo uma nova
                                         linguagem?</strong
                                       >
@@ -992,7 +992,7 @@
                                         color: #666666;
                                       "
                                     >
-                                      %%ANSWER3%%
+                                    {{ answer2 }}
                                     </p>
                                   </td>
                                 </tr>
@@ -1040,7 +1040,7 @@
                                       "
                                     >
                                       <strong
-                                        >4 - Qual sua motivação para participar
+                                        >3 - Qual sua motivação para participar
                                         do processo seletivo?</strong
                                       >
                                     </p>
@@ -1068,7 +1068,7 @@
                                         color: #666666;
                                       "
                                     >
-                                      %%ANSWER4%%
+                                    {{ answer3 }}
                                     </p>
                                   </td>
                                 </tr>
@@ -1116,8 +1116,8 @@
                                       "
                                     >
                                       <strong
-                                        >5 - Como você pode contribuir para o
-                                        desenvolvimento da empresa Junior, e o
+                                        >4 - Como você pode contribuir para o
+                                        desenvolvimento da empresa Júnior, e o
                                         que você pode fazer para tornar o Brasil
                                         mais empreendedor?</strong
                                       >
@@ -1147,7 +1147,7 @@
                                         color: #666666;
                                       "
                                     >
-                                      %%ANSWER5%%
+                                    {{ answer4 }}
                                     </p>
                                   </td>
                                 </tr>

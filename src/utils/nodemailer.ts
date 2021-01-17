@@ -1,8 +1,22 @@
 import nodemailer from 'nodemailer'
+import handlebars from 'handlebars'
 
+import fs from 'fs'
+import path from 'path'
 interface ISendEmail {
+  to: string
   subject: string
   html: string
+  bcc?: string
+  replyTo?: string
+}
+
+function createTemplate(nameHTML: string): HandlebarsTemplateDelegate {
+  const file = path.resolve('src', 'emails', nameHTML)
+  const source = fs.readFileSync(file, 'utf-8').toString()
+  const template = handlebars.compile(source)
+
+  return template
 }
 
 async function createTransporter() {
@@ -16,14 +30,22 @@ async function createTransporter() {
   return transporter
 }
 
-const sendMail = async ({ subject, html }: ISendEmail): Promise<string> => {
+const sendMail = async ({
+  to,
+  subject,
+  html,
+  replyTo,
+  bcc
+}: ISendEmail): Promise<string> => {
   const transporter = await createTransporter()
 
   const emailOptions = {
     from: process.env.EMAIL_FROM,
-    to: process.env.EMAIL_TO,
+    to,
     subject,
-    html
+    html,
+    bcc: bcc,
+    replyTo
   } as nodemailer.SendMailOptions
 
   try {
@@ -35,4 +57,4 @@ const sendMail = async ({ subject, html }: ISendEmail): Promise<string> => {
   return 'Sucesso'
 }
 
-export default sendMail
+export { createTemplate, sendMail }
