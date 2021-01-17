@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const Card = styled.section`
+  margin: 0 auto;
   width: 27.2rem;
   height: 10.8rem;
   border: hidden 1px #cecece;
@@ -64,6 +65,24 @@ export const Data = styled.section`
 
     > h2 {
       font-size: 1.6rem;
+    }
+  }
+`
+
+export const Page = styled.main`
+  margin: 0 auto;
+  max-width: 1032px;
+
+  > h2 {
+    font-size: 3.2rem;
+    font-weight: bold;
+    color: ${({ theme }) => theme.colors.primary};
+    text-align: center;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
+    > h2 {
+      font-size: 8rem;
     }
   }
 `

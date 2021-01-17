@@ -1,13 +1,18 @@
 import Header from '@/components/Header/index'
 import Footer from '@/components/Footer/index'
 import Card from '@/components/MemberCard/index'
+import { Page } from '@/components/MemberCard/styles'
+import YearBar from '@/components/YearBar/index'
 
 const Historico: React.FC = () => {
   return (
     <>
       <Header />
-      <h2>Historico de Membros</h2>
-      <Card />
+      <Page>
+        <h2>Historico de Membros</h2>
+        <YearBar></YearBar>
+        <Card />
+      </Page>
       <Footer />
     </>
   )
