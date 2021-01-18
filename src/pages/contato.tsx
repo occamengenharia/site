@@ -1,5 +1,6 @@
 import { useCallback, useRef, useState } from 'react'
 import * as Yup from 'yup'
+import { FaMailBulk } from 'react-icons/fa'
 
 import { FormHandles } from '@unform/core'
 import {
@@ -17,6 +18,7 @@ import Textarea from '@/components/Textarea'
 import getValidationErrors from '@/utils/getValidationErros'
 import MailSuccessModal from '@/components/MailSuccessModal'
 import MailErrorModal from '@/components/MailErrorModal'
+import Button from '@/components/Button'
 
 interface IContactFormData {
   name: string
@@ -25,7 +27,7 @@ interface IContactFormData {
   description: string
 }
 
-const description = 'Rei das Chaves e Carimbos'
+const description = 'OCCAM Engenharia'
 
 const Contact: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -84,26 +86,20 @@ const Contact: React.FC = () => {
       />
 
       <FormStyled ref={formRef} onSubmit={handleSubmit}>
-        <h1>ENTRE EM CONTATO COM A GENTE</h1>
+        <div id = "titulo">
+          <FaMailBulk id="logo-email" />
+          <h3>Envie um e-mail para gente</h3>
+        </div>
+          <p>Vamos ficar felizes em ajudar o seu projeto, ideia ou empresa</p>
 
-        <Input icon={MdSupervisorAccount} name="name" placeholder="nome" />
-        <Input icon={MdMail} name="email" placeholder="e-mail" />
-        <Input icon={MdPhoneIphone} name="phone" placeholder="telefone" />
+        <Input name="name" placeholder="Seu nome" />
+        <Input name="email" placeholder="Seu email" />
+        <Input name="phone" placeholder="Seu telefone" />
         <Textarea
-          icon={MdDescription}
           name="description"
-          placeholder="descrição do serviço"
+          placeholder="Detalhe sua ideia aqui"
         />
-
-        <button type="submit">
-          {loading ? (
-            'Carregando...'
-          ) : (
-            <>
-              ENVIAR <MdNearMe />
-            </>
-          )}
-        </button>
+        <Button icon = { MdNearMe } text = "Enviar"/>
       </FormStyled>
     </Container>
   )
