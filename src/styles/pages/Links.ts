@@ -1,78 +1,80 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   main {
-    width: min(90vw, 500px);
     display: flex;
-    justify-content: center;
-
-    > section {
-      max-width: 27.2rem;
-      height: 100%;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+  }
+  div#firstText {
+    margin-top: 4.8rem;
+  }
+  h3 {
+    font-size: 8rem;
+    text-align: center;
+    color: ${props => props.theme.colors.primary};
+  }
+  h2 {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 37px;
+    width: 258px;
+    height: 111px;
+    text-align: center;
+    color: ${props => props.theme.colors.primary};
+  }
+  span#subtext {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: center;
+    width: 148px;
+    height: 36px;
+    color: ${props => props.theme.colors.secundary};
+    margin-bottom: 7.2rem;
+  }
+  div#links {
+    width: 27.2rem;
+    margin-bottom: 7.2rem;
+  }
+  @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
+    div#firstText {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-
-      h1 {
-        font-size: 6.4rem;
-        color: ${props => props.theme.colors.secundary};
-      }
-      h4 {
-        font-size: 1.6rem;
-        color: ${props => props.theme.colors.primary};
-        margin-top: 0.2rem;
-      }
-
-      p {
-        margin-top: 0.4rem;
-        margin-bottom: 3.2rem;
-        font-size: 1.2rem;
-        color: ${props => props.theme.colors.text};
-      }
-
-      > img {
-        align-self: center;
-        width: 60%;
-        margin-top: 6.4rem;
-      }
+      flex-direction: row;
+      align-content: flex-start;
     }
-    > img {
-      display: none;
+    h2 {
+      font-family: Ubuntu;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 48px;
+      line-height: 55px;
+      text-align: center;
+      width: 612px;
+      height: 110px;
+      margin-top: 5.6rem;
     }
-
-    @media (min-width: ${props => props.theme.breakpoints.md}px) {
-      width: min(90vw, 1000px);
-      display: flex;
-      justify-content: space-between;
-
-      > section {
-        align-items: flex-start;
-        max-width: 41.6rem;
-
-        h1 {
-          font-size: 9.6rem;
-        }
-
-        h4 {
-          font-size: 2.4rem;
-        }
-
-        > img {
-          margin-top: 11.2rem;
-        }
-      }
-
-      > img {
-        align-self: flex-start;
-        display: initial;
-        max-width: 60rem;
-      }
+    h3 {
+      margin-top: 3.5rem;
+    }
+    span#subtext {
+      font-family: Ubuntu;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 24px;
+      line-height: 28px;
+      width: 500px;
+      height: 28px;
+      margin-top: 0.8rem;
+      margin-bottom: 9.6rem;
+    }
+    div#links {
+      width: 416px;
     }
   }
 `

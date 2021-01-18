@@ -15,22 +15,27 @@ export const Main = styled.header`
 export const HeaderContent = styled.section`
   position: initial;
   overflow-y: hidden;
-
+  background: ${({ theme }) => theme.colors.background};
+  transition: ${({ theme }) => theme.variables.transition}s;
   top: 0;
   padding-top: 45;
   z-index: 1;
   padding: 1.6rem;
-  background: transparent;
+  margin: 0 auto;
+  margin-bottom: 5.6rem;
+  width: 100vw;
+  max-width: 1032px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100vw;
+  width: 100%;
   max-width: 120rem;
   margin: 0 auto;
   overflow: hidden;
 
   img {
-    height: 4.8rem;
+    height: 3.6rem;
     cursor: pointer;
   }
 
@@ -45,7 +50,7 @@ export const HeaderContent = styled.section`
       margin: 0 2.4rem 0 3.2rem;
       svg {
         color: ${({ theme }) => theme.colors.text};
-        font-size: 3.2rem;
+        font-size: 2.4rem;
       }
     }
     section {
@@ -53,6 +58,19 @@ export const HeaderContent = styled.section`
     }
   }
 
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.xs}px) {
+    img {
+      height: 4.8rem;
+    }
+
+    > div {
+      button {
+        svg {
+          font-size: 3.6rem;
+        }
+      }
+    }
+  }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
     position: initial;
 

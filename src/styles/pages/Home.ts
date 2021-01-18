@@ -89,6 +89,8 @@ export const Initial = styled.div`
       }
 
       div {
+        height: 26.6rem;
+
         img {
           width: 41.6rem;
           height: 23.4rem;
@@ -98,6 +100,7 @@ export const Initial = styled.div`
           display: flex;
           flex-direction: row;
           justify-content: space-between;
+          height: 3.2rem;
 
           padding: 1.2rem;
 

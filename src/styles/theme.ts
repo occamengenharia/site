@@ -1,4 +1,4 @@
-const metrics = {
+export const metrics = {
   breakpoints: {
     xs: 480,
     sm: 576,
@@ -19,7 +19,8 @@ const basicColors = {
   borderDivision: '#E2E2E2',
   inputBackground: '#F1F1F1',
   details: '#CECECE',
-  text2: '#858585'
+  text2: '#858585',
+  white: '#FEFEFE'
 }
 
 export const light = {
