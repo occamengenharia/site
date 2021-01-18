@@ -15,23 +15,21 @@ export const Main = styled.header`
 export const HeaderContent = styled.section`
   position: initial;
   overflow-y: hidden;
-
+  background: ${({ theme }) => theme.colors.background};
+  transition: ${({ theme }) => theme.variables.transition}s;
   top: 0;
   padding-top: 45;
   z-index: 1;
   padding: 1.6rem;
-<<<<<<< HEAD
   margin: 0 auto;
   margin-bottom: 5.6rem;
   width: 100vw;
   max-width: 1032px;
-=======
-  background: transparent;
->>>>>>> 08f5ec8f8f311f144c737ce83dd773889e7141a2
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100vw;
+  width: 100%;
   max-width: 120rem;
   margin: 0 auto;
   overflow: hidden;
