@@ -1,31 +1,27 @@
 import styled, { css } from 'styled-components'
 
 import Tooltip from '../Tooltip'
-
-interface SelectProps {
-  isField: boolean
+interface ContainerProps {
   isFocused: boolean
+  isField: boolean
   isErrored: boolean
 }
 
-export const Container = styled.div<SelectProps>`
+export const Container = styled.div<ContainerProps>`
+  position: relative;
   margin-top: 1.6rem;
+  background: ${props => props.theme.colors.inputBackground};
+  border-radius: ${props => props.theme.variables.borderRadius}rem;
+
   display: flex;
   align-items: center;
-  padding-right: 1.6rem;
-  padding-left: 0.8rem;
-  border-radius: ${props => props.theme.variables.borderRadius}rem;
-  background: ${props => props.theme.colors.inputBackground};
-  & + div {
-    margin-top: 2.4rem;
-  }
+  padding: 0 1.6rem;
 
   ${props =>
     props.isErrored &&
     css`
       box-shadow: 0 0 2px 2px ${props => props.theme.colors.error};
     `}
-
   ${props =>
     props.isFocused &&
     css`
@@ -36,40 +32,47 @@ export const Container = styled.div<SelectProps>`
     css`
       color: ${props => props.theme.colors.inputHighlight};
     `}
+`
 
-  .react-select-container {
-    width: 100%;
-    min-width: 10rem;
-    position: relative;
+export const PlaceHolder = styled.div`
+  z-index: 1;
+  width: 100%;
+  position: absolute;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 6.4rem;
+  min-width: 10rem;
+  width: 80%;
+
+  label {
     text-align: left;
-    .react-select__control {
-      background: transparent;
-      border: none;
-      box-shadow: none;
-      .react-select__value-container {
-        height: 6.4rem;
-        .react-select__input {
-          font: 400 16px Ubuntu;
-        }
-
-        font-size: 2.5rem;
-      }
-    }
-    .react-select__menu {
-      .react-select__menu-list {
-        font-size: 2.5rem;
-        .react-select__option {
-          margin-left: 0;
-        }
-      }
-    }
+    color: ${props => props.theme.colors.text2};
+    font: 400 1.6rem Ubuntu;
   }
+`
+
+export const BodyInput = styled.input`
+  cursor: pointer;
+  -moz-opacity: 0;
+  opacity: 0;
+  z-index: 2;
+
+  height: 5.6rem;
+  min-width: 10rem;
+  margin: 0.3rem 0;
+  position: relative;
+  border: 0;
+  width: 100%;
+  outline: 0;
 `
 
 export const Error = styled(Tooltip)`
   display: none;
+
   svg {
-    margin-left: 0.8rem;
+    margin: 0;
   }
   span {
     background: ${props => props.theme.colors.error};

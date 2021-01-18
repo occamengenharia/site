@@ -21,6 +21,11 @@ export const HeaderContent = styled.section`
   padding-top: 45;
   z-index: 1;
   padding: 1.6rem;
+  margin: 0 auto;
+  margin-bottom: 5.6rem;
+  width: 100vw;
+  max-width: 1032px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;

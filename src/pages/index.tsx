@@ -8,12 +8,14 @@ import {
   Marquee
 } from '@/styles/pages/Home'
 import { FaCaretRight, FaCaretLeft } from 'react-icons/fa'
+import { BsFillQuestionCircleFill } from 'react-icons/bs'
+
 import { Footer } from '@/components'
 import SEO from '@/components/SEO'
 import Header from '@/components/Header'
 import Member from '@/components/MembersHome/index'
 import Link from '@/components/Link'
-import { BsFillQuestionCircleFill } from 'react-icons/bs'
+
 
 const Home: React.FC = () => {
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
