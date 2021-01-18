@@ -4,7 +4,13 @@ import { useRef, useState } from 'react'
 import 'react-responsive-modal/styles.css'
 import { Modal } from 'react-responsive-modal'
 
-import { ModalContainer, Close, Check, Link } from './styles'
+import {
+  ModalContainer,
+  SuccessModalContainer,
+  Close,
+  Check,
+  Link
+} from './styles'
 
 import { FiSend } from 'react-icons/fi'
 
@@ -39,7 +45,9 @@ const DataRequest: React.FC<DataRequestProps> = ({ isOpened }) => {
   async function handleSubmit(data) {
     try {
       const schemas = Yup.object().shape({
-        email: Yup.string().email().required()
+        email: Yup.string()
+          .email('Insira um email válido')
+          .required('Insira um email válido')
       })
 
       await schemas.validate(data, { abortEarly: false })
@@ -88,7 +96,7 @@ const DataRequest: React.FC<DataRequestProps> = ({ isOpened }) => {
         styles={{ modal: { borderRadius: 8 } }}
       >
         <Close onClick={handleCloseModal} />
-        <ModalContainer>
+        <SuccessModalContainer>
           <Check />
           <div>
             <p>Verifique seu email</p>
@@ -96,7 +104,7 @@ const DataRequest: React.FC<DataRequestProps> = ({ isOpened }) => {
               Não recebeu o e-mail? tente novamente
             </Link>
           </div>
-        </ModalContainer>
+        </SuccessModalContainer>
       </Modal>
     </>
   )

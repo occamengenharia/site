@@ -16,6 +16,7 @@ import Header from '@/components/Header'
 import Member from '@/components/MembersHome/index'
 import Link from '@/components/Link'
 import DataRequest from '@/components/Modals/DataRequest'
+import ErrorModal from '@/components/Modals/ErrorModal'
 import SelectiveProcessForm from '@/components/Modals/SelectiveProcessForm'
 
 const Home: React.FC = () => {
@@ -24,6 +25,7 @@ const Home: React.FC = () => {
   return (
     <>
       <SEO title="Home" description={description} image="/occam.png" />
+      {/* <ErrorModal isOpened /> */}
       {/* <DataRequest isOpened /> */}
       <SelectiveProcessForm isOpened />
       <Page>

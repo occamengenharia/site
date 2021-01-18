@@ -7,6 +7,7 @@ import { Modal } from 'react-responsive-modal'
 
 import getValidationErrors from '@/utils/getValidationErros'
 import checkFileFormat from '@/utils/checkFileFormat'
+import limitMultiSelectOptions from '@/utils/limitMultiSelectOptions'
 import api from '@/services/api'
 
 import {
@@ -41,7 +42,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
 
   const [openForm, setOpenForm] = useState<boolean>(isOpened)
   const [openSuccess, setOpenSuccess] = useState<boolean>(false)
-  const [departments, setDepartments] = useState<string[]>([])
+  const [departments, setDepartments] = useState<string[]>(null)
   const [inputVisible, setInputVisible] = useState<boolean>(false)
 
   function handleCloseModal() {
@@ -61,6 +62,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
   function handleSetDepartments(event) {
     let newDepartments = departments
 
+    limitMultiSelectOptions(event)
     if (event) {
       newDepartments = event.map(e => e.value)
       setDepartments(newDepartments)
@@ -68,7 +70,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
   }
 
   function handleShowWichLanguageInput(event) {
-    if (event.value === 'knowledgeYes') {
+    if (event.value === 'sim') {
       setInputVisible(true)
     } else {
       setInputVisible(false)
@@ -78,7 +80,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
   async function handleSubmit(data) {
     formRef.current?.setErrors({})
 
-    data.department = departments
+    data.department = departments || undefined
     try {
       const schemas = Yup.object().shape({
         name: Yup.string().required('Informe um nome válido'),
@@ -112,17 +114,6 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
       await schemas.validate(data, { abortEarly: false })
 
       const formData = new FormData()
-      // formData.append('name', data.name)
-      // formData.append('email', data.email)
-      // formData.append('ra', data.ra)
-      // formData.append('phone', data.phone)
-      // formData.append('course', data.course)
-      // formData.append('period', data.period)
-      // formData.append('interest_area', data.name || 'projetos')
-      // formData.append('answer1', data.knowledge + '' + (data.wichLanguage + ''))
-      // formData.append('answer2', data.learnNewLanguage)
-      // formData.append('answer3', data.motivation)
-      // formData.append('answer4', data.contribution)
       formData.append('files', data.curriculum)
       const res = await api.post('/upload', formData)
 
@@ -135,7 +126,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
         interest_area: data.department.join(', '),
         email: data.email,
         sector: data.sector,
-        answer1: data.knowledge + '' + (data.wichLanguage + ''),
+        answer1: data.knowledge + '' + ', ' + (data.wichLanguage + ''),
         answer2: data.learnNewLanguage,
         answer3: data.motivation,
         answer4: data.contribution,
@@ -150,7 +141,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
         period: data.period,
         email: data.email,
         sector: data.sector,
-        answer1: data.knowledge + '' + (data.wichLanguage + ''),
+        answer1: `${data.knowledge}, ${data.wichLanguage}`,
         answer2: data.learnNewLanguage,
         answer3: data.motivation,
         answer4: data.contribution

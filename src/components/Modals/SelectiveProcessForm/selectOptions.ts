@@ -15,7 +15,7 @@ export const departmentOptions = [
     label: 'Marketing'
   },
   {
-    value: 'projects',
+    value: 'projetos',
     label: 'Projetos'
   },
   {
@@ -23,11 +23,11 @@ export const departmentOptions = [
     label: 'RH'
   },
   {
-    value: 'finances',
+    value: 'financeiro',
     label: 'Financeiro'
   },
   {
-    value: 'legal',
+    value: 'jurídico',
     label: 'Jurídico'
   }
 ]
@@ -77,22 +77,22 @@ export const periodOptions = [
 
 export const knowledgeOptions = [
   {
-    value: 'knowledgeYes',
+    value: 'sim',
     label: 'Sim'
   },
   {
-    value: 'knowledgeNo',
+    value: 'não',
     label: 'Não'
   }
 ]
 
 export const learnNewLanguageOptions = [
   {
-    value: 'learnNewLanguageYes',
+    value: 'sim',
     label: 'Sim'
   },
   {
-    value: 'learnNewLanguageNo',
+    value: 'não',
     label: 'Não'
   }
 ]

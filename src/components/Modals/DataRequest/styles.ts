@@ -22,14 +22,44 @@ export const ModalContainer = styled.div`
   }
 
   div {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    margin: 1.6rem 0;
   }
 
   @media only screen and (min-width: ${props => props.theme.breakpoints.lg}px) {
     max-width: 51.2rem;
     padding: 4.8rem 10rem;
+    p {
+      font-size: 3.2rem;
+    }
+  }
+`
+
+export const SuccessModalContainer = styled.div`
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 2.4rem 3.2rem;
+
+  > span {
+    color: ${props => props.theme.colors.secundary};
+  }
+
+  p {
+    color: ${props => props.theme.colors.primary};
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
+    padding: 4rem 10.4rem;
+
     p {
       font-size: 3.2rem;
     }
