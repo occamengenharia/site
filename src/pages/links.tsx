@@ -8,8 +8,6 @@ import {
   FaShareAltSquare,
   FaFacebookSquare
 } from 'react-icons/fa'
-import { Footer } from '@/components'
-import Header from '@/components/Header/Header'
 
 const Home: React.FC = () => {
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
@@ -17,7 +15,6 @@ const Home: React.FC = () => {
     <Container>
       <SEO title="HOME" image="/banner.png" description={description} />
       <main>
-        <Header />
         <div id="firstText">
           <h3>
             <FaShareAltSquare />
@@ -47,7 +44,6 @@ const Home: React.FC = () => {
             text="Facebook"
           />
         </div>
-        <Footer />
       </main>
     </Container>
   )
