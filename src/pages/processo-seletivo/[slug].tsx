@@ -122,23 +122,23 @@ const Process: React.FC<IProcessSeletive> = props => {
           <h2>Qual setor me inscrever?</h2>
 
           <p>
-            <strong>Projetos -</strong> {props.project_department_description}
+            <strong>PROJETOS -</strong> {props.project_department_description}
           </p>
 
           <p>
-            <strong>Jurídico -</strong> {props.legal_department_description}
+            <strong>JURÍDICO -</strong> {props.legal_department_description}
           </p>
 
           <p>
-            <strong>Financeiro -</strong> {props.finance_department_description}
+            <strong>FINANCEIRO -</strong> {props.finance_department_description}
           </p>
           <p>
-            <strong>Financeiro -</strong>
+            <strong>GESTÃO DE PESSOAS - </strong>
             {props.people_management_department_description}
           </p>
 
           <p>
-            <strong>Marketing -</strong>
+            <strong>MARKETING -</strong>
             {props.marketing_department_description}
           </p>
         </Descriptions>
