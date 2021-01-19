@@ -15,7 +15,7 @@ import SEO from '@/components/SEO'
 import Header from '@/components/Header'
 import Member from '@/components/MembersHome/index'
 import Link from '@/components/Link'
-
+import { GetStaticProps } from 'next'
 
 const Home: React.FC = () => {
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
@@ -24,8 +24,8 @@ const Home: React.FC = () => {
     <>
       <SEO title="Home" description={description} image="/occam.png" />
       <Page>
-        <Header />
         <Initial>
+          <Header />
           <main>
             <h1>Soluções Simples, Resultados Inovadores</h1>
             <div>
@@ -124,3 +124,13 @@ const Home: React.FC = () => {
 }
 
 export default Home
+
+export const getStaticProps: GetStaticProps<{
+  showComponents: boolean
+}> = async () => {
+  return {
+    props: {
+      showComponents: true
+    }
+  }
+}

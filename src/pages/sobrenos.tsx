@@ -1,5 +1,4 @@
 import SEO from '@/components/SEO'
-import Header from '@/components/Header'
 import { Container, MVV, Stories } from '@/styles/pages/About'
 import { useRouter } from 'next/router'
 import {

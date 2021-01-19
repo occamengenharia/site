@@ -3,10 +3,10 @@ import { GetStaticProps } from 'next'
 import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io'
 
 import Card from '@/components/MemberCard'
-import { Container, GridCards, Bar } from '@/styles/pages/History'
+import { Container, GridCards, Bar } from '@/styles/pages/Members'
 
 import api from '@/services/api'
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 interface IPosition {
   department: string
@@ -50,37 +50,31 @@ const positionsGeneric: IPosition = {
   end_date_position: String(new Date().getFullYear() + 1)
 }
 
-const Historico: React.FC<IMembersSerealized> = props => {
+const Members: React.FC<IMembersSerealized> = props => {
   const nowYear = new Date().getFullYear()
   const [year, setYear] = useState(nowYear)
 
   const [members, setMembers] = useState([] as IMemberSerealized[])
 
-  function handleMinus() {
-    let x = year
-    if (x > 2015) {
-      x = x - 1
-      setYear(x)
-      setMembers(props[`${year}`].length > 0 ? props[`${year}`] : [])
-    } else if (x === 2015) {
+  const handleMinus = useCallback(() => {
+    if (year <= 2014) {
       setYear(nowYear)
-      setMembers(props[`${year}`].length > 0 ? props[`${year}`] : [])
+    } else {
+      setYear(year - 1)
     }
-  }
+  }, [year])
 
-  function handlePlus() {
-    console.log(props[`${year}`], members)
-
-    let x = year
-    if (x < nowYear) {
-      x = x + 1
-      setYear(x)
-      setMembers(props[`${year}`].length > 0 ? props[`${year}`] : [])
-    } else if (x === nowYear) {
-      setYear(2015)
-      setMembers(props[`${year}`].length > 0 ? props[`${year}`] : [])
+  const handlePlus = useCallback(() => {
+    if (year >= nowYear) {
+      setYear(2014)
+    } else {
+      setYear(year + 1)
     }
-  }
+  }, [year])
+
+  useEffect(() => {
+    setMembers(props[`${year}`].length > 0 ? props[`${year}`] : [])
+  }, [year])
 
   return (
     <>
@@ -98,23 +92,27 @@ const Historico: React.FC<IMembersSerealized> = props => {
         </Bar>
 
         <GridCards>
-          {members.map(member => (
-            <Card
-              key={member.photo}
-              name={member.name}
-              link_github={member.link_github}
-              link_linkedin={member.link_linkedin}
-              // photo={member.photo}
-              position={member.position.department}
-            />
-          ))}
+          {members.length > 0 ? (
+            members.map(member => (
+              <Card
+                key={member.photo}
+                name={member.name}
+                link_github={member.link_github}
+                link_linkedin={member.link_linkedin}
+                photo={member.photo}
+                position={member.position.department}
+              />
+            ))
+          ) : (
+            <h1>Nenhum membro</h1>
+          )}
         </GridCards>
       </Container>
     </>
   )
 }
 
-export default Historico
+export default Members
 export const getStaticProps: GetStaticProps = async context => {
   const { data } = await api.get<IMember[]>('members')
 
@@ -151,9 +149,6 @@ export const getStaticProps: GetStaticProps = async context => {
     })
     i++
   }
-
-  console.log(JSON.stringify(membersSerealized))
-
   return {
     props: membersSerealized
     // revalidate: a cada 3 meses por

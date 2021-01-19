@@ -29,14 +29,13 @@ export const Page = styled.div`
 export const Initial = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
   gap: 6%;
 
   main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    align-self: center;
     max-width: 27.2rem;
 
     h1 {

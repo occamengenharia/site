@@ -3,10 +3,12 @@ import styled from 'styled-components'
 export const Card = styled.section`
   width: 100%;
   max-width: 49.6rem;
+  min-width: 32rem;
 
   height: 20rem;
 
   border: hidden 1px #cecece;
+
   border-radius: 1.6rem;
   background-color: ${({ theme }) => theme.colors.backgorudElevation};
   display: flex;
@@ -14,8 +16,10 @@ export const Card = styled.section`
   box-shadow: 8px 8px 10px #cecece;
 
   > img {
+    padding: 0.8rem;
     width: 15.2rem;
     height: 15.2rem;
+    border-radius: 50%;
   }
   a {
     margin-bottom: 1.6rem;
