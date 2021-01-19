@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Form } from '@unform/web'
+import { Main as Button } from '@/components/Button/styles.ts'
 
 export const Container = styled.main`
   width: 100vw;
@@ -15,39 +16,34 @@ export const FormStyled = styled(Form)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   width: 96%;
+  
 
-  h1 {
-    margin-bottom: 2rem;
-    color: ${props => props.theme.colors.secundary};
-  }
-
-  button {
+  #titulo{
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 2.4rem;
-
-    margin: 3rem 0;
-    border-radius: 2.4rem;
-    width: 24rem;
-    height: 5rem;
-    border: 1px solid ${props => props.theme.colors.secundary};
-    align-self: center;
-    background: transparent;
-    color: ${props => props.theme.colors.secundary};
-    transition: all 0.6s;
-
-    svg {
-      margin-left: 1rem;
-      color: ${props => props.theme.colors.secundary};
-    }
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
   }
+  #logo-email{
+    margin-right: 16px;
+    font-size: 48px;
+    color: ${props => props.theme.colors.primary};
+  }
+
+
+  h3 {
+    color: ${props => props.theme.colors.primary};
+  }
+
+  p {
+    color: ${props => props.theme.colors.secundary};
+    font-weight: 400;
+    margin: 8px 0 96px 16px !important;
+
+  }
+
+  ${ Button } {
+      margin-top: 1.6rem;
+    }
 
   @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
     width: 80%;
@@ -58,7 +54,12 @@ export const FormStyled = styled(Form)`
     }
   }
   @media only screen and (min-width: ${props => props.theme.breakpoints.lg}px) {
-    max-width: 102.4rem;
+    max-width: 80rem;
+    
+    ${ Button } {
+      width:300px;
+      align-self:flex-end;
+    }
 
     h1 {
       width: 75rem;
@@ -66,10 +67,5 @@ export const FormStyled = styled(Form)`
       font-size: 5.6rem;
     }
 
-    button {
-      margin-top: 6rem;
-      align-self: flex-start;
-      margin-left: -8rem;
-    }
   }
 `

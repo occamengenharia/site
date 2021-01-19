@@ -41,8 +41,8 @@ const Home: React.FC = () => {
       <DataRequest isOpened />
       {/* <SelectiveProcessForm isOpened /> */}
       <Page>
+        <Header />
         <Initial>
-          <Header />
           <main>
             <h1>Soluções Simples, Resultados Inovadores</h1>
             <div>

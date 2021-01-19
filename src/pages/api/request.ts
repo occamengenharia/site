@@ -1,9 +1,10 @@
 import { NowRequest, NowResponse } from '@vercel/node'
-import handlebars from 'handlebars'
-import fs from 'fs'
-import { sendMail } from '@/utils/nodemailer'
+import { sendMail, createTemplate } from '@/utils/nodemailer'
 import api from '@/services/api'
-import path from 'path'
+
+// import handlebars from 'handlebars'
+// import fs from 'fs'
+// import path from 'path'
 
 interface IRequest {
   email: string
@@ -35,7 +36,7 @@ export default async (
   }
 
   await sendMail({
-    to: process.env.MAIL_TO,
+    to: process.env.EMAIL_TO,
     html: `<p> ${email} fez uma nova requisição de dados</p>`,
     subject: 'Nova requisição'
   })
@@ -50,9 +51,10 @@ export default async (
 
   const subscription = data[0]
 
-  const filePath = path.resolve('src', 'emails', 'user-request-data-ps.html')
-  const source = fs.readFileSync(filePath, 'utf-8').toString()
-  const template = handlebars.compile(source)
+  // const filePath = path.resolve('src', 'emails', 'user-request-data-ps.html')
+  // const source = fs.readFileSync(filePath, 'utf-8').toString()
+  // const template = handlebars.compile(source)
+
   const replacements = {
     name: subscription.name,
     course: subscription.course,
@@ -66,14 +68,15 @@ export default async (
     answer4: subscription.answer4
   }
 
-  const html = template(replacements)
+  const template_request = createTemplate('user-request-data-ps.html')
+  const html_request = template_request(replacements)
 
   const res = await sendMail({
     to: email,
-    html,
+    html: html_request,
     subject: 'Dados inscrição processo seletivo',
-    bcc: process.env.MAIL_TO,
-    replyTo: process.env.MAIL_TO
+    bcc: process.env.EMAIL_TO,
+    replyTo: process.env.EMAIL_TO
   })
 
   if (res.includes('Erro')) {

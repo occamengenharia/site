@@ -15,7 +15,8 @@ export const Container = styled.main`
   }
 
   img {
-    max-width: 31rem;
+    width: 100%;
+    max-width: 102.4rem;
   }
 
   a {
@@ -59,15 +60,17 @@ export const Container = styled.main`
   }
 
   .date-content-bottom {
-    /* justify-content: flex-end; */
     flex-direction: column-reverse;
     margin-bottom: 0rem;
     margin-top: 1.6rem;
   }
 
+  .date-top {
+    display: none;
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
     h2 {
-      /* margin-left: 0; */
       align-self: flex-start;
       text-align: flex-start;
     }
@@ -75,15 +78,32 @@ export const Container = styled.main`
     .button-and-link {
       width: 41.6rem;
     }
+    .dates-down {
+      display: none;
+    }
+
+    .date-top {
+      display: flex;
+    }
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
   }
 `
 
 export const InfoProcess = styled.div`
   margin: 3.2rem 0 4.8rem;
+  padding: 0 1.6rem;
+
+  max-width: 102.4rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 export const Dates = styled.div`
   display: flex;
+  width: 100%;
 `
 
 export const DatesContent = styled.aside`
@@ -115,13 +135,19 @@ export const DatesContent = styled.aside`
 `
 
 export const Subscribe = styled.aside`
+  width: 100vw;
+  max-width: 102.4rem;
+  margin: 0 auto;
+  padding-right: 1.6rem;
+
   display: flex;
   flex-direction: column;
-
   justify-content: center;
-  /* button { movido para classe button-and-link} */
 
-  aside {
+  button {
+    align-self: center;
+  }
+  a {
     cursor: pointer;
 
     font-size: 1.2rem;
@@ -131,7 +157,13 @@ export const Subscribe = styled.aside`
     align-self: center;
   }
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.sm}px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
+    button {
+      align-self: flex-end;
+    }
+    a {
+      align-self: flex-end;
+    }
   }
 `
 export const Descriptions = styled.div`
