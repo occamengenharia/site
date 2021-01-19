@@ -16,6 +16,7 @@ import { FiSend } from 'react-icons/fi'
 
 import Button from '@/components/Button'
 import Input from '@/components/Input'
+import SuccessModal from '@/components/Modals/SuccessModal'
 
 interface DataRequestProps {
   isOpened: boolean
@@ -35,11 +36,6 @@ const DataRequest: React.FC<DataRequestProps> = ({ isOpened }) => {
   function handleNextModal() {
     setOpenDataRequest(false)
     setOpenSuccess(true)
-  }
-
-  function handlePreviousModal() {
-    setOpenDataRequest(true)
-    setOpenSuccess(false)
   }
 
   async function handleSubmit(data) {
@@ -68,44 +64,37 @@ const DataRequest: React.FC<DataRequestProps> = ({ isOpened }) => {
 
   return (
     <>
-      <Modal
-        open={openDataRequest}
-        onClose={handleCloseModal}
-        center
-        showCloseIcon={false}
-        styles={{ modal: { borderRadius: 8 } }}
-      >
-        <Close onClick={handleCloseModal} />
-        <ModalContainer>
-          <p>Requisição de dados</p>
-          <span>
-            Enviaremos um e-mail com todos os seus dados relacionados ao
-            processo seletivo
-          </span>
-          <Form onSubmit={handleSubmit} ref={formRef}>
-            <Input name="email" placeholder="Informe seu email" />
-            <Button type="submit" text="Enviar" icon={FiSend} />
-          </Form>
-        </ModalContainer>
-      </Modal>
-      <Modal
-        open={openSuccess}
-        onClose={handleCloseModal}
-        center
-        showCloseIcon={false}
-        styles={{ modal: { borderRadius: 8 } }}
-      >
-        <Close onClick={handleCloseModal} />
-        <SuccessModalContainer>
-          <Check />
-          <div>
-            <p>Verifique seu email</p>
-            <Link onClick={handlePreviousModal}>
-              Não recebeu o e-mail? tente novamente
-            </Link>
-          </div>
-        </SuccessModalContainer>
-      </Modal>
+      {!openSuccess && (
+        <Modal
+          open={openDataRequest}
+          onClose={handleCloseModal}
+          center
+          showCloseIcon={false}
+          styles={{ modal: { borderRadius: 8 } }}
+        >
+          <Close onClick={handleCloseModal} />
+          <ModalContainer>
+            <p>Requisição de dados</p>
+            <span>
+              Enviaremos um e-mail com todos os seus dados relacionados ao
+              processo seletivo
+            </span>
+            <Form onSubmit={handleSubmit} ref={formRef}>
+              <Input name="email" placeholder="Informe seu email" />
+              <Button type="submit" text="Enviar" icon={FiSend} />
+            </Form>
+          </ModalContainer>
+        </Modal>
+      )}
+      <SuccessModal
+        title="Verifique seu email"
+        subtitle="Não recebeu o e-mail? tente novamente"
+        hasBackButton
+        showCloseIcon
+        isOpened={openSuccess}
+        setOpen={setOpenSuccess}
+        setOpenPreviousModal={setOpenDataRequest}
+      />
     </>
   )
 }

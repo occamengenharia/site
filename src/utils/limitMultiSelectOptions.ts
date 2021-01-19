@@ -1,14 +1,7 @@
-export default function limitMultiSelectOptions(event): void {
-  let selectedCounter = 0
+import { ISelectOptions } from '@/components/Modals/SelectiveProcessForm/selectOptions'
 
-  if (event) {
-    event.forEach(() => {
-      selectedCounter++
-    })
-
-    // caso o número de itens for maior que 2, ele vai remover o último item adicionado, ou seja, não vai ocorrer nada
-    if (selectedCounter > 2) {
-      event.pop()
-    }
+export default function limitMultiSelectOptions(event: ISelectOptions[]): void {
+  if (event && event.length > 2) {
+    event.pop()
   }
 }

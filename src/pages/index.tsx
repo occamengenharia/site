@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   Page,
   Initial,
@@ -17,17 +18,28 @@ import Member from '@/components/MembersHome/index'
 import Link from '@/components/Link'
 import DataRequest from '@/components/Modals/DataRequest'
 import ErrorModal from '@/components/Modals/ErrorModal'
+import SuccessModal from '@/components/Modals/SuccessModal'
 import SelectiveProcessForm from '@/components/Modals/SelectiveProcessForm'
 
 const Home: React.FC = () => {
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
 
+  // const [openSuccess, setOpenSuccess] = useState<boolean>(true)
+
   return (
     <>
       <SEO title="Home" description={description} image="/occam.png" />
       {/* <ErrorModal isOpened /> */}
-      {/* <DataRequest isOpened /> */}
-      <SelectiveProcessForm isOpened />
+      {/* <SuccessModal
+        title="Inscrição Finalizada"
+        subtitle="Enviaremos um email contendo todas as suas informações"
+        isOpened={openSuccess}
+        setOpenSuccess={setOpenSuccess}
+        showCloseIcon={false}
+        timer={10000}
+      /> */}
+      <DataRequest isOpened />
+      {/* <SelectiveProcessForm isOpened /> */}
       <Page>
         <Initial>
           <Header />

@@ -25,13 +25,31 @@ import FileInput from '@/components/FileInput'
 import Select from '@/components/Select'
 import Textarea from '@/components/Textarea'
 import Button from '@/components/Button'
+import SuccessModal from '@/components/Modals/SuccessModal'
 import {
   courseOptions,
   periodOptions,
   learnNewLanguageOptions,
   knowledgeOptions,
-  departmentOptions
+  departmentOptions,
+  ISelectOptions
 } from './selectOptions'
+
+interface IFormData {
+  name: string
+  ra: string
+  email: string
+  course: string
+  phone: string
+  period: string
+  department: string[]
+  knowledge: string
+  wichLanguage?: string
+  learnNewLanguage: string
+  motivation: string
+  contribution: string
+  curriculum: File
+}
 
 interface DataRequestProps {
   isOpened: boolean
@@ -59,17 +77,18 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
     }, 2000)
   }
 
-  function handleSetDepartments(event) {
+  function handleSetDepartments(event: ISelectOptions[]) {
     let newDepartments = departments
 
     limitMultiSelectOptions(event)
+    console.log(event)
     if (event) {
       newDepartments = event.map(e => e.value)
       setDepartments(newDepartments)
     }
   }
 
-  function handleShowWichLanguageInput(event) {
+  function handleShowWichLanguageInput(event: ISelectOptions) {
     if (event.value === 'sim') {
       setInputVisible(true)
     } else {
@@ -77,7 +96,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
     }
   }
 
-  async function handleSubmit(data) {
+  async function handleSubmit(data: IFormData) {
     formRef.current?.setErrors({})
 
     data.department = departments || undefined
@@ -125,7 +144,6 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
         period: data.period,
         interest_area: data.department.join(', '),
         email: data.email,
-        sector: data.sector,
         answer1: data.knowledge + '' + ', ' + (data.wichLanguage + ''),
         answer2: data.learnNewLanguage,
         answer3: data.motivation,
@@ -134,18 +152,18 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
       }
 
       await api.post('/registrations-processes', subscription)
-      await axios.post('/api/subscribeps', {
-        name: data.name,
-        course: data.course,
-        ra: data.ra,
-        period: data.period,
-        email: data.email,
-        sector: data.sector,
-        answer1: `${data.knowledge}, ${data.wichLanguage}`,
-        answer2: data.learnNewLanguage,
-        answer3: data.motivation,
-        answer4: data.contribution
-      })
+      // await axios.post('/api/subscribeps', {
+      //   name: data.name,
+      //   course: data.course,
+      //   ra: data.ra,
+      //   period: data.period,
+      //   email: data.email,
+      //   sector: data.department,
+      //   answer1: `${data.knowledge}, ${data.wichLanguage}`,
+      //   answer2: data.learnNewLanguage,
+      //   answer3: data.motivation,
+      //   answer4: data.contribution
+      // })
 
       handleOpenSuccess()
     } catch (err) {
@@ -191,7 +209,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
               name="knowledge"
               placeholder="Possui algum conhecimento, mesmo que básico em linguagens de programação?"
               options={knowledgeOptions}
-              onChange={e => handleShowWichLanguageInput(e)}
+              onChange={e => handleShowWichLanguageInput(e as ISelectOptions)}
             />
             {inputVisible && (
               <Input name="wichLanguage" placeholder="Se sim, quais?" />
@@ -221,20 +239,14 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
           </Form>
         </ModalContainer>
       </Modal>
-      <Modal
-        open={openSuccess}
-        onClose={handleCloseModal}
-        center
+      <SuccessModal
+        title="Inscrição finalizada"
+        subtitle="Enviaremos um e-mail contendo todos seus dados"
+        isOpened={openSuccess}
+        setOpen={setOpenSuccess}
         showCloseIcon={false}
-        styles={{ modal: { borderRadius: 8 } }}
-      >
-        <Close onClick={handleCloseModal} />
-        <SuccessModalContainer>
-          <Check />
-          <p>Inscrição finalizada</p>
-          <span>Enviaremos um e-mail contendo todos seus dados</span>
-        </SuccessModalContainer>
-      </Modal>
+        timer={10000}
+      />
     </>
   )
 }
