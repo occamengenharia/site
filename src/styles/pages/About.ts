@@ -30,8 +30,19 @@ export const Container = styled.div`
 `
 export const MVV = styled.div`
   position: relative;
-  > section {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: 100%;
+  > button {
+    width: 100%;
+    border: 0;
+    background: transparent;
     display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: ${({ theme }) => theme.variables.borderRadius}rem;
     text-align: center;
     margin-bottom: 2rem;
@@ -54,15 +65,34 @@ export const MVV = styled.div`
       hr {
         border: 0;
         position: absolute;
-        z-index: -1;
+        z-index: -3;
         width: 0.5rem;
-        height: 6rem;
+        height: 7rem;
         background: ${({ theme }) => theme.colors.secundary};
         left: calc(50% - 0.5rem / 2);
-        bottom: -6rem;
+        bottom: -7rem;
       }
     }
-    &:hover {
+
+    > aside {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      width: 50%;
+      align-items: center;
+      justify-content: center;
+      padding-right: 1rem;
+      > legend {
+        font-size: 2.4rem;
+        color: ${({ theme }) => theme.colors.inputHighlight};
+      }
+      > p {
+        display: none;
+        font-size: 1rem;
+      }
+    }
+    &:focus {
+      align-self: flex-start;
       background: ${({ theme }) => theme.colors.primary};
       > span {
         background: ${({ theme }) => theme.colors.secundary};
@@ -72,21 +102,8 @@ export const MVV = styled.div`
       svg {
         color: ${({ theme }) => theme.colors.white};
       }
-    }
-    > aside {
-      display: flex;
-      flex-direction: column;
-      gap: 1.6rem;
-      width: 100%;
-      align-items: center;
-      justify-content: center;
-      padding-right: 1rem;
-      > legend {
-        font-size: 1.2rem;
-        color: ${({ theme }) => theme.colors.inputHighlight};
-      }
-      > p {
-        font-size: 1rem;
+      p {
+        display: initial;
       }
     }
   }
@@ -94,12 +111,14 @@ export const MVV = styled.div`
     display: grid;
     grid-template-columns: repeat(3, calc(100% / 3));
     grid-gap: 1.2rem;
-    section {
+    align-items: flex-start;
+    button {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
       aside {
+        width: 100%;
         legend {
           font-size: 2.4rem;
         }
@@ -148,6 +167,8 @@ export const Stories = styled.div`
         > img {
           border-radius: ${({ theme }) => theme.variables.borderRadius}rem;
           width: 100%;
+          object-fit: cover;
+          height: 22rem;
           :nth-of-type(1),
           :nth-of-type(3) {
             display: none;
@@ -231,12 +252,13 @@ export const Stories = styled.div`
           > img {
             grid-row: 1;
             width: 100%;
+            height: min(18vw, 22rem);
             :nth-of-type(1),
             :nth-of-type(3) {
               display: initial;
               opacity: 0.5;
               filter: grayscale(60%);
-              height: min(12vw, 20rem);
+              height: min(14vw, 20rem);
               align-self: center;
             }
             :nth-of-type(1) {

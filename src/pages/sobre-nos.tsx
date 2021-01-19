@@ -1,6 +1,7 @@
 import SEO from '@/components/SEO'
 import { Container, MVV, Stories } from '@/styles/pages/About'
 import { useRouter } from 'next/router'
+import { GetStaticProps } from 'next'
 import {
   FaBook,
   FaEye,
@@ -9,12 +10,27 @@ import {
   FaCaretRight
 } from 'react-icons/fa'
 import { useCallback, useState } from 'react'
-interface IStories {
-  year: string
+import api from '@/services/api'
+interface IStoriesRequest {
+  photo: { url: string }
+  _id: string
+  year: number
   description: string
-  imgURL: string
+  published_at: Date
+  createdAt: Date
+  updatedAt: Date
+  __v: number
+  id: string
 }
-const AboutUs: React.FC = () => {
+interface IStories {
+  imgURL: string
+  year: number
+  description: string
+}
+interface IAboutUsProps {
+  stories: Array<IStories>
+}
+const AboutUs: React.FC<IAboutUsProps> = ({ stories }) => {
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
   const intro =
     'A Empresa Júnior de Engenharia de Computação da Universidade Tecnológica Federal do Paraná - UTFPR, vem desde 2014 trabalhando para desenvolver atividades que possam ampliar e melhorar a qualidade de vida da comunidade ao seu redor.'
@@ -23,39 +39,6 @@ const AboutUs: React.FC = () => {
   const DescriptVision =
     'Alcançar reconhecimento por nossos clientes, meio universitário e sociedade em geral, sendo referência de qualidade e efiência, através de uma euipe altamente capacitada e qualificada'
   const DescriptValues = 'Inovação, Qualidade e Comprometimendo'
-  const stories: Array<IStories> = [
-    {
-      year: '2020',
-      description: 'sdad',
-      imgURL:
-        'https://blog.eseg.edu.br/wp-content/uploads/2020/01/original-bf4133e071e7512dd8555a59b631f147-780x450.jpg'
-    },
-    {
-      year: '2021',
-      description: 'sdad',
-      imgURL:
-        'https://blog.eseg.edu.br/wp-content/uploads/2020/01/original-bf4133e071e7512dd8555a59b631f147-780x450.jpg'
-    },
-    {
-      year: '2022',
-      description:
-        'ausdhauishduiadc asdoiahsdjasndihas a sdnasodhasudhaiudhuasda dasudbaiuhdaudhsuhdasd',
-      imgURL:
-        'https://blog.eseg.edu.br/wp-content/uploads/2020/01/original-bf4133e071e7512dd8555a59b631f147-780x450.jpg'
-    },
-    {
-      year: '2023',
-      description: 'sdad',
-      imgURL:
-        'https://blog.eseg.edu.br/wp-content/uploads/2020/01/original-bf4133e071e7512dd8555a59b631f147-780x450.jpg'
-    },
-    {
-      year: '2024',
-      description: 'sdad',
-      imgURL:
-        'https://blog.eseg.edu.br/wp-content/uploads/2020/01/original-bf4133e071e7512dd8555a59b631f147-780x450.jpg'
-    }
-  ]
 
   const [currentYear, setCurrentYear] = useState(
     Number(useRouter().asPath.split('/sobrenos#')[1] || stories[0].year)
@@ -71,6 +54,7 @@ const AboutUs: React.FC = () => {
     },
     [stories]
   )
+
   return (
     <>
       <SEO title="Sobre nós" description={description} image="/occam.png" />
@@ -80,7 +64,7 @@ const AboutUs: React.FC = () => {
           <p>{intro}</p>
           <h3>Nossa missão, visão e valores</h3>
           <MVV>
-            <section>
+            <button>
               <span>
                 <FaClipboardCheck />
                 <hr />
@@ -89,8 +73,8 @@ const AboutUs: React.FC = () => {
                 <legend>Missão</legend>
                 <p>{DescriptMission}</p>
               </aside>
-            </section>
-            <section>
+            </button>
+            <button>
               <span>
                 <FaEye />
                 <hr />
@@ -99,8 +83,8 @@ const AboutUs: React.FC = () => {
                 <legend>Visão</legend>
                 <p>{DescriptVision}</p>
               </aside>
-            </section>
-            <section>
+            </button>
+            <button>
               <span>
                 <FaBook />
               </span>
@@ -108,64 +92,64 @@ const AboutUs: React.FC = () => {
                 <legend>Valores</legend>
                 <p>{DescriptValues}</p>
               </aside>
-            </section>
+            </button>
           </MVV>
           <h3>Nossa história</h3>
           <Stories>
             <div>
               {stories.map((storie, index) => (
-                <section key={storie.year} id={storie.year}>
+                <section key={storie.description} id={String(storie.year)}>
                   <main>
                     <img
-                      src={storie.imgURL}
+                      src={`${process.env.NEXT_PUBLIC_API_URL}${storie.imgURL}`}
                       alt="Imagem sobre a gestão da empresa naquele ano"
                     />
                     <img
-                      src={storie.imgURL}
+                      src={`${process.env.NEXT_PUBLIC_API_URL}${storie.imgURL}`}
                       alt="Imagem sobre a gestão da empresa naquele ano"
                     />
                     <img
-                      src={storie.imgURL}
+                      src={`${process.env.NEXT_PUBLIC_API_URL}${storie.imgURL}`}
                       alt="Imagem sobre a gestão da empresa naquele ano"
                     />
                     <p>{storie.description}</p>
                   </main>
                   <aside>
-                    {filterYear(Number(storie.year) - 2) && (
+                    {filterYear(storie.year - 2) && (
                       <a
-                        href={`#${Number(storie.year) - 2}`}
+                        href={`#${storie.year - 2}`}
                         onClick={() => setCurrentYear(currentYear - 2)}
                         id="extreme-left"
                       >
-                        {Number(storie.year) - 2}
+                        {storie.year - 2}
                       </a>
                     )}
-                    {filterYear(Number(storie.year) - 1) && (
+                    {filterYear(storie.year - 1) && (
                       <a
-                        href={`#${Number(storie.year) - 1}`}
+                        href={`#${storie.year - 1}`}
                         onClick={() => setCurrentYear(currentYear - 1)}
                         id="left"
                       >
-                        {Number(storie.year) - 1}
+                        {storie.year - 1}
                       </a>
                     )}
                     <span>{storie.year}</span>
-                    {filterYear(Number(storie.year) + 1) && (
+                    {filterYear(storie.year + 1) && (
                       <a
-                        href={`#${Number(storie.year) + 1}`}
+                        href={`#${storie.year + 1}`}
                         onClick={() => setCurrentYear(currentYear + 1)}
                         id="right"
                       >
-                        {Number(storie.year) + 1}
+                        {storie.year + 1}
                       </a>
                     )}
-                    {filterYear(Number(storie.year) + 2) && (
+                    {filterYear(storie.year + 2) && (
                       <a
-                        href={`#${Number(storie.year) + 2}`}
+                        href={`#${storie.year + 2}`}
                         onClick={() => setCurrentYear(currentYear + 2)}
                         id="extreme-right"
                       >
-                        {Number(storie.year) + 2}
+                        {storie.year + 2}
                       </a>
                     )}
                   </aside>
@@ -198,3 +182,17 @@ const AboutUs: React.FC = () => {
 }
 
 export default AboutUs
+export const getStaticProps: GetStaticProps = async context => {
+  const { data } = await api.get<IStoriesRequest[]>('/histories')
+
+  const stories: Array<IStories> = data.map(storie => {
+    return {
+      imgURL: storie.photo[0].url,
+      description: storie.description,
+      year: storie.year
+    }
+  })
+  return {
+    props: { stories }
+  }
+}
