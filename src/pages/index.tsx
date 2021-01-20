@@ -58,21 +58,34 @@ interface ISerializedPhotos {
 
 const Home: React.FC<ISerializedPhotos> = props => {
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
-  const [banners, setBanners] = useState<string[]>([])
-  const [currentImage, setCurrentImage] = useState<string>('')
+  const [banners, setBanners] = useState<string[]>([
+    'animacao.gif',
+    'banner.png'
+  ])
+  const [currentImage, setCurrentImage] = useState<string>(banners[0])
   const [currentImagePos, setCurrentImagePos] = useState(0)
 
   function handleNextImage() {
-    const pos = currentImagePos
-    setCurrentImage(banners[pos + 1])
-    setCurrentImagePos(pos + 1)
-    console.log(currentImage)
+    if (currentImagePos === banners.length - 1) {
+      setCurrentImagePos(0)
+      setCurrentImage(banners[0])
+    } else {
+      const pos = currentImagePos + 1
+      setCurrentImagePos(pos)
+      setCurrentImage(banners[pos])
+    }
   }
 
-  useEffect(() => {
-    setBanners(props.serializedPhotos)
-    setCurrentImage(banners[0])
-  }, [props])
+  function handlePreviousImage() {
+    if (currentImagePos === 0) {
+      setCurrentImagePos(banners.length - 1)
+      setCurrentImage(banners[banners.length - 1])
+    } else {
+      const pos = currentImagePos - 1
+      setCurrentImagePos(pos)
+      setCurrentImage(banners[pos])
+    }
+  }
 
   return (
     <>
@@ -87,19 +100,16 @@ const Home: React.FC<ISerializedPhotos> = props => {
         timer={10000}
       /> */}
       {/* <DataRequest isOpened /> */}
-      {/* <SelectiveProcessForm isOpened /> */}
+      <SelectiveProcessForm isOpened />
       <Page>
-        <Header />
         <Initial>
+          <Header />
           <main>
             <h1>Soluções Simples, Resultados Inovadores</h1>
             <div>
-              <img
-                src={`${process.env.NEXT_PUBLIC_API_URL}${currentImage}`}
-                alt="logo animada OCCAM"
-              />
+              <img src={currentImage} alt="logo animada OCCAM" />
               <div>
-                <FaCaretLeft className="arrows" />
+                <FaCaretLeft className="arrows" onClick={handlePreviousImage} />
                 <span>O novo site da OCCAM está aqui!</span>
                 <FaCaretRight className="arrows" onClick={handleNextImage} />
               </div>

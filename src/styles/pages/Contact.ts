@@ -4,7 +4,6 @@ import { Main as Button } from '@/components/Button/styles.ts'
 
 export const Container = styled.main`
   width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,18 +16,16 @@ export const FormStyled = styled(Form)`
   flex-direction: column;
   justify-content: center;
   width: 96%;
-  
 
-  #titulo{
+  #titulo {
     display: flex;
     align-items: center;
   }
-  #logo-email{
+  #logo-email {
     margin-right: 16px;
     font-size: 48px;
     color: ${props => props.theme.colors.primary};
   }
-
 
   h3 {
     color: ${props => props.theme.colors.primary};
@@ -38,12 +35,11 @@ export const FormStyled = styled(Form)`
     color: ${props => props.theme.colors.secundary};
     font-weight: 400;
     margin: 8px 0 96px 16px !important;
-
   }
 
-  ${ Button } {
-      margin-top: 1.6rem;
-    }
+  ${Button} {
+    margin-top: 1.6rem;
+  }
 
   @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
     width: 80%;
@@ -55,10 +51,10 @@ export const FormStyled = styled(Form)`
   }
   @media only screen and (min-width: ${props => props.theme.breakpoints.lg}px) {
     max-width: 80rem;
-    
-    ${ Button } {
-      width:300px;
-      align-self:flex-end;
+
+    ${Button} {
+      width: 300px;
+      align-self: flex-end;
     }
 
     h1 {
@@ -66,6 +62,5 @@ export const FormStyled = styled(Form)`
       margin: 4rem 0;
       font-size: 5.6rem;
     }
-
   }
 `

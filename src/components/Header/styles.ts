@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components'
 
 export const Main = styled.header`
-  position: sticky;
   height: 8rem;
   display: flex;
 
@@ -45,12 +44,20 @@ export const HeaderContent = styled.section`
     flex-direction: row-reverse;
 
     button {
-      background: transparent;
+      background: ${props => props.theme.colors.backgorudElevation};
+      padding: 0.8rem;
+      border-radius: 100vmax;
+      box-shadow: none;
       border: 0;
-      margin: 0 2.4rem 0 3.2rem;
+      margin: 0 2.4rem 0 2.4rem;
+      transition: ${props => props.theme.variables.transition}s;
+
+      &:hover {
+        background-color: ${({ theme }) => theme.colors.inputBackground};
+      }
+
       svg {
-        color: ${({ theme }) => theme.colors.text};
-        font-size: 2.4rem;
+        color: ${({ theme }) => theme.colors.primary};
       }
     }
     section {
@@ -66,7 +73,7 @@ export const HeaderContent = styled.section`
     > div {
       button {
         svg {
-          font-size: 3.6rem;
+          font-size: 2.4rem;
         }
       }
     }
@@ -84,7 +91,7 @@ export const HeaderContent = styled.section`
         display: flex;
         margin-right: 1.6rem;
         a {
-          color: ${({ theme }) => theme.colors.text};
+          color: ${({ theme }) => theme.colors.secundary};
           align-items: center;
           font-size: 1.6rem;
 
@@ -194,7 +201,7 @@ export const Burguer = styled.div<PropsBurguer>`
         a {
           padding: 2.4rem 0 1.6rem 0;
 
-          color: ${({ theme }) => theme.colors.text};
+          color: ${({ theme }) => theme.colors.secundary};
 
           display: initial;
           font-size: 1.6rem;

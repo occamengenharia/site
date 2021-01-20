@@ -1,5 +1,4 @@
 import SEO from '@/components/SEO'
-import Header from '@/components/Header'
 import { Container, MVV, Stories } from '@/styles/pages/About'
 import { useRouter } from 'next/router'
 import {
@@ -76,7 +75,6 @@ const AboutUs: React.FC = () => {
     <>
       <SEO title="Sobre nós" description={description} image="/occam.png" />
       <Container>
-        <Header />
         <main>
           <h2>Sobre nós</h2>
           <p>{intro}</p>
@@ -133,7 +131,6 @@ const AboutUs: React.FC = () => {
                     <p>{storie.description}</p>
                   </main>
                   <aside>
-                    {console.log(currentYear)}
                     {filterYear(Number(storie.year) - 2) && (
                       <a
                         href={`#${Number(storie.year) - 2}`}

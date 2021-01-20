@@ -26,13 +26,13 @@ export const Page = styled.div`
 export const Initial = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 6%;
+  gap:8%;
   main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    align-self: center;
     max-width: 27.2rem;
     h1 {
       font-size: 4.8rem;
@@ -51,16 +51,23 @@ export const Initial = styled.div`
 
       .arrows {
         cursor: pointer;
+        transition: 0.2s all
+      }
+
+      .arrows:hover {
+        color: ${props => props.theme.colors.primary}
       }
 
       img {
         width: 27.2rem;
         height: 15.4rem;
+        transition: 0.5s all
       }
       div {
         background-color: ${props => props.theme.colors.secundary};
         width: 100%;
         padding: 0.8rem 0;
+
         span {
           color: ${props => props.theme.colors.background};
         }
@@ -70,7 +77,7 @@ export const Initial = styled.div`
       }
     }
     @media only screen and (min-width: ${props =>
-        props.theme.breakpoints.lg}px) {
+      props.theme.breakpoints.lg}px) {
       flex-direction: row;
       justify-content: space-between;
       max-width: 103.2rem;
@@ -78,9 +85,11 @@ export const Initial = styled.div`
         font-size: 9.6rem;
         margin: 0;
         text-align: left;
+        transition: 0.2s all;
       }
       div {
         height: 26.6rem;
+
         img {
           width: 41.6rem;
           height: 23.4rem;
@@ -89,6 +98,7 @@ export const Initial = styled.div`
           display: flex;
           flex-direction: row;
           justify-content: space-between;
+          text-align:center
           height: 3.2rem;
           padding: 1.2rem;
           svg {

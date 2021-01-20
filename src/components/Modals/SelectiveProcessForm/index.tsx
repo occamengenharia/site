@@ -10,13 +10,7 @@ import checkFileFormat from '@/utils/checkFileFormat'
 import limitMultiSelectOptions from '@/utils/limitMultiSelectOptions'
 import api from '@/services/api'
 
-import {
-  ModalContainer,
-  Close,
-  Check,
-  FormButton,
-  SuccessModalContainer
-} from './styles'
+import { ModalContainer, Close, FormButton } from './styles'
 
 import { FaArrowAltCircleRight } from 'react-icons/fa'
 
