@@ -1,8 +1,21 @@
 import styled, { css } from 'styled-components'
+interface HeaderProps {
+  hasSelectiveProcess: boolean
+}
 
-export const Main = styled.header`
+export const Main = styled.header<HeaderProps>`
   height: 8rem;
   display: flex;
+
+  .inactive {
+    ${props =>
+      !props.hasSelectiveProcess &&
+      css`
+        cursor: not-allowed;
+        pointer-events: none;
+        color: ${props => props.theme.colors.disabled} !important;
+      `}
+  }
 
   top: 0;
   z-index: 4;
@@ -11,6 +24,7 @@ export const Main = styled.header`
     height: 15.6rem;
   }
 `
+
 export const HeaderContent = styled.section`
   position: initial;
   overflow-y: hidden;
@@ -44,7 +58,7 @@ export const HeaderContent = styled.section`
     flex-direction: row-reverse;
 
     button {
-      background: ${props => props.theme.colors.backgorudElevation};
+      background-color: ${props => props.theme.colors.inputBackground};
       padding: 0.8rem;
       border-radius: 100vmax;
       box-shadow: none;
@@ -53,10 +67,11 @@ export const HeaderContent = styled.section`
       transition: ${props => props.theme.variables.transition}s;
 
       &:hover {
-        background-color: ${({ theme }) => theme.colors.inputBackground};
+        background-color: ${({ theme }) => theme.colors.details};
       }
 
       svg {
+        font-size: 2.4rem;
         color: ${({ theme }) => theme.colors.primary};
       }
     }
@@ -68,14 +83,6 @@ export const HeaderContent = styled.section`
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.xs}px) {
     img {
       height: 4.8rem;
-    }
-
-    > div {
-      button {
-        svg {
-          font-size: 2.4rem;
-        }
-      }
     }
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
@@ -91,9 +98,14 @@ export const HeaderContent = styled.section`
         display: flex;
         margin-right: 1.6rem;
         a {
-          color: ${({ theme }) => theme.colors.secundary};
+          color: ${({ theme }) => theme.colors.links};
           align-items: center;
           font-size: 1.6rem;
+          transition: ${props => props.theme.variables.transition}s;
+
+          &:hover {
+            color: ${({ theme }) => theme.colors.linksHover};
+          }
 
           & + a {
             margin-left: 3.2rem;
@@ -185,7 +197,7 @@ export const Burguer = styled.div<PropsBurguer>`
     background: transparent;
     .menu-links {
       position: fixed;
-      background: ${({ theme }) => theme.colors.background};
+      background: ${({ theme }) => theme.colors.backgorudElevation};
 
       min-width: 100vw;
       box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.2);
@@ -199,9 +211,8 @@ export const Burguer = styled.div<PropsBurguer>`
         display: flex;
         flex-direction: column;
         a {
+          color: ${({ theme }) => theme.colors.links};
           padding: 2.4rem 0 1.6rem 0;
-
-          color: ${({ theme }) => theme.colors.secundary};
 
           display: initial;
           font-size: 1.6rem;

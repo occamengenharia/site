@@ -35,6 +35,7 @@ export default createGlobalStyle`
   }
   h1,h2,h3{
     text-align:center;
+    color: ${({ theme }) => theme.colors.titles}
   }
   h1 {
     font: 700 6.4rem Ubuntu, sans-serif;

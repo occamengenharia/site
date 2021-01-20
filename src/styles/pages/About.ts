@@ -15,10 +15,6 @@ export const Container = styled.div`
     align-items: center;
     text-align: center;
     gap: 4rem;
-    h2,
-    h3 {
-      color: ${({ theme }) => theme.colors.primary};
-    }
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
       text-align: start;
       h2,
