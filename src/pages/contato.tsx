@@ -19,6 +19,8 @@ import getValidationErrors from '@/utils/getValidationErros'
 import MailSuccessModal from '@/components/MailSuccessModal'
 import MailErrorModal from '@/components/MailErrorModal'
 import Button from '@/components/Button'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 interface IContactFormData {
   name: string
@@ -76,32 +78,33 @@ const Contact: React.FC = () => {
   }, [])
 
   return (
-    <Container>
-      <MailSuccessModal isOpen={isOpen} setIsOpen={setIsOpen} />
-      <MailErrorModal isOpen={isOpenError} setIsOpen={setIsOpenError} />
-      <SEO
-        title="Contato"
-        image="/LOGO VETOR (BLACK-BG).svg"
-        description={description}
-      />
+    <>
+      <Header />
+      <Container>
+        <MailSuccessModal isOpen={isOpen} setIsOpen={setIsOpen} />
+        <MailErrorModal isOpen={isOpenError} setIsOpen={setIsOpenError} />
+        <SEO
+          title="Contato"
+          image="/LOGO VETOR (BLACK-BG).svg"
+          description={description}
+        />
 
-      <FormStyled ref={formRef} onSubmit={handleSubmit}>
-        <div id = "titulo">
-          <FaMailBulk id="logo-email" />
-          <h3>Envie um e-mail para gente</h3>
-        </div>
+        <FormStyled ref={formRef} onSubmit={handleSubmit}>
+          <div id="titulo">
+            <FaMailBulk id="logo-email" />
+            <h3>Envie um e-mail para gente</h3>
+          </div>
           <p>Vamos ficar felizes em ajudar o seu projeto, ideia ou empresa</p>
 
-        <Input name="name" placeholder="Seu nome" />
-        <Input name="email" placeholder="Seu email" />
-        <Input name="phone" placeholder="Seu telefone" />
-        <Textarea
-          name="description"
-          placeholder="Detalhe sua ideia aqui"
-        />
-        <Button icon = { MdNearMe } text = "Enviar"/>
-      </FormStyled>
-    </Container>
+          <Input name="name" placeholder="Seu nome" />
+          <Input name="email" placeholder="Seu email" />
+          <Input name="phone" placeholder="Seu telefone" />
+          <Textarea name="description" placeholder="Detalhe sua ideia aqui" />
+          <Button icon={MdNearMe} text="Enviar" />
+        </FormStyled>
+      </Container>
+      <Footer />
+    </>
   )
 }
 
