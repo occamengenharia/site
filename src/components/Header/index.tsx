@@ -8,13 +8,14 @@ import { Main, HeaderContent, Burguer } from './styles'
 const Header: React.FC = () => {
   const { toggleTheme, theme } = useTheme()
   const [openDropDown, setOpenDropDown] = useState(false)
+  const [hasSelectiveProcess, setHasdSelectiveProcess] = useState(false)
 
   const handleOpenDropDown = useCallback(() => {
     setOpenDropDown(state => !state)
   }, [])
 
   return (
-    <Main>
+    <Main hasSelectiveProcess={hasSelectiveProcess}>
       <HeaderContent>
         <Link href="/">
           <img src={`/logo/${theme}.svg`} alt="OCCAM Engenharia" />
@@ -40,17 +41,17 @@ const Header: React.FC = () => {
                   <Link href="/">
                     <a>Áreas de atuação</a>
                   </Link>
-                  <Link href="/">
+                  <Link href="/membros">
                     <a>Membros</a>
                   </Link>
-                  <Link href="/">
+                  <Link href="/sobre-nos">
                     <a>Sobre nós</a>
                   </Link>
-                  <Link href="/">
+                  <Link href="/contato">
                     <a>Contato</a>
                   </Link>
                   <Link href="/">
-                    <a>Processo seletivo</a>
+                    <a className="inactive">Processo seletivo</a>
                   </Link>
                 </aside>
               </div>
@@ -60,17 +61,17 @@ const Header: React.FC = () => {
             <Link href="/">
               <a>Áreas de atuação</a>
             </Link>
-            <Link href="/">
+            <Link href="/membros">
               <a>Membros</a>
             </Link>
-            <Link href="/">
+            <Link href="/sobre-nos">
               <a>Sobre nós</a>
             </Link>
-            <Link href="/">
+            <Link href="/contato">
               <a>Contato</a>
             </Link>
             <Link href="/">
-              <a>Processo seletivo</a>
+              <a className="inactive">Processo seletivo</a>
             </Link>
           </section>
           <button onClick={toggleTheme}>

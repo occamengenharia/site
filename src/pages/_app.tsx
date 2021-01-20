@@ -18,10 +18,10 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <ThemeProvider>
-      {!pageProps.showComponents && <Header />}
+      {/* {!pageProps.showComponents && <Header />} */}
       <Component {...pageProps} />
       <GlobalStyle />
-      {!pageProps.showComponents && <Footer />}
+      {/* {!pageProps.showComponents && <Footer />} */}
     </ThemeProvider>
   )
 }
