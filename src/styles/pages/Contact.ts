@@ -24,15 +24,15 @@ export const FormStyled = styled(Form)`
   #logo-email {
     margin-right: 16px;
     font-size: 48px;
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.titles};
   }
 
   h3 {
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.titles};
   }
 
   p {
-    color: ${props => props.theme.colors.secundary};
+    color: ${props => props.theme.colors.subtitles};
     font-weight: 400;
     margin: 8px 0 96px 16px !important;
   }

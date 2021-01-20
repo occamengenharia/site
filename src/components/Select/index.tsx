@@ -56,6 +56,11 @@ const Select: React.FC<Props> = ({ name, multi, ...rest }) => {
       fontSize: 16,
       padding: 16
     }),
+    placeholder: () => {
+      return {
+        color: '#b1b1b1'
+      }
+    },
     multiValue: styles => {
       return {
         ...styles,

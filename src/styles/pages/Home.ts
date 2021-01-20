@@ -26,7 +26,7 @@ export const Page = styled.div`
 export const Initial = styled.div`
   display: flex;
   flex-direction: column;
-  gap:8%;
+  gap: 8%;
   main {
     display: flex;
     flex-direction: column;
@@ -38,7 +38,7 @@ export const Initial = styled.div`
       font-size: 4.8rem;
       text-align: center;
       margin-bottom: 4.8rem;
-      color: ${props => props.theme.colors.primary};
+      color: ${props => props.theme.colors.titles};
     }
     div {
       transition: all 0.5s;
@@ -51,17 +51,17 @@ export const Initial = styled.div`
 
       .arrows {
         cursor: pointer;
-        transition: 0.2s all
+        transition: 0.2s all;
       }
 
       .arrows:hover {
-        color: ${props => props.theme.colors.primary}
+        color: ${props => props.theme.colors.primary};
       }
 
       img {
         width: 27.2rem;
         height: 15.4rem;
-        transition: 0.5s all
+        transition: 0.5s all;
       }
       div {
         background-color: ${props => props.theme.colors.secundary};
@@ -69,7 +69,7 @@ export const Initial = styled.div`
         padding: 0.8rem 0;
 
         span {
-          color: ${props => props.theme.colors.background};
+          color: ${props => props.theme.colors.white};
         }
         svg {
           display: none;
@@ -77,7 +77,7 @@ export const Initial = styled.div`
       }
     }
     @media only screen and (min-width: ${props =>
-      props.theme.breakpoints.lg}px) {
+        props.theme.breakpoints.lg}px) {
       flex-direction: row;
       justify-content: space-between;
       max-width: 103.2rem;
@@ -98,12 +98,11 @@ export const Initial = styled.div`
           display: flex;
           flex-direction: row;
           justify-content: space-between;
-          text-align:center
           height: 3.2rem;
           padding: 1.2rem;
           svg {
             display: initial;
-            color: ${props => props.theme.colors.background};
+            color: ${props => props.theme.colors.white};
             width: 1.6rem;
             height: 1.6rem;
           }

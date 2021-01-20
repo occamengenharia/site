@@ -36,6 +36,7 @@ export const light = {
     links: '#0773C6',
     linksHover: '#014BB4',
     titles: '#014BB4',
+    subtitles: '#0773C6',
     borderDivision: '#E2E2E2',
     disabled: '#CECECE',
     ...basicColors
@@ -55,6 +56,7 @@ export const dark = {
     links: '#E2E2E2',
     linksHover: '#858585',
     titles: '#E2E2E2',
+    subtitles: '#CECECE',
     borderDivision: '#1a2433',
     disabled: '#858585',
     ...basicColors
