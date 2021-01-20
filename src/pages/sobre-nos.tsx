@@ -9,10 +9,10 @@ import {
   FaCaretLeft,
   FaCaretRight
 } from 'react-icons/fa'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import api from '@/services/api'
 interface IStoriesRequest {
-  photo: { url: string }
+  photo: any
   _id: string
   year: number
   description: string
@@ -28,9 +28,9 @@ interface IStories {
   description: string
 }
 interface IAboutUsProps {
-  stories: Array<IStories>
+  [index: string]: IStories
 }
-const AboutUs: React.FC<IAboutUsProps> = ({ stories }) => {
+const AboutUs: React.FC<IAboutUsProps> = props => {
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
   const intro =
     'A Empresa Júnior de Engenharia de Computação da Universidade Tecnológica Federal do Paraná - UTFPR, vem desde 2014 trabalhando para desenvolver atividades que possam ampliar e melhorar a qualidade de vida da comunidade ao seu redor.'
@@ -39,21 +39,38 @@ const AboutUs: React.FC<IAboutUsProps> = ({ stories }) => {
   const DescriptVision =
     'Alcançar reconhecimento por nossos clientes, meio universitário e sociedade em geral, sendo referência de qualidade e efiência, através de uma euipe altamente capacitada e qualificada'
   const DescriptValues = 'Inovação, Qualidade e Comprometimendo'
+  const nowYear = new Date().getFullYear()
+  const [year, setYear] = useState(nowYear)
+  const [yearsIndicators, setYearsIndicators] = useState<number[]>([])
+  const [currentStorie, setCurrentStorie] = useState({} as IStories)
 
-  const [currentYear, setCurrentYear] = useState(
-    Number(useRouter().asPath.split('/sobrenos#')[1] || stories[0].year)
-  )
-  const filterYear = useCallback(
-    (year: number) => {
-      for (let index = 0; index < stories.length; index++) {
-        if (Number(stories[index].year) === year) {
-          return true
-        }
-      }
-      return false
-    },
-    [stories]
-  )
+  const handleMinus = useCallback(() => {
+    if (year <= 2014) {
+      setYear(nowYear)
+    } else {
+      setYear(year - 1)
+    }
+  }, [year])
+
+  const handlePlus = useCallback(() => {
+    if (year >= nowYear) {
+      setYear(2014)
+    } else {
+      setYear(year + 1)
+    }
+  }, [year])
+
+  useEffect(() => {
+    setCurrentStorie(props[`${year}`] ? props[`${year}`] : ({} as IStories))
+    setYearsIndicators([
+      year - 2 < 2014 ? (year - 1 < 2014 ? nowYear - 1 : nowYear) : year - 2,
+      year - 1 < 2014 ? nowYear : year - 1,
+      year,
+      year + 1 > nowYear ? 2014 : year + 1,
+      year + 2 > nowYear ? (year + 1 > nowYear ? 2015 : 2014) : year + 2
+    ])
+  }, [year])
+  console.log(yearsIndicators)
 
   return (
     <>
@@ -96,84 +113,33 @@ const AboutUs: React.FC<IAboutUsProps> = ({ stories }) => {
           </MVV>
           <h3>Nossa história</h3>
           <Stories>
-            <div>
-              {stories.map((storie, index) => (
-                <section key={storie.description} id={String(storie.year)}>
-                  <main>
-                    <img
-                      src={`${process.env.NEXT_PUBLIC_API_URL}${storie.imgURL}`}
-                      alt="Imagem sobre a gestão da empresa naquele ano"
-                    />
-                    <img
-                      src={`${process.env.NEXT_PUBLIC_API_URL}${storie.imgURL}`}
-                      alt="Imagem sobre a gestão da empresa naquele ano"
-                    />
-                    <img
-                      src={`${process.env.NEXT_PUBLIC_API_URL}${storie.imgURL}`}
-                      alt="Imagem sobre a gestão da empresa naquele ano"
-                    />
-                    <p>{storie.description}</p>
-                  </main>
-                  <aside>
-                    {filterYear(storie.year - 2) && (
-                      <a
-                        href={`#${storie.year - 2}`}
-                        onClick={() => setCurrentYear(currentYear - 2)}
-                        id="extreme-left"
-                      >
-                        {storie.year - 2}
-                      </a>
-                    )}
-                    {filterYear(storie.year - 1) && (
-                      <a
-                        href={`#${storie.year - 1}`}
-                        onClick={() => setCurrentYear(currentYear - 1)}
-                        id="left"
-                      >
-                        {storie.year - 1}
-                      </a>
-                    )}
-                    <span>{storie.year}</span>
-                    {filterYear(storie.year + 1) && (
-                      <a
-                        href={`#${storie.year + 1}`}
-                        onClick={() => setCurrentYear(currentYear + 1)}
-                        id="right"
-                      >
-                        {storie.year + 1}
-                      </a>
-                    )}
-                    {filterYear(storie.year + 2) && (
-                      <a
-                        href={`#${storie.year + 2}`}
-                        onClick={() => setCurrentYear(currentYear + 2)}
-                        id="extreme-right"
-                      >
-                        {storie.year + 2}
-                      </a>
-                    )}
-                  </aside>
-                </section>
-              ))}
-              <button
-                disabled={!filterYear(currentYear - 1)}
-                onClick={() => {
-                  setCurrentYear(currentYear - 1)
-                  window.location.href = `#${currentYear - 1}`
-                }}
-              >
-                <FaCaretLeft />
-              </button>
-              <button
-                disabled={!filterYear(currentYear + 1)}
-                onClick={() => {
-                  setCurrentYear(currentYear + 1)
-                  window.location.href = `#${currentYear + 1}`
-                }}
-              >
-                <FaCaretRight />
-              </button>
-            </div>
+            <section>
+              <main>
+                <img
+                  src={`${process.env.NEXT_PUBLIC_API_URL}${currentStorie.imgURL}`}
+                  alt="Imagem sobre a gestão da empresa naquele ano"
+                />
+                <img
+                  src={`${process.env.NEXT_PUBLIC_API_URL}${currentStorie.imgURL}`}
+                  alt="Imagem sobre a gestão da empresa naquele ano"
+                />
+                <img
+                  src={`${process.env.NEXT_PUBLIC_API_URL}${currentStorie.imgURL}`}
+                  alt="Imagem sobre a gestão da empresa naquele ano"
+                />
+                <p>{currentStorie.description}</p>
+              </main>
+              <aside>
+                {yearsIndicators.map(year => (
+                  <span key={year} onClick={() => setYear(year)}>
+                    {year}
+                  </span>
+                ))}
+              </aside>
+            </section>
+
+            <FaCaretLeft onClick={handleMinus} />
+            <FaCaretRight onClick={handlePlus} />
           </Stories>
         </main>
       </Container>
@@ -183,16 +149,16 @@ const AboutUs: React.FC<IAboutUsProps> = ({ stories }) => {
 
 export default AboutUs
 export const getStaticProps: GetStaticProps = async context => {
-  const { data } = await api.get<IStoriesRequest[]>('/histories')
-
-  const stories: Array<IStories> = data.map(storie => {
-    return {
-      imgURL: storie.photo[0].url,
+  const { data } = await api.get<Array<IStoriesRequest>>('/histories')
+  const stories = {} as IStories
+  data.map(storie => {
+    stories[`${storie.year}`] = {
+      imgURL: storie.photo.url ? storie.photo.url : '#',
       description: storie.description,
       year: storie.year
     }
   })
   return {
-    props: { stories }
+    props: stories
   }
 }
