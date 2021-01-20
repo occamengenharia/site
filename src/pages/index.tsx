@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { GetStaticProps } from 'next'
 import {
   Page,
   Initial,
@@ -8,8 +9,8 @@ import {
   SectionFooter,
   Marquee
 } from '@/styles/pages/Home'
-import { FaCaretRight, FaCaretLeft } from 'react-icons/fa'
 import { BsFillQuestionCircleFill } from 'react-icons/bs'
+import { FaCaretRight, FaCaretLeft } from 'react-icons/fa'
 
 import { Footer } from '@/components'
 import SEO from '@/components/SEO'
@@ -20,11 +21,58 @@ import DataRequest from '@/components/Modals/DataRequest'
 import ErrorModal from '@/components/Modals/ErrorModal'
 import SuccessModal from '@/components/Modals/SuccessModal'
 import SelectiveProcessForm from '@/components/Modals/SelectiveProcessForm'
+import api from '@/services/api'
 
-const Home: React.FC = () => {
+interface IBanners {
+  _id: string
+  reference_location: string
+  published_at: Date
+  createdAt: Date
+  updatedAt: Date
+  __v: number
+  photo: {
+    _id: string
+    name: string
+    alternativeText: string
+    caption: string
+    hash: string
+    ext: string
+    mime: string
+    size: number
+    url: string
+    provider: string
+    width: number
+    height: number
+    related: string[]
+    createdAt: Date
+    updatedAt: Date
+    __v: number
+    id: string
+  }
+  id: string
+}
+
+interface ISerializedPhotos {
+  serializedPhotos: string[]
+}
+
+const Home: React.FC<ISerializedPhotos> = props => {
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
+  const [banners, setBanners] = useState<string[]>([])
+  const [currentImage, setCurrentImage] = useState<string>('')
+  const [currentImagePos, setCurrentImagePos] = useState(0)
 
-  // const [openSuccess, setOpenSuccess] = useState<boolean>(true)
+  function handleNextImage() {
+    const pos = currentImagePos
+    setCurrentImage(banners[pos + 1])
+    setCurrentImagePos(pos + 1)
+    console.log(currentImage)
+  }
+
+  useEffect(() => {
+    setBanners(props.serializedPhotos)
+    setCurrentImage(banners[0])
+  }, [props])
 
   return (
     <>
@@ -34,11 +82,11 @@ const Home: React.FC = () => {
         title="Inscrição Finalizada"
         subtitle="Enviaremos um email contendo todas as suas informações"
         isOpened={openSuccess}
-        setOpenSuccess={setOpenSuccess}
+        setOpen={setOpenSuccess}
         showCloseIcon={false}
         timer={10000}
       /> */}
-      <DataRequest isOpened />
+      {/* <DataRequest isOpened /> */}
       {/* <SelectiveProcessForm isOpened /> */}
       <Page>
         <Header />
@@ -46,12 +94,14 @@ const Home: React.FC = () => {
           <main>
             <h1>Soluções Simples, Resultados Inovadores</h1>
             <div>
-              <img src="animacao.gif" alt="logo animada OCCAM" />
-
+              <img
+                src={`${process.env.NEXT_PUBLIC_API_URL}${currentImage}`}
+                alt="logo animada OCCAM"
+              />
               <div>
-                <FaCaretLeft />
+                <FaCaretLeft className="arrows" />
                 <span>O novo site da OCCAM está aqui!</span>
-                <FaCaretRight />
+                <FaCaretRight className="arrows" onClick={handleNextImage} />
               </div>
             </div>
           </main>
@@ -138,6 +188,20 @@ const Home: React.FC = () => {
       </Page>
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const { data } = await api.get<IBanners[]>('/banners')
+  const photos = data.map(d => d.photo)
+
+  const serializedPhotos = photos.map(photo => {
+    if (photo) {
+      return photo.url
+    }
+  })
+  return {
+    props: { serializedPhotos }
+  }
 }
 
 export default Home
