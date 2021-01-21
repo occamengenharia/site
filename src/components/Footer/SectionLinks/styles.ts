@@ -18,8 +18,6 @@ export const Container = styled.section<ContainerProps>`
     margin-top: 1.6rem;
   }
 
-  // pegar pelo estado para fazer condicional, em um componente isolado
-
   a {
     display: none;
   }
@@ -57,6 +55,7 @@ export const Container = styled.section<ContainerProps>`
   a {
     color: ${props => props.theme.colors.text2};
     font-size: 1.6rem;
+    margin-top: 1.2rem;
   }
 
   @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {

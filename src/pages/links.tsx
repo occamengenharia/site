@@ -1,8 +1,13 @@
 import { Container } from '@/styles/pages/Links'
 import SEO from '@/components/SEO'
 import Link from '@/components/Link'
-import { FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa'
-import BtnTheme from '@/components/BtnTheme'
+import {
+  FaInstagram,
+  FaLinkedin,
+  FaGithub,
+  FaShareAltSquare,
+  FaFacebookSquare
+} from 'react-icons/fa'
 
 const Home: React.FC = () => {
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
@@ -10,11 +15,14 @@ const Home: React.FC = () => {
     <Container>
       <SEO title="HOME" image="/banner.png" description={description} />
       <main>
-        <section>
-          <h1>OOOPS...</h1>
-          <h4>Ainda estamos trabalhando nesse site</h4>
-          <p>Não deixe de acompanhar a gente nas redes sociais</p>
-          <BtnTheme />
+        <div id="firstText">
+          <h3>
+            <FaShareAltSquare />
+          </h3>
+          <h2>Acompanhe a gente em outras plataformas</h2>
+        </div>
+        <span id="subtext">Alguns links uteis da OCCAM Engenharia</span>
+        <div id="links">
           <Link
             icon={FaInstagram}
             href="https://www.instagram.com/occamengenharia/"
@@ -30,10 +38,12 @@ const Home: React.FC = () => {
             href="https://github.com/occamengenharia"
             text="Github"
           />
-
-          <img src="occam.png" alt="OCCAM Engenharia" />
-        </section>
-        <img src="/Isometric.png" alt="Homens trabalando com tecnologia" />
+          <Link
+            icon={FaFacebookSquare}
+            href="https://www.facebook.com/occamengenharia"
+            text="Facebook"
+          />
+        </div>
       </main>
     </Container>
   )
