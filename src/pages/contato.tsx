@@ -79,7 +79,6 @@ const Contact: React.FC = () => {
 
   return (
     <>
-      <Header />
       <Container>
         <MailSuccessModal isOpen={isOpen} setIsOpen={setIsOpen} />
         <MailErrorModal isOpen={isOpenError} setIsOpen={setIsOpenError} />
@@ -95,7 +94,6 @@ const Contact: React.FC = () => {
             <h3>Envie um e-mail para gente</h3>
           </div>
           <p>Vamos ficar felizes em ajudar o seu projeto, ideia ou empresa</p>
-
           <Input name="name" placeholder="Seu nome" />
           <Input name="email" placeholder="Seu email" />
           <Input name="phone" placeholder="Seu telefone" />
