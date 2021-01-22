@@ -100,7 +100,7 @@ const Home: React.FC<ISerializedPhotos> = props => {
         timer={10000}
       /> */}
       {/* <DataRequest isOpened /> */}
-      <SelectiveProcessForm isOpened />
+      {/* <SelectiveProcessForm isOpened /> */}
       <Page>
         <Initial>
           <Header />
@@ -170,9 +170,15 @@ const Home: React.FC<ISerializedPhotos> = props => {
               Desde 2014 trabalhando para desenvolver atividades que possam
               ampliar e melhorar a qualidade de vida da comunidade ao seu redor.
             </span>
-            <h5>Saiba Mais</h5>
+            <a href="/sobre-nos">
+              Saiba Mais
+              <FaCaretRight />
+            </a>
           </div>
-          <img src="/Computer_and_hands.png" alt="mãos sobre um computador" />
+          <aside>
+            <img src="/empresa.svg" alt="mãos sobre um computador" />
+            <div></div>
+          </aside>
         </About>
 
         <SectionFooter id="footer">

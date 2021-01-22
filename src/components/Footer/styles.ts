@@ -1,10 +1,8 @@
 import styled from 'styled-components'
 
 export const Container = styled.footer`
-  max-width: 120rem;
+  max-width: 103.2rem;
   padding: 0 1.6rem;
-
-  height: 48rem;
 
   @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
     min-height: 51.2rem;
@@ -28,13 +26,15 @@ export const SectionImage = styled.section`
   flex-direction: column;
 
   margin: 0 auto;
+  text-align: center;
 
   span {
+    font-weight: 100;
     margin-top: 1.6rem;
     max-width: 36rem;
     color: ${props => props.theme.colors.text2};
-
     p {
+      font-weight: 100;
       font-size: 1.2rem;
       color: ${props => props.theme.colors.text2};
     }
@@ -62,6 +62,7 @@ export const SocialLinks = styled.section`
 
   span {
     margin-top: 2.4rem;
+    font-weight: 100;
     color: ${props => props.theme.colors.text2};
   }
 
@@ -75,6 +76,7 @@ export const SocialLinks = styled.section`
     border-top: 1px solid ${props => props.theme.colors.text2};
 
     span {
+      font-size: 1.6rem;
       margin-top: 0;
     }
   }
