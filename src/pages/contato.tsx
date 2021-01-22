@@ -101,7 +101,6 @@ const Contact: React.FC = () => {
           <Button icon={MdNearMe} text="Enviar" />
         </FormStyled>
       </Container>
-      <Footer />
     </>
   )
 }
