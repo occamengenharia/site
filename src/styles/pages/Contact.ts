@@ -20,6 +20,7 @@ export const FormStyled = styled(Form)`
   #titulo {
     display: flex;
     align-items: center;
+    flex-direction: column;
   }
   #logo-email {
     margin-right: 16px;
@@ -51,7 +52,9 @@ export const FormStyled = styled(Form)`
   }
   @media only screen and (min-width: ${props => props.theme.breakpoints.lg}px) {
     max-width: 80rem;
-
+    #titulo {
+      flex-direction: row;
+    }
     ${Button} {
       width: 300px;
       align-self: flex-end;
