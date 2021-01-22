@@ -9,50 +9,19 @@ export const Notfound = styled.div`
     height: 64rem;
   }
 
-  h1 {
-    margin-top: 6.4rem;
-    font-family: Ubuntu;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 56px;
-    line-height: 64px;
-    text-align: center;
-    color: ${props => props.theme.colors.primary};
-  }
-  h2 {
-    font-family: Ubuntu;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 28px;
-    text-align: center;
-    color: ${props => props.theme.colors.primary};
-  }
   div#div2 {
     display: flex;
     flex-direction: column;
   }
   span {
-    font-family: Ubuntu;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 14px;
-    text-align: center;
-    color: ${props => props.theme.colors.secundary};
+    color: ${props => props.theme.colors.subtitles};
   }
   span#barra_vertical {
     display: none;
   }
   strong {
-    font-family: Ubuntu;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 14px;
-    text-align: center;
     cursor: pointer;
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.subtitles};
   }
   strong:hover {
     text-decoration: underline;
