@@ -8,13 +8,15 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   > main {
+    margin: 6rem 0 4rem;
     width: min(90vw, 1100px);
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 4rem;
+    gap: 6rem;
+
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
       text-align: start;
       h2,
