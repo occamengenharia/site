@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.footer`
+  scroll-snap-align: inherit;
   max-width: 120rem;
   padding: 0 1.6rem;
 
