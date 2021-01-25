@@ -47,10 +47,11 @@ const sendMail = async ({
     bcc: bcc,
     replyTo
   } as nodemailer.SendMailOptions
-
   try {
     await transporter.sendMail(emailOptions)
   } catch (error) {
+    delete emailOptions.html
+    console.log(emailOptions)
     return 'Erro ao enviar o email'
   }
 

@@ -12,10 +12,16 @@ export const Page = styled.div`
     &:nth-child(even) {
       background: ${props => props.theme.colors.primary};
     }
-    &:nth-child(5) {
-      scroll-snap-type: y none;
-      scroll-snap-align: end;
-      height: fit-content;
+  }
+  #footer {
+    scroll-snap-type: y none;
+    scroll-snap-align: end;
+    height: fit-content;
+  }
+
+  @media only screen and (min-width: ${props => props.theme.breakpoints.lg}px) {
+    #footer {
+      height: 100%;
     }
   }
 `
@@ -297,7 +303,7 @@ export const About = styled.div`
 export const SectionFooter = styled.div`
   display: flex;
   flex-direction: column;
-  height: fit-content;
+
   @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
     justify-content: space-between;
   }
@@ -315,19 +321,18 @@ const animation = keyframes`
 export const Marquee = styled.aside`
   display: flex;
   flex-direction: column;
+  align-items: center;
   background: ${props => props.theme.colors.primary};
   padding: 3.2rem 0;
-  height: 100%;
-
   div {
     display: flex;
     flex-direction: column;
     width: 100%;
     max-height: 10rem;
-    max-width: 120rem;
+    max-width: 103.2rem;
     h1 {
       font-size: 32px;
-      color: ${props => props.theme.colors.borderDivision};
+      color: ${props => props.theme.colors.white};
     }
     button {
       display: flex;
@@ -336,9 +341,9 @@ export const Marquee = styled.aside`
       border: 0;
       background: transparent;
       font-size: 1.2rem;
-      color: ${props => props.theme.colors.borderDivision};
+      color: ${props => props.theme.colors.white};
       svg {
-        color: ${props => props.theme.colors.borderDivision};
+        color: ${props => props.theme.colors.white};
         font-size: 1.2rem;
       }
     }
@@ -346,7 +351,6 @@ export const Marquee = styled.aside`
   aside {
     margin: 0 auto;
     width: 100%;
-    max-width: 120rem;
     overflow: hidden;
     white-space: nowrap;
     section {
@@ -365,7 +369,6 @@ export const Marquee = styled.aside`
   @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
     div {
       align-items: flex-start;
-      padding: 0 20.4rem;
     }
 
     aside {

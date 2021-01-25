@@ -16,6 +16,14 @@ export const courseOptions = [
 
 export const departmentOptions = [
   {
+    value: 'financeiro',
+    label: 'Financeiro'
+  },
+  {
+    value: 'jurídico',
+    label: 'Jurídico'
+  },
+  {
     value: 'marketing',
     label: 'Marketing'
   },
@@ -26,14 +34,6 @@ export const departmentOptions = [
   {
     value: 'rh',
     label: 'RH'
-  },
-  {
-    value: 'financeiro',
-    label: 'Financeiro'
-  },
-  {
-    value: 'jurídico',
-    label: 'Jurídico'
   }
 ]
 

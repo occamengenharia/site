@@ -90,7 +90,11 @@ const Home: React.FC<ISerializedPhotos> = props => {
   return (
     <>
       <SEO title="Home" description={description} image="/occam.png" />
-      {/* <ErrorModal isOpened /> */}
+      {/* <ErrorModal
+        isOpened
+        title="Ocorreu um erro"
+        subtitle="Tente novamente mais tarde"
+      /> */}
       {/* <SuccessModal
         title="Inscrição Finalizada"
         subtitle="Enviaremos um email contendo todas as suas informações"

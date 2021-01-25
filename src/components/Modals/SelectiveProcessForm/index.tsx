@@ -20,6 +20,7 @@ import Select from '@/components/Select'
 import Textarea from '@/components/Textarea'
 import Button from '@/components/Button'
 import SuccessModal from '@/components/Modals/SuccessModal'
+import ErrorModal from '@/components/Modals/ErrorModal'
 import {
   courseOptions,
   periodOptions,
@@ -54,7 +55,8 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
 
   const [openForm, setOpenForm] = useState<boolean>(isOpened)
   const [openSuccess, setOpenSuccess] = useState<boolean>(false)
-  const [departments, setDepartments] = useState<string[]>(null)
+  const [openError, setOpenError] = useState<boolean>(false)
+  const [departments, setDepartments] = useState<string[]>([])
   const [inputVisible, setInputVisible] = useState<boolean>(false)
 
   function handleCloseModal() {
@@ -75,7 +77,6 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
     let newDepartments = departments
 
     limitMultiSelectOptions(event)
-    console.log(event)
     if (event) {
       newDepartments = event.map(e => e.value)
       setDepartments(newDepartments)
@@ -92,8 +93,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
 
   async function handleSubmit(data: IFormData) {
     formRef.current?.setErrors({})
-
-    data.department = departments || undefined
+    data.department = departments
     try {
       const schemas = Yup.object().shape({
         name: Yup.string().required('Informe um nome válido'),
@@ -102,12 +102,13 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
         phone: Yup.string().required('Informe seu número de celular'),
         course: Yup.string().required('Informe seu curso'),
         department: Yup.array()
+          .min(1, 'Selecione pelo menos uma opção')
           .of(Yup.string())
           .required('Informe o(s) setor(es) desejado(s)'),
         period: Yup.string().required('Informe qual período você está'),
         knowledge: Yup.string().required('Responda a pergunta corretamente'),
         wichLanguage: Yup.string().when('knowledge', {
-          is: 'knowledgeYes',
+          is: 'sim',
           then: Yup.string().required('Responda a pergunta corretamente')
         }),
         learnNewLanguage: Yup.string().required(
@@ -146,18 +147,18 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
       }
 
       await api.post('/registrations-processes', subscription)
-      // await axios.post('/api/subscribeps', {
-      //   name: data.name,
-      //   course: data.course,
-      //   ra: data.ra,
-      //   period: data.period,
-      //   email: data.email,
-      //   sector: data.department,
-      //   answer1: `${data.knowledge}, ${data.wichLanguage}`,
-      //   answer2: data.learnNewLanguage,
-      //   answer3: data.motivation,
-      //   answer4: data.contribution
-      // })
+      await axios.post('/api/subscribeps', {
+        name: data.name,
+        course: data.course,
+        ra: data.ra,
+        period: data.period,
+        email: data.email,
+        sector: data.department,
+        answer1: `${data.knowledge}, ${data.wichLanguage}`,
+        answer2: data.learnNewLanguage,
+        answer3: data.motivation,
+        answer4: data.contribution
+      })
 
       handleOpenSuccess()
     } catch (err) {
@@ -165,6 +166,9 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
         const errors = getValidationErrors(err)
 
         formRef.current?.setErrors(errors)
+      } else {
+        setOpenForm(false)
+        setOpenError(true)
       }
     }
   }
@@ -210,7 +214,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
             )}
             <Select
               name="learnNewLanguage"
-              placeholder="Você estaria disposto a dedicar seu tempo aprendendo uma nova linguagem?"
+              placeholder="Está disposto a dedicar seu tempo para aprender uma nova linguagem?"
               options={learnNewLanguageOptions}
             />
             <Textarea
@@ -239,7 +243,13 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
         isOpened={openSuccess}
         setOpen={setOpenSuccess}
         showCloseIcon={false}
-        timer={10000}
+        timer={3000}
+      />
+      <ErrorModal
+        isOpened={openError}
+        setOpen={setOpenError}
+        title="Erro ao realizar a inscrição"
+        subtitle="Tente novamente mais tarde"
       />
     </>
   )

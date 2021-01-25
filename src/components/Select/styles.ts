@@ -51,6 +51,8 @@ export const Container = styled.div<SelectProps>`
       .react-select__value-container {
         height: 6.4rem;
         .react-select__input {
+          outline: none;
+          color: transparent;
           font: 400 16px Ubuntu;
         }
 

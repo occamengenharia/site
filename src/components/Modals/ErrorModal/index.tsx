@@ -5,22 +5,28 @@ import { ModalContainer, Close, Cross } from './styles'
 
 interface ErrorModalProps {
   isOpened: boolean
+  setOpen(opened: boolean): void
+  title?: string
+  subtitle?: string
 }
 
-const ErrorModal: React.FC<ErrorModalProps> = ({ isOpened }) => {
-  const [openModal, setOpenModal] = useState<boolean>(isOpened)
-
+const ErrorModal: React.FC<ErrorModalProps> = ({
+  isOpened,
+  setOpen,
+  title,
+  subtitle
+}) => {
   function handleCloseModal() {
-    setOpenModal(false)
+    setOpen(false)
   }
 
   setTimeout(() => {
-    setOpenModal(false)
+    setOpen(false)
   }, 3000)
 
   return (
     <Modal
-      open={openModal}
+      open={isOpened}
       onClose={handleCloseModal}
       center
       showCloseIcon={false}
@@ -30,8 +36,8 @@ const ErrorModal: React.FC<ErrorModalProps> = ({ isOpened }) => {
       <ModalContainer>
         <Cross />
         <div>
-          <p>Verifique seu email</p>
-          <span>Tente novamente mais tarde</span>
+          <p>{title}</p>
+          <span>{subtitle}</span>
         </div>
       </ModalContainer>
     </Modal>
