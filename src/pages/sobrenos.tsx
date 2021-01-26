@@ -18,7 +18,7 @@ interface IStories {
 const AboutUs: React.FC = () => {
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
   const intro =
-    'A Empresa Júnior de Engenharia de Computação da Universidade Tecnológica Federal do Paraná - UTFPR, vem desde 2014 trabalhando para desenvolver atividades que possam ampliar e melhorar a qualidade de vida da comunidade ao seu redor.'
+    'A Empresa Júnior de Engenharia de Computação da Universidade Tecnológica Federal do Paraná - UTFPR, vem desde 2012 trabalhando para desenvolver atividades que possam ampliar e melhorar a qualidade de vida da comunidade ao seu redor.'
   const DescriptMission =
     'Simplificar a vida das pessoas através de soluções inovadoras'
   const DescriptVision =
