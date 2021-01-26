@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
       </InternalLinks>
 
       <SocialLinks>
-        <span>Copyright 2020</span>
+        <span>Copyright © 2020</span>
 
         <SocialLinksIcons>
           <a href="https://www.instagram.com/occamengenharia/">

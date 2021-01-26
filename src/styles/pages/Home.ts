@@ -2,23 +2,26 @@ import styled, { keyframes } from 'styled-components'
 
 export const Page = styled.div`
   scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
   height: 100vh;
   overflow-y: scroll;
-  scroll-behavior: smooth;
   > div {
     scroll-snap-align: end;
-    height: 100%;
+    height: 100vh;
     position: relative;
     &:nth-child(even) {
       background: ${props => props.theme.colors.primary};
     }
   }
   #footer {
-    height: 150vh;
+    scroll-snap-type: y none;
+    scroll-snap-align: end;
+    height: fit-content;
   }
-  @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
+
+  @media only screen and (min-width: ${props => props.theme.breakpoints.lg}px) {
     #footer {
-      height: 100vh;
+      height: 100%;
     }
   }
 `
@@ -40,42 +43,7 @@ export const Initial = styled.div`
       margin-bottom: 4.8rem;
       color: ${props => props.theme.colors.titles};
     }
-    div {
-      transition: all 0.5s;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.25);
 
-      .arrows {
-        cursor: pointer;
-        transition: 0.2s all;
-      }
-
-      .arrows:hover {
-        color: ${props => props.theme.colors.primary};
-      }
-
-      img {
-        width: 27.2rem;
-        height: 15.4rem;
-        transition: 0.5s all;
-      }
-      div {
-        background-color: ${props => props.theme.colors.secundary};
-        width: 100%;
-        padding: 0.8rem 0;
-
-        span {
-          color: ${props => props.theme.colors.white};
-        }
-        svg {
-          display: none;
-        }
-      }
-    }
     @media only screen and (min-width: ${props =>
         props.theme.breakpoints.lg}px) {
       flex-direction: row;
@@ -85,28 +53,6 @@ export const Initial = styled.div`
         font-size: 9.6rem;
         margin: 0;
         text-align: left;
-        transition: 0.2s all;
-      }
-      div {
-        height: 26.6rem;
-
-        img {
-          width: 41.6rem;
-          height: 23.4rem;
-        }
-        div {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          height: 3.2rem;
-          padding: 1.2rem;
-          svg {
-            display: initial;
-            color: ${props => props.theme.colors.white};
-            width: 1.6rem;
-            height: 1.6rem;
-          }
-        }
       }
     }
   }
@@ -124,7 +70,10 @@ export const Actuation = styled.div`
     align-items: center;
     gap: 8%;
     width: min(1100px, 90vw);
-    color: white;
+
+    h3 {
+      color: ${props => props.theme.colors.white};
+    }
     > section {
       display: flex;
       align-items: center;
@@ -133,6 +82,7 @@ export const Actuation = styled.div`
       p {
         font-size: 1.2rem;
         text-align: justify;
+        color: ${props => props.theme.colors.white};
       }
       img {
         height: 8rem;
@@ -186,18 +136,32 @@ export const Actuation = styled.div`
 `
 export const Members = styled.div`
   display: flex;
-  margin: 0 auto;
   flex-direction: column;
-  gap: 4.8rem;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 auto;
   max-width: 1032px;
-  color: ${props => props.theme.colors.primary};
-  > span {
-    align-self: center;
+  gap: 4.8rem;
+
+  h3 {
+    color: ${props => props.theme.colors.titles};
   }
-  @media only screen and (max-width: 991px) {
-    max-width: 280px;
-    > h3 {
-      font-size: 32px;
+
+  a {
+    font-size: 1.6rem;
+    color: ${props => props.theme.colors.subtitles};
+
+    svg {
+      margin-left: 0.8rem;
+    }
+  }
+  @media only screen and (min-width: ${props => props.theme.breakpoints.lg}px) {
+    align-items: flex-start;
+
+    a {
+      font-size: 1.2rem;
+      margin: 0 auto;
     }
   }
 `
@@ -207,10 +171,17 @@ export const About = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  color: ${props => props.theme.colors.white};
+
   img {
-    width: 0;
-    height: 0;
+    display: none;
   }
+
+  svg {
+    font-size: 0.8rem;
+  }
+
   div {
     display: flex;
     flex-direction: column;
@@ -220,23 +191,25 @@ export const About = styled.div`
   h4 {
     font-size: 3.2rem;
     margin-bottom: 9.9rem;
-    color: ${props => props.theme.colors.borderDivision};
   }
   span {
     font-size: 2.4rem;
     margin-bottom: 14.3rem;
     width: 27.2rem;
     height: 19.6rem;
-    color: ${props => props.theme.colors.borderDivision};
   }
-  h5 {
+  a {
+    color: ${props => props.theme.colors.white};
     font-size: 1.6rem;
-    color: ${props => props.theme.colors.borderDivision};
   }
   @media (min-width: ${props => props.theme.breakpoints.md}px) {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    div {
+      align-items: flex-start;
+    }
     span {
       display: flex;
       flex-direction: column;
@@ -247,7 +220,6 @@ export const About = styled.div`
       margin-top: 9.6rem;
       margin-bottom: 0rem;
       margin-left: 20.3rem;
-      color: ${props => props.theme.colors.borderDivision};
     }
     span {
       font-size: 2.4rem;
@@ -256,18 +228,31 @@ export const About = styled.div`
       margin-left: 20.3rem;
       width: 346px;
       height: 143px;
-      color: ${props => props.theme.colors.borderDivision};
     }
-    h5 {
+    a {
       font-size: 1.2rem;
       margin-top: 10.4rem;
       margin-bottom: 0rem;
       margin-left: 20.4rem;
-      color: ${props => props.theme.colors.borderDivision};
     }
     img {
-      width: 56.6rem;
-      height: 100%;
+      display: initial;
+      position: relative;
+      height: 100vh;
+      object-fit: cover;
+    }
+
+    aside {
+      position: relative;
+
+      div {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        background-color: ${props => props.theme.colors.primary};
+        mix-blend-mode: hard-light;
+      }
     }
   }
 `
@@ -275,11 +260,9 @@ export const About = styled.div`
 export const SectionFooter = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  /* padding-bottom: 6.4rem; */
+
   @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
     justify-content: space-between;
-    padding-bottom: 6.4rem;
   }
 `
 
@@ -295,15 +278,18 @@ const animation = keyframes`
 export const Marquee = styled.aside`
   display: flex;
   flex-direction: column;
+  align-items: center;
   background: ${props => props.theme.colors.primary};
+  padding: 3.2rem 0;
   div {
-    margin: 0 auto 7.2rem;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     max-height: 10rem;
-    max-width: 120rem;
+    max-width: 103.2rem;
     h1 {
       font-size: 32px;
-      color: ${props => props.theme.colors.borderDivision};
+      color: ${props => props.theme.colors.white};
     }
     button {
       display: flex;
@@ -312,19 +298,16 @@ export const Marquee = styled.aside`
       border: 0;
       background: transparent;
       font-size: 1.2rem;
-      color: ${props => props.theme.colors.borderDivision};
+      color: ${props => props.theme.colors.white};
       svg {
-        color: ${props => props.theme.colors.borderDivision};
+        color: ${props => props.theme.colors.white};
         font-size: 1.2rem;
       }
     }
   }
   aside {
     margin: 0 auto;
-    padding: 2rem 0 9.6rem;
     width: 100%;
-    max-height: 10rem;
-    max-width: 120rem;
     overflow: hidden;
     white-space: nowrap;
     section {
@@ -341,6 +324,10 @@ export const Marquee = styled.aside`
     }
   }
   @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
+    div {
+      align-items: flex-start;
+    }
+
     aside {
       section {
         img + img {

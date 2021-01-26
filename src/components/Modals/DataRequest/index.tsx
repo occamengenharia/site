@@ -1,22 +1,20 @@
 import { Form } from '@unform/web'
+import axios from 'axios'
 import * as Yup from 'yup'
 import { useRef, useState } from 'react'
 import 'react-responsive-modal/styles.css'
 import { Modal } from 'react-responsive-modal'
 
-import {
-  ModalContainer,
-  SuccessModalContainer,
-  Close,
-  Check,
-  Link
-} from './styles'
+import { ModalContainer, Close } from './styles'
 
 import { FiSend } from 'react-icons/fi'
 
 import Button from '@/components/Button'
 import Input from '@/components/Input'
 import SuccessModal from '@/components/Modals/SuccessModal'
+import ErrorModal from '@/components/Modals/ErrorModal'
+
+import getValidationErrors from '@/utils/getValidationErros'
 
 interface DataRequestProps {
   isOpened: boolean
@@ -27,6 +25,7 @@ const DataRequest: React.FC<DataRequestProps> = ({ isOpened }) => {
 
   const [openDataRequest, setOpenDataRequest] = useState<boolean>(isOpened)
   const [openSuccess, setOpenSuccess] = useState<boolean>(false)
+  const [openError, setOpenError] = useState<boolean>(false)
 
   function handleCloseModal() {
     setOpenDataRequest(false)
@@ -47,17 +46,19 @@ const DataRequest: React.FC<DataRequestProps> = ({ isOpened }) => {
       })
 
       await schemas.validate(data, { abortEarly: false })
+      await axios.post('/api/request', {
+        email: data.email
+      })
 
       handleNextModal()
     } catch (err) {
-      const validationErrors = {}
-
       if (err instanceof Yup.ValidationError) {
-        err.inner.forEach(error => {
-          validationErrors[error.path] = error.message
-        })
+        const errors = getValidationErrors(err)
 
-        formRef.current.setErrors(validationErrors)
+        formRef.current?.setErrors(errors)
+      } else {
+        setOpenDataRequest(false)
+        setOpenError(true)
       }
     }
   }
@@ -94,6 +95,12 @@ const DataRequest: React.FC<DataRequestProps> = ({ isOpened }) => {
         isOpened={openSuccess}
         setOpen={setOpenSuccess}
         setOpenPreviousModal={setOpenDataRequest}
+      />
+      <ErrorModal
+        isOpened={openError}
+        setOpen={setOpenError}
+        title="Ocorreu um erro"
+        subtitle="Tente novamente"
       />
     </>
   )

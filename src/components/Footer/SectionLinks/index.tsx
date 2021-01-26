@@ -25,7 +25,7 @@ const SectionLinks: React.FC<SectionLinksProps> = ({ data }) => {
   return (
     <Container isOpen={isOpen}>
       <aside onClick={handleOpenLinks}>
-        <span>{title}</span> <p>{isOpen ? 'x' : '+'}</p>
+        <span>{title}</span> <p>+</p>
       </aside>
 
       {links.map(link =>

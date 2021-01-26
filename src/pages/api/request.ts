@@ -34,13 +34,6 @@ export default async (
   if (!email.match(/\S+@\S+.\S+/gi)) {
     return response.status(403).json({ error: 'Invalid email' })
   }
-
-  await sendMail({
-    to: process.env.EMAIL_TO,
-    html: `<p> ${email} fez uma nova requisição de dados</p>`,
-    subject: 'Nova requisição'
-  })
-
   const { data } = await api.get<ISubscription[]>(
     `registrations-processes?email=${email}`
   )
@@ -48,6 +41,12 @@ export default async (
   if (data.length <= 0) {
     return response.status(404).json({ error: 'Subscription not found' })
   }
+
+  await sendMail({
+    to: process.env.EMAIL_TO,
+    html: `<p> ${email} fez uma nova requisição de dados</p>`,
+    subject: 'Nova requisição'
+  })
 
   const subscription = data[0]
 
