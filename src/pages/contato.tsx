@@ -86,20 +86,17 @@ const Contact: React.FC = () => {
       />
 
       <FormStyled ref={formRef} onSubmit={handleSubmit}>
-        <div id = "titulo">
+        <div id="titulo">
           <FaMailBulk id="logo-email" />
           <h3>Envie um e-mail para gente</h3>
         </div>
-          <p>Vamos ficar felizes em ajudar o seu projeto, ideia ou empresa</p>
+        <p>Vamos ficar felizes em ajudar o seu projeto, ideia ou empresa</p>
 
         <Input name="name" placeholder="Seu nome" />
         <Input name="email" placeholder="Seu email" />
         <Input name="phone" placeholder="Seu telefone" />
-        <Textarea
-          name="description"
-          placeholder="Detalhe sua ideia aqui"
-        />
-        <Button icon = { MdNearMe } text = "Enviar"/>
+        <Textarea name="description" placeholder="Detalhe sua ideia aqui" />
+        <Button icon={MdNearMe} text="Enviar" />
       </FormStyled>
     </Container>
   )
