@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 
 export const Container = styled.footer`
-  max-width: 103.2rem;
+
+  scroll-snap-align: inherit;
+  max-width: 120rem;
   padding: 0 1.6rem;
 
   @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {

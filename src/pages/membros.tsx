@@ -1,6 +1,6 @@
 /* eslint-disable no-new */
 import { GetStaticProps } from 'next'
-import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io'
+import { FaCaretLeft, FaCaretRight } from 'react-icons/fa'
 
 import Card from '@/components/MemberCard'
 import { Container, GridCards, Bar } from '@/styles/pages/Members'
@@ -82,13 +82,9 @@ const Members: React.FC<IMembersSerealized> = props => {
         <h2>Histórico de Membros</h2>
 
         <Bar>
-          <button type="button" onClick={handleMinus}>
-            <IoMdArrowDropleft />
-          </button>
+          <FaCaretLeft onClick={handleMinus} />
           <h1> {year} </h1>
-          <button type="button" onClick={handlePlus}>
-            <IoMdArrowDropright />
-          </button>
+          <FaCaretRight onClick={handlePlus} />
         </Bar>
 
         <GridCards>
@@ -104,7 +100,7 @@ const Members: React.FC<IMembersSerealized> = props => {
               />
             ))
           ) : (
-            <h1>Nenhum membro</h1>
+            <h3>Nenhum membro Registrado</h3>
           )}
         </GridCards>
       </Container>
@@ -151,6 +147,5 @@ export const getStaticProps: GetStaticProps = async context => {
   }
   return {
     props: membersSerealized
-    // revalidate: a cada 3 meses por
   }
 }
