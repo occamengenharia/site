@@ -1,23 +1,45 @@
 import { useState } from 'react'
 import { MemberStyle, Links } from './styles'
-import { FaGithub, FaLinkedin } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaCaretLeft, FaCaretRight } from 'react-icons/fa'
 
-export default function Member() {
-  const [name, setName] = useState([])
-  const [job, setJob] = useState([])
-  async function ChangeMember() {}
+import Link from '@/components/Link'
 
+interface MemberProps {
+  image: string
+  name: string
+  role: string
+  github?: string
+  linkedin?: string
+}
+
+const MembersHome: React.FC<MemberProps> = ({
+  image,
+  name,
+  role,
+  github,
+  linkedin
+}) => {
   return (
     <MemberStyle>
-      <img src="/banner.png"></img>
-      <section>
-        <div>Gabriel Prando</div>
-        <label>Diretor de Projetos</label>
-        <Links>
-          <FaGithub />
-          <FaLinkedin />
-        </Links>
-      </section>
+      <img src={image} />
+      <main>
+        <FaCaretLeft />
+        <div>
+          <section>
+            <div>
+              <p>{name}</p>
+              <label>{role}</label>
+            </div>
+          </section>
+          <Links>
+            <FaGithub />
+            <FaLinkedin />
+          </Links>
+        </div>
+        <FaCaretRight />
+      </main>
     </MemberStyle>
   )
 }
+
+export default MembersHome

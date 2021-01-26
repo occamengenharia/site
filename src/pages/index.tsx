@@ -15,7 +15,8 @@ import { FaCaretRight, FaCaretLeft } from 'react-icons/fa'
 import { Footer } from '@/components'
 import SEO from '@/components/SEO'
 import Header from '@/components/Header'
-import Member from '@/components/MembersHome/index'
+import MembersHome from '@/components/MembersHome'
+import HomeCarousel from '@/components/HomeCarousel'
 import Link from '@/components/Link'
 import DataRequest from '@/components/Modals/DataRequest'
 import ErrorModal from '@/components/Modals/ErrorModal'
@@ -58,34 +59,6 @@ interface ISerializedPhotos {
 
 const Home: React.FC<ISerializedPhotos> = props => {
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
-  const [banners, setBanners] = useState<string[]>([
-    'animacao.gif',
-    'banner.png'
-  ])
-  const [currentImage, setCurrentImage] = useState<string>(banners[0])
-  const [currentImagePos, setCurrentImagePos] = useState(0)
-
-  function handleNextImage() {
-    if (currentImagePos === banners.length - 1) {
-      setCurrentImagePos(0)
-      setCurrentImage(banners[0])
-    } else {
-      const pos = currentImagePos + 1
-      setCurrentImagePos(pos)
-      setCurrentImage(banners[pos])
-    }
-  }
-
-  function handlePreviousImage() {
-    if (currentImagePos === 0) {
-      setCurrentImagePos(banners.length - 1)
-      setCurrentImage(banners[banners.length - 1])
-    } else {
-      const pos = currentImagePos - 1
-      setCurrentImagePos(pos)
-      setCurrentImage(banners[pos])
-    }
-  }
 
   return (
     <>
@@ -110,14 +83,10 @@ const Home: React.FC<ISerializedPhotos> = props => {
           <Header />
           <main>
             <h1>Soluções Simples, Resultados Inovadores</h1>
-            <div>
-              <img src={currentImage} alt="logo animada OCCAM" />
-              <div>
-                <FaCaretLeft className="arrows" onClick={handlePreviousImage} />
-                <span>O novo site da OCCAM está aqui!</span>
-                <FaCaretRight className="arrows" onClick={handleNextImage} />
-              </div>
-            </div>
+            <HomeCarousel
+              image="animacao.gif"
+              description="O novo site da OCCAM está aqui!"
+            />
           </main>
         </Initial>
         <Actuation>
@@ -162,9 +131,16 @@ const Home: React.FC<ISerializedPhotos> = props => {
         </Actuation>
 
         <Members>
-          <div>Nossa Equipe</div>
-          <Member />
-          <div>Histórico de Membros</div>
+          <h3>Nossa Equipe</h3>
+          <MembersHome
+            name="Gabriel Prando"
+            role="Diretor de Projetos"
+            image="/prando.png"
+          />
+          <a href="/membros">
+            Histórico de Membros
+            <FaCaretRight />
+          </a>
         </Members>
 
         <About>
