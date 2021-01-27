@@ -23,7 +23,6 @@ import ErrorModal from '@/components/Modals/ErrorModal'
 import SuccessModal from '@/components/Modals/SuccessModal'
 import SelectiveProcessForm from '@/components/Modals/SelectiveProcessForm'
 import api from '@/services/api'
-
 interface IBanners {
   _id: string
   reference_location: string
@@ -53,13 +52,90 @@ interface IBanners {
   id: string
 }
 
+interface IMembers {
+  course: string
+  active: boolean
+  _id: string
+  link_linkedin: string
+  link_github: string
+  name: string
+  slug: string
+  output_date: Date
+  phone: string
+  birth_date: Date
+  ra: string
+  address: string
+  entry_date: Date
+  email: string
+  published_at: Date
+  positions: {
+    department: string
+    job: string
+    _id: string
+    tasks_description: string
+    start_date_position: Date
+    end_date_position: string
+    __v: number
+    id: string
+  }
+  createdAt: Date
+  updatedAt: Date
+  __v: number
+  photo: {
+    _id: string
+    name: string
+    alternativeText: string
+    caption: string
+    hash: string
+    ext: string
+    mime: string
+    size: number
+    url: string
+    provider: string
+    width: number
+    height: number
+    related: string[]
+    createdAt: Date
+    updatedAt: Date
+    __v: number
+    id: string
+  }
+  id: string
+}
 interface ISerializedPhotos {
   serializedPhotos: string[]
 }
 
-const Home: React.FC<ISerializedPhotos> = props => {
-  const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
+const Home: React.FC<ISerializedPhotos & IMembers[]> = ({ data }) => {
+  const [name, setName] = useState('')
+  const [role, setRole] = useState('')
+  const [avatar_member, setAvatar_member] = useState('')
+  const [githublink, setGithublink] = useState('')
+  const [linkedinlink, setLinkedinlink] = useState('')
+  const [count, setCount] = useState(0)
 
+  function handlePanelMembers() {
+    const member = data[count]
+
+    setName(member.name)
+    setRole(member.role)
+    setAvatar_member(member.photo.url)
+    setGithublink(member.link_github)
+    setLinkedinlink(member.link_linkedin)
+
+    if (count < data.length) {
+      setCount(count + 1)
+    } else {
+      setCount(0)
+    }
+    console.log(count)
+  }
+
+  useEffect(() => {
+    setInterval(() => handlePanelMembers(), 2000)
+  }, [])
+
+  const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
   return (
     <>
       <SEO title="Home" description={description} image="/occam.png" />
@@ -133,9 +209,12 @@ const Home: React.FC<ISerializedPhotos> = props => {
         <Members>
           <h3>Nossa Equipe</h3>
           <MembersHome
-            name="Gabriel Prando"
-            role="Diretor de Projetos"
-            image="/prando.png"
+            key={data.id}
+            name={name}
+            role={role}
+            image={avatar_member}
+            github={githublink}
+            linkedin={linkedinlink}
           />
           <a href="/membros">
             Histórico de Membros
@@ -187,16 +266,18 @@ const Home: React.FC<ISerializedPhotos> = props => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await api.get<IBanners[]>('/banners')
-  const photos = data.map(d => d.photo)
+  // const { data } = await api.get<IBanners[]>('/banners')
+  // const photos = data.map(d => d.photo)
 
-  const serializedPhotos = photos.map(photo => {
-    if (photo) {
-      return photo.url
-    }
-  })
+  // const serializedPhotos = photos.map(photo => {
+  //   if (photo) {
+  //     return photo.url
+  //   }
+  // })
+
+  const { data } = await api.get<IMembers[]>('/members')
   return {
-    props: { serializedPhotos }
+    props: { data }
   }
 }
 

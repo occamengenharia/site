@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { MemberStyle, Links } from './styles'
 import { FaGithub, FaLinkedin, FaCaretLeft, FaCaretRight } from 'react-icons/fa'
 
-import Link from '@/components/Link'
+// import Link from '@/components/Link'
 
 interface MemberProps {
   image: string
@@ -32,8 +32,13 @@ const MembersHome: React.FC<MemberProps> = ({
             </div>
           </section>
           <Links>
-            <FaGithub />
-            <FaLinkedin />
+            <a href={github}>
+              <FaGithub />
+            </a>
+
+            <a href={linkedin}>
+              <FaLinkedin />
+            </a>
           </Links>
         </div>
         <FaCaretRight />
