@@ -10,13 +10,7 @@ import checkFileFormat from '@/utils/checkFileFormat'
 import limitMultiSelectOptions from '@/utils/limitMultiSelectOptions'
 import api from '@/services/api'
 
-import {
-  ModalContainer,
-  Close,
-  Check,
-  FormButton,
-  SuccessModalContainer
-} from './styles'
+import { ModalContainer, Close, FormButton } from './styles'
 
 import { FaArrowAltCircleRight } from 'react-icons/fa'
 
@@ -25,13 +19,32 @@ import FileInput from '@/components/FileInput'
 import Select from '@/components/Select'
 import Textarea from '@/components/Textarea'
 import Button from '@/components/Button'
+import SuccessModal from '@/components/Modals/SuccessModal'
+import ErrorModal from '@/components/Modals/ErrorModal'
 import {
   courseOptions,
   periodOptions,
   learnNewLanguageOptions,
   knowledgeOptions,
-  departmentOptions
+  departmentOptions,
+  ISelectOptions
 } from './selectOptions'
+
+interface IFormData {
+  name: string
+  ra: string
+  email: string
+  course: string
+  phone: string
+  period: string
+  department: string[]
+  knowledge: string
+  wichLanguage?: string
+  learnNewLanguage: string
+  motivation: string
+  contribution: string
+  curriculum: File
+}
 
 interface DataRequestProps {
   isOpened: boolean
@@ -42,7 +55,8 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
 
   const [openForm, setOpenForm] = useState<boolean>(isOpened)
   const [openSuccess, setOpenSuccess] = useState<boolean>(false)
-  const [departments, setDepartments] = useState<string[]>(null)
+  const [openError, setOpenError] = useState<boolean>(false)
+  const [departments, setDepartments] = useState<string[]>([])
   const [inputVisible, setInputVisible] = useState<boolean>(false)
 
   function handleCloseModal() {
@@ -59,7 +73,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
     }, 2000)
   }
 
-  function handleSetDepartments(event) {
+  function handleSetDepartments(event: ISelectOptions[]) {
     let newDepartments = departments
 
     limitMultiSelectOptions(event)
@@ -69,7 +83,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
     }
   }
 
-  function handleShowWichLanguageInput(event) {
+  function handleShowWichLanguageInput(event: ISelectOptions) {
     if (event.value === 'sim') {
       setInputVisible(true)
     } else {
@@ -77,10 +91,9 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
     }
   }
 
-  async function handleSubmit(data) {
+  async function handleSubmit(data: IFormData) {
     formRef.current?.setErrors({})
-
-    data.department = departments || undefined
+    data.department = departments
     try {
       const schemas = Yup.object().shape({
         name: Yup.string().required('Informe um nome válido'),
@@ -89,12 +102,13 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
         phone: Yup.string().required('Informe seu número de celular'),
         course: Yup.string().required('Informe seu curso'),
         department: Yup.array()
+          .min(1, 'Selecione pelo menos uma opção')
           .of(Yup.string())
           .required('Informe o(s) setor(es) desejado(s)'),
         period: Yup.string().required('Informe qual período você está'),
         knowledge: Yup.string().required('Responda a pergunta corretamente'),
         wichLanguage: Yup.string().when('knowledge', {
-          is: 'knowledgeYes',
+          is: 'sim',
           then: Yup.string().required('Responda a pergunta corretamente')
         }),
         learnNewLanguage: Yup.string().required(
@@ -125,7 +139,6 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
         period: data.period,
         interest_area: data.department.join(', '),
         email: data.email,
-        sector: data.sector,
         answer1: data.knowledge + '' + ', ' + (data.wichLanguage + ''),
         answer2: data.learnNewLanguage,
         answer3: data.motivation,
@@ -140,7 +153,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
         ra: data.ra,
         period: data.period,
         email: data.email,
-        sector: data.sector,
+        sector: data.department,
         answer1: `${data.knowledge}, ${data.wichLanguage}`,
         answer2: data.learnNewLanguage,
         answer3: data.motivation,
@@ -153,6 +166,9 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
         const errors = getValidationErrors(err)
 
         formRef.current?.setErrors(errors)
+      } else {
+        setOpenForm(false)
+        setOpenError(true)
       }
     }
   }
@@ -191,14 +207,14 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
               name="knowledge"
               placeholder="Possui algum conhecimento, mesmo que básico em linguagens de programação?"
               options={knowledgeOptions}
-              onChange={e => handleShowWichLanguageInput(e)}
+              onChange={e => handleShowWichLanguageInput(e as ISelectOptions)}
             />
             {inputVisible && (
               <Input name="wichLanguage" placeholder="Se sim, quais?" />
             )}
             <Select
               name="learnNewLanguage"
-              placeholder="Você estaria disposto a dedicar seu tempo aprendendo uma nova linguagem?"
+              placeholder="Está disposto a dedicar seu tempo para aprender uma nova linguagem?"
               options={learnNewLanguageOptions}
             />
             <Textarea
@@ -221,20 +237,20 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
           </Form>
         </ModalContainer>
       </Modal>
-      <Modal
-        open={openSuccess}
-        onClose={handleCloseModal}
-        center
+      <SuccessModal
+        title="Inscrição finalizada"
+        subtitle="Enviaremos um e-mail contendo todos seus dados"
+        isOpened={openSuccess}
+        setOpen={setOpenSuccess}
         showCloseIcon={false}
-        styles={{ modal: { borderRadius: 8 } }}
-      >
-        <Close onClick={handleCloseModal} />
-        <SuccessModalContainer>
-          <Check />
-          <p>Inscrição finalizada</p>
-          <span>Enviaremos um e-mail contendo todos seus dados</span>
-        </SuccessModalContainer>
-      </Modal>
+        timer={3000}
+      />
+      <ErrorModal
+        isOpened={openError}
+        setOpen={setOpenError}
+        title="Erro ao realizar a inscrição"
+        subtitle="Tente novamente mais tarde"
+      />
     </>
   )
 }

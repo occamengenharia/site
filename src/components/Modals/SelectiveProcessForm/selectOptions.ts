@@ -1,3 +1,8 @@
+export interface ISelectOptions {
+  value: string
+  label: string
+}
+
 export const courseOptions = [
   {
     value: 'ADS',
@@ -11,6 +16,14 @@ export const courseOptions = [
 
 export const departmentOptions = [
   {
+    value: 'financeiro',
+    label: 'Financeiro'
+  },
+  {
+    value: 'jurídico',
+    label: 'Jurídico'
+  },
+  {
     value: 'marketing',
     label: 'Marketing'
   },
@@ -21,14 +34,6 @@ export const departmentOptions = [
   {
     value: 'rh',
     label: 'RH'
-  },
-  {
-    value: 'financeiro',
-    label: 'Financeiro'
-  },
-  {
-    value: 'jurídico',
-    label: 'Jurídico'
   }
 ]
 

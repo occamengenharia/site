@@ -1,23 +1,28 @@
 import styled from 'styled-components'
 
 export const Card = styled.section`
-  width: 100%;
+  width: max-content;
   max-width: 49.6rem;
-
+  min-width: calc(32rem - 10vw);
   height: 20rem;
-
   border: hidden 1px #cecece;
+  padding: 0.8rem 1rem;
   border-radius: 1.6rem;
   background-color: ${({ theme }) => theme.colors.backgorudElevation};
   display: flex;
+  gap: 1rem;
   align-items: center;
-  box-shadow: 8px 8px 10px #cecece;
-
+  justify-content: space-around;
+  box-shadow: 0px 0px 10px 0px rgb(0, 0, 0, 0.2);
+  position: relative;
   > img {
     width: 15.2rem;
     height: 15.2rem;
+    border-radius: 50%;
   }
   a {
+    position: absolute;
+    right: 1rem;
     margin-bottom: 1.6rem;
     align-self: flex-end;
     svg {
@@ -25,7 +30,7 @@ export const Card = styled.section`
       font-size: 2.4rem;
     }
     & + a {
-      margin-right: 1.6rem;
+      margin-right: 3.2rem;
       margin-left: 0.8rem;
     }
   }
@@ -53,12 +58,11 @@ export const Data = styled.section`
   > h1 {
     font-size: 1.6rem;
     font-weight: bold;
-    color: ${({ theme }) => theme.colors.primary};
   }
 
   > h2 {
     font-size: 1.2rem;
-    color: ${({ theme }) => theme.colors.secundary};
+    color: ${({ theme }) => theme.colors.subtitles};
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {

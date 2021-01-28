@@ -16,6 +16,7 @@ export const Container = styled.div<SelectProps>`
   padding-left: 0.8rem;
   border-radius: ${props => props.theme.variables.borderRadius}rem;
   background: ${props => props.theme.colors.inputBackground};
+
   & + div {
     margin-top: 2.4rem;
   }
@@ -31,7 +32,7 @@ export const Container = styled.div<SelectProps>`
     css`
       box-shadow: 0 0 2px 2px ${props => props.theme.colors.inputHighlight};
     `}
-  ${props =>
+    ${props =>
     props.isField &&
     css`
       color: ${props => props.theme.colors.inputHighlight};
@@ -43,12 +44,15 @@ export const Container = styled.div<SelectProps>`
     position: relative;
     text-align: left;
     .react-select__control {
+      cursor: pointer;
       background: transparent;
       border: none;
       box-shadow: none;
       .react-select__value-container {
         height: 6.4rem;
         .react-select__input {
+          outline: none;
+          color: transparent;
           font: 400 16px Ubuntu;
         }
 

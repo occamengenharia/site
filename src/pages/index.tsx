@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react'
+import { GetStaticProps } from 'next'
 import {
   Page,
   Initial,
@@ -7,34 +9,84 @@ import {
   SectionFooter,
   Marquee
 } from '@/styles/pages/Home'
-import { FaCaretRight, FaCaretLeft } from 'react-icons/fa'
 import { BsFillQuestionCircleFill } from 'react-icons/bs'
+import { FaCaretRight, FaCaretLeft } from 'react-icons/fa'
 
 import { Footer } from '@/components'
 import SEO from '@/components/SEO'
 import Header from '@/components/Header'
-import Member from '@/components/MembersHome/index'
+import MembersHome from '@/components/MembersHome'
+import HomeCarousel from '@/components/HomeCarousel'
 import Link from '@/components/Link'
-const Home: React.FC = () => {
+import DataRequest from '@/components/Modals/DataRequest'
+import ErrorModal from '@/components/Modals/ErrorModal'
+import SuccessModal from '@/components/Modals/SuccessModal'
+import SelectiveProcessForm from '@/components/Modals/SelectiveProcessForm'
+import api from '@/services/api'
+
+interface IBanners {
+  _id: string
+  reference_location: string
+  published_at: Date
+  createdAt: Date
+  updatedAt: Date
+  __v: number
+  photo: {
+    _id: string
+    name: string
+    alternativeText: string
+    caption: string
+    hash: string
+    ext: string
+    mime: string
+    size: number
+    url: string
+    provider: string
+    width: number
+    height: number
+    related: string[]
+    createdAt: Date
+    updatedAt: Date
+    __v: number
+    id: string
+  }
+  id: string
+}
+
+interface ISerializedPhotos {
+  serializedPhotos: string[]
+}
+
+const Home: React.FC<ISerializedPhotos> = props => {
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
 
   return (
     <>
       <SEO title="Home" description={description} image="/occam.png" />
+      {/* <ErrorModal
+        isOpened
+        title="Ocorreu um erro"
+        subtitle="Tente novamente mais tarde"
+      /> */}
+      {/* <SuccessModal
+        title="Inscrição Finalizada"
+        subtitle="Enviaremos um email contendo todas as suas informações"
+        isOpened={openSuccess}
+        setOpen={setOpenSuccess}
+        showCloseIcon={false}
+        timer={10000}
+      /> */}
+      {/* <DataRequest isOpened /> */}
+      {/* <SelectiveProcessForm isOpened /> */}
       <Page>
-        <Header />
         <Initial>
+          <Header />
           <main>
             <h1>Soluções Simples, Resultados Inovadores</h1>
-            <div>
-              <img src="animacao.gif" alt="logo animada OCCAM" />
-
-              <div>
-                <FaCaretLeft />
-                <span>O novo site da OCCAM está aqui!</span>
-                <FaCaretRight />
-              </div>
-            </div>
+            <HomeCarousel
+              image="animacao.gif"
+              description="O novo site da OCCAM está aqui!"
+            />
           </main>
         </Initial>
         <Actuation>
@@ -78,9 +130,16 @@ const Home: React.FC = () => {
         </Actuation>
 
         <Members>
-          <div>Nossa Equipe</div>
-          <Member />
-          <div>Histórico de Membros</div>
+          <h3>Nossa Equipe</h3>
+          <MembersHome
+            name="Gabriel Prando"
+            role="Diretor de Projetos"
+            image="/prando.png"
+          />
+          <a href="/membros">
+            Histórico de Membros
+            <FaCaretRight />
+          </a>
         </Members>
 
         <About>
@@ -90,9 +149,15 @@ const Home: React.FC = () => {
               Desde 2012 trabalhando para desenvolver atividades que possam
               ampliar e melhorar a qualidade de vida da comunidade ao seu redor.
             </span>
-            <h5>Saiba Mais</h5>
+            <a href="/sobre-nos">
+              Saiba Mais
+              <FaCaretRight />
+            </a>
           </div>
-          <img src="/Computer_and_hands.png" alt="mãos sobre um computador" />
+          <aside>
+            <img src="/empresa.svg" alt="mãos sobre um computador" />
+            <div></div>
+          </aside>
         </About>
 
         <SectionFooter id="footer">
@@ -118,6 +183,20 @@ const Home: React.FC = () => {
       </Page>
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const { data } = await api.get<IBanners[]>('/banners')
+  const photos = data.map(d => d.photo)
+
+  const serializedPhotos = photos.map(photo => {
+    if (photo) {
+      return photo.url
+    }
+  })
+  return {
+    props: { serializedPhotos }
+  }
 }
 
 export default Home

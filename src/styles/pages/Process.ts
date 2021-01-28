@@ -191,6 +191,7 @@ export const Descriptions = styled.div`
     color: ${({ theme }) => theme.colors.primary};
 
     strong {
+      font-weight: bold;
       font-size: 1.6rem;
     }
 

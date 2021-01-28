@@ -4,7 +4,6 @@ import { Main as Button } from '@/components/Button/styles.ts'
 
 export const Container = styled.main`
   width: 100vw;
-  //height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,19 +20,20 @@ export const FormStyled = styled(Form)`
   #titulo {
     display: flex;
     align-items: center;
+    flex-direction: column;
   }
   #logo-email {
     margin-right: 16px;
     font-size: 48px;
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.titles};
   }
 
   h3 {
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.titles};
   }
 
   p {
-    color: ${props => props.theme.colors.secundary};
+    color: ${props => props.theme.colors.subtitles};
     font-weight: 400;
     margin: 8px 0 96px 16px !important;
   }
@@ -52,7 +52,9 @@ export const FormStyled = styled(Form)`
   }
   @media only screen and (min-width: ${props => props.theme.breakpoints.lg}px) {
     max-width: 80rem;
-
+    #titulo {
+      flex-direction: row;
+    }
     ${Button} {
       width: 300px;
       align-self: flex-end;

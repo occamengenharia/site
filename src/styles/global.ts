@@ -31,9 +31,11 @@ export default createGlobalStyle`
     color: ${props => props.theme.colors.text};
     font: 400 1.6rem Ubuntu, sans-serif;
   transition: all ${({ theme }) => theme.variables.transition}s ;
+    cursor: default;
   }
   h1,h2,h3{
     text-align:center;
+    color: ${({ theme }) => theme.colors.titles}
   }
   h1 {
     font: 700 6.4rem Ubuntu, sans-serif;

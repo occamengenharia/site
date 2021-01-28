@@ -60,7 +60,7 @@ export const Container = styled.div<ContainerProps>`
     }
 
     &::placeholder {
-      color: ${props => props.theme.colors.text};
+      color: ${props => props.theme.colors.text2};
     }
   }
 `

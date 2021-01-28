@@ -8,7 +8,6 @@ export const Container = styled.main`
   > h2 {
     font-size: 3.2rem;
     font-weight: bold;
-    color: ${({ theme }) => theme.colors.primary};
     text-align: center;
   }
 
@@ -29,11 +28,12 @@ export const Bar = styled.section`
   > h1 {
     font-size: 2.4rem;
     font-weight: bold;
-    color: ${({ theme }) => theme.colors.primary};
   }
 
   svg {
     font-size: 1.6rem;
+    color: ${({ theme }) => theme.colors.text2};
+    cursor: pointer;
   }
 
   button {
@@ -61,6 +61,10 @@ export const GridCards = styled.div`
   display: grid;
   grid-template-columns: repeat(1, calc(100%));
   grid-gap: 4rem;
+  > h3 {
+    color: ${({ theme }) => theme.colors.text2};
+    grid-column: 1 / -1;
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
     grid-template-columns: repeat(2, calc(100% / 2));
