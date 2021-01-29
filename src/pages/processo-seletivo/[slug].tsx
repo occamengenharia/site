@@ -159,9 +159,7 @@ const Process: React.FC<IProcessSeletive> = props => {
 export default Process
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  console.log('dataPath')
   const { data } = await api.get<IProcessSeletive[]>('/selective-processes')
-  console.log(data)
 
   const paths = data.map(process => {
     return { params: { slug: process.slug } }
@@ -174,12 +172,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async context => {
   const { params } = context
-  console.log('dataStatic')
 
   const { data } = await api.get<IProcessSeletive[]>(
     `/selective-processes?slug=${params.slug}`
   )
-  console.log(data)
 
   return {
     props: data[0]
