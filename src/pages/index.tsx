@@ -24,7 +24,7 @@ import Link from '@/components/Link'
 // import SelectiveProcessForm from '@/components/Modals/SelectiveProcessForm'
 import api from '@/services/api'
 
-interface IPhoto {
+interface IPhotoAPI {
   _id: string
   name: string
   alternativeText: string
@@ -43,7 +43,7 @@ interface IPhoto {
   __v: number
   id: string
 }
-interface IBanners {
+interface IBannerAPI {
   _id: string
   description: string
   reference_location: string
@@ -53,11 +53,11 @@ interface IBanners {
   createdAt: Date
   updatedAt: Date
   __v: number
-  photo: IPhoto
+  photo: IPhotoAPI
   id: string
 }
 
-interface IMember {
+interface IMemberAPI {
   course: string
   active: boolean
   _id: string
@@ -86,11 +86,16 @@ interface IMember {
   createdAt: Date
   updatedAt: Date
   __v: number
-  photo: IPhoto
+  photo: IPhotoAPI
   id: string
 }
 
-interface IResponse {
+// interface IDataAPI {
+//   banners: IBannerAPI[]
+//   members: IMemberAPI[]
+// }
+
+interface IMember {
   id: string
   name: string
   role: string[]
@@ -100,25 +105,25 @@ interface IResponse {
 }
 // type ISerializedPhotos = string[]
 
-interface IBannner {
+interface IBanner {
   id: string
   url: string
   description: string
-  alt?: string
+  alt: string
 }
 interface IData {
   // banners: ISerializedPhotos
-  members: IResponse[]
-  banners: IBannner[]
+  banners: IBanner[]
+  members: IMember[]
 }
 const Home: React.FC<IData> = ({ banners, members }) => {
-  const [member, setMember] = useState({} as IResponse)
+  const [member, setMember] = useState({} as IMember)
   const [count, setCount] = useState(0)
 
-  const [banner, setBanner] = useState({} as IBannner)
+  const [banner, setBanner] = useState({} as IBanner)
   const [countBanner, setCountBanner] = useState(0)
 
-  function handlePanelMembers() {
+  function handlePanelMembers(): void {
     if (count < members.length - 1) {
       setCount(count + 1)
     } else {
@@ -127,7 +132,7 @@ const Home: React.FC<IData> = ({ banners, members }) => {
     setMember(members[count])
   }
 
-  function handlePanelBanners() {
+  function handlePanelBanners(): void {
     if (countBanner < banners.length - 1) {
       setCountBanner(countBanner + 1)
     } else {
@@ -277,7 +282,7 @@ const Home: React.FC<IData> = ({ banners, members }) => {
 }
 
 export const getStaticProps: GetStaticProps<any> = async () => {
-  const { data: dataBanners } = await api.get<IBanners[]>('/banners')
+  const { data: dataBanners } = await api.get<IBannerAPI[]>('/banners')
   // const photos = banners.map(d => d.photo)
   const banners = dataBanners.map(d => {
     return {
@@ -299,7 +304,7 @@ export const getStaticProps: GetStaticProps<any> = async () => {
   //   }
   // })
 
-  const { data: dataMembers } = await api.get<IMember[]>(
+  const { data: dataMembers } = await api.get<IMemberAPI[]>(
     '/members?_sort=positions:asc'
   )
 
