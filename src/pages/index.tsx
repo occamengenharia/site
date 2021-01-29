@@ -98,12 +98,13 @@ interface IResponse {
   link_github: string
   link_linkedin: string
 }
-type ISerializedPhotos = string[]
+// type ISerializedPhotos = string[]
 
 interface IBannner {
   id: string
   url: string
   description: string
+  alt?: string
 }
 interface IData {
   // banners: ISerializedPhotos
@@ -141,7 +142,7 @@ const Home: React.FC<IData> = ({ banners, members }) => {
 
   setTimeout(() => {
     handlePanelBanners()
-  }, 4000)
+  }, 4500)
 
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
   return (
@@ -167,7 +168,11 @@ const Home: React.FC<IData> = ({ banners, members }) => {
           <Header />
           <main>
             <h1>Soluções Simples, Resultados Inovadores</h1>
-            <HomeCarousel image={banner.url} description={banner.description} />
+            <HomeCarousel
+              image={banner.url}
+              description={banner.description}
+              alt={banner.alt}
+            />
           </main>
         </Initial>
         <Actuation>
@@ -276,18 +281,23 @@ export const getStaticProps: GetStaticProps<any> = async () => {
   // const photos = banners.map(d => d.photo)
   const banners = dataBanners.map(d => {
     return {
-      description: d.description || null,
-      ...(d.photo || null)
+      id: d.photo.id,
+      alt: d.alt || null,
+      url: d.photo.url || null,
+      description: d.description || null
+      // ...(d.photo || null)
     }
   })
 
-  const serializedPhotos = banners.map(photo => {
-    return {
-      id: photo.id,
-      url: photo.url,
-      description: photo.description
-    }
-  })
+  console.log(banners)
+  // const serializedPhotos = banners.map(photo => {
+  //   return {
+  //     id: photo.id,
+  //     url: photo.url,
+  //     description: photo.description,
+  //     alt: photo.alt
+  //   }
+  // })
 
   const { data: dataMembers } = await api.get<IMember[]>(
     '/members?_sort=positions:asc'
@@ -309,7 +319,7 @@ export const getStaticProps: GetStaticProps<any> = async () => {
     }
   })
   return {
-    props: { members, banners: serializedPhotos }
+    props: { members, banners }
   }
 }
 
