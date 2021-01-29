@@ -13,7 +13,8 @@ import {
 
 import api from '@/services/api'
 import formatDate from '@/utils/formatDate'
-interface IProcessSeletive {
+
+export interface IProcessSeletive {
   marketing_department_description: string
   interview_start_date: Date
   start_date: Date
@@ -34,7 +35,6 @@ interface IProcessSeletive {
   }
   link_edital: string
 }
-
 const Process: React.FC<IProcessSeletive> = props => {
   return (
     <>
@@ -78,7 +78,11 @@ const Process: React.FC<IProcessSeletive> = props => {
             </DatesContent>
           </Dates>
           <img
-            src={`${process.env.NEXT_PUBLIC_API_URL}${props.photo_disclosure.url}`}
+            src={`${
+              props.photo_disclosure.url.split(
+                'https://cms-occam.herokuapp.com'
+              )[0]
+            }`}
             alt="Foto do Processo Seletivo"
           />
           <Dates className="dates-down">
@@ -155,22 +159,27 @@ const Process: React.FC<IProcessSeletive> = props => {
 export default Process
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  console.log('dataPath')
   const { data } = await api.get<IProcessSeletive[]>('/selective-processes')
+  console.log(data)
 
   const paths = data.map(process => {
     return { params: { slug: process.slug } }
   })
   return {
     paths,
-    fallback: false
+    fallback: true
   }
 }
 
 export const getStaticProps: GetStaticProps = async context => {
   const { params } = context
+  console.log('dataStatic')
+
   const { data } = await api.get<IProcessSeletive[]>(
     `/selective-processes?slug=${params.slug}`
   )
+  console.log(data)
 
   return {
     props: data[0]

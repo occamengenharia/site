@@ -70,7 +70,7 @@ const Home: React.FC<ISerializedPhotos> = props => {
       /> */}
       {/* <SuccessModal
         title="Inscrição Finalizada"
-        subtitle="Enviaremos um email contendo todas as suas informações"
+        subtitle="Enviaremos um e-mail contendo todas as suas informações"
         isOpened={openSuccess}
         setOpen={setOpenSuccess}
         showCloseIcon={false}
@@ -184,19 +184,13 @@ const Home: React.FC<ISerializedPhotos> = props => {
     </>
   )
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await api.get<IBanners[]>('/banners')
-  const photos = data.map(d => d.photo)
-
-  const serializedPhotos = photos.map(photo => {
-    if (photo) {
-      return photo.url
-    }
-  })
+export const getStaticProps: GetStaticProps<{
+  showComponents: boolean
+}> = async () => {
   return {
-    props: { serializedPhotos }
+    props: {
+      showComponents: true
+    }
   }
 }
-
 export default Home

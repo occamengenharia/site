@@ -1,6 +1,5 @@
 import SEO from '@/components/SEO'
 import { Container, MVV, Stories } from '@/styles/pages/About'
-import { useRouter } from 'next/router'
 import { GetStaticProps } from 'next'
 import {
   FaBook,
@@ -70,7 +69,6 @@ const AboutUs: React.FC<IAboutUsProps> = props => {
       year + 2 > nowYear ? (year + 1 > nowYear ? 2015 : 2014) : year + 2
     ])
   }, [year])
-  console.log(yearsIndicators)
 
   return (
     <>
