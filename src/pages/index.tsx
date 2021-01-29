@@ -98,9 +98,8 @@ const Home: React.FC<ISerializedPhotos> = props => {
                 alt="Imagem de uma mão segurando um telefone"
               />
               <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry standard dummy text
-                ever since the 1500s, when an unknown{' '}
+                Desde 2012, a OCCAM Engenharia vem atuando no desenvolvimento
+                web e mobile como serviços prestados
               </p>
             </section>
             <section>
@@ -109,9 +108,9 @@ const Home: React.FC<ISerializedPhotos> = props => {
                 alt="Imagem de um monitor e um tablet representando desenvolvimento web"
               />
               <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industrys standard dummy text
-                ever since the 1500s, when an unknown{' '}
+                Com especialidades em desenvolvimento web, a OCCAM Engenharia
+                disponibiliza seus serviços para desenvolver sites e serviços
+                web para clientes da região
               </p>
             </section>
             <section>
@@ -120,9 +119,9 @@ const Home: React.FC<ISerializedPhotos> = props => {
                 alt="Imagem de uma engrenagem com um botão de reproduzir no centro"
               />
               <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industrys standard dummy text
-                ever since the 1500s, when an unknown{' '}
+                Com instrutores especializados em diversas áreas, a empresa
+                oferece treinamento à novos membros, repassando seus
+                conhecimentos e formando futuros profissionais de qualidade
               </p>
             </section>
 
@@ -147,7 +146,7 @@ const Home: React.FC<ISerializedPhotos> = props => {
           <div>
             <h4>Sobre Nós</h4>
             <span>
-              Desde 2014 trabalhando para desenvolver atividades que possam
+              Desde 2012 trabalhando para desenvolver atividades que possam
               ampliar e melhorar a qualidade de vida da comunidade ao seu redor.
             </span>
             <a href="/sobre-nos">
