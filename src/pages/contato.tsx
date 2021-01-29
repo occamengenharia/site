@@ -21,6 +21,8 @@ import MailErrorModal from '@/components/MailErrorModal'
 import Button from '@/components/Button'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import ErrorModal from '@/components/Modals/ErrorModal'
+import SuccessModal from '@/components/Modals/SuccessModal'
 
 interface IContactFormData {
   name: string
@@ -32,7 +34,7 @@ interface IContactFormData {
 const description = 'OCCAM Engenharia'
 
 const Contact: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpenSuccess, setIsOpenSuccess] = useState(false)
   const [isOpenError, setIsOpenError] = useState(false)
   const [loading, setLoading] = useState(false)
   const formRef = useRef<FormHandles>(null)
@@ -67,11 +69,11 @@ const Contact: React.FC = () => {
         return
       }
 
-      setIsOpen(true)
+      setIsOpenSuccess(true)
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const errors = getValidationErrors(error)
-
+        setIsOpenError(true)
         formRef.current?.setErrors(errors)
       }
     }
@@ -80,8 +82,20 @@ const Contact: React.FC = () => {
   return (
     <>
       <Container>
-        <MailSuccessModal isOpen={isOpen} setIsOpen={setIsOpen} />
-        <MailErrorModal isOpen={isOpenError} setIsOpen={setIsOpenError} />
+        <ErrorModal
+          title="Ocorreu um erro"
+          subtitle="Tente novamente mais tarde"
+          isOpened={isOpenError}
+          setOpen={setIsOpenError}
+        />
+        <SuccessModal
+          title="E-mail enviado com sucesso"
+          subtitle="Verifique sua caixa de e-mail, ele já deve estar lá."
+          isOpened={isOpenSuccess}
+          setOpen={setIsOpenSuccess}
+          showCloseIcon={false}
+          timer={10000}
+        />
         <SEO
           title="Contato"
           image="/LOGO VETOR (BLACK-BG).svg"
