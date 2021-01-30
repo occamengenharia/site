@@ -10,13 +10,14 @@ import {
   InfoProcess,
   Descriptions
 } from '@/styles/pages/Process'
-
+import SelectiveProcessForm from '@/components/Modals/SelectiveProcessForm'
 import api from '@/services/api'
 import formatDate from '@/utils/formatDate'
 import Button from '@/components/Button'
 import Link from '@/components/Link'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import DataRequest from '@/components/Modals/DataRequest'
 
 interface IProcessSeletive {
   marketing_department_description: string
@@ -40,6 +41,8 @@ interface IProcessSeletive {
   link_edital: string
 }
 const Process: React.FC<IProcessSeletive> = props => {
+  const [subscribe, setSubscribe] = useState(false)
+  const [requestData, setRequestData] = useState(false)
   const router = useRouter()
   useEffect(() => {
     const currentDate = new Date()
@@ -49,12 +52,16 @@ const Process: React.FC<IProcessSeletive> = props => {
       router.push('/404')
     }
   }, [])
+  console.log(subscribe)
+
   return (
     <>
       <Head
         title={`Processo ${props.slug}`}
         image={`${process.env.NEXT_PUBLIC_API_URL}${props.photo_disclosure.url}`}
       />
+      <SelectiveProcessForm isOpened={subscribe} setIsOpen={setSubscribe} />
+      <DataRequest isOpened={requestData} setIsOpen={setRequestData} />
       <Container>
         <h1>{props.slogan}</h1>
         <InfoProcess>
@@ -91,11 +98,7 @@ const Process: React.FC<IProcessSeletive> = props => {
             </DatesContent>
           </Dates>
           <img
-            src={`${
-              props.photo_disclosure.url.split(
-                'https://cms-occam.herokuapp.com'
-              )[0]
-            }`}
+            src={props.photo_disclosure.url}
             alt="Foto do Processo Seletivo"
           />
           <Dates className="dates-down">
@@ -121,11 +124,15 @@ const Process: React.FC<IProcessSeletive> = props => {
         </InfoProcess>
 
         <Subscribe>
-          <Button icon={FaUserPlus} text="Fazer inscrição" />
+          <Button
+            icon={FaUserPlus}
+            text="Fazer inscrição"
+            onClick={() => setSubscribe(true)}
+          />
 
-          <a href={props.link_edital}>
+          <label onClick={() => setRequestData(true)}>
             Recuperar meus dados do processo seletivo
-          </a>
+          </label>
         </Subscribe>
 
         <Descriptions>
@@ -156,7 +163,7 @@ const Process: React.FC<IProcessSeletive> = props => {
             {props.marketing_department_description}
           </p>
         </Descriptions>
-        <Link text="Edital" icon={FaFileAlt} href="#" />
+        <Link text="Edital" icon={FaFileAlt} href={props.link_edital} />
       </Container>
     </>
   )
