@@ -18,48 +18,138 @@ import Header from '@/components/Header'
 import MembersHome from '@/components/MembersHome'
 import HomeCarousel from '@/components/HomeCarousel'
 import Link from '@/components/Link'
-import DataRequest from '@/components/Modals/DataRequest'
-import ErrorModal from '@/components/Modals/ErrorModal'
-import SuccessModal from '@/components/Modals/SuccessModal'
-import SelectiveProcessForm from '@/components/Modals/SelectiveProcessForm'
+// import DataRequest from '@/components/Modals/DataRequest'
+// import ErrorModal from '@/components/Modals/ErrorModal'
+// import SuccessModal from '@/components/Modals/SuccessModal'
+// import SelectiveProcessForm from '@/components/Modals/SelectiveProcessForm'
 import api from '@/services/api'
 
-interface IBanners {
+interface IPhotoAPI {
   _id: string
+  name: string
+  alternativeText: string
+  caption: string
+  hash: string
+  ext: string
+  mime: string
+  size: number
+  url: string
+  provider: string
+  width: number
+  height: number
+  related: string[]
+  createdAt: Date
+  updatedAt: Date
+  __v: number
+  id: string
+}
+interface IBannerAPI {
+  _id: string
+  description: string
   reference_location: string
+  href: string
+  alt: string
   published_at: Date
   createdAt: Date
   updatedAt: Date
   __v: number
-  photo: {
-    _id: string
-    name: string
-    alternativeText: string
-    caption: string
-    hash: string
-    ext: string
-    mime: string
-    size: number
-    url: string
-    provider: string
-    width: number
-    height: number
-    related: string[]
-    createdAt: Date
-    updatedAt: Date
-    __v: number
-    id: string
-  }
+  photo: IPhotoAPI
   id: string
 }
 
-interface ISerializedPhotos {
-  serializedPhotos: string[]
+interface IMemberAPI {
+  course: string
+  active: boolean
+  _id: string
+  link_linkedin: string
+  link_github: string
+  name: string
+  slug: string
+  output_date: Date
+  phone: string
+  birth_date: Date
+  ra: string
+  address: string
+  entry_date: Date
+  email: string
+  published_at: Date
+  positions: {
+    department: string
+    job: string
+    _id: string
+    tasks_description: string
+    start_date_position: Date
+    end_date_position: string
+    __v: number
+    id: string
+  }
+  createdAt: Date
+  updatedAt: Date
+  __v: number
+  photo: IPhotoAPI
+  id: string
 }
 
-const Home: React.FC<ISerializedPhotos> = props => {
-  const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
+// interface IDataAPI {
+//   banners: IBannerAPI[]
+//   members: IMemberAPI[]
+// }
 
+interface IMember {
+  id: string
+  name: string
+  role: string[]
+  avatar: string
+  link_github: string
+  link_linkedin: string
+}
+// type ISerializedPhotos = string[]
+
+interface IBanner {
+  id: string
+  url: string
+  description: string
+  alt: string
+}
+interface IData {
+  // banners: ISerializedPhotos
+  banners: IBanner[]
+  members: IMember[]
+}
+const Home: React.FC<IData> = ({ banners, members }) => {
+  const [member, setMember] = useState({} as IMember)
+  const [count, setCount] = useState(0)
+
+  const [banner, setBanner] = useState({} as IBanner)
+  const [countBanner, setCountBanner] = useState(0)
+
+  function handlePanelMembers(): void {
+    if (count < members.length - 1) {
+      setCount(count + 1)
+    } else {
+      setCount(0)
+    }
+    setMember(members[count])
+  }
+
+  function handlePanelBanners(): void {
+    if (countBanner < banners.length - 1) {
+      setCountBanner(countBanner + 1)
+    } else {
+      setCountBanner(0)
+    }
+    setBanner(banners[countBanner])
+  }
+
+  setTimeout(() => {
+    handlePanelMembers()
+  }, 3500)
+
+  setTimeout(() => {
+    handlePanelBanners()
+  }, 4500)
+
+  const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
   return (
     <>
       <SEO title="Home" description={description} image="/occam.png" />
@@ -84,8 +174,9 @@ const Home: React.FC<ISerializedPhotos> = props => {
           <main>
             <h1>Soluções Simples, Resultados Inovadores</h1>
             <HomeCarousel
-              image="animacao.gif"
-              description="O novo site da OCCAM está aqui!"
+              image={banner.url}
+              description={banner.description}
+              alt={banner.alt}
             />
           </main>
         </Initial>
@@ -132,10 +223,14 @@ const Home: React.FC<ISerializedPhotos> = props => {
         <Members>
           <h3>Nossa Equipe</h3>
           <MembersHome
-            name="Gabriel Prando"
-            role="Diretor de Projetos"
-            image="/prando.png"
+            key={member.id}
+            name={member.name}
+            role={member.name}
+            image={member.avatar}
+            github={member.link_github}
+            linkedin={member.link_linkedin}
           />
+
           <a href="/membros">
             Histórico de Membros
             <FaCaretRight />
@@ -185,17 +280,50 @@ const Home: React.FC<ISerializedPhotos> = props => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await api.get<IBanners[]>('/banners')
-  const photos = data.map(d => d.photo)
+export const getStaticProps: GetStaticProps<any> = async () => {
+  const { data: dataBanners } = await api.get<IBannerAPI[]>('/banners')
+  // const photos = banners.map(d => d.photo)
+  const banners = dataBanners.map(d => {
+    return {
+      id: d.photo.id,
+      alt: d.alt || null,
+      url: d.photo.url || null,
+      description: d.description || null
+      // ...(d.photo || null)
+    }
+  })
 
-  const serializedPhotos = photos.map(photo => {
-    if (photo) {
-      return photo.url
+  console.log(banners)
+  // const serializedPhotos = banners.map(photo => {
+  //   return {
+  //     id: photo.id,
+  //     url: photo.url,
+  //     description: photo.description,
+  //     alt: photo.alt
+  //   }
+  // })
+
+  const { data: dataMembers } = await api.get<IMemberAPI[]>(
+    '/members?_sort=positions:asc'
+  )
+
+  const members = dataMembers.map(m => {
+    let avatar = null
+    if (m.photo) {
+      avatar = m.photo.url
+    }
+
+    return {
+      id: m.id,
+      name: m.name,
+      role: m.positions,
+      avatar,
+      link_github: m.link_github || null,
+      link_linkedin: m.link_linkedin || null
     }
   })
   return {
-    props: { serializedPhotos }
+    props: { members, banners }
   }
 }
 
