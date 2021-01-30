@@ -157,6 +157,7 @@ export const getStaticProps: GetStaticProps = async context => {
     }
   })
   return {
-    props: stories
+    props: stories,
+    revalidate: 15552000
   }
 }

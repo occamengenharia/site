@@ -13,16 +13,20 @@ import {
 
 import api from '@/services/api'
 import formatDate from '@/utils/formatDate'
+import Button from '@/components/Button'
+import Link from '@/components/Link'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
-export interface IProcessSeletive {
+interface IProcessSeletive {
   marketing_department_description: string
   interview_start_date: Date
   start_date: Date
+  end_date: Date
   slug: string
   collective_activity_date: Date
   opening_subscriptions: Date
   closing_subscriptions: Date
-  end_date: Date
   finance_department_description: string
   project_department_description: string
   legal_department_description: string
@@ -36,6 +40,15 @@ export interface IProcessSeletive {
   link_edital: string
 }
 const Process: React.FC<IProcessSeletive> = props => {
+  const router = useRouter()
+  useEffect(() => {
+    const currentDate = new Date()
+    const openingDate = new Date(`${props.start_date} 00:00`)
+    const closingDate = new Date(`${props.end_date} 00:00`)
+    if (!(currentDate <= closingDate && currentDate >= openingDate)) {
+      router.push('/404')
+    }
+  }, [])
   return (
     <>
       <Head
@@ -108,10 +121,7 @@ const Process: React.FC<IProcessSeletive> = props => {
         </InfoProcess>
 
         <Subscribe>
-          <button className="button-and-link">
-            <FaUserPlus />
-            <span>Fazer inscrição</span>
-          </button>
+          <Button icon={FaUserPlus} text="Fazer inscrição" />
 
           <a href={props.link_edital}>
             Recuperar meus dados do processo seletivo
@@ -146,18 +156,11 @@ const Process: React.FC<IProcessSeletive> = props => {
             {props.marketing_department_description}
           </p>
         </Descriptions>
-
-        <a className="button-and-link" href="">
-          <FaFileAlt />
-          <span>Edital</span>
-        </a>
+        <Link text="Edital" icon={FaFileAlt} href="#" />
       </Container>
     </>
   )
 }
-
-export default Process
-
 export const getStaticPaths: GetStaticPaths = async () => {
   const { data } = await api.get<IProcessSeletive[]>('/selective-processes')
 
@@ -166,7 +169,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   })
   return {
     paths,
-    fallback: true
+    fallback: false
   }
 }
 
@@ -178,7 +181,9 @@ export const getStaticProps: GetStaticProps = async context => {
   )
 
   return {
-    props: data[0]
-    // revalidate: a cada 3 meses por
+    props: data[0],
+    revalidate: 3600
   }
 }
+
+export default Process
