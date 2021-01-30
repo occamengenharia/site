@@ -11,7 +11,9 @@ import {
 import { useCallback, useEffect, useState } from 'react'
 import api from '@/services/api'
 interface IStoriesRequest {
-  photo: any
+  photo: {
+    url: string
+  }
   _id: string
   year: number
   description: string
@@ -41,7 +43,9 @@ const AboutUs: React.FC<IAboutUsProps> = props => {
   const nowYear = new Date().getFullYear()
   const [year, setYear] = useState(nowYear)
   const [yearsIndicators, setYearsIndicators] = useState<number[]>([])
-  const [currentStorie, setCurrentStorie] = useState({} as IStories)
+  const [currentStorie, setCurrentStorie] = useState(
+    props[`${nowYear}`] ? props[`${nowYear}`] : ({} as IStories)
+  )
 
   const handleMinus = useCallback(() => {
     if (year <= 2014) {
@@ -69,6 +73,7 @@ const AboutUs: React.FC<IAboutUsProps> = props => {
       year + 2 > nowYear ? (year + 1 > nowYear ? 2015 : 2014) : year + 2
     ])
   }, [year])
+  console.log(props['2020'].imgURL)
 
   return (
     <>
@@ -113,18 +118,30 @@ const AboutUs: React.FC<IAboutUsProps> = props => {
           <Stories>
             <section>
               <main>
+                {console.log(currentStorie.year - 1)}
+
+                {props[currentStorie.year - 1] && (
+                  <img
+                    src={props[currentStorie.year - 1].imgURL}
+                    alt="Imagem sobre a gestão da empresa naquele ano"
+                    className="img-left"
+                    onClick={handleMinus}
+                  />
+                )}
                 <img
-                  src={`${process.env.NEXT_PUBLIC_API_URL}${currentStorie.imgURL}`}
+                  src={currentStorie.imgURL}
                   alt="Imagem sobre a gestão da empresa naquele ano"
+                  className="img-main"
                 />
-                <img
-                  src={`${process.env.NEXT_PUBLIC_API_URL}${currentStorie.imgURL}`}
-                  alt="Imagem sobre a gestão da empresa naquele ano"
-                />
-                <img
-                  src={`${process.env.NEXT_PUBLIC_API_URL}${currentStorie.imgURL}`}
-                  alt="Imagem sobre a gestão da empresa naquele ano"
-                />
+                {props[currentStorie.year + 1] && (
+                  <img
+                    src={props[currentStorie.year + 1].imgURL}
+                    alt="Imagem sobre a gestão da empresa naquele ano"
+                    className="img-right"
+                    onClick={handlePlus}
+                  />
+                )}
+
                 <p>{currentStorie.description}</p>
               </main>
               <aside>
@@ -151,7 +168,7 @@ export const getStaticProps: GetStaticProps = async context => {
   const stories = {} as IStories
   data.map(storie => {
     stories[`${storie.year}`] = {
-      imgURL: storie.photo.url ? storie.photo.url : '#',
+      imgURL: storie.photo[0].url || '',
       description: storie.description,
       year: storie.year
     }

@@ -162,8 +162,8 @@ export const Stories = styled.div`
         width: 100%;
         object-fit: cover;
         height: 22rem;
-        :nth-of-type(1),
-        :nth-of-type(3) {
+        grid-row: 1;
+        &:not(.img-main) {
           display: none;
         }
       }
@@ -238,21 +238,22 @@ export const Stories = styled.div`
           grid-row: 1;
           width: 100%;
           height: min(18vw, 22rem);
-          :nth-of-type(1),
-          :nth-of-type(3) {
+          &.img-left,
+          &.img-right {
             display: initial;
             opacity: 0.5;
             filter: grayscale(60%);
-            height: min(14vw, 20rem);
+            height: min(12vw, 20rem);
             align-self: center;
+            cursor: pointer;
           }
-          :nth-of-type(1) {
+          &.img-left {
             grid-column: 1;
           }
-          :nth-of-type(2) {
+          &.img-main {
             grid-column: 2;
           }
-          :nth-of-type(3) {
+          &.img-right {
             grid-column: 3;
           }
         }
