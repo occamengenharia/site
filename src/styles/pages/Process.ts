@@ -153,7 +153,7 @@ export const Subscribe = styled.aside`
     width: 300px;
     align-self: flex-end;
   }
-  a {
+  label {
     cursor: pointer;
 
     font-size: 1.2rem;
@@ -167,7 +167,7 @@ export const Subscribe = styled.aside`
     button {
       align-self: flex-end;
     }
-    a {
+    label {
       align-self: flex-end;
     }
   }
