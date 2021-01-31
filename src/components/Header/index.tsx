@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { useTheme } from '@/hooks/theme'
 import { CgMoon, CgSun } from 'react-icons/cg'
 import { Main, HeaderContent, Burguer } from './styles'
-import { GetStaticProps } from 'next'
 import api from '@/services/api'
 interface ISelectiveProcess {
   selectiveProcessActive: boolean
@@ -104,7 +103,7 @@ const Header: React.FC = () => {
             </div>
           </Burguer>
           <section>
-            <Link href="/">
+            <Link href="/servicos">
               <a>Áreas de atuação</a>
             </Link>
             <Link href="/membros">

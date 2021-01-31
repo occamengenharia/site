@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { GetStaticProps } from 'next'
+import NextLink from 'next/link'
 import {
   Page,
   Initial,
@@ -18,11 +19,13 @@ import Header from '@/components/Header'
 import MembersHome from '@/components/MembersHome'
 import HomeCarousel from '@/components/HomeCarousel'
 import Link from '@/components/Link'
+
 // import DataRequest from '@/components/Modals/DataRequest'
 // import ErrorModal from '@/components/Modals/ErrorModal'
 // import SuccessModal from '@/components/Modals/SuccessModal'
 // import SelectiveProcessForm from '@/components/Modals/SelectiveProcessForm'
 import api from '@/services/api'
+import { useRouter } from 'next/router'
 
 interface IPhotoAPI {
   _id: string
@@ -74,45 +77,29 @@ interface IMemberAPI {
   email: string
   published_at: Date
   positions: {
-    department: string
     job: string
-    _id: string
-    tasks_description: string
     start_date_position: Date
     end_date_position: string
-    __v: number
     id: string
-  }
+  }[]
   createdAt: Date
   updatedAt: Date
   __v: number
   photo: IPhotoAPI
   id: string
 }
-
-// interface IDataAPI {
-//   banners: IBannerAPI[]
-//   members: IMemberAPI[]
-// }
-
-interface IMember {
+export interface IMember {
   id: string
   name: string
   role: {
-    department: string
     job: string
-    _id: string
-    tasks_description: string
     start_date_position: Date
     end_date_position: string
-    __v: number
-    id: string
   }
   avatar: string
   link_github: string
   link_linkedin: string
 }
-// type ISerializedPhotos = string[]
 
 interface IBanner {
   id: string
@@ -127,37 +114,10 @@ interface IPropsHome {
   banners: IBanner[]
 }
 const Home: React.FC<IPropsHome> = ({ banners, members }) => {
-  const [member, setMember] = useState({} as IMember)
-  const [count, setCount] = useState(0)
-
-  const [banner, setBanner] = useState({} as IBanner)
-  const [countBanner, setCountBanner] = useState(0)
-
-  function handlePanelMembers(): void {
-    if (count < members.length - 1) {
-      setCount(count + 1)
-    } else {
-      setCount(0)
-    }
-    setMember(members[count])
+  const router = useRouter()
+  function navigateToContact() {
+    router.push('/contato')
   }
-
-  function handlePanelBanners(): void {
-    if (countBanner < banners.length - 1) {
-      setCountBanner(countBanner + 1)
-    } else {
-      setCountBanner(0)
-    }
-    setBanner(banners[countBanner])
-  }
-
-  setTimeout(() => {
-    handlePanelMembers()
-  }, 3500)
-
-  setTimeout(() => {
-    handlePanelBanners()
-  }, 4500)
 
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
   return (
@@ -222,7 +182,11 @@ const Home: React.FC<IPropsHome> = ({ banners, members }) => {
               </p>
             </section>
 
-            <Link icon={BsFillQuestionCircleFill} href="" text="Saiba mais" />
+            <Link
+              icon={BsFillQuestionCircleFill}
+              href="/servicos"
+              text="Saiba mais"
+            />
           </main>
         </Actuation>
 
@@ -230,10 +194,12 @@ const Home: React.FC<IPropsHome> = ({ banners, members }) => {
           <h3>Nossa Equipe</h3>
           <MembersHome members={members} />
 
-          <a href="/membros">
-            Histórico de Membros
-            <FaCaretRight />
-          </a>
+          <NextLink href="/membros">
+            <a>
+              Histórico de Membros
+              <FaCaretRight />
+            </a>
+          </NextLink>
         </Members>
 
         <About>
@@ -243,10 +209,13 @@ const Home: React.FC<IPropsHome> = ({ banners, members }) => {
               Desde 2012 trabalhando para desenvolver atividades que possam
               ampliar e melhorar a qualidade de vida da comunidade ao seu redor.
             </span>
-            <a href="/sobre-nos">
-              Saiba Mais
-              <FaCaretRight />
-            </a>
+
+            <NextLink href="/sobre-nos">
+              <a>
+                Saiba Mais
+                <FaCaretRight />
+              </a>
+            </NextLink>
           </div>
           <aside>
             <img src="/empresa.svg" alt="mãos sobre um computador" />
@@ -259,7 +228,7 @@ const Home: React.FC<IPropsHome> = ({ banners, members }) => {
             <div>
               <h1>Nossos parceiros</h1>
 
-              <button>
+              <button onClick={navigateToContact}>
                 Torne-se nosso parceiro <FaCaretRight />
               </button>
             </div>
@@ -280,37 +249,46 @@ const Home: React.FC<IPropsHome> = ({ banners, members }) => {
 }
 
 export const getStaticProps: GetStaticProps<IPropsHome> = async () => {
+  const year = new Date().getFullYear()
   const { data: dataBanners } = await api.get<IBannerAPI[]>('/banners')
-  // const photos = banners.map(d => d.photo)
   const banners = dataBanners.map(d => {
     return {
       id: d.photo.id || 'a',
       alt: d.alt || 'a',
       url: d.photo.url || 'a',
       description: d.description || 'a'
-      // ...(d.photo || null)
     } as IBanner
   })
 
   const { data: dataMembers } = await api.get<IMemberAPI[]>(
-    '/members?_sort=positions:asc'
+    '/members?active=true'
   )
 
-  const members: IMember[] = dataMembers.map(m => {
-    let avatar = ''
-    if (m.photo) {
-      avatar = m.photo.url
-    }
+  const members: IMember[] = []
 
-    return {
-      id: m.id,
-      name: m.name,
-      role: m.positions,
-      avatar,
-      link_github: m.link_github || '',
-      link_linkedin: m.link_linkedin || ''
+  dataMembers.filter(member => {
+    const positionsOfYear = member.positions.filter(
+      position =>
+        new Date(position.start_date_position).getFullYear() === year &&
+        position.job.toLowerCase().match(/diretor/gi)
+    )
+    if (positionsOfYear.length <= 0) {
+      return false
     }
+    if (
+      new Date(positionsOfYear[0].start_date_position).getFullYear() === year
+    ) {
+      members.push({
+        id: member.id,
+        name: member.name,
+        role: positionsOfYear[0],
+        avatar: member.photo.url || '/404/caramelo.png',
+        link_github: member.link_github || '',
+        link_linkedin: member.link_linkedin || ''
+      } as IMember)
+    } else return false
   })
+
   return {
     props: { members, banners, showComponents: true }
   }

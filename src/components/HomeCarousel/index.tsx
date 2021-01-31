@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaCaretLeft, FaCaretRight } from 'react-icons/fa'
 import { Container } from './styles'
 
@@ -33,6 +33,16 @@ const HomeCarousel: React.FC<HomeCarouselProps> = ({ banners }) => {
     }
     setCurrentBanner(banners[countBanner])
   }
+
+  useEffect(() => {
+    if (banners[0]) {
+      setCurrentBanner(banners[0])
+    }
+  }, [])
+
+  setTimeout(() => {
+    handleNextBanner()
+  }, 4500)
 
   return (
     <Container>
