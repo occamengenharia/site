@@ -48,24 +48,26 @@ interface IFormData {
 
 interface DataRequestProps {
   isOpened: boolean
+  setIsOpen(isOpened: boolean): void
 }
 
-const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
+const SelectiveProcessForm: React.FC<DataRequestProps> = ({
+  isOpened,
+  setIsOpen
+}) => {
   const formRef = useRef(null)
-
-  const [openForm, setOpenForm] = useState<boolean>(isOpened)
   const [openSuccess, setOpenSuccess] = useState<boolean>(false)
   const [openError, setOpenError] = useState<boolean>(false)
   const [departments, setDepartments] = useState<string[]>([])
   const [inputVisible, setInputVisible] = useState<boolean>(false)
 
   function handleCloseModal() {
-    setOpenForm(false)
+    setIsOpen(false)
     setOpenSuccess(false)
   }
 
   function handleOpenSuccess() {
-    setOpenForm(false)
+    setIsOpen(false)
     setOpenSuccess(true)
 
     setTimeout(() => {
@@ -167,7 +169,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
 
         formRef.current?.setErrors(errors)
       } else {
-        setOpenForm(false)
+        setIsOpen(false)
         setOpenError(true)
       }
     }
@@ -176,7 +178,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({ isOpened }) => {
   return (
     <>
       <Modal
-        open={openForm}
+        open={isOpened}
         onClose={handleCloseModal}
         center
         showCloseIcon={false}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { GetStaticProps } from 'next'
 import {
   Page,
@@ -10,7 +10,7 @@ import {
   Marquee
 } from '@/styles/pages/Home'
 import { BsFillQuestionCircleFill } from 'react-icons/bs'
-import { FaCaretRight, FaCaretLeft } from 'react-icons/fa'
+import { FaCaretRight } from 'react-icons/fa'
 
 import { Footer } from '@/components'
 import SEO from '@/components/SEO'
@@ -98,7 +98,16 @@ interface IMemberAPI {
 interface IMember {
   id: string
   name: string
-  role: string[]
+  role: {
+    department: string
+    job: string
+    _id: string
+    tasks_description: string
+    start_date_position: Date
+    end_date_position: string
+    __v: number
+    id: string
+  }
   avatar: string
   link_github: string
   link_linkedin: string
@@ -111,12 +120,13 @@ interface IBanner {
   description: string
   alt: string
 }
-interface IData {
-  // banners: ISerializedPhotos
-  banners: IBanner[]
+
+interface IPropsHome {
+  showComponents: boolean
   members: IMember[]
+  banners: IBanner[]
 }
-const Home: React.FC<IData> = ({ banners, members }) => {
+const Home: React.FC<IPropsHome> = ({ banners, members }) => {
   const [member, setMember] = useState({} as IMember)
   const [count, setCount] = useState(0)
 
@@ -160,7 +170,7 @@ const Home: React.FC<IData> = ({ banners, members }) => {
       /> */}
       {/* <SuccessModal
         title="Inscrição Finalizada"
-        subtitle="Enviaremos um email contendo todas as suas informações"
+        subtitle="Enviaremos um e-mail contendo todas as suas informações"
         isOpened={openSuccess}
         setOpen={setOpenSuccess}
         showCloseIcon={false}
@@ -280,35 +290,25 @@ const Home: React.FC<IData> = ({ banners, members }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<any> = async () => {
+export const getStaticProps: GetStaticProps<IPropsHome> = async () => {
   const { data: dataBanners } = await api.get<IBannerAPI[]>('/banners')
   // const photos = banners.map(d => d.photo)
   const banners = dataBanners.map(d => {
     return {
-      id: d.photo.id,
-      alt: d.alt || null,
-      url: d.photo.url || null,
-      description: d.description || null
+      id: d.photo.id || 'a',
+      alt: d.alt || 'a',
+      url: d.photo.url || 'a',
+      description: d.description || 'a'
       // ...(d.photo || null)
-    }
+    } as IBanner
   })
-
-  console.log(banners)
-  // const serializedPhotos = banners.map(photo => {
-  //   return {
-  //     id: photo.id,
-  //     url: photo.url,
-  //     description: photo.description,
-  //     alt: photo.alt
-  //   }
-  // })
 
   const { data: dataMembers } = await api.get<IMemberAPI[]>(
     '/members?_sort=positions:asc'
   )
 
-  const members = dataMembers.map(m => {
-    let avatar = null
+  const members: IMember[] = dataMembers.map(m => {
+    let avatar = ''
     if (m.photo) {
       avatar = m.photo.url
     }
@@ -318,13 +318,12 @@ export const getStaticProps: GetStaticProps<any> = async () => {
       name: m.name,
       role: m.positions,
       avatar,
-      link_github: m.link_github || null,
-      link_linkedin: m.link_linkedin || null
+      link_github: m.link_github || '',
+      link_linkedin: m.link_linkedin || ''
     }
   })
   return {
-    props: { members, banners }
+    props: { members, banners, showComponents: true }
   }
 }
-
 export default Home

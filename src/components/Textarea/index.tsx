@@ -10,7 +10,7 @@ import React, {
 import { FiAlertCircle } from 'react-icons/fi'
 import { useField } from '@unform/core'
 
-import { Container, BodyTextarea, Error } from './styles'
+import { Container, Error } from './styles'
 
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   name: string

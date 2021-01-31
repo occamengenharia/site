@@ -10,18 +10,24 @@ import {
   InfoProcess,
   Descriptions
 } from '@/styles/pages/Process'
-
+import SelectiveProcessForm from '@/components/Modals/SelectiveProcessForm'
 import api from '@/services/api'
 import formatDate from '@/utils/formatDate'
+import Button from '@/components/Button'
+import Link from '@/components/Link'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import DataRequest from '@/components/Modals/DataRequest'
+
 interface IProcessSeletive {
   marketing_department_description: string
   interview_start_date: Date
   start_date: Date
+  end_date: Date
   slug: string
   collective_activity_date: Date
   opening_subscriptions: Date
   closing_subscriptions: Date
-  end_date: Date
   finance_department_description: string
   project_department_description: string
   legal_department_description: string
@@ -34,14 +40,28 @@ interface IProcessSeletive {
   }
   link_edital: string
 }
-
 const Process: React.FC<IProcessSeletive> = props => {
+  const [subscribe, setSubscribe] = useState(false)
+  const [requestData, setRequestData] = useState(false)
+  const router = useRouter()
+  useEffect(() => {
+    const currentDate = new Date()
+    const openingDate = new Date(`${props.start_date} 00:00`)
+    const closingDate = new Date(`${props.end_date} 00:00`)
+    if (!(currentDate <= closingDate && currentDate >= openingDate)) {
+      router.push('/404')
+    }
+  }, [])
+  console.log(subscribe)
+
   return (
     <>
       <Head
         title={`Processo ${props.slug}`}
         image={`${process.env.NEXT_PUBLIC_API_URL}${props.photo_disclosure.url}`}
       />
+      <SelectiveProcessForm isOpened={subscribe} setIsOpen={setSubscribe} />
+      <DataRequest isOpened={requestData} setIsOpen={setRequestData} />
       <Container>
         <h1>{props.slogan}</h1>
         <InfoProcess>
@@ -78,7 +98,7 @@ const Process: React.FC<IProcessSeletive> = props => {
             </DatesContent>
           </Dates>
           <img
-            src={`${process.env.NEXT_PUBLIC_API_URL}${props.photo_disclosure.url}`}
+            src={props.photo_disclosure.url}
             alt="Foto do Processo Seletivo"
           />
           <Dates className="dates-down">
@@ -104,14 +124,15 @@ const Process: React.FC<IProcessSeletive> = props => {
         </InfoProcess>
 
         <Subscribe>
-          <button className="button-and-link">
-            <FaUserPlus />
-            <span>Fazer inscrição</span>
-          </button>
+          <Button
+            icon={FaUserPlus}
+            text="Fazer inscrição"
+            onClick={() => setSubscribe(true)}
+          />
 
-          <a href={props.link_edital}>
+          <label onClick={() => setRequestData(true)}>
             Recuperar meus dados do processo seletivo
-          </a>
+          </label>
         </Subscribe>
 
         <Descriptions>
@@ -142,18 +163,11 @@ const Process: React.FC<IProcessSeletive> = props => {
             {props.marketing_department_description}
           </p>
         </Descriptions>
-
-        <a className="button-and-link" href="">
-          <FaFileAlt />
-          <span>Edital</span>
-        </a>
+        <Link text="Edital" icon={FaFileAlt} href={props.link_edital} />
       </Container>
     </>
   )
 }
-
-export default Process
-
 export const getStaticPaths: GetStaticPaths = async () => {
   const { data } = await api.get<IProcessSeletive[]>('/selective-processes')
 
@@ -168,12 +182,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async context => {
   const { params } = context
+
   const { data } = await api.get<IProcessSeletive[]>(
     `/selective-processes?slug=${params.slug}`
   )
 
   return {
-    props: data[0]
-    // revalidate: a cada 3 meses por
+    props: data[0],
+    revalidate: 3600
   }
 }
+
+export default Process

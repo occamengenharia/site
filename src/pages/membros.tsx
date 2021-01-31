@@ -146,6 +146,7 @@ export const getStaticProps: GetStaticProps = async context => {
     i++
   }
   return {
-    props: membersSerealized
+    props: membersSerealized,
+    revalidate: 2592000
   }
 }

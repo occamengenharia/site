@@ -4,7 +4,7 @@ export const MemberStyle = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 103.2rem;
+  width: 100%;
 
   background-color: ${props => props.theme.colors.backgorudElevation};
   box-shadow: 0 0 0.8rem 0 rgba(0, 0, 0, 0.25);

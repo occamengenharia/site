@@ -1,7 +1,6 @@
 import { IconBaseProps } from 'react-icons'
 import { Main } from './styles'
 import { ButtonHTMLAttributes } from 'react'
-import LinkNext, { LinkProps } from 'next/link'
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string
@@ -13,9 +12,9 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
  * @param icon exemple: icon={<FaIconExemple/>}
  * @param children recept the button text
  */
-const Button: React.FC<Props> = ({ icon: Icon, text, children }) => {
+const Button: React.FC<Props> = ({ icon: Icon, text, children, ...rest }) => {
   return (
-    <Main>
+    <Main {...rest}>
       {Icon && <Icon />}
       <span>{text}</span>
       {children}
