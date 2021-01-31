@@ -1,24 +1,46 @@
+import { useState } from 'react'
 import { FaCaretLeft, FaCaretRight } from 'react-icons/fa'
 import { Container } from './styles'
 
-interface HomeCarouselProps {
-  image: string
+interface IBanner {
+  id: string
+  url: string
   description: string
   alt: string
 }
 
-const HomeCarousel: React.FC<HomeCarouselProps> = ({
-  image,
-  description,
-  alt
-}) => {
+interface HomeCarouselProps {
+  banners: IBanner[]
+}
+
+const HomeCarousel: React.FC<HomeCarouselProps> = ({ banners }) => {
+  const [currentBanner, setCurrentBanner] = useState({} as IBanner)
+  const [countBanner, setCountBanner] = useState(0)
+
+  function handlePreviousBanner(): void {
+    if (countBanner < banners.length - 1) {
+      setCountBanner(countBanner + 1)
+    } else {
+      setCountBanner(0)
+    }
+    setCurrentBanner(banners[countBanner])
+  }
+  function handleNextBanner(): void {
+    if (countBanner >= banners.length - 1) {
+      setCountBanner(0)
+    } else {
+      setCountBanner(countBanner + 1)
+    }
+    setCurrentBanner(banners[countBanner])
+  }
+
   return (
     <Container>
-      <img src={image} alt={alt} />
+      <img src={currentBanner.url} alt={currentBanner.alt} />
       <div>
-        <FaCaretLeft className="arrows" />
-        <span>{description}</span>
-        <FaCaretRight className="arrows" />
+        <FaCaretLeft className="arrows" onClick={handlePreviousBanner} />
+        <span>{currentBanner.description}</span>
+        <FaCaretRight className="arrows" onClick={handleNextBanner} />
       </div>
     </Container>
   )

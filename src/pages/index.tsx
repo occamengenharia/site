@@ -117,38 +117,6 @@ interface IData {
   members: IMember[]
 }
 const Home: React.FC<IData> = ({ banners, members }) => {
-  const [member, setMember] = useState({} as IMember)
-  const [count, setCount] = useState(0)
-
-  const [banner, setBanner] = useState({} as IBanner)
-  const [countBanner, setCountBanner] = useState(0)
-
-  function handlePanelMembers(): void {
-    if (count < members.length - 1) {
-      setCount(count + 1)
-    } else {
-      setCount(0)
-    }
-    setMember(members[count])
-  }
-
-  function handlePanelBanners(): void {
-    if (countBanner < banners.length - 1) {
-      setCountBanner(countBanner + 1)
-    } else {
-      setCountBanner(0)
-    }
-    setBanner(banners[countBanner])
-  }
-
-  setTimeout(() => {
-    handlePanelMembers()
-  }, 3500)
-
-  setTimeout(() => {
-    handlePanelBanners()
-  }, 4500)
-
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
   return (
     <>
@@ -173,11 +141,7 @@ const Home: React.FC<IData> = ({ banners, members }) => {
           <Header />
           <main>
             <h1>Soluções Simples, Resultados Inovadores</h1>
-            <HomeCarousel
-              image={banner.url}
-              description={banner.description}
-              alt={banner.alt}
-            />
+            <HomeCarousel banners={banners} />
           </main>
         </Initial>
         <Actuation>
@@ -222,14 +186,7 @@ const Home: React.FC<IData> = ({ banners, members }) => {
 
         <Members>
           <h3>Nossa Equipe</h3>
-          <MembersHome
-            key={member.id}
-            name={member.name}
-            role={member.name}
-            image={member.avatar}
-            github={member.link_github}
-            linkedin={member.link_linkedin}
-          />
+          <MembersHome members={members} />
 
           <a href="/membros">
             Histórico de Membros
