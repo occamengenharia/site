@@ -1,3 +1,5 @@
+import { Main as Button } from '@/components/Button/styles.ts'
+import { Main as Link } from '@/components/Link/styles.ts'
 import styled from 'styled-components'
 
 export const Container = styled.main`
@@ -6,11 +8,13 @@ export const Container = styled.main`
   align-items: center;
 
   padding: 0 1.6rem;
-
+  ${Link} {
+    width: 300px;
+    align-self: center;
+  }
   h1 {
+    text-transform: uppercase;
     font-size: 3.2rem;
-    color: ${({ theme }) => theme.colors.primary};
-
     margin-top: 4.8rem;
   }
 
@@ -115,7 +119,8 @@ export const DatesContent = styled.aside`
 
   margin-bottom: 1.6rem;
   span {
-    color: ${({ theme }) => theme.colors.primary};
+    text-align: center;
+    padding: 0.6rem 0;
     font-size: 1.6rem;
     font-weight: normal;
   }
@@ -144,10 +149,11 @@ export const Subscribe = styled.aside`
   flex-direction: column;
   justify-content: center;
 
-  button {
-    align-self: center;
+  ${Button} {
+    width: 300px;
+    align-self: flex-end;
   }
-  a {
+  label {
     cursor: pointer;
 
     font-size: 1.2rem;
@@ -161,7 +167,7 @@ export const Subscribe = styled.aside`
     button {
       align-self: flex-end;
     }
-    a {
+    label {
       align-self: flex-end;
     }
   }
@@ -180,15 +186,11 @@ export const Descriptions = styled.div`
     text-align: center;
     font-size: 2.4rem;
     max-width: 70%;
-
-    color: ${({ theme }) => theme.colors.primary};
   }
 
   p {
     align-self: center;
     font-size: 1.6rem;
-
-    color: ${({ theme }) => theme.colors.primary};
 
     strong {
       font-weight: bold;
@@ -211,8 +213,6 @@ export const Descriptions = styled.div`
     p {
       align-self: flex-start;
       font-size: 1.8rem;
-
-      color: ${({ theme }) => theme.colors.primary};
 
       strong {
         font-size: 1.8rem;

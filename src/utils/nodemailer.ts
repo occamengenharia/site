@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer'
+import nodemailer, { TransportOptions } from 'nodemailer'
 import handlebars from 'handlebars'
 
 import fs from 'fs'
@@ -20,13 +20,16 @@ function createTemplate(nameHTML: string): HandlebarsTemplateDelegate {
 }
 
 async function createTransporter() {
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
+  const transporterConfig = {
+    host: process.env.EMAIL_HOST,
+    port: process.env.EMAIL_PORT,
+    secure: process.env.EMAIL_SECURE, // true for 465, false for other ports
     auth: {
-      user: process.env.EMAIL_FROM,
-      pass: process.env.EMAIL_FROM_PASSWORD
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
     }
-  })
+  } as TransportOptions
+  const transporter = nodemailer.createTransport(transporterConfig)
   return transporter
 }
 
@@ -51,7 +54,6 @@ const sendMail = async ({
     await transporter.sendMail(emailOptions)
   } catch (error) {
     delete emailOptions.html
-    console.log(emailOptions)
     return 'Erro ao enviar o email'
   }
 

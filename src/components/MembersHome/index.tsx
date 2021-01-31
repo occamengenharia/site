@@ -7,7 +7,16 @@ import { FaGithub, FaLinkedin, FaCaretLeft, FaCaretRight } from 'react-icons/fa'
 interface IMember {
   id: string
   name: string
-  role: string[]
+  role: {
+    department: string
+    job: string
+    _id: string
+    tasks_description: string
+    start_date_position: Date
+    end_date_position: string
+    __v: number
+    id: string
+  }
   avatar: string
   link_github: string
   link_linkedin: string

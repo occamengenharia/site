@@ -18,22 +18,22 @@ import getValidationErrors from '@/utils/getValidationErros'
 
 interface DataRequestProps {
   isOpened: boolean
+  setIsOpen(isOpened: boolean): void
 }
 
-const DataRequest: React.FC<DataRequestProps> = ({ isOpened }) => {
+const DataRequest: React.FC<DataRequestProps> = ({ isOpened, setIsOpen }) => {
   const formRef = useRef(null)
 
-  const [openDataRequest, setOpenDataRequest] = useState<boolean>(isOpened)
   const [openSuccess, setOpenSuccess] = useState<boolean>(false)
   const [openError, setOpenError] = useState<boolean>(false)
 
   function handleCloseModal() {
-    setOpenDataRequest(false)
+    setIsOpen(false)
     setOpenSuccess(false)
   }
 
   function handleNextModal() {
-    setOpenDataRequest(false)
+    setIsOpen(false)
     setOpenSuccess(true)
   }
 
@@ -57,7 +57,7 @@ const DataRequest: React.FC<DataRequestProps> = ({ isOpened }) => {
 
         formRef.current?.setErrors(errors)
       } else {
-        setOpenDataRequest(false)
+        setIsOpen(false)
         setOpenError(true)
       }
     }
@@ -67,7 +67,7 @@ const DataRequest: React.FC<DataRequestProps> = ({ isOpened }) => {
     <>
       {!openSuccess && (
         <Modal
-          open={openDataRequest}
+          open={isOpened}
           onClose={handleCloseModal}
           center
           showCloseIcon={false}
@@ -94,7 +94,7 @@ const DataRequest: React.FC<DataRequestProps> = ({ isOpened }) => {
         showCloseIcon
         isOpened={openSuccess}
         setOpen={setOpenSuccess}
-        setOpenPreviousModal={setOpenDataRequest}
+        setOpenPreviousModal={setIsOpen}
       />
       <ErrorModal
         isOpened={openError}
