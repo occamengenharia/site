@@ -29,6 +29,10 @@ export const Main = styled.button`
     background: ${({ theme }) =>
       darken(theme.variables.hover, theme.colors.buttonBackgorud)};
   }
+  :disabled {
+    opacity: 0.5;
+    cursor: no-drop;
+  }
 
   & + & {
     margin-top: 0.8rem;

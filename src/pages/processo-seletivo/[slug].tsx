@@ -44,11 +44,17 @@ const Process: React.FC<IProcessSeletive> = props => {
   const [subscribe, setSubscribe] = useState(false)
   const [requestData, setRequestData] = useState(false)
   const router = useRouter()
-  useEffect(() => {
+  function processIsDisabled() {
     const currentDate = new Date()
     const openingDate = new Date(`${props.start_date} 00:00`)
     const closingDate = new Date(`${props.end_date} 00:00`)
-    if (!(currentDate <= closingDate && currentDate >= openingDate)) {
+    if (currentDate <= closingDate && currentDate >= openingDate) {
+      return false
+    }
+    return true
+  }
+  useEffect(() => {
+    if (processIsDisabled()) {
       router.push('/404')
     }
   }, [])
@@ -57,7 +63,7 @@ const Process: React.FC<IProcessSeletive> = props => {
     <>
       <Head
         title={`Processo ${props.slug}`}
-        image={`${process.env.NEXT_PUBLIC_API_URL}${props.photo_disclosure.url}`}
+        image={`${props.photo_disclosure.url}`}
       />
       <SelectiveProcessForm isOpened={subscribe} setIsOpen={setSubscribe} />
       <DataRequest isOpened={requestData} setIsOpen={setRequestData} />
@@ -123,11 +129,19 @@ const Process: React.FC<IProcessSeletive> = props => {
         </InfoProcess>
 
         <Subscribe>
-          <Button
-            icon={FaUserPlus}
-            text="Fazer inscrição"
-            onClick={() => setSubscribe(true)}
-          />
+          <aside>
+            <Button
+              disabled={!processIsDisabled()}
+              icon={FaUserPlus}
+              text="Fazer inscrição"
+              onClick={() => setSubscribe(true)}
+            />
+            {!processIsDisabled() && (
+              <span>{` As inscrições estarão disponíveis dia ${formatDate(
+                props.interview_start_date
+              )}`}</span>
+            )}
+          </aside>
 
           <label onClick={() => setRequestData(true)}>
             Recuperar meus dados do processo seletivo
