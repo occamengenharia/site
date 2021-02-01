@@ -5,59 +5,72 @@ export const MemberStyle = styled.section`
   flex-direction: column;
   align-items: center;
   width: 100%;
-
+  height: 42rem;
   background-color: ${props => props.theme.colors.backgorudElevation};
   box-shadow: 0 0 0.8rem 0 rgba(0, 0, 0, 0.25);
-
   img {
-    height: 100%;
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
   }
-
-  svg {
-    cursor: pointer;
-    color: ${props => props.theme.colors.details};
-
-    font-size: 1.6rem;
-    margin: 0 1.6rem;
+  aside {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1.2rem;
+    top: 50%;
+    svg {
+      cursor: pointer;
+      color: ${props => props.theme.colors.details};
+      font-size: 1.6rem;
+    }
   }
 
   main {
     display: flex;
+    flex-direction: column;
     align-items: center;
     width: 100%;
-
+    height: 40%;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
     section {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
+      padding: 1.8rem 0;
+      width: 100%;
+      border-bottom: 1px solid ${props => props.theme.colors.details};
 
-      div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 2.4rem 0;
+      p {
+        color: ${props => props.theme.colors.titles};
+        font-weight: bold;
+      }
 
-        border-bottom: 1px solid ${props => props.theme.colors.details};
-
-        p {
-          color: ${props => props.theme.colors.titles};
-          font-weight: bold;
-        }
-
-        label {
-          font-size: 1.6rem;
-          color: ${props => props.theme.colors.subtitles};
-          font-weight: 100;
-        }
+      label {
+        font-size: 1.6rem;
+        color: ${props => props.theme.colors.subtitles};
+        font-weight: 100;
       }
     }
   }
-  @media only screen and (min-width: ${props => props.theme.breakpoints.lg}px) {
+  @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
     flex-direction: row;
     height: 41.6rem;
-
+    padding: 0;
+    gap: 2rem;
+    img {
+      height: 100%;
+      max-height: 100%;
+      max-width: 40%;
+    }
     svg {
       margin: 0 2.4rem;
+    }
+    aside {
+      top: 70%;
     }
     main {
       justify-content: center;
@@ -81,7 +94,7 @@ export const Links = styled.div`
   display: flex;
   justify-content: center;
 
-  padding: 1.6rem 0 2.4rem 0;
+  padding: 1.6rem 0 0;
 
   svg {
     color: ${props => props.theme.colors.titles};

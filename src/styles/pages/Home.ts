@@ -7,7 +7,7 @@ export const Page = styled.div`
   overflow-y: scroll;
   > div {
     scroll-snap-align: end;
-    height: 100vh;
+    height: 100%;
     position: relative;
     &:nth-child(even) {
       background: ${props => props.theme.colors.primary};
@@ -29,14 +29,14 @@ export const Page = styled.div`
 export const Initial = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8%;
+  gap: 2vh;
   main {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     align-self: center;
-    max-width: 27.2rem;
+    width: min(1100px, 90vw);
     h1 {
       font-size: 4.8rem;
       text-align: center;
@@ -81,8 +81,8 @@ export const Actuation = styled.div`
       gap: 1.2rem;
       p {
         font-size: 1.2rem;
-        text-align: justify;
         color: ${props => props.theme.colors.white};
+        line-height: 1.6rem;
       }
       img {
         height: 8rem;
@@ -96,7 +96,7 @@ export const Actuation = styled.div`
         color: ${props => props.theme.colors.secundary};
       }
     }
-    @media (min-width: ${props => props.theme.breakpoints.md}px) {
+    @media (min-width: ${props => props.theme.breakpoints.lg}px) {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-gap: 6rem;
@@ -113,6 +113,7 @@ export const Actuation = styled.div`
         }
         p {
           font-size: 1.6rem;
+          line-height: 2rem;
         }
         &:nth-of-type(1) {
           grid-column: 1;
@@ -139,10 +140,9 @@ export const Members = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  width: min(1100px, 90vw);
   margin: 0 auto;
-  max-width: 1032px;
-  gap: 4.8rem;
+  gap: 4vh;
 
   h3 {
     color: ${props => props.theme.colors.titles};
@@ -156,7 +156,7 @@ export const Members = styled.div`
       margin-left: 0.8rem;
     }
   }
-  @media only screen and (min-width: ${props => props.theme.breakpoints.lg}px) {
+  @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
     align-items: flex-start;
 
     a {
@@ -202,7 +202,7 @@ export const About = styled.div`
     color: ${props => props.theme.colors.white};
     font-size: 1.6rem;
   }
-  @media (min-width: ${props => props.theme.breakpoints.md}px) {
+  @media (min-width: ${props => props.theme.breakpoints.lg}px) {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
