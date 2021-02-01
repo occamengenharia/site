@@ -53,21 +53,26 @@ export const Bar = styled.section`
 `
 
 export const GridCards = styled.div`
-  padding: 1.6rem;
+  --padding: 1.6rem;
+  --gap: 4rem;
+  padding: var(--padding);
   margin: 4.8rem 0 5.6rem;
-
+  width: 100%;
   max-width: 103.2rem;
   align-self: center;
   display: grid;
   grid-template-columns: repeat(1, calc(100%));
-  grid-gap: 4rem;
+  grid-gap: var(--gap);
   > h3 {
     color: ${({ theme }) => theme.colors.text2};
     grid-column: 1 / -1;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
-    grid-template-columns: repeat(2, calc(100% / 2));
+    grid-template-columns: repeat(
+      2,
+      calc((100% - var(--padding) * 2 - var(--gap)) / 2)
+    );
     grid-gap: 4rem;
   }
 `

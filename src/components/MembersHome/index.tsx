@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { MemberStyle, Links } from './styles'
 import { FaGithub, FaLinkedin, FaCaretLeft, FaCaretRight } from 'react-icons/fa'
 import { IMember } from '@/pages'
@@ -10,25 +10,34 @@ interface MemberProps {
 }
 
 const MembersHome: React.FC<MemberProps> = ({ members }) => {
-  const [currentMember, setCurrentMember] = useState({} as IMember)
+  const [currentMember, setCurrentMember] = useState(members[0])
   const [countMember, setCountMember] = useState(0)
-
-  function handlePreviousMember(): void {
+  const [time, setTime] = useState(0)
+  const timeOut = setTimeout(() => {
+    setTime(time + 1)
+  }, 4500)
+  const handlePreviousMember = useCallback(() => {
     if (countMember < members.length - 1) {
       setCountMember(countMember + 1)
     } else {
       setCountMember(0)
     }
     setCurrentMember(members[countMember])
-  }
-  function handleNextMember(): void {
+    clearTimeout(timeOut)
+  }, [members, countMember, timeOut])
+  const handleNextMember = useCallback(() => {
     if (countMember >= members.length - 1) {
       setCountMember(0)
     } else {
       setCountMember(countMember + 1)
     }
     setCurrentMember(members[countMember])
-  }
+    clearTimeout(timeOut)
+  }, [members, countMember, timeOut])
+
+  useEffect(() => {
+    handleNextMember()
+  }, [time])
 
   return (
     <MemberStyle>
@@ -39,7 +48,7 @@ const MembersHome: React.FC<MemberProps> = ({ members }) => {
           <section>
             <div>
               <p>{currentMember.name}</p>
-              <label>{currentMember.role}</label>
+              <label>{currentMember.role ? currentMember.role.job : ''}</label>
             </div>
           </section>
           <Links>

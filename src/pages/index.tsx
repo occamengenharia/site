@@ -123,21 +123,6 @@ const Home: React.FC<IPropsHome> = ({ banners, members }) => {
   return (
     <>
       <SEO title="Home" description={description} image="/occam.png" />
-      {/* <ErrorModal
-        isOpened
-        title="Ocorreu um erro"
-        subtitle="Tente novamente mais tarde"
-      /> */}
-      {/* <SuccessModal
-        title="Inscrição Finalizada"
-        subtitle="Enviaremos um e-mail contendo todas as suas informações"
-        isOpened={openSuccess}
-        setOpen={setOpenSuccess}
-        showCloseIcon={false}
-        timer={10000}
-      /> */}
-      {/* <DataRequest isOpened /> */}
-      {/* <SelectiveProcessForm isOpened /> */}
       <Page>
         <Initial>
           <Header />

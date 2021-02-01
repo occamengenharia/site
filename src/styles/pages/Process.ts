@@ -148,10 +148,25 @@ export const Subscribe = styled.aside`
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  ${Button} {
-    width: 300px;
-    align-self: flex-end;
+  > aside {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+    gap: 1.2rem;
+    > span {
+      font-size: 1.6rem;
+      color: ${({ theme }) => theme.colors.subtitles};
+      transition: 0.5s;
+      text-align: center;
+    }
+    ${Button} {
+      width: 300px;
+      align-self: flex-end;
+    }
+    ${Button}:hover + span {
+      color: ${({ theme }) => theme.colors.error};
+    }
   }
   label {
     cursor: pointer;
@@ -164,6 +179,12 @@ export const Subscribe = styled.aside`
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
+    > aside {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row-reverse;
+    }
     button {
       align-self: flex-end;
     }

@@ -14,9 +14,12 @@ interface HomeCarouselProps {
 }
 
 const HomeCarousel: React.FC<HomeCarouselProps> = ({ banners }) => {
-  const [currentBanner, setCurrentBanner] = useState({} as IBanner)
+  const [currentBanner, setCurrentBanner] = useState(banners[0])
   const [countBanner, setCountBanner] = useState(0)
-
+  const [time, setTime] = useState(0)
+  const timeOut = setTimeout(() => {
+    setTime(time + 1)
+  }, 4500)
   function handlePreviousBanner(): void {
     if (countBanner < banners.length - 1) {
       setCountBanner(countBanner + 1)
@@ -24,6 +27,7 @@ const HomeCarousel: React.FC<HomeCarouselProps> = ({ banners }) => {
       setCountBanner(0)
     }
     setCurrentBanner(banners[countBanner])
+    clearTimeout(timeOut)
   }
   function handleNextBanner(): void {
     if (countBanner >= banners.length - 1) {
@@ -32,6 +36,7 @@ const HomeCarousel: React.FC<HomeCarouselProps> = ({ banners }) => {
       setCountBanner(countBanner + 1)
     }
     setCurrentBanner(banners[countBanner])
+    clearTimeout(timeOut)
   }
 
   useEffect(() => {
@@ -40,10 +45,9 @@ const HomeCarousel: React.FC<HomeCarouselProps> = ({ banners }) => {
     }
   }, [])
 
-  setTimeout(() => {
+  useEffect(() => {
     handleNextBanner()
-  }, 4500)
-
+  }, [time])
   return (
     <Container>
       <img src={currentBanner.url} alt={currentBanner.alt} />

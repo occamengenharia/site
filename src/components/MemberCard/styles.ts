@@ -2,8 +2,7 @@ import styled from 'styled-components'
 
 export const Card = styled.section`
   width: max-content;
-  max-width: 49.6rem;
-  min-width: calc(32rem - 10vw);
+  width: 100%;
   height: 20rem;
   border: hidden 1px #cecece;
   padding: 0.8rem 1rem;
