@@ -9,9 +9,7 @@ import api from '@/services/api'
 import { useCallback, useEffect, useState } from 'react'
 
 interface IPosition {
-  department: string
   job: string
-  tasks_description: string
   start_date_position: string
   end_date_position: string
 }
@@ -43,9 +41,7 @@ interface IMembersSerealized {
 }
 
 const positionsGeneric: IPosition = {
-  department: 'Projetos',
   job: 'Assessor',
-  tasks_description: 'Auxiliar no desenvolvimento de projetos',
   start_date_position: String(new Date().getFullYear()),
   end_date_position: String(new Date().getFullYear() + 1)
 }
@@ -96,7 +92,7 @@ const Members: React.FC<IMembersSerealized> = props => {
                 link_github={member.link_github}
                 link_linkedin={member.link_linkedin}
                 photo={member.photo}
-                position={member.position.department}
+                position={member.position.job}
               />
             ))
           ) : (
@@ -134,12 +130,15 @@ export const getStaticProps: GetStaticProps = async context => {
       return {
         name: member.name,
         position:
-          member.positions.find(
-            position =>
-              new Date(position.start_date_position).getFullYear() === i
-          ) || positionsGeneric,
-        link_linkedin: member.link_linkedin,
-        link_github: member.link_github,
+          member.positions.find(position => {
+            return (
+              new Date(
+                `${position.start_date_position} 00:00`
+              ).getFullYear() === i
+            )
+          }) || positionsGeneric,
+        link_linkedin: member.link_linkedin || '',
+        link_github: member.link_github || '',
         photo: member.photo ? member.photo.url : ''
       }
     })

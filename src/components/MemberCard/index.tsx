@@ -18,11 +18,7 @@ const CardData: React.FC<IDataProps> = ({
 }) => {
   return (
     <Card>
-      <img
-        src={
-          `${process.env.NEXT_PUBLIC_API_URL}${photo}` || '/404/caramelo.png'
-        }
-      ></img>
+      <img src={`${photo}` || '/404/caramelo.png'}></img>
       <Data>
         <h1>{name}</h1>
         <h2>{position}</h2>
