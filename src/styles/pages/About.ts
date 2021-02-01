@@ -139,7 +139,6 @@ export const MVV = styled.div`
 export const Stories = styled.div`
   position: relative;
   width: 100%;
-
   > section {
     height: 35rem;
     width: 100%;
@@ -190,6 +189,7 @@ export const Stories = styled.div`
         align-items: flex-end;
         justify-content: center;
         color: ${({ theme }) => theme.colors.text2};
+        transition: 0.5s;
         &:nth-of-type(1) {
           display: none;
         }
@@ -208,6 +208,9 @@ export const Stories = styled.div`
         }
         &:nth-of-type(5) {
           display: none;
+        }
+        :focus {
+          color: black;
         }
       }
     }

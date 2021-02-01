@@ -11,9 +11,11 @@ import {
 import { useCallback, useEffect, useState } from 'react'
 import api from '@/services/api'
 interface IStoriesRequest {
-  photo: {
-    url: string
-  }
+  photo: [
+    {
+      url: string
+    }
+  ]
   _id: string
   year: number
   description: string
@@ -118,28 +120,38 @@ const AboutUs: React.FC<IAboutUsProps> = props => {
           <Stories>
             <section>
               <main>
-                {console.log(currentStorie.year - 1)}
-
-                {props[currentStorie.year - 1] && (
+                {props[currentStorie.year - 1]?.imgURL ? (
                   <img
                     src={props[currentStorie.year - 1].imgURL}
-                    alt="Imagem sobre a gestão da empresa naquele ano"
+                    alt={`Imagem sobre a gestão da empresa em ${
+                      currentStorie.year - 1
+                    }`}
                     className="img-left"
                     onClick={handleMinus}
                   />
+                ) : (
+                  <span>Nenhuma imagem registrada</span>
                 )}
-                <img
-                  src={currentStorie.imgURL}
-                  alt="Imagem sobre a gestão da empresa naquele ano"
-                  className="img-main"
-                />
-                {props[currentStorie.year + 1] && (
+                {currentStorie?.imgURL ? (
+                  <img
+                    src={currentStorie.imgURL}
+                    alt={`Imagem sobre a gestão da empresa em ${currentStorie.year}`}
+                    className="img-main"
+                  />
+                ) : (
+                  <legend>Nenhuma imagem registrada</legend>
+                )}
+                {props[currentStorie.year + 1]?.imgURL ? (
                   <img
                     src={props[currentStorie.year + 1].imgURL}
-                    alt="Imagem sobre a gestão da empresa naquele ano"
                     className="img-right"
                     onClick={handlePlus}
+                    alt={`Imagem sobre a gestão da empresa em ${
+                      currentStorie.year + 1
+                    }`}
                   />
+                ) : (
+                  <span>Nenhuma imagem registrada</span>
                 )}
 
                 <p>{currentStorie.description}</p>
@@ -168,7 +180,7 @@ export const getStaticProps: GetStaticProps = async context => {
   const stories = {} as IStories
   data.map(storie => {
     stories[`${storie.year}`] = {
-      imgURL: storie.photo[0].url || '',
+      imgURL: storie.photo.length > 0 ? storie.photo[0].url : '',
       description: storie.description,
       year: storie.year
     }
