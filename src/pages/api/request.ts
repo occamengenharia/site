@@ -50,10 +50,6 @@ export default async (
 
   const subscription = data[0]
 
-  // const filePath = path.resolve('src', 'emails', 'user-request-data-ps.html')
-  // const source = fs.readFileSync(filePath, 'utf-8').toString()
-  // const template = handlebars.compile(source)
-
   const replacements = {
     name: subscription.name,
     course: subscription.course,

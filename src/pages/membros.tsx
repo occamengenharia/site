@@ -40,12 +40,6 @@ interface IMembersSerealized {
   [key: string]: IMemberSerealized[]
 }
 
-const positionsGeneric: IPosition = {
-  job: 'Assessor',
-  start_date_position: String(new Date().getFullYear()),
-  end_date_position: String(new Date().getFullYear() + 1)
-}
-
 const Members: React.FC<IMembersSerealized> = props => {
   const nowYear = new Date().getFullYear()
   const [year, setYear] = useState(nowYear)
@@ -87,7 +81,7 @@ const Members: React.FC<IMembersSerealized> = props => {
           {members.length > 0 ? (
             members.map(member => (
               <Card
-                key={member.photo}
+                key={`${member.name}-${member.photo}`}
                 name={member.name}
                 link_github={member.link_github}
                 link_linkedin={member.link_linkedin}
@@ -129,14 +123,8 @@ export const getStaticProps: GetStaticProps = async context => {
     membersSerealized[`${i}`] = membersOfYear.map(member => {
       return {
         name: member.name,
-        position:
-          member.positions.find(position => {
-            return (
-              new Date(
-                `${position.start_date_position} 00:00`
-              ).getFullYear() === i
-            )
-          }) || positionsGeneric,
+        position: getPostition(member, i),
+
         link_linkedin: member.link_linkedin || '',
         link_github: member.link_github || '',
         photo: member.photo ? member.photo.url : ''
@@ -147,5 +135,66 @@ export const getStaticProps: GetStaticProps = async context => {
   return {
     props: membersSerealized,
     revalidate: 2592000
+  }
+}
+function getPostition(member: IMember, year: number): IPosition {
+  const positions = member.positions.filter(position => {
+    return (
+      new Date(`${position.start_date_position} 00:00`).getFullYear() === year
+    )
+  })
+
+  if (positions.length === 1) {
+    return {
+      job: positions[0].job,
+      start_date_position: positions[0].start_date_position,
+      end_date_position: positions[0].end_date_position
+    }
+  } else {
+    let aux: IPosition = {
+      job: 'Assessor',
+      start_date_position: `${year}-01-01 00:00`,
+      end_date_position: `${year + 1}-01-01`
+    }
+
+    aux = positions.find(p => p.job.match(/presidente/gi))
+
+    if (aux) {
+      return {
+        job: 'Presidente',
+        start_date_position: aux.start_date_position,
+        end_date_position: aux.end_date_position
+      }
+    }
+
+    aux = positions.find(p => p.job.match(/diretor/gi))
+
+    if (aux) {
+      return {
+        job: aux.job,
+        start_date_position: aux.start_date_position,
+        end_date_position: aux.end_date_position
+      }
+    }
+
+    aux = positions.find(p => p.job.match(/assessor/gi))
+
+    if (aux) {
+      return {
+        job: aux.job,
+        start_date_position: aux.start_date_position,
+        end_date_position: aux.end_date_position
+      }
+    }
+    aux = positions.find(p => p.job.match(/trainee/gi))
+
+    if (aux) {
+      return {
+        job: aux.job,
+        start_date_position: aux.start_date_position,
+        end_date_position: aux.end_date_position
+      }
+    }
+    return aux
   }
 }
