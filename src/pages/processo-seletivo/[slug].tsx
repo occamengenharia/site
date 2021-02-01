@@ -52,7 +52,6 @@ const Process: React.FC<IProcessSeletive> = props => {
       router.push('/404')
     }
   }, [])
-  console.log(subscribe)
 
   return (
     <>

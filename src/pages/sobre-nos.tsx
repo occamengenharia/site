@@ -75,7 +75,6 @@ const AboutUs: React.FC<IAboutUsProps> = props => {
       year + 2 > nowYear ? (year + 1 > nowYear ? 2015 : 2014) : year + 2
     ])
   }, [year])
-  console.log(props['2020'].imgURL)
 
   return (
     <>
