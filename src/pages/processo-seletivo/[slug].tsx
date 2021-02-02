@@ -44,17 +44,27 @@ const Process: React.FC<IProcessSeletive> = props => {
   const [subscribe, setSubscribe] = useState(false)
   const [requestData, setRequestData] = useState(false)
   const router = useRouter()
-  function processIsDisabled() {
+  function subscribeIsDisabled() {
     const currentDate = new Date()
-    const openingDate = new Date(`${props.start_date} 00:00`)
-    const closingDate = new Date(`${props.end_date} 00:00`)
-    if (currentDate <= closingDate && currentDate >= openingDate) {
+    const openingDateSubscribe = new Date(
+      `${props.opening_subscriptions} 00:00`
+    )
+    const closingDateSubscribe = new Date(
+      `${props.closing_subscriptions} 00:00`
+    )
+    if (
+      currentDate <= closingDateSubscribe &&
+      currentDate >= openingDateSubscribe
+    ) {
       return false
     }
     return true
   }
   useEffect(() => {
-    if (processIsDisabled()) {
+    const currentDate = new Date()
+    const openingDate = new Date(`${props.start_date} 00:00`)
+    const closingDate = new Date(`${props.end_date} 00:00`)
+    if (!(currentDate <= closingDate && currentDate >= openingDate)) {
       router.push('/404')
     }
   }, [])
@@ -78,7 +88,7 @@ const Process: React.FC<IProcessSeletive> = props => {
               </div>
             </DatesContent>
             <DatesContent>
-              <span>Encerramentodas inscrições</span>
+              <span>Encerramento das inscrições</span>
               <div className="background-secundary">
                 <strong>{formatDate(props.closing_subscriptions)}</strong>
               </div>
@@ -131,14 +141,14 @@ const Process: React.FC<IProcessSeletive> = props => {
         <Subscribe>
           <aside>
             <Button
-              disabled={!processIsDisabled()}
+              disabled={subscribeIsDisabled()}
               icon={FaUserPlus}
               text="Fazer inscrição"
               onClick={() => setSubscribe(true)}
             />
-            {!processIsDisabled() && (
+            {subscribeIsDisabled() && (
               <span>{` As inscrições estarão disponíveis dia ${formatDate(
-                props.interview_start_date
+                props.opening_subscriptions
               )}`}</span>
             )}
           </aside>
