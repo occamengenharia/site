@@ -13,7 +13,6 @@ export const Container = styled.div`
   h3 {
     font-size: 8rem;
     text-align: center;
-    color: ${props => props.theme.colors.primary};
   }
   h2 {
     font-family: Ubuntu;
@@ -24,7 +23,6 @@ export const Container = styled.div`
     width: 258px;
     height: 111px;
     text-align: center;
-    color: ${props => props.theme.colors.primary};
   }
   span#subtext {
     font-family: Ubuntu;
@@ -35,7 +33,7 @@ export const Container = styled.div`
     text-align: center;
     width: 148px;
     height: 36px;
-    color: ${props => props.theme.colors.secundary};
+    color: ${props => props.theme.colors.subtitles};
     margin-bottom: 7.2rem;
   }
   div#links {

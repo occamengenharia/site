@@ -3,7 +3,7 @@ import { Form } from '@unform/web'
 import { Main as Button } from '@/components/Button/styles.ts'
 
 export const Container = styled.main`
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
