@@ -9,27 +9,17 @@ const links = [
       },
       {
         name: 'Sobre nós',
-        url: '/',
+        url: '/sobre-nos',
         external: false
       },
       {
         name: 'Nossa equipe',
-        url: '/',
+        url: '/membros',
         external: false
       },
       {
         name: 'Nossos serviços',
-        url: '/',
-        external: false
-      },
-      {
-        name: 'Projetos',
-        url: '/',
-        external: false
-      },
-      {
-        name: 'Processo seletivo',
-        url: '/',
+        url: '/servicos',
         external: false
       }
     ]
@@ -38,13 +28,13 @@ const links = [
     title: 'Contato',
     links: [
       {
-        name: 'occamengenharia@gmail.com',
-        url: 'mailto:occamengenharia@gmail.com',
+        name: 'oi@occamengenharia.com',
+        url: 'mailtooi@occamengenharia.com',
         external: true
       },
       {
-        name: '(46) 99999-9999',
-        url: 'tel:5546999999999',
+        name: 'occamengenharia@gmail.com',
+        url: 'mailto:occamengenharia@gmail.com',
         external: true
       }
     ]
