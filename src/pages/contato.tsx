@@ -3,24 +3,14 @@ import * as Yup from 'yup'
 import { FaMailBulk } from 'react-icons/fa'
 
 import { FormHandles } from '@unform/core'
-import {
-  MdNearMe,
-  MdSupervisorAccount,
-  MdMail,
-  MdPhoneIphone,
-  MdDescription
-} from 'react-icons/md'
+import { MdNearMe } from 'react-icons/md'
 
 import { Container, FormStyled } from '@/styles/pages/Contact'
 import SEO from '@/components/SEO'
 import Input from '@/components/Input'
 import Textarea from '@/components/Textarea'
 import getValidationErrors from '@/utils/getValidationErros'
-import MailSuccessModal from '@/components/MailSuccessModal'
-import MailErrorModal from '@/components/MailErrorModal'
 import Button from '@/components/Button'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import ErrorModal from '@/components/Modals/ErrorModal'
 import SuccessModal from '@/components/Modals/SuccessModal'
 
@@ -31,7 +21,8 @@ interface IContactFormData {
   description: string
 }
 
-const description = 'OCCAM Engenharia'
+const description =
+  'Contato - OCCAM Engenharia empresa júnior de engenharia de computação'
 
 const Contact: React.FC = () => {
   const [isOpenSuccess, setIsOpenSuccess] = useState(false)
@@ -90,7 +81,7 @@ const Contact: React.FC = () => {
         />
         <SuccessModal
           title="E-mail enviado com sucesso"
-          subtitle="Verifique sua caixa de e-mail, ele já deve estar lá."
+          subtitle="Obrigado pelo contato, nossa equipe irá entrar em contato o mais breve possível para ajudar."
           isOpened={isOpenSuccess}
           setOpen={setIsOpenSuccess}
           showCloseIcon={false}
@@ -98,7 +89,7 @@ const Contact: React.FC = () => {
         />
         <SEO
           title="Contato"
-          image="/LOGO VETOR (BLACK-BG).svg"
+          image="/logo/light.svg"
           description={description}
         />
 
@@ -112,7 +103,7 @@ const Contact: React.FC = () => {
           <Input name="email" placeholder="Seu email" />
           <Input name="phone" placeholder="Seu telefone" />
           <Textarea name="description" placeholder="Detalhe sua ideia aqui" />
-          <Button icon={MdNearMe} text="Enviar" />
+          <Button icon={MdNearMe} text={!loading ? 'Enviar' : 'Enviando'} />
         </FormStyled>
       </Container>
     </>

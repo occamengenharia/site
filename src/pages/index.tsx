@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { GetStaticProps } from 'next'
 import NextLink from 'next/link'
 import {
@@ -20,10 +19,6 @@ import MembersHome from '@/components/MembersHome'
 import HomeCarousel from '@/components/HomeCarousel'
 import Link from '@/components/Link'
 
-// import DataRequest from '@/components/Modals/DataRequest'
-// import ErrorModal from '@/components/Modals/ErrorModal'
-// import SuccessModal from '@/components/Modals/SuccessModal'
-// import SelectiveProcessForm from '@/components/Modals/SelectiveProcessForm'
 import api from '@/services/api'
 import { useRouter } from 'next/router'
 
@@ -119,10 +114,11 @@ const Home: React.FC<IPropsHome> = ({ banners, members }) => {
     router.push('/contato')
   }
 
-  const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
+  const description =
+    'A Empresa Júnior de Engenharia de Computação da Universidade Tecnológica Federal do Paraná - UTFPR, vem desde 2014 trabalhando para desenvolver atividades que possam ampliar e melhorar a qualidade de vida da comunidade ao seu redor.'
   return (
     <>
-      <SEO title="Home" description={description} image="/occam.png" />
+      <SEO title="Home" description={description} image="/logo/light.svg" />
 
       <Page>
         <Initial>
@@ -222,8 +218,6 @@ const Home: React.FC<IPropsHome> = ({ banners, members }) => {
             <aside>
               <section>
                 <img src="parceiros/7keyframes.svg" alt="7keyframes" />
-                <img src="parceiros/conectar.svg" alt="conectar" />
-                <img src="parceiros/coca-cola.svg" alt="coca cola" />
               </section>
             </aside>
           </Marquee>

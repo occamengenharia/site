@@ -13,7 +13,7 @@ const Home: React.FC = () => {
   const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
   return (
     <Container>
-      <SEO title="HOME" image="/banner.png" description={description} />
+      <SEO title="Links" image="/logo/light.svg" description={description} />
       <main>
         <div id="firstText">
           <h3>

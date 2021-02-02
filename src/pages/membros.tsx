@@ -6,6 +6,7 @@ import Card from '@/components/MemberCard'
 import { Container, GridCards, Bar } from '@/styles/pages/Members'
 
 import api from '@/services/api'
+import SEO from '@/components/SEO'
 import { useCallback, useEffect, useState } from 'react'
 
 interface IPosition {
@@ -40,6 +41,9 @@ interface IMembersSerealized {
   [key: string]: IMemberSerealized[]
 }
 
+const description =
+  'Histórico de membros da OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
+
 const Members: React.FC<IMembersSerealized> = props => {
   const nowYear = new Date().getFullYear()
   const [year, setYear] = useState(nowYear)
@@ -68,6 +72,7 @@ const Members: React.FC<IMembersSerealized> = props => {
 
   return (
     <>
+      <SEO title="Membros" image="/logo/light.svg" description={description} />
       <Container>
         <h2>Histórico de Membros</h2>
 

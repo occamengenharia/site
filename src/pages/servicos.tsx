@@ -3,11 +3,12 @@ import { FaCommentsDollar } from 'react-icons/fa'
 import { Container } from '@/styles/pages/Servicos'
 import Link from '@/components/Link'
 const Servicos: React.FC = () => {
-  const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
+  const description =
+    'Areas de atuação da OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
 
   return (
     <>
-      <SEO title="Serviços" description={description} />
+      <SEO title="Serviços" image="/logo/light.svg" description={description} />
       <Container>
         <main>
           <section>

@@ -34,7 +34,8 @@ interface IAboutUsProps {
   [index: string]: IStories
 }
 const AboutUs: React.FC<IAboutUsProps> = props => {
-  const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
+  const description =
+    'Sobre a  OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
   const intro =
     'A Empresa Júnior de Engenharia de Computação da Universidade Tecnológica Federal do Paraná - UTFPR, vem desde 2014 trabalhando para desenvolver atividades que possam ampliar e melhorar a qualidade de vida da comunidade ao seu redor.'
   const DescriptMission =
@@ -78,7 +79,11 @@ const AboutUs: React.FC<IAboutUsProps> = props => {
 
   return (
     <>
-      <SEO title="Sobre nós" description={description} image="/occam.png" />
+      <SEO
+        title="Sobre nós"
+        description={description}
+        image="/logo/light.svg"
+      />
       <Container>
         <main>
           <h2>Sobre nós</h2>

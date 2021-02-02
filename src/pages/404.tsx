@@ -1,7 +1,7 @@
-import Head from 'next/head'
+import Link from 'next/link'
 
 import { Notfound } from '@/styles/pages/404'
-import Link from 'next/link'
+import SEO from '@/components/SEO'
 
 const NotFound: React.FC = () => {
   const senteces = [
@@ -18,9 +18,7 @@ const NotFound: React.FC = () => {
 
   return (
     <Notfound>
-      <Head>
-        <title>Not found - OCCAM </title>
-      </Head>
+      <SEO title="404" image="/logo/light.svg" shouldIndexPage={false} />
       <body>
         <h1>404</h1>
         <h2>Página não encontrada</h2>
