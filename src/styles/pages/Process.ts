@@ -8,10 +8,7 @@ export const Container = styled.main`
   align-items: center;
 
   padding: 0 1.6rem;
-  ${Link} {
-    width: 300px;
-    align-self: center;
-  }
+
   h1 {
     text-transform: uppercase;
     font-size: 3.2rem;
@@ -78,7 +75,10 @@ export const Container = styled.main`
       align-self: flex-start;
       text-align: flex-start;
     }
-
+    ${Link} {
+      width: 300px;
+      align-self: center;
+    }
     .button-and-link {
       width: 41.6rem;
     }
@@ -140,10 +140,10 @@ export const DatesContent = styled.aside`
 `
 
 export const Subscribe = styled.aside`
-  width: 100vw;
+  width: 100%;
   max-width: 102.4rem;
   margin: 0 auto;
-  padding-right: 1.6rem;
+  padding: 0 1.6rem;
 
   display: flex;
   flex-direction: column;
@@ -153,6 +153,8 @@ export const Subscribe = styled.aside`
     justify-content: center;
     align-items: center;
     flex-direction: column-reverse;
+    align-self: center;
+    width: 100%;
     gap: 1.2rem;
     > span {
       font-size: 1.6rem;
@@ -160,10 +162,7 @@ export const Subscribe = styled.aside`
       transition: 0.5s;
       text-align: center;
     }
-    ${Button} {
-      width: 300px;
-      align-self: flex-end;
-    }
+
     ${Button}:hover + span {
       color: ${({ theme }) => theme.colors.error};
     }
@@ -180,14 +179,15 @@ export const Subscribe = styled.aside`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
     > aside {
-      display: flex;
       justify-content: space-between;
       align-items: center;
       flex-direction: row-reverse;
     }
-    button {
+    ${Button} {
+      width: 300px;
       align-self: flex-end;
     }
+
     label {
       align-self: flex-end;
     }

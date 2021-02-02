@@ -9,7 +9,7 @@ import checkFileFormat from '@/utils/checkFileFormat'
 import limitMultiSelectOptions from '@/utils/limitMultiSelectOptions'
 import api from '@/services/api'
 
-import { ModalContainer, Close, FormButton } from './styles'
+import { ModalContainer, Close } from './styles'
 
 import { FaArrowAltCircleRight } from 'react-icons/fa'
 
@@ -29,6 +29,7 @@ import {
   ISelectOptions
 } from './selectOptions'
 import axios from 'axios'
+import InputMask from '@/components/InputMask'
 
 interface IFormData {
   name: string
@@ -60,7 +61,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({
   const [openError, setOpenError] = useState<boolean>(false)
   const [departments, setDepartments] = useState<string[]>([])
   const [inputVisible, setInputVisible] = useState<boolean>(false)
-
+  const [sendLoading, setSendLoading] = useState(false)
   function handleCloseModal() {
     setIsOpen(false)
     setOpenSuccess(false)
@@ -97,6 +98,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({
     formRef.current?.setErrors({})
     data.department = departments
     try {
+      setSendLoading(true)
       const schemas = Yup.object().shape({
         name: Yup.string().required('Informe um nome válido'),
         ra: Yup.string().required('Informe um RA válido'),
@@ -164,9 +166,10 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({
         answer3: data.motivation,
         answer4: data.contribution
       })
-
+      setSendLoading(false)
       handleOpenSuccess()
     } catch (err) {
+      setSendLoading(false)
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err)
 
@@ -192,9 +195,13 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({
           <h3>Inscrição Processo Seletivo</h3>
           <Form ref={formRef} onSubmit={handleSubmit}>
             <Input name="name" placeholder="Nome completo" />
-            <Input name="ra" placeholder="RA" />
+            <InputMask name="ra" placeholder="RA" mask="99999999" />
             <Input name="email" placeholder="E-mail (preferência gmail)" />
-            <Input name="phone" placeholder="Celular" />
+            <InputMask
+              name="phone"
+              placeholder="Celular"
+              mask="(99) 99999-9999"
+            />
             <Select name="course" placeholder="Curso" options={courseOptions} />
             <Select
               name="department"
@@ -232,13 +239,15 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({
               pode fazer para tornar o Brasil mais empreendedor?"
             />
             <FileInput name="curriculum" placeholder="Seu currículo" />
-            <FormButton>
+            <aside>
               <Button
                 type="submit"
                 text="Finalizar Inscrição"
                 icon={FaArrowAltCircleRight}
+                disabled={sendLoading}
               />
-            </FormButton>
+              {sendLoading && <span>Enviando. Porfavor aguarde.</span>}
+            </aside>
           </Form>
         </ModalContainer>
       </Modal>

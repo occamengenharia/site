@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-
+import { Main as Link } from '@/components/Link/styles'
 export const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -25,20 +25,20 @@ export const Container = styled.div`
         margin-top: 2.4rem;
       }
       p {
-        font-size: 1rem;
+        font-size: 1.6rem;
         font-weight: 400;
         margin-top: 2rem;
-        margin-bottom: 1rem;
-      }
-
-      div {
-        margin: 1.6rem;
+        margin-bottom: 1.6rem;
       }
     }
     @media (min-width: ${props => props.theme.breakpoints.md}px) {
       width: min(90vw, 1000px);
       display: flex;
-
+      ${Link} {
+        width: 300px;
+        align-self: flex-end;
+        margin-bottom: 2rem;
+      }
       section {
         align-items: flex-start;
 
