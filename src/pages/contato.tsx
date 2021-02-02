@@ -19,7 +19,7 @@ interface IContactFormData {
   name: string
   email: string
   phone: string
-  description: string
+  answer: string
 }
 
 const description =
@@ -40,7 +40,7 @@ const Contact: React.FC = () => {
           .required('E-mail é obrigatório'),
         name: Yup.string().required('Nome é obrigatório'),
         phone: Yup.string().required('Telefone é obrigatório'),
-        description: Yup.string().required('Descrição é obrigatória')
+        answer: Yup.string().required('Descrição é obrigatória')
       })
 
       await schema.validate(data, {
@@ -102,7 +102,7 @@ const Contact: React.FC = () => {
           <Input name="name" placeholder="Seu nome" />
           <Input name="email" placeholder="Seu email" />
           <Input name="phone" placeholder="Seu telefone" />
-          <Textarea name="description" placeholder="Detalhe sua ideia aqui" />
+          <Textarea name="answer" placeholder="Detalhe sua ideia aqui" />
           <Button icon={MdNearMe} text={!loading ? 'Enviar' : 'Enviando'} />
         </FormStyled>
       </Container>

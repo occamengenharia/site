@@ -24,10 +24,6 @@ export default async (
     return response.status(403).json({ error: 'Invalid email' })
   }
 
-  // const filePath = path.resolve('src', 'emails', 'message-contact.html')
-  // const source = fs.readFileSync(filePath, 'utf-8').toString()
-  // const template = handlebars.compile(source)
-
   const replacements = {
     name,
     email,
