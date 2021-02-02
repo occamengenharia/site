@@ -141,7 +141,8 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({
         period: data.period,
         interest_area: data.department.join(', '),
         email: data.email,
-        answer1: data.knowledge + '' + ', ' + (data.wichLanguage + ''),
+        answer1:
+          data.knowledge + data.knowledge === 'Sim' && `, ${data.wichLanguage}`,
         answer2: data.learnNewLanguage,
         answer3: data.motivation,
         answer4: data.contribution,
