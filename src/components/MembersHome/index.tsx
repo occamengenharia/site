@@ -43,25 +43,23 @@ const MembersHome: React.FC<MemberProps> = ({ members }) => {
     <MemberStyle>
       <img src={currentMember.avatar} />
       <main>
-        <FaCaretLeft onClick={handlePreviousMember} />
-        <div>
-          <section>
-            <div>
-              <p>{currentMember.name}</p>
-              <label>{currentMember.role ? currentMember.role.job : ''}</label>
-            </div>
-          </section>
-          <Links>
-            <a href={currentMember.link_github}>
-              <FaGithub />
-            </a>
+        <section>
+          <p>{currentMember.name}</p>
+          <label>{currentMember.role ? currentMember.role.job : ''}</label>
+        </section>
+        <aside>
+          <FaCaretLeft onClick={handlePreviousMember} />
+          <FaCaretRight onClick={handleNextMember} />
+        </aside>
+        <Links>
+          <a href={currentMember.link_github}>
+            <FaGithub />
+          </a>
 
-            <a href={currentMember.link_linkedin}>
-              <FaLinkedin />
-            </a>
-          </Links>
-        </div>
-        <FaCaretRight onClick={handleNextMember} />
+          <a href={currentMember.link_linkedin}>
+            <FaLinkedin />
+          </a>
+        </Links>
       </main>
     </MemberStyle>
   )

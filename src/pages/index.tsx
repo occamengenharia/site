@@ -123,6 +123,7 @@ const Home: React.FC<IPropsHome> = ({ banners, members }) => {
   return (
     <>
       <SEO title="Home" description={description} image="/occam.png" />
+
       <Page>
         <Initial>
           <Header />
