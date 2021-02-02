@@ -1,21 +1,53 @@
 import styled from 'styled-components'
 import { MdClose } from 'react-icons/md'
 import { FaCheckCircle } from 'react-icons/fa'
-
+import { Main as Button } from '@/components/Button/styles.ts'
 export const ModalContainer = styled.div`
   padding: 4rem 1.2rem;
   text-align: center;
   max-width: 344rem;
+  aside {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+    align-self: center;
+    width: 100%;
+    gap: 1.2rem;
+    padding-top: 4rem;
+    span {
+      transition: 0.5s;
+      color: ${props => props.theme.colors.primary};
+    }
+  }
 
   h3 {
     font-weight: bold;
     color: ${props => props.theme.colors.primary};
     margin-bottom: 7.2rem;
   }
-
+  ${Button} {
+    background: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.inputBackground};
+    span {
+      color: ${props => props.theme.colors.inputBackground};
+    }
+    &:disabled:hover {
+      cursor: progress;
+    }
+  }
   @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
     padding: 4.8rem 7.2rem;
     max-width: 87.2rem;
+    aside {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row-reverse;
+    }
+    ${Button} {
+      width: 300px;
+    }
     p {
       font-size: 3.2rem;
     }
@@ -72,18 +104,4 @@ export const Check = styled(FaCheckCircle)`
   margin-bottom: 1.6rem;
 
   color: ${props => props.theme.colors.primary};
-`
-
-export const FormButton = styled.div`
-  margin-top: 4.8rem;
-  display: flex;
-
-  @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
-    margin-top: 5.6rem;
-    justify-content: flex-end;
-
-    button {
-      max-width: 41.6rem;
-    }
-  }
 `
