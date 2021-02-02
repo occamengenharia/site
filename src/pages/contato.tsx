@@ -13,6 +13,7 @@ import getValidationErrors from '@/utils/getValidationErros'
 import Button from '@/components/Button'
 import ErrorModal from '@/components/Modals/ErrorModal'
 import SuccessModal from '@/components/Modals/SuccessModal'
+import apiSite from '@/services/apiSite'
 
 interface IContactFormData {
   name: string
@@ -48,10 +49,7 @@ const Contact: React.FC = () => {
 
       setLoading(true)
 
-      const response = await fetch('/api/sendmail', {
-        method: 'POST',
-        body: JSON.stringify(data)
-      })
+      const response = await apiSite.post('/contact', data)
 
       setLoading(false)
 
