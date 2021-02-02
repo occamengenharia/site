@@ -101,6 +101,7 @@ interface IBanner {
   url: string
   description: string
   alt: string
+  href: string
 }
 
 interface IPropsHome {
@@ -236,6 +237,7 @@ export const getStaticProps: GetStaticProps<IPropsHome> = async () => {
       id: d.photo.id || 'a',
       alt: d.alt || 'a',
       url: d.photo.url || 'a',
+      href: d.href,
       description: d.description || 'a'
     } as IBanner
   })

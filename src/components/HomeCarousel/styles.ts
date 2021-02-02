@@ -18,6 +18,7 @@ export const Container = styled.div`
   }
 
   img {
+    cursor: pointer;
     width: 27.2rem;
     height: 15.4rem;
   }
