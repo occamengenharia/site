@@ -1,6 +1,5 @@
 import { Form } from '@unform/web'
 import * as Yup from 'yup'
-import axios from 'axios'
 import { useRef, useState } from 'react'
 import 'react-responsive-modal/styles.css'
 import { Modal } from 'react-responsive-modal'
@@ -9,6 +8,7 @@ import getValidationErrors from '@/utils/getValidationErros'
 import checkFileFormat from '@/utils/checkFileFormat'
 import limitMultiSelectOptions from '@/utils/limitMultiSelectOptions'
 import api from '@/services/api'
+import apiSite from '@/services/apiSite'
 
 import { ModalContainer, Close, FormButton } from './styles'
 
@@ -150,7 +150,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({
       }
 
       await api.post('/registrations-processes', subscription)
-      await axios.post('/api/subscribeps', {
+      await apiSite.post('/api/subscribeps', {
         name: data.name,
         course: data.course,
         ra: data.ra,

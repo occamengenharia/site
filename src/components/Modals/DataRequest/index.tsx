@@ -1,5 +1,4 @@
 import { Form } from '@unform/web'
-import axios from 'axios'
 import * as Yup from 'yup'
 import { useRef, useState } from 'react'
 import 'react-responsive-modal/styles.css'
@@ -15,6 +14,7 @@ import SuccessModal from '@/components/Modals/SuccessModal'
 import ErrorModal from '@/components/Modals/ErrorModal'
 
 import getValidationErrors from '@/utils/getValidationErros'
+import apiSite from '@/services/apiSite'
 
 interface DataRequestProps {
   isOpened: boolean
@@ -46,7 +46,7 @@ const DataRequest: React.FC<DataRequestProps> = ({ isOpened, setIsOpen }) => {
       })
 
       await schemas.validate(data, { abortEarly: false })
-      await axios.post('/api/request', {
+      await apiSite.post('/request', {
         email: data.email
       })
 
