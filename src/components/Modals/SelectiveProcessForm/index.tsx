@@ -8,7 +8,6 @@ import getValidationErrors from '@/utils/getValidationErros'
 import checkFileFormat from '@/utils/checkFileFormat'
 import limitMultiSelectOptions from '@/utils/limitMultiSelectOptions'
 import api from '@/services/api'
-import apiSite from '@/services/apiSite'
 
 import { ModalContainer, Close, FormButton } from './styles'
 
@@ -29,6 +28,7 @@ import {
   departmentOptions,
   ISelectOptions
 } from './selectOptions'
+import axios from 'axios'
 
 interface IFormData {
   name: string
@@ -150,7 +150,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({
       }
 
       await api.post('/registrations-processes', subscription)
-      await apiSite.post('/api/subscribeps', {
+      await axios.post('/api/subscribeps', {
         name: data.name,
         course: data.course,
         ra: data.ra,

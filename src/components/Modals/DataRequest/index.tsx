@@ -14,7 +14,7 @@ import SuccessModal from '@/components/Modals/SuccessModal'
 import ErrorModal from '@/components/Modals/ErrorModal'
 
 import getValidationErrors from '@/utils/getValidationErros'
-import apiSite from '@/services/apiSite'
+import axios from 'axios'
 
 interface DataRequestProps {
   isOpened: boolean
@@ -46,7 +46,7 @@ const DataRequest: React.FC<DataRequestProps> = ({ isOpened, setIsOpen }) => {
       })
 
       await schemas.validate(data, { abortEarly: false })
-      await apiSite.post('/request', {
+      await axios.post('/api/request', {
         email: data.email
       })
 

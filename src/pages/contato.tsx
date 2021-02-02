@@ -13,7 +13,7 @@ import getValidationErrors from '@/utils/getValidationErros'
 import Button from '@/components/Button'
 import ErrorModal from '@/components/Modals/ErrorModal'
 import SuccessModal from '@/components/Modals/SuccessModal'
-import apiSite from '@/services/apiSite'
+import axios from 'axios'
 
 interface IContactFormData {
   name: string
@@ -49,22 +49,24 @@ const Contact: React.FC = () => {
 
       setLoading(true)
 
-      const response = await apiSite.post('/contact', data)
+      const response = await axios.post('/api/contact', data)
 
       setLoading(false)
 
-      if (response.status === 401) {
+      if (response.status > 399) {
         setIsOpenError(true)
         return
       }
 
+      formRef.current.reset()
       setIsOpenSuccess(true)
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const errors = getValidationErrors(error)
-        setIsOpenError(true)
         formRef.current?.setErrors(errors)
+        return
       }
+      setIsOpenError(true)
     }
   }, [])
 
