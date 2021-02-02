@@ -23,13 +23,11 @@ const Servicos: React.FC = () => {
               trabalho para toda região. Está área abrange todo o
               desenvolvimento de sites e aplicações em navegadores
             </p>
-            <div>
-              <Link
-                icon={FaCommentsDollar}
-                href="/contato"
-                text="Solicitar orçamento"
-              />
-            </div>
+            <Link
+              icon={FaCommentsDollar}
+              href="/contato"
+              text="Solicitar orçamento"
+            />
 
             <h3>Aplicativos</h3>
             <p>
@@ -37,13 +35,12 @@ const Servicos: React.FC = () => {
               mais, a OCCAM Engenharia busca realizar projetos na área. Aqui se
               encontra o desenvolvimento de aplicativos Android e iOS.
             </p>
-            <div>
-              <Link
-                icon={FaCommentsDollar}
-                href="/contato"
-                text="Solicitar orçamento"
-              />
-            </div>
+            <Link
+              icon={FaCommentsDollar}
+              href="/contato"
+              text="Solicitar orçamento"
+            />
+
             <h3>Automação e controle</h3>
             <p>
               Uma das áreas mais recentes da empresa, buscamos expandir os
@@ -51,13 +48,11 @@ const Servicos: React.FC = () => {
               soluções e otimizações de controle e comportamento de sistemas
               físicos. Área focada em eletrônica e sistemas controlados.
             </p>
-            <div>
-              <Link
-                icon={FaCommentsDollar}
-                href="/contato"
-                text="Solicitar orçamento"
-              />
-            </div>
+            <Link
+              icon={FaCommentsDollar}
+              href="/contato"
+              text="Solicitar orçamento"
+            />
           </section>
         </main>
       </Container>
