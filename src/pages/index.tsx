@@ -252,7 +252,7 @@ export const getStaticProps: GetStaticProps<IPropsHome> = async () => {
     const positionsOfYear = member.positions.filter(
       position =>
         new Date(position.start_date_position).getFullYear() === year &&
-        position.job.toLowerCase().match(/diretor/gi)
+        position.job.toLowerCase().match(/diretor|presidente/gi)
     )
     if (positionsOfYear.length <= 0) {
       return false
