@@ -190,13 +190,13 @@ export const Burguer = styled.div<PropsBurguer>`
           `}
     width:100vw;
     height: 100vh;
-    position: fixed;
+    position: absolute;
     z-index: 10;
     top: 0;
     left: 0;
     background: transparent;
     .menu-links {
-      position: fixed;
+      position: absolute;
       background: ${({ theme }) => theme.colors.backgorudElevation};
 
       min-width: 100vw;
