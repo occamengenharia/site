@@ -246,7 +246,7 @@ const SelectiveProcessForm: React.FC<DataRequestProps> = ({
                 icon={FaArrowAltCircleRight}
                 disabled={sendLoading}
               />
-              {sendLoading && <span>Enviando. Porfavor aguarde.</span>}
+              {sendLoading && <span>Enviando. Por favor aguarde.</span>}
             </aside>
           </Form>
         </ModalContainer>
