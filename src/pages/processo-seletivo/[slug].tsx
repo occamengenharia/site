@@ -147,9 +147,9 @@ const Process: React.FC<IProcessSeletive> = props => {
               onClick={() => setSubscribe(true)}
             />
             {subscribeIsDisabled() && (
-              <span>{` As inscrições estarão disponíveis dia ${formatDate(
+              <span>{` As inscrições estarão disponíveis entre ${formatDate(
                 props.opening_subscriptions
-              )}`}</span>
+              )} e ${formatDate(props.closing_subscriptions)} `}</span>
             )}
           </aside>
 
