@@ -143,6 +143,7 @@ export const getStaticProps: GetStaticProps = async context => {
   }
 }
 function getPostition(member: IMember, year: number): IPosition {
+  const end_date = `${year + 1}-01-01`
   const positions = member.positions.filter(position => {
     return (
       new Date(`${position.start_date_position} 00:00`).getFullYear() === year
@@ -153,13 +154,13 @@ function getPostition(member: IMember, year: number): IPosition {
     return {
       job: positions[0].job,
       start_date_position: positions[0].start_date_position,
-      end_date_position: positions[0].end_date_position
+      end_date_position: positions[0].end_date_position || end_date
     }
   } else {
     let aux: IPosition = {
       job: 'Assessor',
       start_date_position: `${year}-01-01 00:00`,
-      end_date_position: `${year + 1}-01-01`
+      end_date_position: end_date
     }
 
     aux = positions.find(p => p.job.match(/presidente/gi))
@@ -168,7 +169,7 @@ function getPostition(member: IMember, year: number): IPosition {
       return {
         job: 'Presidente',
         start_date_position: aux.start_date_position,
-        end_date_position: aux.end_date_position
+        end_date_position: aux.end_date_position || end_date
       }
     }
 
@@ -178,7 +179,7 @@ function getPostition(member: IMember, year: number): IPosition {
       return {
         job: aux.job,
         start_date_position: aux.start_date_position,
-        end_date_position: aux.end_date_position
+        end_date_position: aux.end_date_position || end_date
       }
     }
 
@@ -188,7 +189,7 @@ function getPostition(member: IMember, year: number): IPosition {
       return {
         job: aux.job,
         start_date_position: aux.start_date_position,
-        end_date_position: aux.end_date_position
+        end_date_position: aux.end_date_position || end_date
       }
     }
     aux = positions.find(p => p.job.match(/trainee/gi))
@@ -197,7 +198,7 @@ function getPostition(member: IMember, year: number): IPosition {
       return {
         job: aux.job,
         start_date_position: aux.start_date_position,
-        end_date_position: aux.end_date_position
+        end_date_position: aux.end_date_position || end_date
       }
     }
     return aux

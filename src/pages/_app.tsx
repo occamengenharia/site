@@ -3,17 +3,25 @@ import { ThemeProvider } from '@/hooks/theme'
 import GlobalStyle from '../styles/global'
 import { Header, Footer } from '@/components'
 
-import TagManager from 'react-gtm-module'
+// import TagManager from 'react-gtm-module'
 import { useEffect } from 'react'
-
-const tagManagerArgs = {
-  gtmId: 'GTM-T56P86F'
-}
+import * as gtag from '@/utils/gtag'
+import { useRouter } from 'next/router'
+const isProduction = process.env.NODE_ENV === 'production'
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
+  const router = useRouter()
+
   useEffect(() => {
-    TagManager.initialize(tagManagerArgs)
-  }, [])
+    const handleRouteChange = (url: URL) => {
+      /* invoke analytics function only for production */
+      if (isProduction) gtag.pageview(url)
+    }
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
 
   return (
     <ThemeProvider>
