@@ -174,12 +174,12 @@ const Home: React.FC<IPropsHome> = ({ banners, members }) => {
         </Actuation>
 
         <Members>
-          <h3>Nossa Equipe</h3>
+          <h3>Nossos diretores</h3>
           <MembersHome members={members} />
 
           <NextLink href="/membros">
             <a>
-              Histórico de Membros
+              Ver todos os membros
               <FaCaretRight />
             </a>
           </NextLink>

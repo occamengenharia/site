@@ -63,6 +63,7 @@ export const GridCards = styled.div`
   display: grid;
   grid-template-columns: repeat(1, calc(100%));
   grid-gap: var(--gap);
+
   > h3 {
     color: ${({ theme }) => theme.colors.text2};
     grid-column: 1 / -1;

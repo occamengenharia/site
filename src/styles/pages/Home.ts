@@ -156,12 +156,18 @@ export const Members = styled.div`
       margin-left: 0.8rem;
     }
   }
+  p {
+    font-size: 2rem;
+  }
   @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
     align-items: flex-start;
 
     a {
       font-size: 1.2rem;
       margin: 0 auto;
+    }
+    p {
+      font-size: 4rem;
     }
   }
 `

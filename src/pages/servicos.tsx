@@ -16,8 +16,7 @@ const Servicos: React.FC = () => {
 
             <h3>Desenvolvimento Web</h3>
             <p>
-              Ingressada na área com grande conhecimento em JavaScript, a OCCAM
-              Engenharia conta com uma equipe de desenvolvedores web que
+              A OCCAM Engenharia conta com uma equipe de desenvolvedores web que
               realizam planejamento, documentação e desenvolvimento de projetos
               tanto dentro da empresa quanto para terceiros, assim levando seu
               trabalho para toda região. Está área abrange todo o
@@ -32,8 +31,8 @@ const Servicos: React.FC = () => {
             <h3>Aplicativos</h3>
             <p>
               Com o grande mercado de aplicativos mobiles crescendo cada vez
-              mais, a OCCAM Engenharia busca realizar projetos na área. Aqui se
-              encontra o desenvolvimento de aplicativos Android e iOS.
+              mais, a OCCAM Engenharia busca realizar projetos na área. Aqui
+              você encontra o desenvolvimento de aplicativos Android e iOS.
             </p>
             <Link
               icon={FaCommentsDollar}
@@ -44,8 +43,8 @@ const Servicos: React.FC = () => {
             <h3>Automação e controle</h3>
             <p>
               Uma das áreas mais recentes da empresa, buscamos expandir os
-              conhecimentos e trazer novas tecnologias na área, trazendo
-              soluções e otimizações de controle e comportamento de sistemas
+              conhecimentos e oferecer novas tecnologias na área, trazendo
+              soluções, otimizações de controle e comportamento de sistemas
               físicos. Área focada em eletrônica e sistemas controlados.
             </p>
             <Link
