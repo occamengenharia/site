@@ -15,6 +15,8 @@ export const Card = styled.section`
   box-shadow: 0px 0px 10px 0px rgb(0, 0, 0, 0.2);
   position: relative;
   > img {
+    width: 15.2rem;
+    height: 15.2rem;
     border-radius: 50%;
     object-fit: cover;
     object-position: center;
@@ -43,6 +45,8 @@ export const Card = styled.section`
     > img {
       width: 15.2rem;
       height: 15.2rem;
+      object-fit: cover;
+      object-position: center;
     }
 
     svg {
@@ -55,7 +59,7 @@ export const Data = styled.section`
   flex-direction: column;
 
   > h1 {
-    font-size: 1.6rem;
+    font-size: 2rem;
     font-weight: bold;
   }
 
