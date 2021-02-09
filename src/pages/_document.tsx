@@ -9,7 +9,7 @@ import Document, {
 import { GA_TRACKING_ID } from '../lib/gtag'
 import { ServerStyleSheet } from 'styled-components'
 
-// const isProduction = process.env.NODE_ENV === 'production'
+const isProduction = process.env.NODE_ENV === 'production'
 
 export default class MyDocument extends Document {
   static async getInitialProps(
@@ -53,32 +53,13 @@ export default class MyDocument extends Document {
           <link rel="icon" href="/banner.png" />
 
           {/* Global Site Tag (gtag.js) - Google Analytics */}
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-          />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-          `
-            }}
-          />
-
-          {/* enable analytics script only for production */}
-          {/* {isProduction && (
+          {isProduction && (
             <>
               <script
                 async
                 src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
               />
               <script
-                // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{
                   __html: `
             window.dataLayer = window.dataLayer || [];
@@ -87,11 +68,11 @@ export default class MyDocument extends Document {
             gtag('config', '${GA_TRACKING_ID}', {
               page_path: window.location.pathname,
             });
-          `
+              `
                 }}
               />
             </>
-          )} */}
+          )}
         </Head>
         <body>
           <Main />
