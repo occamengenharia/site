@@ -1,4 +1,3 @@
-import { GA_TRACKING_ID } from '@/utils/gtag'
 import Document, {
   DocumentInitialProps,
   DocumentContext,
@@ -7,6 +6,7 @@ import Document, {
   Main,
   NextScript
 } from 'next/document'
+import { GA_TRACKING_ID } from '../lib/gtag'
 import { ServerStyleSheet } from 'styled-components'
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -41,7 +41,7 @@ export default class MyDocument extends Document {
 
   render(): JSX.Element {
     return (
-      <Html lang="pt">
+      <Html lang="pt-br">
         <Head>
           <meta charSet="utf-8" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -52,7 +52,7 @@ export default class MyDocument extends Document {
 
           <link rel="icon" href="/banner.png" />
 
-          {/* enable analytics script only for production */}
+          {/* Global Site Tag (gtag.js) - Google Analytics */}
           {isProduction && (
             <>
               <script
@@ -60,7 +60,6 @@ export default class MyDocument extends Document {
                 src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
               />
               <script
-                // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{
                   __html: `
             window.dataLayer = window.dataLayer || [];
@@ -69,7 +68,7 @@ export default class MyDocument extends Document {
             gtag('config', '${GA_TRACKING_ID}', {
               page_path: window.location.pathname,
             });
-          `
+              `
                 }}
               />
             </>
