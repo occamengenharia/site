@@ -5,9 +5,10 @@ import { Header, Footer } from '@/components'
 
 // import TagManager from 'react-gtm-module'
 import { useEffect } from 'react'
-import * as gtag from '@/utils/gtag'
 import { useRouter } from 'next/router'
-const isProduction = process.env.NODE_ENV === 'production'
+import * as gtag from '../lib/gtag'
+
+// const isProduction = process.env.NODE_ENV === 'production'
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const router = useRouter()
@@ -15,7 +16,9 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   useEffect(() => {
     const handleRouteChange = (url: URL) => {
       /* invoke analytics function only for production */
-      if (isProduction) gtag.pageview(url)
+      // if (isProduction) {
+      gtag.pageview(url)
+      // }
     }
     router.events.on('routeChangeComplete', handleRouteChange)
     return () => {
