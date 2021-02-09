@@ -1,4 +1,4 @@
-export const GA_TRACKING_ID = 'GTM-T56P86F'
+export const GA_TRACKING_ID = process.env.GA_TRACKING_ID
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: URL): void => {
@@ -19,6 +19,6 @@ export const event = ({ action, category, label, value }: GTagEvent): void => {
   window.gtag('event', action, {
     event_category: category,
     event_label: label,
-    value
+    value: value
   })
 }
