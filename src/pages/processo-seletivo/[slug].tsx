@@ -50,7 +50,7 @@ const Process: React.FC<IProcessSeletive> = props => {
       `${props.opening_subscriptions} 00:00`
     )
     const closingDateSubscribe = new Date(
-      `${props.closing_subscriptions} 00:00`
+      `${props.closing_subscriptions} 23:59:00`
     )
     if (
       currentDate <= closingDateSubscribe &&
