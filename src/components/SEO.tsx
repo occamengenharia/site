@@ -27,7 +27,6 @@ const SEO = ({
       <title>{pageTitle}</title>
 
       {description && <meta name="description" content={description} />}
-      {pageImage && <meta name="description" content={pageImage} />}
 
       {/* Caso seja shouldIndexPage=false ele não irá indexar  */}
       {!shouldIndexPage && <meta name="robots" content="noindex,nofollow" />}
