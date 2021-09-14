@@ -19,7 +19,8 @@ const SEO = ({
     !shouldExcludeTitleSufix ? '| OCCAM Engenharia' : ''
   }`
 
-  const pageImage = image ? `${process.env.NEXT_PUBLIC_SITE_URL}${image}` : null
+  let pageImage = image ? `${process.env.NEXT_PUBLIC_SITE_URL}${image}` : null
+  if (image?.match(/http/gi)) pageImage = image
 
   return (
     <Head>
