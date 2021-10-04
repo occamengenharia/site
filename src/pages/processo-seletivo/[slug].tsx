@@ -76,6 +76,7 @@ const Process: React.FC<IProcessSeletive> = props => {
         image={`${props.photo_disclosure.url}`}
         description={props.slogan}
       />
+      map
       <SelectiveProcessForm isOpened={subscribe} setIsOpen={setSubscribe} />
       <DataRequest isOpened={requestData} setIsOpen={setRequestData} />
       <Container>
