@@ -1633,11 +1633,6 @@ cosmiconfig@^6.0.0:
     path-type "^4.0.0"
     yaml "^1.7.2"
 
-create-conical-gradient@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/create-conical-gradient/-/create-conical-gradient-1.1.0.tgz#30fb680ccff4c305672d01adbb968edaa9591b6b"
-  integrity sha512-WW1c5WD1ddAkr6NcWfVayaTAP8p8Ojm7p0o3DmzWqEJor5tN85Cwuj0NhyaPrXVGy+fYVjQJsfPvHzihWo082g==
-
 create-ecdh@^4.0.0:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/create-ecdh/-/create-ecdh-4.0.4.tgz#d6e7f4bffa66736085a0762fd3a632684dabcc4e"
