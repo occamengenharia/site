@@ -49,7 +49,7 @@ export default createGlobalStyle`
     font: 700 3.2rem Ubuntu, sans-serif;
   }
 
-  p, i, strong, legend, label {
+  p, i, strong, legend, label,tr {
     font: 500 2.4rem Ubuntu, sans-serif;
   }
 
