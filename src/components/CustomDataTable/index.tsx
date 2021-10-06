@@ -1,4 +1,4 @@
-import { DivContainer, Th, SpanIcon } from './styles'
+import { DivContainer, Th } from './styles'
 import { useRef, useEffect, useState } from 'react'
 import { IoMdArrowDropdown } from 'react-icons/io'
 interface IColumnHeaders {
@@ -59,12 +59,8 @@ const CustomDataTable: React.FC<ICustomDataTableProps> = props => {
         })
       })
     }
-    console.log(
-      props.columnHeaders.filter(header => header.sortable !== undefined).length
-    )
   }, [])
   const tableRef = useRef<HTMLTableElement>(null)
-  console.log(props.initialSortColumn)
 
   const [sortButton, setSortButton] = useState<ISortState>({
     columnIndex: 0,
@@ -82,51 +78,46 @@ const CustomDataTable: React.FC<ICustomDataTableProps> = props => {
       }
     )
   }, [columnHeaders])
-  console.log(sortButton)
 
   useEffect(() => {
     if (tableRef.current) {
       let switching = true
-      let i
-      let x
-      let y
-      let shouldSwitch
-      const tbody = tableRef.current.childNodes[1] // rever
-      console.log(tbody)
-
+      let i: number
+      let x: HTMLTableCellElement
+      let y: HTMLTableCellElement
+      let shouldSwitch: boolean
+      const tbody = tableRef.current.childNodes[1]
       let rows = tbody.childNodes
       while (switching) {
         switching = false
         rows = tbody.childNodes
-        for (i = 1; i < rows.length - 1; i++) {
+        for (i = 0; i < rows.length - 1; i++) {
           shouldSwitch = false
 
-          x = rows[i].childNodes[sortButton.columnIndex]
-          y = rows[i + 1].childNodes[sortButton.columnIndex]
-          if (
-            (x?.innerHTML.charCodeAt() >= 48 &&
-              x?.innerHTML.charCodeAt() <= 57) ||
-            (y?.innerHTML.charCodeAt() >= 48 && y?.innerHTML.charCodeAt() <= 57)
-          ) {
+          x = rows[i].childNodes[sortButton.columnIndex] as HTMLTableCellElement
+          y = rows[i + 1].childNodes[
+            sortButton.columnIndex
+          ] as HTMLTableCellElement
+          if (isNaN(Number(x?.textContent))) {
             if (sortButton.growing) {
-              if (Number(x?.innerHTML) > Number(y?.innerHTML)) {
+              if (x?.textContent.toLowerCase() > y?.textContent.toLowerCase()) {
                 shouldSwitch = true
                 break
               }
             } else {
-              if (Number(x?.innerHTML) < Number(y?.innerHTML)) {
+              if (x?.textContent.toLowerCase() < y?.textContent.toLowerCase()) {
                 shouldSwitch = true
                 break
               }
             }
           } else {
             if (sortButton.growing) {
-              if (x?.innerHTML.toLowerCase() > y?.innerHTML.toLowerCase()) {
+              if (Number(x?.textContent) > Number(y?.textContent)) {
                 shouldSwitch = true
                 break
               }
             } else {
-              if (x?.innerHTML.toLowerCase() < y?.innerHTML.toLowerCase()) {
+              if (Number(x?.textContent) < Number(y?.textContent)) {
                 shouldSwitch = true
                 break
               }
@@ -163,6 +154,8 @@ const CustomDataTable: React.FC<ICustomDataTableProps> = props => {
           <tr>
             {columnHeaders.map((marker, index) => (
               <Th
+                key={marker.title}
+                role="button"
                 cursorDefault={!marker.sortable}
                 arrowDown={sortButton.growing}
                 arrowVisible={
@@ -173,8 +166,6 @@ const CustomDataTable: React.FC<ICustomDataTableProps> = props => {
                     sort(index)
                   }
                 }}
-                key={marker.title}
-                role="button"
               >
                 {marker.title} <IoMdArrowDropdown />
               </Th>

@@ -16,10 +16,9 @@ const Ranking = () => {
   return (
     <Container>
       <main>
-        <h1>Ranking de Membros</h1>
-        {/* <MemberStatistics member={memberExemple} /> */}
+        <MemberStatistics member={memberExemple} />
+        <h3>Placar Geral</h3>
         <CustomDataTable
-          initialSortColumn={{ growing: true, columnIndex: 2 }}
           columnHeaders={[
             { title: 'Posição' },
             { title: 'Membro' },

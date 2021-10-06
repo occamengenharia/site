@@ -9,10 +9,11 @@ export const Container = styled.div`
     width: min(85vw, 500px);
     display: flex;
     flex-direction: column;
-    gap: 5.4rem;
+    gap: 2.4rem;
     justify-content: center;
     align-items: center;
-    > h1 {
+    > h3 {
+      margin-top: 2rem;
       width: 100%;
       text-align: start;
     }
