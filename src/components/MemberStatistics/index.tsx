@@ -1,7 +1,6 @@
 import { ProgressArea, Statistics } from './styles'
 import { IMembersStatistics, IPropsMemberProgress } from './interfaces'
 import { useRef, useEffect } from 'react'
-import createConicalGradient from 'create-conical-gradient'
 
 const useCanvas = (dataPercent: number) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
@@ -17,17 +16,6 @@ const useCanvas = (dataPercent: number) => {
       const canvas = canvasRef.current
       canvas.width = canvas.height = options.size
       const ctx = canvas.getContext('2d')
-      // const gradient = createConicalGradient(
-      //   ctx,
-      //   [
-      //     [0, '#0773C6'],
-      //     [1, '#014BB4']
-      //   ],
-      //   radius,
-      //   radius,
-      //   -Math.PI / 2,
-      //   (3 * Math.PI) / 2
-      // )
 
       ctx.beginPath()
       ctx.arc(
@@ -58,7 +46,7 @@ const MemberProgress: React.FC<IPropsMemberProgress> = ({
 
   return (
     <ProgressArea>
-      <canvas ref={canvasRef} />
+      <canvas ref={canvasRef} title={'Progresso atual: ' + percent + '%'} />
       <img src={urlImg} alt={name} />
       <span>{level}</span>
     </ProgressArea>
