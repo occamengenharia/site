@@ -19,6 +19,7 @@ const Ranking = () => {
         <h1>Ranking de Membros</h1>
         {/* <MemberStatistics member={memberExemple} /> */}
         <CustomDataTable
+          initialSortColumn={{ growing: true, columnIndex: 2 }}
           columnHeaders={[
             { title: 'Posição' },
             { title: 'Membro' },

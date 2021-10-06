@@ -13,17 +13,37 @@ interface ICustomDataTableProps {
   itemSelected?: number
   columnHeaders: Array<IColumnHeaders>
   initialSortColumn?: ISortState
-  allcolumnHeadersIsUnsortable?: true
+  allColumnHeadersIsUnsortable?: true
 }
 /**
- *
- * @param columnHeaders Is a array <IcolumnHeaders>
- * @returns
+ * @param {ISortState} initialSortColumn Is a object of type { growing: boolean, columnIndex: number }, "growing" sets the sorting method as ascending if true and columnIndex is the number of the column minus one
+ * @param {IcolumnHeaders} columnHeaders Is a array <IcolumnHeaders>
+ * @param {true} allColumnHeadersIsUnsortable - Optional - Makes all columns impossible to sort
+ * @example
+ * <CustomDataTable
+ * initialSortColumn={{ growing: true, columnIndex: 2 }}
+    columnHeaders={[
+      { title: 'Posição',sortable: true },
+      { title: 'Membro' },
+      { title: 'Cargo' },
+      { title: 'Pontos' },
+      { title: 'Nível' }
+    ]}
+  >
+    <tr>
+      <td>1</td>
+      <td>Gabriel Prando</td>
+      <td>Presidente</td>
+      <td>1000</td>
+      <td>10</td>
+    </tr>
+
+  </CustomDataTable>
  */
 const CustomDataTable: React.FC<ICustomDataTableProps> = props => {
   const [columnHeaders, setColumnHeaders] = useState(props.columnHeaders)
   useEffect(() => {
-    if (props.allcolumnHeadersIsUnsortable) {
+    if (props.allColumnHeadersIsUnsortable) {
       setColumnHeaders(state => {
         return state.map(header => {
           return { ...header, sortable: false }
@@ -44,21 +64,23 @@ const CustomDataTable: React.FC<ICustomDataTableProps> = props => {
     )
   }, [])
   const tableRef = useRef<HTMLTableElement>(null)
-  const [sortButton, setSortButton] = useState<ISortState>(
-    props.initialSortColumn || {
-      columnIndex: 0,
-      growing: true
-    }
-  )
+  console.log(props.initialSortColumn)
+
+  const [sortButton, setSortButton] = useState<ISortState>({
+    columnIndex: 0,
+    growing: true
+  })
   useEffect(() => {
-    setSortButton({
-      columnIndex: columnHeaders.map((head, index) => {
-        if (head.sortable) {
-          return index
-        }
-      })[0],
-      growing: true
-    })
+    setSortButton(
+      props.initialSortColumn || {
+        columnIndex: columnHeaders.map((head, index) => {
+          if (head.sortable) {
+            return index
+          }
+        })[0],
+        growing: true
+      }
+    )
   }, [columnHeaders])
   console.log(sortButton)
 
@@ -69,11 +91,13 @@ const CustomDataTable: React.FC<ICustomDataTableProps> = props => {
       let x
       let y
       let shouldSwitch
+      const tbody = tableRef.current.childNodes[1] // rever
+      console.log(tbody)
 
-      let rows = tableRef.current.childNodes
+      let rows = tbody.childNodes
       while (switching) {
         switching = false
-        rows = tableRef.current.childNodes
+        rows = tbody.childNodes
         for (i = 1; i < rows.length - 1; i++) {
           shouldSwitch = false
 
@@ -135,30 +159,29 @@ const CustomDataTable: React.FC<ICustomDataTableProps> = props => {
   return (
     <DivContainer>
       <table ref={tableRef}>
-        <tr>
-          {columnHeaders.map((marker, index) => (
-            <Th
-              cursorDefault={!marker.sortable}
-              onClick={() => {
-                if (marker.sortable) {
-                  sort(index)
+        <thead>
+          <tr>
+            {columnHeaders.map((marker, index) => (
+              <Th
+                cursorDefault={!marker.sortable}
+                arrowDown={sortButton.growing}
+                arrowVisible={
+                  marker.sortable && sortButton.columnIndex === index
                 }
-              }}
-              key={marker.title}
-              role="button"
-            >
-              <button>
-                {marker.title}{' '}
-                <SpanIcon arrowDown={sortButton.growing}>
-                  {marker.sortable && sortButton.columnIndex === index && (
-                    <IoMdArrowDropdown size={20} />
-                  )}
-                </SpanIcon>
-              </button>
-            </Th>
-          ))}
-        </tr>
-        {props.children}
+                onClick={() => {
+                  if (marker.sortable) {
+                    sort(index)
+                  }
+                }}
+                key={marker.title}
+                role="button"
+              >
+                {marker.title} <IoMdArrowDropdown />
+              </Th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>{props.children}</tbody>
       </table>
     </DivContainer>
   )

@@ -21,6 +21,8 @@ export const SpanIcon = styled.th<IIconProps>`
 `
 interface IThProps {
   cursorDefault?: boolean
+  arrowDown?: boolean
+  arrowVisible?: boolean
 }
 /**
  * @param cursorDefault boolean
@@ -33,6 +35,8 @@ export const Th = styled.th<IThProps>`
   text-justify: center;
   background: ${props => props.theme.colors.background};
   transition: all ${({ theme }) => theme.variables.transition}s;
+  word-break: normal;
+  width: fit-content;
   > button {
     color: ${({ theme }) => theme.colors.titles};
     display: flex;
@@ -44,25 +48,35 @@ export const Th = styled.th<IThProps>`
     font-weight: bold;
     width: 100%;
   }
+  > svg {
+    ${props =>
+      props.arrowDown &&
+      css`
+        -moz-transform: scaleY(-1);
+        -o-transform: scaleY(-1);
+        -webkit-transform: scaleY(-1);
+        transform: scaleY(-1);
+      `}
+  }
 `
 export const DivContainer = styled.div`
   width: 100%;
   scroll-snap-type: x proximity;
   overflow-x: auto;
-  height: 700px;
   > table {
-    width: 100%;
     border-collapse: collapse;
-    > tr {
-      transition: all ${({ theme }) => theme.variables.transition}s;
-      &:nth-child(odd) {
-        background: ${props => props.theme.colors.backgorudElevation};
-      }
+    > tbody {
+      > tr {
+        transition: all ${({ theme }) => theme.variables.transition}s;
+        &:nth-child(odd) {
+          background: ${props => props.theme.colors.backgorudElevation};
+        }
 
-      > td {
-        padding: 1.2rem 2.2rem;
-        scroll-snap-align: start;
-        font-weight: 400;
+        > td {
+          padding: 1.2rem 2.2rem;
+          scroll-snap-align: start;
+          font-weight: 400;
+        }
       }
     }
   }
