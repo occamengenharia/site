@@ -30,7 +30,7 @@ export default createGlobalStyle`
     background: ${props => props.theme.colors.background};
     color: ${props => props.theme.colors.text};
     font: 400 1.6rem Ubuntu, sans-serif;
-  transition: all ${({ theme }) => theme.variables.transition}s ;
+    transition: all ${({ theme }) => theme.variables.transition}s ;
     cursor: default;
   }
   h1,h2,h3{
