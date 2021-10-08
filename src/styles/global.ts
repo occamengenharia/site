@@ -11,6 +11,7 @@ export default createGlobalStyle`
     list-style:none;
     font-size:62.5%;
   }
+  
   textarea:focus,
   input:focus,
   select:focus,
@@ -24,8 +25,7 @@ export default createGlobalStyle`
     text-decoration: none;
     cursor: pointer;
     color: ${props => props.theme.colors.text};
-  }
-
+    }
   body {
     background: ${props => props.theme.colors.background};
     color: ${props => props.theme.colors.text};

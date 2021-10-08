@@ -9,7 +9,7 @@ interface ISortState {
   columnIndex: number
   growing: boolean
 }
-interface ICustomDataTableProps {
+interface ISortableTableProps {
   itemSelected?: number
   columnHeaders: Array<IColumnHeaders>
   initialSortColumn?: ISortState
@@ -20,7 +20,7 @@ interface ICustomDataTableProps {
  * @param {IcolumnHeaders} columnHeaders Is a array <IcolumnHeaders>
  * @param {true} allColumnHeadersIsUnsortable - Optional - Makes all columns impossible to sort
  * @example
- * <CustomDataTable
+ * <SortableTable
  * initialSortColumn={{ growing: true, columnIndex: 2 }}
     columnHeaders={[
       { title: 'Posição',sortable: true },
@@ -38,9 +38,9 @@ interface ICustomDataTableProps {
       <td>10</td>
     </tr>
 
-  </CustomDataTable>
+  </SortableTable>
  */
-const CustomDataTable: React.FC<ICustomDataTableProps> = props => {
+const SortableTable: React.FC<ISortableTableProps> = props => {
   const [columnHeaders, setColumnHeaders] = useState(props.columnHeaders)
   useEffect(() => {
     if (props.allColumnHeadersIsUnsortable) {
@@ -177,4 +177,4 @@ const CustomDataTable: React.FC<ICustomDataTableProps> = props => {
     </DivContainer>
   )
 }
-export default CustomDataTable
+export default SortableTable

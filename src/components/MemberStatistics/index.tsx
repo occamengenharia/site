@@ -1,52 +1,10 @@
 import { ProgressArea, Statistics } from './styles'
 import { IMembersStatistics, IPropsMemberProgress } from './interfaces'
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
 import { useTheme } from 'styled-components'
 import Select from '../Select'
 import { Form } from '@unform/web'
-
-interface ICanvasOptions {
-  percent: number
-  canvasSize: number
-  lineWidth: number
-}
-const useCanvas = (options: ICanvasOptions) => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null)
-  const theme = useTheme()
-  console.log(theme)
-
-  useEffect(() => {
-    if (canvasRef.current) {
-      const radius = (options.canvasSize - options.lineWidth) / 2
-      const canvas = canvasRef.current
-      canvas.width = canvas.height = options.canvasSize
-      const ctx = canvas.getContext('2d')
-      ctx.beginPath()
-      ctx.arc(
-        options.canvasSize / 2,
-        options.canvasSize / 2,
-        radius,
-        -Math.PI / 2,
-        (2 * Math.PI * options.percent) / 100 - Math.PI / 2,
-        false
-      )
-      const gradient = ctx.createLinearGradient(
-        0,
-        options.canvasSize / 2,
-        options.canvasSize,
-        options.canvasSize / 2
-      )
-      gradient.addColorStop(1, theme.colors.complementary)
-      gradient.addColorStop(0, theme.colors.titlesInverted)
-      ctx.strokeStyle = gradient
-      ctx.lineCap = 'round'
-      ctx.lineWidth = options.lineWidth
-      ctx.stroke()
-    }
-  }, [options, theme])
-
-  return canvasRef
-}
+import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai'
 
 const MemberProgress: React.FC<IPropsMemberProgress> = ({
   level,
@@ -57,13 +15,68 @@ const MemberProgress: React.FC<IPropsMemberProgress> = ({
   const options = {
     percent: percent,
     canvasSize: 248,
-    lineWidth: 4
+    lineWidth: 6,
+    radius: (248 - 6) / 2
   }
-  const canvasRef = useCanvas(options)
-
+  const theme = useTheme()
   return (
-    <ProgressArea {...options}>
-      <canvas ref={canvasRef} title={'Progresso atual: ' + percent + '%'} />
+    <ProgressArea {...options} title={'Progresso atual: ' + percent + '%'}>
+      <svg>
+        <defs>
+          <linearGradient id="Gradient1" gradientTransform="rotate(90)">
+            <stop
+              offset="0%"
+              stopColor={theme.colors.gradientStop1}
+              stopOpacity="1"
+            />
+            <stop
+              offset="100%"
+              stopColor={theme.colors.gradientStop4}
+              stopOpacity="1"
+            />
+          </linearGradient>
+          <linearGradient id="Gradient2" gradientTransform="rotate(90)">
+            <stop
+              offset="0%"
+              stopColor={theme.colors.gradientStop4}
+              stopOpacity="1"
+            />
+            <stop
+              offset="100%"
+              stopColor={theme.colors.gradientStop4}
+              stopOpacity="1"
+            />
+          </linearGradient>
+          <pattern
+            id="Pattern"
+            x="0"
+            y="0"
+            width={500}
+            height={500}
+            patternUnits="userSpaceOnUse"
+          >
+            <g transform={`rotate(0, ${500 / 2}, ${500 / 2})`}>
+              <rect
+                shapeRendering="crispEdges"
+                x="0"
+                y="0"
+                width={500 / 2}
+                height={500}
+                fill="url(#Gradient1)"
+              />
+              <rect
+                shapeRendering="crispEdges"
+                x={500 / 2}
+                y="0"
+                width={500 / 2}
+                height={500}
+                fill="url(#Gradient2)"
+              />
+            </g>
+          </pattern>
+        </defs>
+        <circle cx="50%" cy="50%" r={options.radius} stroke="url('#Pattern')" />
+      </svg>
       <img src={urlImg} alt={name} />
       <span>{level}</span>
     </ProgressArea>
@@ -86,6 +99,14 @@ const MemberStatistics: React.FC<IMemberStatisticsProps> = ({ member }) => {
         <figcaption>
           <label htmlFor="member">{fullName}</label>
           <i>{member.profession}</i>
+          <aside>
+            <a href="">
+              <AiFillGithub />
+            </a>
+            <a href="">
+              <AiFillLinkedin />
+            </a>
+          </aside>
         </figcaption>
       </figure>
       <Form ref={formRef} onSubmit={() => {}}>
@@ -101,24 +122,6 @@ const MemberStatistics: React.FC<IMemberStatisticsProps> = ({ member }) => {
           ]}
         />
       </Form>
-      {/* <aside>
-          <h5>
-            <strong>Total de pontos</strong>
-            <span>{member.experiencePoints}xp</span>
-          </h5>
-          <h5>
-            <strong>Posição no ranking</strong>
-            <span>{2}</span>
-          </h5>
-          <h5>
-            <strong>Conquistas</strong>
-            {member.conquests?.map(conquest => (
-              <span key={conquest.title} title={conquest.title}>
-                {conquest.emoji}
-              </span>
-            ))}
-          </h5>
-        </aside> */}
     </Statistics>
   )
 }

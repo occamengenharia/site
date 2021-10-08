@@ -3,15 +3,44 @@ import styled from 'styled-components'
 interface IProgressArea {
   canvasSize: number
   lineWidth: number
+  radius: number
+  percent: number
 }
 export const ProgressArea = styled.div<IProgressArea>`
   --CanvasSize: ${props => props.canvasSize}px;
   --lineWidth: ${props => props.lineWidth}px;
+  --circumference: ${props => props.radius * Math.PI * 2};
+  --progressPercent: ${props => props.percent};
   position: relative;
   display: flex;
   justify-content: center;
   width: var(--CanvasSize);
   height: var(--CanvasSize);
+  > svg {
+    width: 100%;
+    height: 100%;
+    > defs {
+      > stop {
+        stopopacity: 1;
+        &:nth-child(2) {
+          stop-opacity: 1;
+        }
+      }
+    }
+    > circle {
+      fill: none;
+      stroke-width: var(--lineWidth);
+      stroke-linecap: round;
+      stroke-dasharray: var(--circumference);
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+      stroke-dashoffset: calc(
+        var(--circumference) -
+          (var(--circumference) * var(--progressPercent) / 100)
+      );
+      transition: 2s;
+    }
+  }
   > span {
     --Span-size: 4.8rem;
     font-size: 2.4rem;

@@ -45,6 +45,10 @@ export const light = {
     subtitles: '#0773C6',
     borderDivision: '#E2E2E2',
     disabled: '#CECECE',
+    gradientStop1: '#CECECE',
+    gradientStop2: '#dadada',
+    gradientStop3: '#f4f4f4',
+    gradientStop4: '#FEFEFE',
     ...basicColors
   },
   ...metrics
@@ -70,6 +74,10 @@ export const dark = {
     subtitles: '#CECECE',
     borderDivision: '#1a2433',
     disabled: '#858585',
+    gradientStop1: '#014BB4',
+    gradientStop2: '#0355b9',
+    gradientStop3: '#066ac2',
+    gradientStop4: '#0773C6',
     ...basicColors
   },
   ...metrics
