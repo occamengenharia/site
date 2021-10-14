@@ -1,10 +1,13 @@
 import { ProgressArea, Statistics } from './styles'
 import { IMembersStatistics, IPropsMemberProgress } from './interfaces'
-import { useRef } from 'react'
+import { useCallback, useRef } from 'react'
 import { useTheme } from 'styled-components'
 import Select from '../Select'
 import { Form } from '@unform/web'
 import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai'
+import { Members } from '@/styles/pages/Home'
+import { GroupedOptionsType, OptionsType, OptionTypeBase } from 'react-select'
+import { useRouter } from 'next/router'
 
 const MemberProgress: React.FC<IPropsMemberProgress> = ({
   level,
@@ -85,13 +88,25 @@ const MemberProgress: React.FC<IPropsMemberProgress> = ({
 
 interface IMemberStatisticsProps {
   member: IMembersStatistics
+  selectOptions:
+    | GroupedOptionsType<OptionTypeBase>
+    | OptionsType<OptionTypeBase>
 }
-const MemberStatistics: React.FC<IMemberStatisticsProps> = ({ member }) => {
+const MemberStatistics: React.FC<IMemberStatisticsProps> = ({
+  member,
+  selectOptions
+}) => {
   const fullName =
     member.name.split(' ')[0] +
     ' ' +
     member.name.split(' ')[member.name.split(' ').length - 1]
   const formRef = useRef()
+  const router = useRouter()
+  const handleChangeMember = useCallback((option: OptionTypeBase) => {
+    if (option) {
+      router.push(`/ranking-de-membros/${option.value}`)
+    }
+  }, [])
   return (
     <Statistics>
       <figure>
@@ -109,17 +124,18 @@ const MemberStatistics: React.FC<IMemberStatisticsProps> = ({ member }) => {
           </aside>
         </figcaption>
       </figure>
-      <Form ref={formRef} onSubmit={() => {}}>
+      <Form
+        ref={formRef}
+        onSubmit={() => {
+          console.log('Subimissão feita por checagem')
+        }}
+      >
         <Select
           name="member"
           inputId="member"
           placeholder="Selecione um membro"
-          options={[
-            {
-              value: 'Tal',
-              label: 'Tal'
-            }
-          ]}
+          onChange={handleChangeMember}
+          options={selectOptions}
         />
       </Form>
     </Statistics>
