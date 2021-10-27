@@ -51,11 +51,56 @@ const SortableTable: React.FC<ISortableTableProps> = props => {
       })
     } else if (
       props.columnHeaders.filter(header => header.sortable !== undefined)
-        .length === 0
+        .length > 0
     ) {
+      if (
+        props.columnHeaders.filter(header => header.sortable).length > 0 &&
+        props.columnHeaders.filter(
+          header => !header.sortable && header.sortable !== undefined
+        ).length === 0
+      ) {
+        setColumnHeaders(state => {
+          return state.map((header, index) => {
+            return {
+              ...header,
+              sortable: props.columnHeaders[index].sortable !== undefined
+            }
+          })
+        })
+      } else if (
+        props.columnHeaders.filter(header => header.sortable).length === 0 &&
+        props.columnHeaders.filter(
+          header => !header.sortable && header.sortable !== undefined
+        ).length > 0
+      ) {
+        setColumnHeaders(state => {
+          return state.map((header, index) => {
+            return {
+              ...header,
+              sortable: props.columnHeaders[index].sortable === undefined
+            }
+          })
+        })
+      } else {
+        setColumnHeaders(state => {
+          return state.map((header, index) => {
+            return {
+              ...header,
+              sortable:
+                props.columnHeaders[index].sortable === undefined
+                  ? true
+                  : props.columnHeaders[index].sortable
+            }
+          })
+        })
+      }
+    } else {
       setColumnHeaders(state => {
         return state.map(header => {
-          return { ...header, sortable: true }
+          return {
+            ...header,
+            sortable: true
+          }
         })
       })
     }
@@ -69,11 +114,7 @@ const SortableTable: React.FC<ISortableTableProps> = props => {
   useEffect(() => {
     setSortButton(
       props.initialSortColumn || {
-        columnIndex: columnHeaders.map((head, index) => {
-          if (head.sortable) {
-            return index
-          }
-        })[0],
+        columnIndex: columnHeaders.findIndex(header => header.sortable),
         growing: true
       }
     )

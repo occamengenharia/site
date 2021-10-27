@@ -61,7 +61,7 @@ const Ranking: React.FC<IRankingProps> = ({ members, currentMember }) => {
           columnHeaders={[
             { title: 'Posição' },
             { title: 'Membro' },
-            { title: 'Cargo' },
+            { title: 'Cargo', sortable: false },
             { title: 'Pontos' },
             { title: 'Nível' }
           ]}
