@@ -18,7 +18,7 @@ const CardData: React.FC<IDataProps> = ({
 }) => {
   return (
     <Card>
-      <img src={`${photo}` || '/404/caramelo.png'}></img>
+      <img src={`${photo}` || '/404/caramelo.png'} alt={name} />
       <Data>
         <h1>{name}</h1>
         <h2>{position}</h2>

@@ -10,10 +10,15 @@ import {
 } from 'react-icons/fa'
 
 const Home: React.FC = () => {
-  const description = 'OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
+  const description =
+    'Aqui você encontra os links para todas as redes sociais da OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
   return (
     <Container>
-      <SEO title="Links" image="/logo/light.svg" description={description} />
+      <SEO
+        title="Nossas redes sociais"
+        image="/logo/light.svg"
+        description={description}
+      />
       <main>
         <div id="firstText">
           <h3>
