@@ -1,14 +1,13 @@
-import { ProgressArea, Statistics } from './styles'
+import { ProgressArea, Statistics, Box, Links } from './styles'
 import { IMembersStatistics, IPropsMemberProgress } from './interfaces'
 import { useCallback, useRef } from 'react'
 import { useTheme } from 'styled-components'
 import Select from '../Select'
 import { Form } from '@unform/web'
-import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai'
-import { Members } from '@/styles/pages/Home'
+import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { GroupedOptionsType, OptionsType, OptionTypeBase } from 'react-select'
 import { useRouter } from 'next/router'
-
+import Link from 'next/link'
 const MemberProgress: React.FC<IPropsMemberProgress> = ({
   level,
   percent,
@@ -115,11 +114,11 @@ const MemberStatistics: React.FC<IMemberStatisticsProps> = ({
           <label htmlFor="member">{fullName}</label>
           <i>{member.profession}</i>
           <aside>
-            <a href="">
-              <AiFillGithub />
+            <a href={member.link_github}>
+              <FaGithub />
             </a>
-            <a href="">
-              <AiFillLinkedin />
+            <a href={member.link_linkedin}>
+              <FaLinkedin />
             </a>
           </aside>
         </figcaption>
@@ -138,6 +137,29 @@ const MemberStatistics: React.FC<IMemberStatisticsProps> = ({
           options={selectOptions}
         />
       </Form>
+      <Box>
+        <aside>
+          <strong>Total de pontos</strong>
+          <span>{10 + 'xp'}</span>
+        </aside>
+        <aside>
+          <strong>Posição no ranking</strong>
+          <span>{3}</span>
+        </aside>
+      </Box>
+      <Box>
+        <strong>Conquistas</strong>
+        <section></section>
+      </Box>
+      <Links>
+        <a href="#placarGeral">Placar Geral</a>
+        <Link href="/pontos">
+          <a>Pontos</a>
+        </Link>
+        <Link href="/conquistas">
+          <a>Conquistas</a>
+        </Link>
+      </Links>
     </Statistics>
   )
 }

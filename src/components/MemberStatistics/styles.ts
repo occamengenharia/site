@@ -1,4 +1,3 @@
-import { Interface } from 'readline'
 import styled from 'styled-components'
 interface IProgressArea {
   canvasSize: number
@@ -6,6 +5,46 @@ interface IProgressArea {
   radius: number
   percent: number
 }
+export const Links = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.4rem 0;
+  a {
+    font-size: 1.6rem;
+    color: ${({ theme }) => theme.colors.links};
+    width: 102%;
+    text-align: center;
+    &:hover {
+      color: ${({ theme }) => theme.colors.linksHover};
+      font-weight: 500;
+    }
+  }
+`
+export const Box = styled.div`
+  margin-top: 1.6rem;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  background: ${({ theme }) => theme.colors.inputBackground};
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  > aside {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  strong,
+  span {
+    font-size: 1.6rem;
+  }
+  strong {
+    font-weight: 00;
+  }
+  span {
+    font-weight: 400;
+  }
+`
 export const ProgressArea = styled.div<IProgressArea>`
   --CanvasSize: ${props => props.canvasSize}px;
   --lineWidth: ${props => props.lineWidth}px;
@@ -21,7 +60,7 @@ export const ProgressArea = styled.div<IProgressArea>`
     height: 100%;
     > defs {
       > stop {
-        stopopacity: 1;
+        opacity: 1;
         &:nth-child(2) {
           stop-opacity: 1;
         }
@@ -73,9 +112,6 @@ export const ProgressArea = styled.div<IProgressArea>`
   }
 `
 export const Statistics = styled.div`
-  ${ProgressArea} {
-    grid-column: 1;
-  }
   > figure {
     display: flex;
     flex-direction: column;
@@ -88,10 +124,10 @@ export const Statistics = styled.div`
     border-radius: ${props => props.theme.variables.borderRadius}rem;
     background: ${props => props.theme.colors.primaryGradient};
     > figcaption {
-      grid-column: 2;
       display: flex;
       flex-direction: column;
       text-align: center;
+      padding-top: 1.2rem;
       > label {
         text-transform: uppercase;
         color: ${props => props.theme.colors.titlesInverted};
@@ -104,6 +140,17 @@ export const Statistics = styled.div`
         font-size: 1.6rem;
         font-weight: lighter;
         font-style: italic;
+      }
+      > aside {
+        padding-top: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.8rem;
+        > a > svg {
+          font-size: 2.4rem;
+          color: ${props => props.theme.colors.titlesInverted};
+        }
       }
     }
     /* > aside {

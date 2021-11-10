@@ -1,5 +1,3 @@
-import { HexBase64BinaryEncoding } from 'crypto'
-
 export interface IPropsMemberProgress {
   level: number
   percent: number
@@ -14,4 +12,6 @@ export interface IMembersStatistics extends IPropsMemberProgress {
   profession: string
   experiencePoints: number
   conquests: Array<IConquests>
+  link_github: string
+  link_linkedin: string
 }
