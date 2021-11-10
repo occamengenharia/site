@@ -153,27 +153,10 @@ export const Statistics = styled.div`
         }
       }
     }
-    /* > aside {
-      display: flex;
-      flex-direction: column;
-      gap: 2.8rem;
-      margin-top: 2.4rem;
-      padding: 1.8rem;
-      background: ${props => props.theme.colors.backgorudElevation};
-      border-radius: 0.8px;
-      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-      > h5 {
-        display: flex;
-        justify-content: space-between;
-        strong,
-        span {
-          font-size: 1.6rem;
-          font-weight: 400;
-        }
-        strong {
-          font-weight: 700;
-        }
-      }
-    } */
+  }
+  @media (min-width: ${props => props.theme.breakpoints.lg}px) {
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+    gap: 6.4rem;
   }
 `

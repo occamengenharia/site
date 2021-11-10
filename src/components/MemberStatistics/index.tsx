@@ -123,43 +123,45 @@ const MemberStatistics: React.FC<IMemberStatisticsProps> = ({
           </aside>
         </figcaption>
       </figure>
-      <Form
-        ref={formRef}
-        onSubmit={() => {
-          console.log('Subimissão feita por checagem')
-        }}
-      >
-        <Select
-          name="member"
-          inputId="member"
-          placeholder="Selecione um membro"
-          onChange={handleChangeMember}
-          options={selectOptions}
-        />
-      </Form>
-      <Box>
-        <aside>
-          <strong>Total de pontos</strong>
-          <span>{10 + 'xp'}</span>
-        </aside>
-        <aside>
-          <strong>Posição no ranking</strong>
-          <span>{3}</span>
-        </aside>
-      </Box>
-      <Box>
-        <strong>Conquistas</strong>
-        <section></section>
-      </Box>
-      <Links>
-        <a href="#placarGeral">Placar Geral</a>
-        <Link href="/pontos">
-          <a>Pontos</a>
-        </Link>
-        <Link href="/conquistas">
-          <a>Conquistas</a>
-        </Link>
-      </Links>
+      <div>
+        <Form
+          ref={formRef}
+          onSubmit={() => {
+            console.log('Subimissão feita por checagem')
+          }}
+        >
+          <Select
+            name="member"
+            inputId="member"
+            placeholder="Selecione um membro"
+            onChange={handleChangeMember}
+            options={selectOptions}
+          />
+        </Form>
+        <Box>
+          <aside>
+            <strong>Total de pontos</strong>
+            <span>{10 + 'xp'}</span>
+          </aside>
+          <aside>
+            <strong>Posição no ranking</strong>
+            <span>{3}</span>
+          </aside>
+        </Box>
+        <Box>
+          <strong>Conquistas</strong>
+          <section></section>
+        </Box>
+        <Links>
+          <a href="#placarGeral">Placar Geral</a>
+          <Link href="/pontos">
+            <a>Pontos</a>
+          </Link>
+          <Link href="/conquistas">
+            <a>Conquistas</a>
+          </Link>
+        </Links>
+      </div>
     </Statistics>
   )
 }
