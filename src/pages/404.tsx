@@ -18,12 +18,7 @@ const NotFound: React.FC = () => {
 
   return (
     <Notfound>
-      <SEO
-        title="Página não encontrada"
-        image="/logo/light.svg"
-        description="Parece que a página que você está tentando acessar não existe ou não está disponível"
-        shouldIndexPage={false}
-      />
+      <SEO title="Página não encontrada" shouldIndexPage={false} />
       <body>
         <h1>404</h1>
         <h2>Página não encontrada</h2>
