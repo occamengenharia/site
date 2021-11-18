@@ -35,7 +35,7 @@ interface IAboutUsProps {
 }
 const AboutUs: React.FC<IAboutUsProps> = props => {
   const description =
-    'Sobre a  OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
+    'Conheça mais sobre a  OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
   const intro =
     'A Empresa Júnior de Engenharia de Computação da Universidade Tecnológica Federal do Paraná - UTFPR, vem desde 2014 trabalhando para desenvolver atividades que possam ampliar e melhorar a qualidade de vida da comunidade ao seu redor.'
   const DescriptMission =

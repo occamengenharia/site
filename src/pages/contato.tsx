@@ -23,7 +23,7 @@ interface IContactFormData {
 }
 
 const description =
-  'Contato - OCCAM Engenharia empresa júnior de engenharia de computação'
+  'Entre em contato com a gente - OCCAM Engenharia empresa júnior de engenharia de computação'
 
 const Contact: React.FC = () => {
   const [isOpenSuccess, setIsOpenSuccess] = useState(false)
@@ -73,6 +73,11 @@ const Contact: React.FC = () => {
   return (
     <>
       <Container>
+        <SEO
+          title="Entre em contato"
+          image="/logo/light.svg"
+          description={description}
+        />
         <ErrorModal
           title="Ocorreu um erro"
           subtitle="Tente novamente mais tarde"
@@ -86,11 +91,6 @@ const Contact: React.FC = () => {
           setOpen={setIsOpenSuccess}
           showCloseIcon={false}
           timer={10000}
-        />
-        <SEO
-          title="Contato"
-          image="/logo/light.svg"
-          description={description}
         />
 
         <FormStyled ref={formRef} onSubmit={handleSubmit}>

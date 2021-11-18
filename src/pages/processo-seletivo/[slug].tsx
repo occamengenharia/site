@@ -1,7 +1,7 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { FaUserPlus, FaFileAlt } from 'react-icons/fa'
 
-import Head from '@/components/SEO'
+import SEO from '@/components/SEO'
 import {
   Container,
   Dates,
@@ -71,7 +71,7 @@ const Process: React.FC<IProcessSeletive> = props => {
 
   return (
     <>
-      <Head
+      <SEO
         title={`Processo ${props.slug}`}
         image={`${props.photo_disclosure.url}`}
         description={props.slogan}
@@ -116,7 +116,7 @@ const Process: React.FC<IProcessSeletive> = props => {
           </Dates>
           <img
             src={props.photo_disclosure.url}
-            alt="Foto do Processo Seletivo"
+            alt="Imagem promocional do processo seletivo"
           />
           <Dates className="dates-down">
             <DatesContent className="date-content-bottom">

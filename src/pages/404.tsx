@@ -18,7 +18,7 @@ const NotFound: React.FC = () => {
 
   return (
     <Notfound>
-      <SEO title="404" image="/logo/light.svg" shouldIndexPage={false} />
+      <SEO title="Página não encontrada" shouldIndexPage={false} />
       <body>
         <h1>404</h1>
         <h2>Página não encontrada</h2>
@@ -29,7 +29,7 @@ const NotFound: React.FC = () => {
             <strong> Volte para home. </strong>
           </Link>
         </div>
-        <img src="/404/caramelo.png" />
+        <img src="/404/caramelo.png" alt="Cachorro Caramelo" />
         <span id="falaOccao">- {getRandomSentences()} (OCCÃO, 2020)</span>
       </body>
     </Notfound>
