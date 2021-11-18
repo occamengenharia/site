@@ -11,6 +11,7 @@ export default createGlobalStyle`
     list-style:none;
     font-size:62.5%;
   }
+  
   textarea:focus,
   input:focus,
   select:focus,
@@ -24,13 +25,12 @@ export default createGlobalStyle`
     text-decoration: none;
     cursor: pointer;
     color: ${props => props.theme.colors.text};
-  }
-
+    }
   body {
     background: ${props => props.theme.colors.background};
     color: ${props => props.theme.colors.text};
     font: 400 1.6rem Ubuntu, sans-serif;
-  transition: all ${({ theme }) => theme.variables.transition}s ;
+    transition: all ${({ theme }) => theme.variables.transition}s ;
     cursor: default;
   }
   h1,h2,h3{
@@ -49,7 +49,7 @@ export default createGlobalStyle`
     font: 700 3.2rem Ubuntu, sans-serif;
   }
 
-  p, i, strong, legend, label {
+  p, i, strong, legend, label,tr {
     font: 500 2.4rem Ubuntu, sans-serif;
   }
 
