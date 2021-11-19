@@ -61,7 +61,10 @@ const Header: React.FC = () => {
     <Main hasSelectiveProcess={selectiveProcess.selectiveProcessActive}>
       <HeaderContent>
         <Link href="/">
-          <img src={`/logo/${theme}.svg`} alt="OCCAM Engenharia" />
+          <img
+            src={`/logo/${theme}.svg`}
+            alt="Logo da OCCAM Engenharia na navegação"
+          />
         </Link>
 
         <div>

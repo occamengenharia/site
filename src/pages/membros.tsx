@@ -42,7 +42,7 @@ interface IMembersSerealized {
 }
 
 const description =
-  'Histórico de membros da OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
+  'Venha conhecer o histórico de membros da OCCAM Engenharia, Empresa Júnior de Computação UTFPR-PB'
 
 const Members: React.FC<IMembersSerealized> = props => {
   const nowYear = new Date().getFullYear()
@@ -72,7 +72,11 @@ const Members: React.FC<IMembersSerealized> = props => {
 
   return (
     <>
-      <SEO title="Membros" image="/logo/light.svg" description={description} />
+      <SEO
+        title="Conheça nossos membros"
+        image="/logo/light.svg"
+        description={description}
+      />
       <Container>
         <h2>Histórico de Membros</h2>
 

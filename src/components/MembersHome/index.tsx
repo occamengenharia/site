@@ -43,7 +43,7 @@ const MembersHome: React.FC<MemberProps> = ({ members }) => {
 
   return (
     <MemberStyle>
-      <img src={currentMember.avatar} />
+      <img src={currentMember.avatar} alt={`Diretor ${currentMember.name}`} />
       <main>
         <section>
           <p>{currentMember.name}</p>

@@ -116,10 +116,14 @@ const Home: React.FC<IPropsHome> = ({ banners, members }) => {
   }
 
   const description =
-    'A Empresa Júnior de Engenharia de Computação da Universidade Tecnológica Federal do Paraná - UTFPR, vem desde 2014 trabalhando para desenvolver atividades que possam ampliar e melhorar a qualidade de vida da comunidade ao seu redor.'
+    'Bem vindo(a) ao site da OCCAM Engenharia, a empresa júnior dos cursos de Engenharia de Computação e Análise e Desenvolvimento de Sistemas da Universidade Tecnológica Federal do Paraná - UTFPR-PB'
   return (
     <>
-      <SEO title="Home" description={description} image="/logo/light.svg" />
+      <SEO
+        title="Página inicial"
+        description={description}
+        image="/logo/light.svg"
+      />
 
       <Page>
         <Initial>
@@ -220,7 +224,7 @@ const Home: React.FC<IPropsHome> = ({ banners, members }) => {
 
             <aside>
               <section>
-                <img src="parceiros/7keyframes.svg" alt="7keyframes" />
+                <img src="parceiros/7keyframes.svg" alt="Parceiro 7keyframes" />
               </section>
             </aside>
           </Marquee>

@@ -21,7 +21,8 @@ const basicColors = {
   inputBackground: '#F1F1F1',
   details: '#CECECE',
   text2: '#858585',
-  white: '#FEFEFE'
+  white: '#FEFEFE',
+  blackText: '#201E1E'
 }
 
 export const light = {
@@ -29,6 +30,9 @@ export const light = {
     background: '#FEFEFE',
     text: '#201E1E',
     primary: '#014BB4',
+    primaryGradient: 'linear-gradient(180deg, #014BB4 0%, #0773C6 100%)',
+    primaryGradientInverted:
+      'linear-gradient(180deg, #FEFEFE 0%, #CECECE 100%);',
     secundary: '#0773C6',
     backgorudElevation: '#F7F7F7',
     buttonBackgorud: '#014BB4',
@@ -36,9 +40,15 @@ export const light = {
     links: '#0773C6',
     linksHover: '#014BB4',
     titles: '#014BB4',
+    titlesInverted: '#FEFEFE',
+    complementary: '#CECECE',
     subtitles: '#0773C6',
     borderDivision: '#E2E2E2',
     disabled: '#CECECE',
+    gradientStop1: '#CECECE',
+    gradientStop2: '#dadada',
+    gradientStop3: '#f4f4f4',
+    gradientStop4: '#FEFEFE',
     ...basicColors
   },
   ...metrics
@@ -49,16 +59,25 @@ export const dark = {
     background: '#001636',
     text: '#E2E2E2',
     primary: '#00255A',
+    primaryGradient: 'linear-gradient(180deg, #FEFEFE 0%, #CECECE 100%);',
+    primaryGradientInverted:
+      'linear-gradient(180deg, #014BB4 0%, #0773C6 100%)',
     secundary: '#234677',
     backgorudElevation: '#041021',
     inputHighlight: '#4AA5EB',
     buttonBackgorud: '#F7F7F7',
     links: '#E2E2E2',
     linksHover: '#858585',
-    titles: '#E2E2E2',
+    titles: '#FEFEFE',
+    titlesInverted: '#014BB4',
+    complementary: '#0773C6',
     subtitles: '#CECECE',
     borderDivision: '#1a2433',
     disabled: '#858585',
+    gradientStop1: '#014BB4',
+    gradientStop2: '#0355b9',
+    gradientStop3: '#066ac2',
+    gradientStop4: '#0773C6',
     ...basicColors
   },
   ...metrics
