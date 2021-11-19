@@ -129,9 +129,9 @@ export const Burguer = styled.div<PropsBurguer>`
       span {
         position: relative;
         display: block;
-        background: ${({ theme }) => theme.colors.text};
+        background: ${({ theme }) => theme.colors.primary};
 
-        width: 30px;
+        width: 24px;
         height: 2px;
         top: 29px;
         left: 15px;
@@ -139,21 +139,21 @@ export const Burguer = styled.div<PropsBurguer>`
 
         &:before,
         &:after {
-          background: ${({ theme }) => theme.colors.text};
+          background: ${({ theme }) => theme.colors.primary};
           content: '';
           display: block;
-          width: 100%;
+          width: 24px;
           height: 100%;
           position: absolute;
           transition: 0.5s ease-in-out;
         }
 
         &:before {
-          top: -10px;
+          top: -6px;
         }
 
         &:after {
-          bottom: -10px;
+          bottom: -6px;
         }
       }
     }

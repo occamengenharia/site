@@ -1,5 +1,11 @@
 import SEO from '@/components/SEO'
-import { Container, MVV, Stories } from '@/styles/pages/About'
+import {
+  Container,
+  MVV,
+  Stories,
+  ArrowButton,
+  YearSelect
+} from '@/styles/pages/About'
 import { GetStaticProps } from 'next'
 import {
   FaBook,
@@ -122,6 +128,10 @@ const AboutUs: React.FC<IAboutUsProps> = props => {
           </MVV>
           <h3>Nossa história</h3>
           <Stories>
+            <ArrowButton onClick={handleMinus}>
+              <FaCaretLeft />
+            </ArrowButton>
+
             <section>
               <main>
                 {props[currentStorie.year - 1]?.imgURL ? (
@@ -160,17 +170,18 @@ const AboutUs: React.FC<IAboutUsProps> = props => {
 
                 <p>{currentStorie.description}</p>
               </main>
-              <aside>
+              <YearSelect>
                 {yearsIndicators.map(year => (
-                  <span key={year} onClick={() => setYear(year)}>
+                  <button key={year} onClick={() => setYear(year)}>
                     {year}
-                  </span>
+                  </button>
                 ))}
-              </aside>
+              </YearSelect>
             </section>
 
-            <FaCaretLeft onClick={handleMinus} />
-            <FaCaretRight onClick={handlePlus} />
+            <ArrowButton onClick={handlePlus}>
+              <FaCaretRight />
+            </ArrowButton>
           </Stories>
         </main>
       </Container>

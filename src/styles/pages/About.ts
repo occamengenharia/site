@@ -89,6 +89,13 @@ export const MVV = styled.div`
         font-size: 1rem;
       }
     }
+
+    &:hover {
+      > span {
+        background: ${({ theme }) => theme.colors.secundary};
+      }
+    }
+
     &:focus {
       align-self: flex-start;
       background: ${({ theme }) => theme.colors.primary};
@@ -173,59 +180,6 @@ export const Stories = styled.div`
         border-right: solid 2px ${({ theme }) => theme.colors.text2};
       }
     }
-    > aside {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto;
-      grid-gap: 1.2rem;
-      padding: 0 1.2rem;
-      > span {
-        font: 700 2rem Ubuntu;
-        color: ${({ theme }) => theme.colors.text};
-        cursor: pointer;
-        border: 0;
-        background: transparent;
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        color: ${({ theme }) => theme.colors.text2};
-        transition: 0.5s;
-        &:nth-of-type(1) {
-          display: none;
-        }
-        &:nth-of-type(2) {
-          grid-column: 1;
-        }
-        &:nth-of-type(3) {
-          font: 700 3rem Ubuntu;
-          cursor: initial;
-          padding: 0.2rem 0;
-          color: ${({ theme }) => theme.colors.inputHighlight};
-          grid-column: 2;
-        }
-        &:nth-of-type(4) {
-          grid-column: 3;
-        }
-        &:nth-of-type(5) {
-          display: none;
-        }
-        :focus {
-          color: black;
-        }
-      }
-    }
-  }
-  > svg {
-    font-size: 3.2rem;
-    cursor: pointer;
-    position: absolute;
-    z-index: 100;
-    bottom: 0;
-    right: 0;
-    color: ${({ theme }) => theme.colors.text2};
-    :nth-of-type(1) {
-      left: 0;
-    }
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
@@ -264,31 +218,108 @@ export const Stories = styled.div`
           grid-column: 2;
         }
       }
-      > aside {
-        grid-template-columns: repeat(5, 1fr);
-        width: 100%;
-        span {
-          &:nth-of-type(1) {
-            display: flex;
-            grid-column: 1;
-          }
-          &:nth-of-type(2) {
-            grid-column: 2;
-            padding-bottom: 0.6rem;
-          }
-          &:nth-of-type(3) {
-            grid-column: 3;
-            padding-bottom: 0.8rem;
-          }
-          &:nth-of-type(4) {
-            grid-column: 4;
-            padding-bottom: 0.6rem;
-          }
-          &:nth-of-type(5) {
-            grid-column: 5;
-            display: flex;
-          }
-        }
+    }
+  }
+`
+
+export const ArrowButton = styled.button`
+  height: fit-content;
+  align-self: flex-end;
+  border: none;
+  background: transparent;
+
+  svg {
+    font-size: 1.6rem;
+    color: ${({ theme }) => theme.colors.text2};
+  }
+
+  &:hover,
+  &:focus {
+    svg {
+      font-size: 1.6rem;
+      color: ${props => props.theme.colors.primary};
+      cursor: pointer;
+    }
+  }
+`
+
+export const YearSelect = styled.aside`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 1.2rem;
+  padding: 0 1.2rem;
+
+  button {
+    font: 700 2rem Ubuntu;
+    color: ${({ theme }) => theme.colors.text};
+    cursor: pointer;
+    border: 0;
+    background: transparent;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: ${({ theme }) => theme.colors.text2};
+    transition: 0.5s;
+
+    &:nth-of-type(1) {
+      display: none;
+    }
+
+    &:nth-of-type(2) {
+      grid-column: 1;
+    }
+
+    &:nth-of-type(3) {
+      font: 700 3rem Ubuntu;
+      cursor: initial;
+      padding: 0.2rem 0;
+      color: ${({ theme }) => theme.colors.inputHighlight};
+      grid-column: 2;
+    }
+
+    &:nth-of-type(4) {
+      grid-column: 3;
+    }
+
+    &:nth-of-type(5) {
+      display: none;
+    }
+
+    &:focus,
+    &:hover {
+      color: ${props => props.theme.colors.primary};
+    }
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
+    grid-template-columns: repeat(5, 1fr);
+    width: 100%;
+
+    button {
+      &:nth-of-type(1) {
+        display: flex;
+        grid-column: 1;
+      }
+
+      &:nth-of-type(2) {
+        grid-column: 2;
+        padding-bottom: 0.6rem;
+      }
+
+      &:nth-of-type(3) {
+        grid-column: 3;
+        padding-bottom: 0.8rem;
+      }
+
+      &:nth-of-type(4) {
+        grid-column: 4;
+        padding-bottom: 0.6rem;
+      }
+
+      &:nth-of-type(5) {
+        grid-column: 5;
+        display: flex;
       }
     }
   }

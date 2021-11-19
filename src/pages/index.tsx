@@ -211,9 +211,11 @@ const Home: React.FC<IPropsHome> = ({ banners, members }) => {
             <div>
               <h1>Nossos parceiros</h1>
 
-              <button onClick={navigateToContact}>
-                Torne-se nosso parceiro <FaCaretRight />
-              </button>
+              <a>
+                <button onClick={navigateToContact}>
+                  Torne-se nosso parceiro <FaCaretRight />
+                </button>
+              </a>
             </div>
 
             <aside>

@@ -77,9 +77,13 @@ const Members: React.FC<IMembersSerealized> = props => {
         <h2>Histórico de Membros</h2>
 
         <Bar>
-          <FaCaretLeft onClick={handleMinus} />
+          <button onClick={handleMinus}>
+            <FaCaretLeft />
+          </button>
           <h1> {year} </h1>
-          <FaCaretRight onClick={handlePlus} />
+          <button onClick={handlePlus}>
+            <FaCaretRight />
+          </button>
         </Bar>
 
         <GridCards>

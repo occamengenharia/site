@@ -16,23 +16,25 @@ const MembersHome: React.FC<MemberProps> = ({ members }) => {
   const timeOut = setTimeout(() => {
     setTime(time + 1)
   }, 4500)
+
   const handlePreviousMember = useCallback(() => {
-    if (countMember < members.length - 1) {
-      setCountMember(countMember + 1)
+    if (countMember <= 0) {
+      setCountMember(members.length - 1)
     } else {
-      setCountMember(0)
+      setCountMember(countMember - 1)
     }
-    setCurrentMember(members[countMember])
     clearTimeout(timeOut)
+    setCurrentMember(members[countMember])
   }, [members, countMember, timeOut])
+
   const handleNextMember = useCallback(() => {
     if (countMember >= members.length - 1) {
       setCountMember(0)
     } else {
       setCountMember(countMember + 1)
     }
-    setCurrentMember(members[countMember])
     clearTimeout(timeOut)
+    setCurrentMember(members[countMember])
   }, [members, countMember, timeOut])
 
   useEffect(() => {
@@ -48,8 +50,12 @@ const MembersHome: React.FC<MemberProps> = ({ members }) => {
           <label>{currentMember.role ? currentMember.role.job : ''}</label>
         </section>
         <aside>
-          <FaCaretLeft onClick={handlePreviousMember} />
-          <FaCaretRight onClick={handleNextMember} />
+          <button onClick={handlePreviousMember}>
+            <FaCaretLeft />
+          </button>
+          <button onClick={handleNextMember}>
+            <FaCaretRight />
+          </button>
         </aside>
         <Links>
           <a href={currentMember.link_github}>

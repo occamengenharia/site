@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { FaCaretLeft, FaCaretRight } from 'react-icons/fa'
@@ -69,9 +70,17 @@ const HomeCarousel: React.FC<HomeCarouselProps> = ({ banners }) => {
         onClick={() => navigate(currentBanner.href)}
       />
       <div>
-        <FaCaretLeft className="arrows" onClick={handlePreviousBanner} />
-        <span>{currentBanner.description}</span>
-        <FaCaretRight className="arrows" onClick={handleNextBanner} />
+        <button onClick={handlePreviousBanner}>
+          <FaCaretLeft className="arrows" />
+        </button>
+        <Link href={currentBanner.href}>
+          <a>
+            <span>{currentBanner.description}</span>
+          </a>
+        </Link>
+        <button onClick={handlePreviousBanner}>
+          <FaCaretRight className="arrows" />
+        </button>
       </div>
     </Container>
   )
