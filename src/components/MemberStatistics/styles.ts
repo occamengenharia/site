@@ -23,7 +23,7 @@ export const Links = styled.div`
 `
 export const Box = styled.div`
   margin-top: 1.6rem;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  border-radius: ${({ theme }) => theme.variables.borderRadius}rem;
   background: ${({ theme }) => theme.colors.inputBackground};
   padding: 1.6rem;
   display: flex;
@@ -37,6 +37,7 @@ export const Box = styled.div`
   strong,
   span {
     font-size: 1.6rem;
+    color: ${({ theme }) => theme.colors.blackText};
   }
   strong {
     font-weight: 00;
@@ -119,7 +120,7 @@ export const Statistics = styled.div`
     justify-content: center;
     gap: 1.6rem;
     width: 31.2rem;
-    height: 45rem;
+    height: 46.4rem;
     padding: 3.2rem;
     border-radius: ${props => props.theme.variables.borderRadius}rem;
     background: ${props => props.theme.colors.primaryGradient};

@@ -14,4 +14,5 @@ export interface IMembersStatistics extends IPropsMemberProgress {
   conquests: Array<IConquests>
   link_github: string
   link_linkedin: string
+  slug: string
 }
