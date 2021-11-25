@@ -157,6 +157,11 @@ export const Stories = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    div {
+      display: flex;
+    }
+
     > main {
       width: 100%;
       display: grid;
@@ -223,7 +228,6 @@ export const Stories = styled.div`
 `
 
 export const ArrowButton = styled.button`
-  height: fit-content;
   align-self: flex-end;
   border: none;
   background: transparent;

@@ -128,10 +128,6 @@ const AboutUs: React.FC<IAboutUsProps> = props => {
           </MVV>
           <h3>Nossa história</h3>
           <Stories>
-            <ArrowButton onClick={handleMinus}>
-              <FaCaretLeft />
-            </ArrowButton>
-
             <section>
               <main>
                 {props[currentStorie.year - 1]?.imgURL ? (
@@ -170,18 +166,22 @@ const AboutUs: React.FC<IAboutUsProps> = props => {
 
                 <p>{currentStorie.description}</p>
               </main>
-              <YearSelect>
-                {yearsIndicators.map(year => (
-                  <button key={year} onClick={() => setYear(year)}>
-                    {year}
-                  </button>
-                ))}
-              </YearSelect>
+              <div>
+                <ArrowButton onClick={handleMinus}>
+                  <FaCaretLeft />
+                </ArrowButton>
+                <YearSelect>
+                  {yearsIndicators.map(year => (
+                    <button key={year} onClick={() => setYear(year)}>
+                      {year}
+                    </button>
+                  ))}
+                </YearSelect>
+                <ArrowButton onClick={handlePlus}>
+                  <FaCaretRight />
+                </ArrowButton>
+              </div>
             </section>
-
-            <ArrowButton onClick={handlePlus}>
-              <FaCaretRight />
-            </ArrowButton>
           </Stories>
         </main>
       </Container>
