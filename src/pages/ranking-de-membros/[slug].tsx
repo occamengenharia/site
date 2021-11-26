@@ -1,11 +1,10 @@
 import SortableTable from '@/components/SortableTable'
 import MemberStatistics from '@/components/MemberStatistics'
 import { IMembersStatistics } from '@/components/MemberStatistics/interfaces'
-import { Container } from '@/styles/pages/Ranking'
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next'
+import { Container, SmallBox, Tr } from '@/styles/pages/Ranking'
+import { GetServerSideProps } from 'next'
 import api from '@/services/api'
 import { useRouter } from 'next/router'
-import { Fragment } from 'react'
 interface IPosition {
   job: string
   start_date_position: string
@@ -30,7 +29,10 @@ interface IRankingProps {
   members: IMember[]
   currentMember?: IMember
 }
-const Ranking: React.FC<IRankingProps> = ({ members, currentMember }) => {
+const Ranking: React.FC<IRankingProps> = ({
+  members,
+  currentMember = 'asdasd'
+}) => {
   const memberExemple: IMembersStatistics = {
     name: 'Jeferson Rosa de Souza',
     profession: 'Diretor de Projetos',
@@ -42,8 +44,6 @@ const Ranking: React.FC<IRankingProps> = ({ members, currentMember }) => {
     ...currentMember
   }
   const router = useRouter()
-  console.log(currentMember)
-
   return (
     <Container>
       <main>
@@ -61,19 +61,29 @@ const Ranking: React.FC<IRankingProps> = ({ members, currentMember }) => {
           columnHeaders={[
             { title: 'Posição' },
             { title: 'Membro' },
-            { title: 'Cargo', sortable: false },
+            { title: 'Cargo' },
             { title: 'Pontos' },
             { title: 'Nível' }
           ]}
         >
           {members.map(member => (
-            <tr key={member.slug}>
-              <td>1</td>
+            <Tr
+              key={member.slug}
+              isSelected={member.slug === router.query.slug}
+              onClick={() => {
+                router.push(`${member.slug}`)
+              }}
+            >
+              <td>
+                <SmallBox podium={1}>1</SmallBox>
+              </td>
               <td>{member.name}</td>
               <td>{member.positions[member.positions.length - 1].job}</td>
               <td>{100}</td>
-              <td>{10}</td>
-            </tr>
+              <td>
+                <SmallBox>10</SmallBox>
+              </td>
+            </Tr>
           ))}
         </SortableTable>
       </main>
@@ -81,10 +91,6 @@ const Ranking: React.FC<IRankingProps> = ({ members, currentMember }) => {
   )
 }
 
-interface IMebersSerialized {
-  currentMember: string
-  members: IMember[]
-}
 export const getServerSideProps: GetServerSideProps = async context => {
   const { slug } = context.params
   const { data } = await api.get<IMember[]>('/members')
