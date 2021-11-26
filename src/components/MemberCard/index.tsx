@@ -1,4 +1,4 @@
-import { Card, Data } from './styles'
+import { Card, Data, MemberData } from './styles'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 
 interface IDataProps {
@@ -18,17 +18,21 @@ const CardData: React.FC<IDataProps> = ({
 }) => {
   return (
     <Card>
-      <img src={`${photo}` || '/404/caramelo.png'} alt={name} />
-      <Data>
-        <h1>{name}</h1>
-        <h2>{position}</h2>
-      </Data>
-      <a href={link_github}>
-        <FaGithub />
-      </a>
-      <a href={link_linkedin}>
-        <FaLinkedin />
-      </a>
+      <MemberData>
+        <img src={`${photo}` || '/404/caramelo.png'}></img>
+        <Data>
+          <h1>{name}</h1>
+          <h2>{position}</h2>
+        </Data>
+      </MemberData>
+      <div>
+        <a href={link_linkedin}>
+          <FaLinkedin />
+        </a>
+        <a href={link_github}>
+          <FaGithub />
+        </a>
+      </div>
     </Card>
   )
 }

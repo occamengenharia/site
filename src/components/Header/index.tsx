@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
+import { FiMenu, FiX } from 'react-icons/fi'
 
 import { useTheme } from '@/hooks/theme'
 import { CgMoon, CgSun } from 'react-icons/cg'
-import { Main, HeaderContent, Burguer } from './styles'
+import { Main, HeaderContent, Burguer, ThemeSwitchButton } from './styles'
 import api from '@/services/api'
 interface ISelectiveProcess {
   selectiveProcessActive: boolean
@@ -59,7 +60,7 @@ const Header: React.FC = () => {
   }, [])
   return (
     <Main hasSelectiveProcess={selectiveProcess.selectiveProcessActive}>
-      <HeaderContent>
+      <HeaderContent openMenu={openDropDown}>
         <Link href="/">
           <img
             src={`/logo/${theme}.svg`}
@@ -68,43 +69,6 @@ const Header: React.FC = () => {
         </Link>
 
         <div>
-          <Burguer openMenu={openDropDown}>
-            <input
-              id="menu-hamburguer"
-              onChange={handleOpenDropDown}
-              type="checkbox"
-              checked={openDropDown}
-            />
-
-            <label htmlFor="menu-hamburguer">
-              <div>
-                <span></span>
-              </div>
-            </label>
-            <div onClick={handleOpenDropDown} className="outside-menu">
-              <div className="menu-links">
-                <aside>
-                  <Link href="/servicos">
-                    <a>Áreas de atuação</a>
-                  </Link>
-                  <Link href="/membros">
-                    <a>Membros</a>
-                  </Link>
-                  <Link href="/sobre-nos">
-                    <a>Sobre nós</a>
-                  </Link>
-                  <Link href="/contato">
-                    <a>Contato</a>
-                  </Link>
-                  <Link
-                    href={`/processo-seletivo/${selectiveProcess.processSlug}`}
-                  >
-                    <a className="inactive">Processo seletivo</a>
-                  </Link>
-                </aside>
-              </div>
-            </div>
-          </Burguer>
           <section>
             <Link href="/servicos">
               <a>Áreas de atuação</a>
@@ -122,9 +86,14 @@ const Header: React.FC = () => {
               <a className="inactive">Processo seletivo</a>
             </Link>
           </section>
-          <button onClick={toggleTheme}>
+
+          <ThemeSwitchButton onClick={toggleTheme}>
             {theme === 'light' ? <CgMoon /> : <CgSun />}
-          </button>
+          </ThemeSwitchButton>
+
+          <Burguer onClick={handleOpenDropDown}>
+            {openDropDown ? <FiX /> : <FiMenu />}
+          </Burguer>
         </div>
       </HeaderContent>
     </Main>

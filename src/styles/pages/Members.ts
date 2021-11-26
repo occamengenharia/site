@@ -30,15 +30,24 @@ export const Bar = styled.section`
     font-weight: bold;
   }
 
-  svg {
-    font-size: 1.6rem;
-    color: ${({ theme }) => theme.colors.text2};
-    cursor: pointer;
+  button {
+    height: fit-content;
+    border: none;
+    background: transparent;
+    svg {
+      font-size: 1.6rem;
+      color: ${({ theme }) => theme.colors.text2};
+      cursor: pointer;
+    }
   }
 
-  button {
-    background: white;
-    border: none;
+  button:hover,
+  button:focus {
+    svg {
+      font-size: 1.6rem;
+      color: ${({ theme }) => theme.colors.primary};
+      cursor: pointer;
+    }
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {

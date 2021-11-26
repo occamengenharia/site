@@ -27,10 +27,12 @@ const Link: React.FC<Props> = ({ icon: Icon, text, children, href }) => {
     )
   }
   return (
-    <Main href={href} target="_blank">
-      {Icon && <Icon />}
-      <span>{text}</span>
-      {children}
+    <Main>
+      <a href={href} target="blank">
+        {Icon && <Icon />}
+        <span>{text}</span>
+        {children}
+      </a>
     </Main>
   )
 }

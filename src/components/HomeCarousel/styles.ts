@@ -36,6 +36,17 @@ export const Container = styled.div`
     svg {
       display: none;
     }
+
+    button {
+      border: none;
+      background: transparent;
+    }
+
+    button:focus {
+      svg {
+        color: ${props => props.theme.colors.primary};
+      }
+    }
   }
 
   @media only screen and (min-width: ${props => props.theme.breakpoints.lg}px) {

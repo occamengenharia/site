@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 import { darken } from 'polished'
 
-export const Main = styled.a`
+export const Main = styled.button`
   display: flex;
   align-items: center;
   justify-content: flex-start;
   border-radius: ${props => props.theme.variables.borderRadius}rem;
+  border: none;
   color: ${props => props.theme.colors.background};
   height: 48px;
   width: 100%;

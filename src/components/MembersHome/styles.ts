@@ -20,10 +20,23 @@ export const MemberStyle = styled.section`
     justify-content: space-between;
     padding: 0 1.2rem;
     top: 50%;
-    svg {
-      cursor: pointer;
-      color: ${props => props.theme.colors.details};
-      font-size: 1.6rem;
+
+    button {
+      border: none;
+      background: transparent;
+
+      svg {
+        cursor: pointer;
+        color: ${props => props.theme.colors.details};
+        font-size: 1.6rem;
+      }
+    }
+
+    button:focus,
+    button:hover {
+      svg {
+        color: ${props => props.theme.colors.primary};
+      }
     }
   }
 

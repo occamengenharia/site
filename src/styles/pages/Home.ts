@@ -88,7 +88,7 @@ export const Actuation = styled.div`
         height: 8rem;
       }
     }
-    a {
+    button {
       background: white;
       color: ${props => props.theme.colors.secundary};
       span {
@@ -128,7 +128,7 @@ export const Actuation = styled.div`
           grid-row: 2;
         }
       }
-      a {
+      button {
         grid-column: 3;
         grid-row: 3;
       }
@@ -275,11 +275,11 @@ export const SectionFooter = styled.div`
 const animation = keyframes`
   0% {
       transform: translate(0, 0);
-  }
-  100% {
+    }
+    100% {
     transform: translate(-100%, 0);
   }
-`
+  `
 
 export const Marquee = styled.aside`
   display: flex;
@@ -290,24 +290,25 @@ export const Marquee = styled.aside`
   div {
     display: flex;
     flex-direction: column;
-    width: 100%;
     max-height: 10rem;
     max-width: 103.2rem;
     h1 {
       font-size: 32px;
       color: ${props => props.theme.colors.white};
     }
-    button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 0;
-      background: transparent;
-      font-size: 1.2rem;
-      color: ${props => props.theme.colors.white};
-      svg {
-        color: ${props => props.theme.colors.white};
+    a {
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        background: transparent;
         font-size: 1.2rem;
+        color: ${props => props.theme.colors.white};
+        svg {
+          color: ${props => props.theme.colors.white};
+          font-size: 1.2rem;
+        }
       }
     }
   }
@@ -332,6 +333,7 @@ export const Marquee = styled.aside`
   @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
     div {
       align-items: flex-start;
+      width: 100%;
     }
 
     aside {
