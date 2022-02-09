@@ -1,5 +1,4 @@
-import styled from 'styled-components'
-import { darken } from 'polished'
+import styled, { css } from 'styled-components'
 import { ButtonColors, ButtonSizes, ButtonVariants } from './types'
 
 interface ButtonStyleProps {
@@ -9,39 +8,85 @@ interface ButtonStyleProps {
 }
 
 export const Main = styled.button<ButtonStyleProps>`
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  border-radius: ${props => props.theme.variables.borderRadius}rem;
-  border: 0;
-  color: ${props => props.theme.colors.background};
-  height: 48px;
+  font-size: 1.6rem;
   width: 100%;
-  background: ${props => props.theme.colors.buttonBackgorud};
-  svg {
-    font-size: 1.6rem;
-    margin-left: 1.6rem;
-  }
+  background: none;
+  border: none;
+  border-radius: 0.8rem;
+  text-transform: uppercase;
+  padding: 1.6rem 4.8rem;
+  cursor: pointer;
+
   span {
-    color: ${props => props.theme.colors.background};
-    padding: 0 0.8rem;
-    margin-left: 1.6rem;
-    padding-left: 1.6rem;
-    border-left: solid 1px ${props => props.theme.colors.background};
-    font: 700 1.8rem Ubuntu;
+    font-weight: bold;
   }
 
-  transition: all ${props => props.theme.variables.transition}s;
-  &:hover {
-    background: ${({ theme }) =>
-      darken(theme.variables.hover, theme.colors.buttonBackgorud)};
-  }
-  :disabled {
-    opacity: 0.5;
-    cursor: no-drop;
-  }
+  ${props =>
+    props.variant === 'contained' &&
+    css`
+      ${props.color === 'primary' &&
+      css`
+        background: ${({ theme }) => theme.colors.primaryGradient90_0};
+        color: ${({ theme }) => theme.colors.neutral100};
 
-  & + & {
-    margin-top: 0.8rem;
+        &:hover {
+          background: ${({ theme }) => theme.colors.primaryGradient100_0};
+        }
+
+        &:active {
+          background: ${({ theme }) => theme.colors.primary80};
+        }
+      `}
+
+      ${props.color === 'secondary' &&
+      css`
+        background: ${({ theme }) => theme.colors.neutral100};
+        color: ${({ theme }) => theme.colors.primary90};
+
+        &:hover {
+          background: ${({ theme }) => theme.colors.neutral80};
+        }
+
+        &:active {
+          background: ${({ theme }) => theme.colors.neutral70};
+        }
+      `}
+
+      ${props.color === 'warning' &&
+      css`
+        background: ${({ theme }) => theme.colors.warningGradient90_0};
+        color: ${({ theme }) => theme.colors.neutral100};
+
+        &:hover {
+          background: ${({ theme }) => theme.colors.warningGradient100_0};
+        }
+
+        &:active {
+          background: ${({ theme }) => theme.colors.warning80};
+        }
+      `}
+
+      ${props.color === 'disabled' &&
+      css`
+        background: ${({ theme }) => theme.colors.neutral30};
+        color: ${({ theme }) => theme.colors.neutral100};
+        cursor: not-allowed;
+      `}
+    `}
+
+  @media only screen and (min-width: ${props => props.theme.breakpoints.sm}px) {
+    width: fit-content;
+
+    ${props =>
+      props.size === 'large' &&
+      css`
+        padding: 2.4rem 4.8rem;
+      `}
+
+    ${props =>
+      props.size === 'small' &&
+      css`
+        padding: 1.6rem 4.8rem;
+      `}
   }
 `

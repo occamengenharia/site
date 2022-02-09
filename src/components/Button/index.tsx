@@ -26,7 +26,7 @@ const Button: React.FC<ButtonProps> = ({
   ...rest
 }) => {
   return (
-    <Main {...rest}>
+    <Main variant={variant} color={color} size={size} {...rest}>
       {Icon && <Icon />}
       <span>{text}</span>
       {children}
