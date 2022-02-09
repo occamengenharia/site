@@ -2,7 +2,6 @@ import { GetStaticProps } from 'next'
 import NextLink from 'next/link'
 import {
   Page,
-  Initial,
   Actuation,
   Members,
   About,
@@ -14,13 +13,12 @@ import { FaCaretRight } from 'react-icons/fa'
 
 import { Footer } from '@/components'
 import SEO from '@/components/SEO'
-import Header from '@/components/Header'
 import MembersHome from '@/components/MembersHome'
-import HomeCarousel from '@/components/HomeCarousel'
 import Link from '@/components/Link'
 
 import api from '@/services/api'
 import { useRouter } from 'next/router'
+import { InitialContainer } from '@/containers'
 
 interface IPhotoAPI {
   _id: string
@@ -96,7 +94,7 @@ export interface IMember {
   link_linkedin: string
 }
 
-interface IBanner {
+export interface IBanner {
   id: string
   url: string
   description: string
@@ -126,13 +124,7 @@ const Home: React.FC<IPropsHome> = ({ banners, members }) => {
       />
 
       <Page>
-        <Initial>
-          <Header />
-          <main>
-            <h1>Soluções Simples, Resultados Inovadores</h1>
-            <HomeCarousel banners={banners} />
-          </main>
-        </Initial>
+        <InitialContainer banners={banners}/>
         <Actuation>
           <main>
             <h3>Áreas de Atuação</h3>
