@@ -1,12 +1,13 @@
 import { IconBaseProps } from 'react-icons'
 import { Main } from './styles'
 import { ButtonHTMLAttributes } from 'react'
+import { ButtonColors, ButtonSizes, ButtonVariants } from './types'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string
-  variant?: 'contained' | 'outlined'
-  color?: 'primary' | 'secondary' | 'warning' | 'disabled'
-  size?: 'small' | 'large'
+  variant?: ButtonVariants
+  color?: ButtonColors
+  size?: ButtonSizes
   icon?: React.ComponentType<IconBaseProps>
 }
 

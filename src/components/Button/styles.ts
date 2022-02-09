@@ -1,7 +1,14 @@
 import styled from 'styled-components'
 import { darken } from 'polished'
+import { ButtonColors, ButtonSizes, ButtonVariants } from './types'
 
-export const Main = styled.button`
+interface ButtonStyleProps {
+  variant?: ButtonVariants
+  color?: ButtonColors
+  size?: ButtonSizes
+}
+
+export const Main = styled.button<ButtonStyleProps>`
   display: flex;
   align-items: center;
   justify-content: flex-start;
