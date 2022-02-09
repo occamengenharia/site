@@ -1,1 +1,5 @@
 export * from './initial'
+export * from './actuation'
+export * from './members'
+export * from './about'
+export * from './sectionFooter'
