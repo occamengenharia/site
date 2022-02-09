@@ -22,6 +22,14 @@ export const Main = styled.button<ButtonStyleProps>`
     font-weight: bold;
   }
 
+  transition: transform 100ms;
+  &:hover {
+    transform: scale(1.02);
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+
   ${props =>
     props.variant === 'contained' &&
     css`
