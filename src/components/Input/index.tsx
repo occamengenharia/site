@@ -3,10 +3,10 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react'
 import { useField } from '@unform/core'
 
-import { InputContainer } from './styles'
+import { InputContainer, Placeholder } from './styles'
 import { InputProps } from './types'
 
-const Input: React.FC<InputProps> = ({ name, ...rest }) => {
+const Input: React.FC<InputProps> = ({ name, placeholder, ...rest }) => {
   const [isFocused, setIsFocused] = useState(false)
   const [isFilled, setIsFilled] = useState(false)
 
@@ -43,8 +43,10 @@ const Input: React.FC<InputProps> = ({ name, ...rest }) => {
         ref={inputRef}
         defaultValue={defaultValue}
         id={fieldName}
+        placeholder=""
         {...rest}
       />
+      <Placeholder>{placeholder}</Placeholder>
     </InputContainer>
   )
 }
