@@ -3,14 +3,19 @@ import styled, { css } from 'styled-components'
 import { InputContainerProps } from './types'
 
 export const InputContainer = styled.div<InputContainerProps>`
-  background: ${props => props.theme.colors.inputBackground};
+  background: ${props => props.theme.colors.neutral70};
   border-radius: 0.8rem;
-  outline: 0;
+
   font-size: 2.4rem;
+
+  padding: 2.4rem;
   width: 100%;
+
   display: flex;
   align-items: center;
-  padding: 0 1.6rem;
+
+  transition: box-shadow 200ms ease-in-out;
+
   & + div {
     margin-top: 2.4rem;
   }
@@ -18,22 +23,27 @@ export const InputContainer = styled.div<InputContainerProps>`
   ${props =>
     props.isErrored &&
     css`
-      box-shadow: 0 0 2px 2px ${props => props.theme.colors.error};
+      /* Borda interna */
+      box-shadow: 0px 0px 0px 2px ${props =>
+        props.theme.colors.warning90}; inset;
     `}
+
   ${props =>
     props.isFocused &&
     css`
-      box-shadow: 0 0 2px 2px ${props => props.theme.colors.inputHighlight};
+      /* Borda interna */
+      box-shadow: 0px 0px 0px 2px ${props =>
+        props.theme.colors.primary90}; inset;
     `}
+
   ${props =>
     props.isFilled &&
     css`
-      color: ${props => props.theme.colors.inputHighlight};
+      color: ${props => props.theme.colors.neutral15};
     `}
 
   input {
     flex: 1;
-    height: 6.4rem;
     background: transparent;
     border: 0;
 
@@ -54,7 +64,8 @@ export const InputContainer = styled.div<InputContainerProps>`
     }
 
     &::placeholder {
-      color: ${props => props.theme.colors.text2};
+      font-weight: 500;
+      color: ${props => props.theme.colors.neutral15};
     }
   }
 `
