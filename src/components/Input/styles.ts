@@ -1,13 +1,8 @@
 import styled, { css } from 'styled-components'
 
-import Tooltip from '../Tooltip'
-interface ContainerProps {
-  isFocused: boolean
-  isField: boolean
-  isErrored: boolean
-}
+import { InputContainerProps } from './types'
 
-export const Container = styled.div<ContainerProps>`
+export const InputContainer = styled.div<InputContainerProps>`
   background: ${props => props.theme.colors.inputBackground};
   border-radius: 0.8rem;
   outline: 0;
@@ -31,7 +26,7 @@ export const Container = styled.div<ContainerProps>`
       box-shadow: 0 0 2px 2px ${props => props.theme.colors.inputHighlight};
     `}
   ${props =>
-    props.isField &&
+    props.isFilled &&
     css`
       color: ${props => props.theme.colors.inputHighlight};
     `}
@@ -61,23 +56,5 @@ export const Container = styled.div<ContainerProps>`
     &::placeholder {
       color: ${props => props.theme.colors.text2};
     }
-  }
-`
-
-export const Error = styled(Tooltip)`
-  display: none;
-  svg {
-    margin: 0;
-  }
-  span {
-    background: ${props => props.theme.colors.error};
-    color: #fff;
-    &::before {
-      border-color: ${props => props.theme.colors.error} transparent;
-    }
-  }
-
-  @media only screen and (min-width: ${props => props.theme.breakpoints.sm}px) {
-    display: initial;
   }
 `
