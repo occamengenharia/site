@@ -34,6 +34,7 @@ export const InputContainer = styled.div<InputContainerProps>`
     css`
       /* Borda interna */
       box-shadow: 0px 0px 0px 2px ${props => props.theme.colors.warning90} inset;
+      margin-bottom: 1.6rem;
 
       ${Placeholder} {
         color: ${props => props.theme.colors.warning90} !important;
@@ -68,7 +69,7 @@ export const InputContainer = styled.div<InputContainerProps>`
     background: transparent;
     border: 0;
 
-    color: ${props => props.theme.colors.neutral15};
+    color: ${props => props.theme.colors.neutral15} !important;
 
     padding: 2.4rem 0;
     width: 100%;
@@ -89,6 +90,14 @@ export const InputContainer = styled.div<InputContainerProps>`
     &:active {
       background: transparent;
     }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: ${props => props.theme.colors.neutral15};
+    }
   }
 `
 
@@ -107,4 +116,12 @@ export const Placeholder = styled.p`
   transition-timing-function: ease-in-out;
 
   cursor: text;
+`
+
+export const ErrorMessage = styled.p`
+  position: absolute;
+  left: 0;
+  bottom: -120px;
+  font-size: 1.6rem;
+  color: ${props => props.theme.colors.warning90} !important;
 `

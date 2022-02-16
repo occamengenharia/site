@@ -3,7 +3,7 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react'
 import { useField } from '@unform/core'
 
-import { InputContainer, Placeholder } from './styles'
+import { InputContainer, Placeholder, ErrorMessage } from './styles'
 import { InputProps } from './types'
 
 const Input: React.FC<InputProps> = ({ name, placeholder, ...rest }) => {
@@ -47,6 +47,7 @@ const Input: React.FC<InputProps> = ({ name, placeholder, ...rest }) => {
         {...rest}
       />
       <Placeholder>{placeholder}</Placeholder>
+      {error && <ErrorMessage>{error}</ErrorMessage>}
     </InputContainer>
   )
 }
