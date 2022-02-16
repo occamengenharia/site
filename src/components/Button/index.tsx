@@ -1,9 +1,13 @@
 import { IconBaseProps } from 'react-icons'
 import { Main } from './styles'
 import { ButtonHTMLAttributes } from 'react'
+import { ButtonColors, ButtonSizes, ButtonVariants } from './types'
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string
+  variant?: ButtonVariants
+  color?: ButtonColors
+  size?: ButtonSizes
   icon?: React.ComponentType<IconBaseProps>
 }
 
@@ -12,9 +16,17 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
  * @param icon exemple: icon={<FaIconExemple/>}
  * @param children recept the button text
  */
-const Button: React.FC<Props> = ({ icon: Icon, text, children, ...rest }) => {
+const Button: React.FC<ButtonProps> = ({
+  icon: Icon,
+  text,
+  variant = 'contained',
+  color = 'primary',
+  size = 'large',
+  children,
+  ...rest
+}) => {
   return (
-    <Main {...rest}>
+    <Main variant={variant} color={color} size={size} {...rest}>
       {Icon && <Icon />}
       <span>{text}</span>
       {children}
