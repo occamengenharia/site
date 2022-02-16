@@ -1,86 +1,127 @@
 import styled, { css } from 'styled-components'
 
-import Tooltip from '../Tooltip'
-interface ContainerProps {
-  isFocused: boolean
-  isField: boolean
-  isErrored: boolean
-}
+import { TextareaContainerProps } from './types'
 
-export const Container = styled.div<ContainerProps>`
-  background: ${props => props.theme.colors.inputBackground};
+export const TextareaContainer = styled.div<TextareaContainerProps>`
+  background: ${props => props.theme.colors.neutral70};
   border-radius: 0.8rem;
-  outline: 0;
+
   font-size: 2.4rem;
+
+  padding: 0 2.4rem;
   width: 100%;
+
   display: flex;
-  padding: 1.6rem;
+  align-items: center;
+  position: relative;
+
+  transition-property: box-shadow background;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+
+  cursor: text;
+
   & + div {
     margin-top: 2.4rem;
+  }
+
+  &:hover {
+    background: ${props => props.theme.colors.neutral60};
   }
 
   ${props =>
     props.isErrored &&
     css`
-      box-shadow: 0 0 2px 2px ${props => props.theme.colors.error};
+      /* Borda interna */
+      box-shadow: 0px 0px 0px 2px ${props => props.theme.colors.warning90} inset;
+      margin-bottom: 1.6rem;
+
+      ${Placeholder} {
+        color: ${props => props.theme.colors.warning90} !important;
+      }
     `}
+
   ${props =>
     props.isFocused &&
     css`
-      box-shadow: 0 0 2px 2px ${props => props.theme.colors.inputHighlight};
+      /* Borda interna */
+      box-shadow: 0px 0px 0px 2px ${props => props.theme.colors.primary90} inset;
+
+      ${Placeholder} {
+        color: ${props => props.theme.colors.primary100} !important;
+        top: 2px;
+        font-size: 1.2rem;
+        font-weight: 100;
+      }
     `}
+
   ${props =>
-    props.isField &&
+    props.isFilled &&
     css`
-      color: ${props => props.theme.colors.inputHighlight};
+      ${Placeholder} {
+        top: 2px;
+        font-size: 1.2rem;
+        font-weight: 100;
+      }
     `}
 
   textarea {
-    flex: 1;
     min-height: 12.8rem;
     resize: none;
     background: transparent;
     border: 0;
-    font: 400 1.6rem Ubuntu;
+
+    width: 100%;
+    padding: 2.4rem 0;
 
     &[type='number']::-webkit-inner-spin-button {
       -webkit-appearance: none;
     }
+
     &[type='number'] {
       -moz-appearance: textfield;
       appearance: textfield;
-    }
-
-    &[error] {
-      box-shadow: 0 0 1px 1px red;
     }
 
     & + & {
       margin-top: 1.6rem;
     }
 
-    &::placeholder {
-      color: ${props => props.theme.colors.text2};
+    &:active {
+      background: transparent;
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: ${props => props.theme.colors.neutral15};
     }
   }
 `
 
-export const Error = styled(Tooltip)`
-  display: none;
-  height: 2rem;
-  margin-left: 1.6rem;
-  svg {
-    margin: 0;
-  }
-  span {
-    background: ${props => props.theme.colors.error};
-    color: #fff;
-    &::before {
-      border-color: ${props => props.theme.colors.error} transparent;
-    }
-  }
+export const Placeholder = styled.p`
+  position: absolute;
+  top: 0.8rem;
+  left: 8px;
 
-  @media only screen and (min-width: ${props => props.theme.breakpoints.sm}px) {
-    display: initial;
-  }
+  font-weight: 500;
+  font-size: 1.6rem;
+
+  color: ${props => props.theme.colors.neutral15} !important;
+
+  transition-property: font-size top;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+
+  cursor: text;
+`
+
+export const ErrorMessage = styled.p`
+  position: absolute;
+  left: 0;
+  bottom: -120px;
+  font-size: 1.6rem;
+  color: ${props => props.theme.colors.warning90} !important;
 `
