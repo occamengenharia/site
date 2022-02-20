@@ -1,19 +1,36 @@
-import { Initial } from '@/styles/pages/Home'
-import { Header, HomeCarousel } from '@/components'
-import { IBanner } from '@/pages'
+import {
+  Initial,
+  InitialContent,
+  WelcomeMessage,
+  StyledParticles,
+  Divider
+} from '@/styles/pages/Home'
+import { Header } from '@/components'
+import Button from '@/components/Button'
+import { useRouter } from 'next/router'
+import { particlesParams } from './particles.config'
 
-interface IInitialContainerProps {
-  banners: IBanner[]
+export const InitialContainer: React.FC = () => {
+  const router = useRouter()
+
+  return (
+    <Initial>
+      <Header />
+      <Divider />
+      <InitialContent>
+        <WelcomeMessage>
+          <p className="welcome">Bem vindo(a)</p>
+          <h1>Soluções Simples, Resultados Inovadores</h1>
+          <p className="description">
+            Conheça nossas soluções em aplicações web e mobile
+          </p>
+          <Button
+            text="SOLICITE UM ORÇAMENTO AGORA"
+            onClick={() => router.push('/contato')}
+          />
+        </WelcomeMessage>
+        <StyledParticles {...particlesParams} />
+      </InitialContent>
+    </Initial>
+  )
 }
-
-export const InitialContainer: React.FC<IInitialContainerProps> = ({
-  banners
-}) => (
-  <Initial>
-    <Header />
-    <main>
-      <h1>Soluções Simples, Resultados Inovadores</h1>
-      <HomeCarousel banners={banners} />
-    </main>
-  </Initial>
-)

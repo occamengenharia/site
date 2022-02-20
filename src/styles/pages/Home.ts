@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components'
+import Particles from 'react-tsparticles'
 
 export const Page = styled.div`
   scroll-snap-type: y mandatory;
@@ -29,33 +30,73 @@ export const Page = styled.div`
 export const Initial = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2vh;
-  main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    align-self: center;
-    width: min(1100px, 90vw);
+`
+
+export const InitialContent = styled.main`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+`
+
+export const WelcomeMessage = styled.div`
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  margin-left: 144px;
+  max-width: 700px;
+
+  h1 {
+    font-size: 56px;
+    font-weight: bold;
+    text-align: left;
+    color: ${props => props.theme.colors.primary90};
+    margin-bottom: 12px;
+  }
+
+  .welcome {
+    color: ${props => props.theme.colors.greenPrimary100};
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+
+  .description {
+    color: ${({ theme }) => theme.colors.neutral0};
+    font-weight: 300;
+    font-size: 18px;
+    margin-bottom: 80px;
+  }
+
+  @media only screen and (max-width: ${props => props.theme.breakpoints.lg}px) {
+    margin: 0 24px;
+
     h1 {
-      font-size: 4.8rem;
-      text-align: center;
-      margin-bottom: 4.8rem;
-      color: ${props => props.theme.colors.titles};
+      font-size: 40px;
     }
 
-    @media only screen and (min-width: ${props =>
-        props.theme.breakpoints.lg}px) {
-      flex-direction: row;
-      justify-content: space-between;
-      max-width: 103.2rem;
-      h1 {
-        font-size: 9.6rem;
-        margin: 0;
-        text-align: left;
-      }
+    .description {
+      font-size: 14px;
     }
   }
+`
+
+export const StyledParticles = styled(Particles)`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex: 1;
+
+  @media only screen and (max-width: ${props => props.theme.breakpoints.lg}px) {
+    display: none;
+  }
+`
+
+export const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: ${({ theme }) => theme.colors.neutral70};
 `
 
 export const Actuation = styled.div`
