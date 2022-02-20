@@ -45,6 +45,7 @@ export const WelcomeMessage = styled.div`
   flex: 2;
   flex-direction: column;
   margin-left: 144px;
+  max-width: 700px;
 
   h1 {
     font-size: 56px;
