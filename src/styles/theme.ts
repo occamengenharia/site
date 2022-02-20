@@ -80,9 +80,10 @@ export const light = {
     neutral90: '#F7F7F7',
     neutral80: '#EEEEEE',
     neutral70: '#E0E0E0',
+    neutral60: '#D2D2D2',
     neutral30: '#AAAAAA',
     neutral20: '#858585',
-    neutral15: '#3E3E3E',
+    neutral15: '#5E5E5E',
     neutral0: '#201E1E',
 
     ...basicColors
