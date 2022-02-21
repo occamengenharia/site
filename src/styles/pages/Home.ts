@@ -10,7 +10,7 @@ export const Page = styled.div`
     height: 100%;
     position: relative;
     &:nth-child(even) {
-      background: ${props => props.theme.colors.primary};
+      background: linear-gradient(106.59deg, #012FB4 0%, #0773C6 100%);
     }
   }
   #footer {
@@ -60,32 +60,87 @@ export const Initial = styled.div`
 
 export const Actuation = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  @media (max-width: ${props => props.theme.breakpoints.lg}px) {
+    height: 170% !important;
+  }
+  aside {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    position: relative;
+    margin-bottom: 0rem;
+    > div {
+      > h3 {
+        margin-top: 15rem;
+        color: ${props => props.theme.colors.white};
+      }
+      > button {
+        margin-top: 15rem;
+        background: white;
+        color: ${props => props.theme.colors.secundary};
+        span {
+          color: ${props => props.theme.colors.secundary};
+        }
+      }
+    }
+    @media (max-width: ${props => props.theme.breakpoints.lg}px) {
+      margin-top: 30rem;
+      margin-bottom: 0rem;
+      flex-direction: column;
+      align-items: center;
+      > div {
+        > h3 {
+          margin-top: -30rem;
+          color: ${props => props.theme.colors.white};
+        }
+        > button {
+          margin-top: -23rem;
+          width: 30rem;
+          background: white;
+          color: ${props => props.theme.colors.secundary};
+          span {
+            color: ${props => props.theme.colors.secundary};
+          }
+        }
+      }
+    }
+  }
   > main {
-    height: 100%;
+    height: 55%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 8%;
     width: min(1100px, 90vw);
-
     h3 {
       color: ${props => props.theme.colors.white};
     }
     > section {
       display: flex;
-      align-items: center;
+      align-items: start;
       justify-content: center;
+      background-color: #014BB4;
+      border-radius: 1rem;
+      padding: 2rem;
+      width: 38rem;
+      height: 100%;
       gap: 1.2rem;
+      h3 {
+        font-size: 32px;
+        gap: 0rem !important;
+      }
       p {
         font-size: 1.2rem;
         color: ${props => props.theme.colors.white};
         line-height: 1.6rem;
       }
       img {
-        height: 8rem;
+        height: 10rem !important;
       }
     }
     button {
@@ -133,6 +188,38 @@ export const Actuation = styled.div`
         grid-row: 3;
       }
     }
+    @media (max-width: ${props => props.theme.breakpoints.lg}px) {
+     > section {
+        flex-direction: column;
+        gap: 4rem;
+        img {
+          height: 20rem;
+        }
+        p {
+          font-size: 1.6rem;
+          line-height: 2rem;
+        }
+        &:nth-of-type(1) {
+          grid-column: 1;
+          grid-row: 2;
+        }
+        &:nth-of-type(2) {
+          grid-column: 2;
+          grid-row: 2;
+        }
+        &:nth-of-type(3) {
+          grid-column: 3;
+          grid-row: 2;
+        }
+        div {
+          display: flex;
+          align-items: center;
+          h3 {
+            margin-left: 3rem;
+          }
+        }
+      }
+    }
   }
 `
 export const Members = styled.div`
@@ -177,7 +264,7 @@ export const About = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
+  background: linear-gradient(106.59deg,#0773C6 0%,#012FB4 0%) !important;
   color: ${props => props.theme.colors.white};
 
   img {
@@ -247,6 +334,15 @@ export const About = styled.div`
       height: 100vh;
       object-fit: cover;
     }
+    
+    button {
+      width: 15rem;
+      background: white;
+      color: ${props => props.theme.colors.secundary};
+      span {
+        color: ${props => props.theme.colors.secundary};
+      }
+    }
 
     aside {
       position: relative;
@@ -256,7 +352,6 @@ export const About = styled.div`
         width: 100%;
         position: absolute;
         top: 0;
-        background-color: ${props => props.theme.colors.primary};
         mix-blend-mode: hard-light;
       }
     }
