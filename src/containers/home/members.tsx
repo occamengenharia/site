@@ -1,8 +1,7 @@
-import MembersHome from '@/components/MembersHome'
 import { IMember } from '@/pages'
-import { Members } from '@/styles/pages/Home'
-import { FaCaretRight } from 'react-icons/fa'
-import NextLink from 'next/link'
+import { Members, MembersHead } from '@/styles/pages/Home'
+import { Button, MembersHome } from '@/components'
+import { useRouter } from 'next/router'
 
 interface IMembersContainerProps {
   members: IMember[]
@@ -10,16 +9,21 @@ interface IMembersContainerProps {
 
 export const MembersContainer: React.FC<IMembersContainerProps> = ({
   members
-}) => (
-  <Members>
-    <h3>Nossos diretores</h3>
-    <MembersHome members={members} />
+}) => {
+  const { push } = useRouter()
 
-    <NextLink href="/membros">
-      <a>
-        Ver todos os membros
-        <FaCaretRight />
-      </a>
-    </NextLink>
-  </Members>
-)
+  return (
+    <Members>
+      <MembersHead>
+        <h3>Nossos membros</h3>
+        <Button
+          text="Membros de todos os anos"
+          size="small"
+          onClick={() => push('/membros')}
+        />
+      </MembersHead>
+
+      <MembersHome members={members} />
+    </Members>
+  )
+}

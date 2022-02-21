@@ -185,10 +185,6 @@ export const Members = styled.div`
   margin: 0 auto;
   gap: 4vh;
 
-  h3 {
-    color: ${props => props.theme.colors.titles};
-  }
-
   a {
     font-size: 1.6rem;
     color: ${props => props.theme.colors.subtitles};
@@ -211,6 +207,13 @@ export const Members = styled.div`
       font-size: 4rem;
     }
   }
+`
+
+export const MembersHead = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
 `
 
 export const About = styled.div`
