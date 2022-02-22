@@ -2,6 +2,7 @@ import { useState } from 'react'
 import 'react-responsive-modal/styles.css'
 import Modal from 'react-responsive-modal'
 import { ModalContainer, Close, Cross } from './styles'
+import Button from '@/components/Button'
 
 interface ErrorModalProps {
   isOpened: boolean
@@ -20,9 +21,7 @@ const ErrorModal: React.FC<ErrorModalProps> = ({
     setOpen(false)
   }
 
-  setTimeout(() => {
-    setOpen(false)
-  }, 3000)
+
 
   return (
     <Modal
@@ -39,6 +38,7 @@ const ErrorModal: React.FC<ErrorModalProps> = ({
           <p>{title}</p>
           <span>{subtitle}</span>
         </div>
+        <Button onClick={handleCloseModal} text={'Voltar'}></Button>
       </ModalContainer>
     </Modal>
   )

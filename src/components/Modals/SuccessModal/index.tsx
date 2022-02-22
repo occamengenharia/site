@@ -1,6 +1,7 @@
 import { Check, Close, SuccessModalContainer, Link } from './styles'
 import 'react-responsive-modal/styles.css'
 import { Modal } from 'react-responsive-modal'
+import { Button } from '@/components'
 
 interface SuccessModalProps {
   isOpened: boolean
@@ -27,17 +28,6 @@ const SuccessModal: React.FC<SuccessModalProps> = ({
     setOpen(false)
   }
 
-  function handlePreviousModal() {
-    setOpen(false)
-    setOpenPreviousModal(true)
-  }
-
-  if (timer) {
-    setTimeout(() => {
-      setOpen(false)
-    }, timer)
-  }
-
   return (
     <Modal
       open={isOpened}
@@ -51,12 +41,9 @@ const SuccessModal: React.FC<SuccessModalProps> = ({
         <Check />
         <div>
           <p>{title}</p>
-          {hasBackButton ? (
-            <Link onClick={handlePreviousModal}>{subtitle}</Link>
-          ) : (
-            <span>{subtitle}</span>
-          )}
+          <span>{subtitle}</span>
         </div>
+        <Button onClick={handleCloseModal} text='Entendi'></Button>
       </SuccessModalContainer>
     </Modal>
   )

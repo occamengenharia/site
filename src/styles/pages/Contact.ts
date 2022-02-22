@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Form } from '@unform/web'
-import { Main as Button } from '@/components/Button/styles.ts'
+import { Main as Button } from '@/components/Button/styles'
 
 export const Container = styled.main`
   width: 100%;
@@ -40,6 +40,7 @@ export const FormStyled = styled(Form)`
 
   ${Button} {
     margin-top: 1.6rem;
+    
   }
 
   @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
@@ -58,6 +59,7 @@ export const FormStyled = styled(Form)`
     ${Button} {
       width: 300px;
       align-self: flex-end;
+
     }
 
     h1 {

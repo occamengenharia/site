@@ -79,14 +79,14 @@ const Contact: React.FC = () => {
           description={description}
         />
         <ErrorModal
-          title="Ocorreu um erro"
-          subtitle="Tente novamente mais tarde"
+          title="Não foi possivel enviar a mensagem"
+          subtitle="Ocorreu um erro ao tentar enviar a mensagem tente novamente mais tarde"
           isOpened={isOpenError}
           setOpen={setIsOpenError}
         />
         <SuccessModal
-          title="E-mail enviado com sucesso"
-          subtitle="Obrigado pelo contato, nossa equipe irá entrar em contato o mais breve possível para ajudar."
+          title="Mensagem enviada com sucesso"
+          subtitle="Enviamos um e-mail cópia para você. Logo entraremos em contato"
           isOpened={isOpenSuccess}
           setOpen={setIsOpenSuccess}
           showCloseIcon={false}
