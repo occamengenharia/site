@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
-import { MemberStyle, Links } from './styles'
-import { FaGithub, FaLinkedin, FaCaretLeft, FaCaretRight } from 'react-icons/fa'
+import { MemberStyle, Links, CardContent } from './styles'
+import { FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa'
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import { IMember } from '@/pages'
+import { ButtonLink } from '..'
 
 // import Link from '@/components/Link'
 
@@ -43,30 +45,35 @@ const MembersHome: React.FC<MemberProps> = ({ members }) => {
 
   return (
     <MemberStyle>
-      <img src={currentMember?.avatar} alt={`Diretor ${currentMember?.name}`} />
-      <main>
-        <section>
-          <p>{currentMember?.name}</p>
-          <label>{currentMember?.role ? currentMember?.role.job : ''}</label>
-        </section>
+      <img src={currentMember?.avatar} alt={currentMember?.name} />
+      <CardContent>
+        <main>
+          <section>
+            <p>{currentMember?.name}</p>
+            <label>{currentMember?.role ? currentMember?.role.job : ''}</label>
+            <p className="member-phrase">{`"${currentMember.phrase}"`}</p>
+          </section>
+        </main>
         <aside>
           <button onClick={handlePreviousMember}>
-            <FaCaretLeft />
+            <IoIosArrowBack />
           </button>
           <button onClick={handleNextMember}>
-            <FaCaretRight />
+            <IoIosArrowForward />
           </button>
         </aside>
         <Links>
-          <a href={currentMember?.link_github}>
-            <FaGithub />
-          </a>
-
-          <a href={currentMember?.link_linkedin}>
-            <FaLinkedin />
-          </a>
+          <ButtonLink
+            href={currentMember?.link_instagram}
+            icon={<FaInstagram />}
+          />
+          <ButtonLink href={currentMember?.link_github} icon={<FaGithub />} />
+          <ButtonLink
+            href={currentMember?.link_linkedin}
+            icon={<FaLinkedin />}
+          />
         </Links>
-      </main>
+      </CardContent>
     </MemberStyle>
   )
 }

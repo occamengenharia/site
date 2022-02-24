@@ -2,23 +2,28 @@ import styled from 'styled-components'
 
 export const MemberStyle = styled.section`
   display: flex;
-  flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 70vh;
+  height: 41.6rem;
   background-color: ${props => props.theme.colors.backgorudElevation};
   box-shadow: 0 0 0.8rem 0 rgba(0, 0, 0, 0.25);
   border: 1px solid ${props => props.theme.colors.neutral70};
   box-sizing: border-box;
   border-radius: 8px 8px 8px 8px;
+  padding: 0;
+  gap: 2rem;
 
   img {
-    width: 100%;
-    height: 60%;
-    object-fit: cover;
-    border-radius: 8px 0px 0px 8px;
-    border: 1px solid ${props => props.theme.colors.neutral70};
-    box-sizing: border-box;
+    height: 100%;
+    max-height: 100%;
+    max-width: 40%;
+  }
+
+  div {
+    main {
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   aside {
@@ -87,20 +92,29 @@ export const MemberStyle = styled.section`
     }
   }
 
-  @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
-    flex-direction: row;
-    height: 41.6rem;
-    padding: 0;
-    gap: 2rem;
+  @media only screen and (max-width: ${props => props.theme.breakpoints.md}px) {
+    flex-direction: column;
+    height: 70vh;
+    gap: 0;
+
     img {
-      height: 100%;
-      max-height: 100%;
-      max-width: 40%;
+      max-width: 100%;
+      width: 100%;
+      height: 60%;
+      object-fit: cover;
+      border-radius: 8px 8px 8px 8px;
+      border: 1px solid ${props => props.theme.colors.neutral70};
+      box-sizing: border-box;
     }
-    div {
-      main {
-        justify-content: center;
-        align-items: center;
+
+    main {
+      section {
+        p {
+          font-size: 32px;
+        }
+        label {
+          font-size: 16px;
+        }
       }
     }
   }
@@ -120,23 +134,5 @@ export const Links = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 32px;
-
-  a {
-    margin: 0;
-  }
-
-  svg {
-    background: ${props => props.theme.colors.neutral70};
-    border-radius: 8px;
-    padding: 8px;
-    color: ${props => props.theme.colors.neutral20};
-    width: 40px;
-    height: 40px;
-  }
-
-  @media only screen and (min-width: ${props => props.theme.breakpoints.lg}px) {
-    svg {
-      font-size: 3.2rem;
-    }
-  }
+  gap: 12px;
 `
