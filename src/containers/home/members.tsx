@@ -10,7 +10,7 @@ interface IMembersContainerProps {
 export const MembersContainer: React.FC<IMembersContainerProps> = ({
   members
 }) => {
-  const { push } = useRouter()
+  const router = useRouter()
 
   return (
     <Members>
@@ -19,7 +19,7 @@ export const MembersContainer: React.FC<IMembersContainerProps> = ({
         <Button
           text="Membros de todos os anos"
           size="small"
-          onClick={() => push('/membros')}
+          onClick={() => router.push('/membros')}
         />
       </MembersHead>
 
