@@ -185,24 +185,12 @@ export const Members = styled.div`
   margin: 0 auto;
   gap: 4vh;
 
-  a {
-    font-size: 1.6rem;
-    color: ${props => props.theme.colors.subtitles};
-
-    svg {
-      margin-left: 0.8rem;
-    }
-  }
   p {
     font-size: 2rem;
   }
   @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
     align-items: flex-start;
 
-    a {
-      font-size: 1.2rem;
-      margin: 0 auto;
-    }
     p {
       font-size: 4rem;
     }
@@ -214,6 +202,17 @@ export const MembersHead = styled.div`
   justify-content: space-between;
 
   width: 100%;
+
+  @media only screen and (max-width: ${props => props.theme.breakpoints.md}px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 16px;
+
+    h3 {
+      text-align: left;
+      font-size: 32px;
+    }
+  }
 `
 
 export const About = styled.div`
