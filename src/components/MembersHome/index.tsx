@@ -51,7 +51,9 @@ const MembersHome: React.FC<MemberProps> = ({ members }) => {
           <section>
             <p>{currentMember?.name}</p>
             <label>{currentMember?.role ? currentMember?.role.job : ''}</label>
-            <p className="member-phrase">{`"${currentMember.phrase}"`}</p>
+            <p className="member-phrase">
+              {`"${currentMember?.phrase || ''}"`}
+            </p>
           </section>
         </main>
         <aside>
