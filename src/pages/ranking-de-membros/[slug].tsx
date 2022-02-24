@@ -31,7 +31,7 @@ interface IRankingProps {
 }
 const Ranking: React.FC<IRankingProps> = ({
   members,
-  currentMember = 'asdasd'
+  currentMember = {} as IMember
 }) => {
   const memberExemple: IMembersStatistics = {
     name: 'Jeferson Rosa de Souza',
