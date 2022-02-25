@@ -12,6 +12,15 @@ export const Container = styled.div`
     gap: 2.4rem;
     justify-content: center;
     align-items: center;
+    >section{
+      align-items: center;
+      display: flex;
+      align-self: flex-start;
+      justify-content: space-between;
+      background: #F1F1F1;
+      border-radius: 8px;
+      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+    }
     > h3 {
       margin-top: 2rem;
       width: 100%;

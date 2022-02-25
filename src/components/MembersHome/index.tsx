@@ -41,22 +41,22 @@ const MembersHome: React.FC<MemberProps> = ({ members }) => {
 
   return (
     <MemberStyle>
-      <img src={currentMember.avatar} />
+      <img src={currentMember?.avatar} />
       <main>
         <section>
-          <p>{currentMember.name}</p>
-          <label>{currentMember.role ? currentMember.role.job : ''}</label>
+          <p>{currentMember?.name}</p>
+          <label>{currentMember?.role ? currentMember?.role.job : ''}</label>
         </section>
         <aside>
           <FaCaretLeft onClick={handlePreviousMember} />
           <FaCaretRight onClick={handleNextMember} />
         </aside>
         <Links>
-          <a href={currentMember.link_github}>
+          <a href={currentMember?.link_github}>
             <FaGithub />
           </a>
 
-          <a href={currentMember.link_linkedin}>
+          <a href={currentMember?.link_linkedin}>
             <FaLinkedin />
           </a>
         </Links>
