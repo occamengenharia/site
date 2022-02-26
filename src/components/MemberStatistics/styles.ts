@@ -8,8 +8,8 @@ interface IProgressArea {
 export const Links = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 2.4rem 0;
+  margin-top: 2.4rem;
+ 
   a {
     font-size: 1.6rem;
     color: ${({ theme }) => theme.colors.links};
@@ -23,20 +23,30 @@ export const Links = styled.div`
 `
 export const Box = styled.div`
   margin-top: 1.6rem;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  
   background: ${({ theme }) => theme.colors.inputBackground};
   padding: 1.6rem;
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+ border-radius: 5px;
+ & {
+    background: ${props => props.theme.colors.backgorudElevation};
+  }
+ 
+  }
   > aside {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
   }
   strong,
   span {
     font-size: 1.6rem;
+    align-items: center;
+    
+    
   }
   strong {
     font-weight: 00;
@@ -44,6 +54,7 @@ export const Box = styled.div`
   span {
     font-weight: 400;
   }
+ 
 `
 export const ProgressArea = styled.div<IProgressArea>`
   --CanvasSize: ${props => props.canvasSize}px;
@@ -113,6 +124,7 @@ export const ProgressArea = styled.div<IProgressArea>`
 `
 export const Statistics = styled.div`
   > figure {
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
     align-items: center;

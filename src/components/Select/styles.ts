@@ -16,6 +16,9 @@ export const Container = styled.div<SelectProps>`
   padding-left: 0.8rem;
   border-radius: ${props => props.theme.variables.borderRadius}rem;
   background: ${props => props.theme.colors.inputBackground};
+  &:nth-child(odd) {
+    background: ${props => props.theme.colors.backgorudElevation};
+  }
 
   & + div {
     margin-top: 2.4rem;

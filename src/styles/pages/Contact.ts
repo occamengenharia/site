@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Form } from '@unform/web'
-import { Main as Button } from '@/components/Button/styles.ts'
+import { Main as Button } from '@/components/Button/styles'
 
 export const Container = styled.main`
   width: 100%;
