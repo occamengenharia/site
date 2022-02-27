@@ -173,7 +173,7 @@ const loadingAnimation = keyframes`
   to {
     transform: rotate(360deg);
   }
-  `
+`
 
 export const LoadingContainer = styled.div`
   padding: 0;

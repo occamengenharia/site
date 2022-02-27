@@ -69,20 +69,21 @@ export const light = {
     primary80: '#0E428B',
 
     // padrão de gradiente: 'valorDaCor_graus:'
-    primaryGradient90_0: 'linear-gradient(0deg, #0773C6, #014BB4)',
+    primaryGradient90_90: 'linear-gradient(0deg, #0773C6, #014BB4)',
     primaryGradient90_45: 'linear-gradient(45deg, #0773C6, #014BB4)',
-    primaryGradient90_90: 'linear-gradient(90deg, #0773C6, #014BB4)',
-    primaryGradient100_0: 'linear-gradient(0deg, #0773C6, #1E8EE4)',
+    primaryGradient90_0: 'linear-gradient(-90deg, #0773C6, #014BB4)',
+    primaryGradient100_90: 'linear-gradient(0deg, #0773C6, #1E8EE4)',
     primaryGradient100_45: 'linear-gradient(45deg, #0773C6, #1E8EE4)',
-    primaryGradient100_90: 'linear-gradient(90deg, #0773C6, #1E8EE4)',
+    primaryGradient100_0: 'linear-gradient(90deg, #0773C6, #1E8EE4)',
 
     neutral100: '#FDFDFD',
     neutral90: '#F7F7F7',
     neutral80: '#EEEEEE',
     neutral70: '#E0E0E0',
+    neutral60: '#D2D2D2',
     neutral30: '#AAAAAA',
     neutral20: '#858585',
-    neutral15: '#3E3E3E',
+    neutral15: '#5E5E5E',
     neutral0: '#201E1E',
 
     ...basicColors
