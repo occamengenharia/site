@@ -81,6 +81,8 @@ export interface IMember {
     end_date_position: string
   }
   avatar: string
+  phrase: string
+  link_instagram: string
   link_github: string
   link_linkedin: string
 }
@@ -96,9 +98,9 @@ export interface IBanner {
 interface IPropsHome {
   showComponents: boolean
   members: IMember[]
-  banners: IBanner[]
 }
-const Home: React.FC<IPropsHome> = ({ banners, members }) => {
+
+const Home: React.FC<IPropsHome> = ({ members }) => {
   const description =
     'Bem vindo(a) ao site da OCCAM Engenharia, a empresa júnior dos cursos de Engenharia de Computação e Análise e Desenvolvimento de Sistemas da Universidade Tecnológica Federal do Paraná - UTFPR-PB'
   return (
@@ -110,7 +112,7 @@ const Home: React.FC<IPropsHome> = ({ banners, members }) => {
       />
 
       <Page>
-        <InitialContainer banners={banners} />
+        <InitialContainer />
         <ActuationContainer />
         <MembersContainer members={members} />
         <AboutContainer />
@@ -156,6 +158,8 @@ export const getStaticProps: GetStaticProps<IPropsHome> = async () => {
         name: member.name,
         role: positionsOfYear[0],
         avatar: member.photo.url || '/404/caramelo.png',
+        phrase: '',
+        link_instagram: '',
         link_github: member.link_github || '',
         link_linkedin: member.link_linkedin || ''
       } as IMember)
