@@ -78,7 +78,7 @@ const Pontos: React.FC<IPointsProps> = ({ pointsList }) => {
             {pointsList.map(points => (
                 <tr>
                 <td>{points.description }</td>
-                <td>{points.points + points.is_multipliable}</td>
+                <td>{points.points} <h5 color="red"> {points.is_multipliable? "Multiplicador": ""} </h5></td>
                 </tr>
             ))}
             </SortableTable>
