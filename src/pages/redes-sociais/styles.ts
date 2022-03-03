@@ -16,15 +16,16 @@ export const Container = styled.main`
 export const Title = styled.h3``
 
 export const CardContainer = styled.section`
-  display: grid;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 24px 36px;
   margin-top: 48px;
+  gap: 24px 36px;
 
   @media only screen and (max-width: ${props => props.theme.breakpoints.md}px) {
-    grid-template-columns: repeat(1, 1fr);
-    grid-gap: 16px;
+    gap: 16px;
     margin-top: 80px;
   }
 `
@@ -34,14 +35,14 @@ export const Card = styled.article<{ cardTheme: ThemeProps }>`
   display: flex;
   align-items: end;
   padding: 16px;
-  min-height: 160px;
+  height: 160px;
   min-width: 360px;
 
   border-radius: 8px;
   background: ${({ cardTheme }) => cardTheme.background};
 
   @media only screen and (max-width: ${props => props.theme.breakpoints.md}px) {
-    min-height: 120px;
+    height: 120px;
   }
 `
 
