@@ -96,10 +96,12 @@ const MemberStatistics: React.FC<IMemberStatisticsProps> = ({
   selectOptions
 }) => {
   const fullName =
-    member.name.split(' ')[0] +
+    member?.name.split(' ')[0] +
     ' ' +
-    member.name.split(' ')[member.name.split(' ').length - 1]
+    member?.name.split(' ')[member.name.split(' ').length - 1]
   const formRef = useRef()
+  console.log(member);
+  
   const router = useRouter()
   const handleChangeMember = useCallback((option: OptionTypeBase) => {
     if (option) {
@@ -112,12 +114,12 @@ const MemberStatistics: React.FC<IMemberStatisticsProps> = ({
         <MemberProgress {...member} />
         <figcaption>
           <label htmlFor="member">{fullName}</label>
-          <i>{member.profession}</i>
+          <i>{member?.profession}</i>
           <aside>
-            <a href={member.link_github}>
+            <a href={member?.link_github}>
               <FaGithub />
             </a>
-            <a href={member.link_linkedin}>
+            <a href={member?.link_linkedin}>
               <FaLinkedin />
             </a>
           </aside>
@@ -141,7 +143,7 @@ const MemberStatistics: React.FC<IMemberStatisticsProps> = ({
         <Box>
           <aside>
             <strong>Total de pontos</strong>
-            <span>{10 + 'xp'}</span>
+            <span>{member?.total_experience + 'xp'}</span>
           </aside>
           <aside>
             <strong>Posição no ranking</strong>
@@ -150,10 +152,10 @@ const MemberStatistics: React.FC<IMemberStatisticsProps> = ({
         </Box>
         <Box>
           <strong>Conquistas</strong>
-          <section></section>
+          <section>{member?.achievements.map(achievement=><span key={achievement.id} title={achievement.title}> {achievement.emoji} </span>)}</section>
         </Box>
         <Links>
-          <a href="#placarGeral">Placar Geral</a>
+          <a href="/ranking-de-membros">Placar Geral</a>
           <Link href="/pontos">
             <a>Pontos</a>
           </Link>

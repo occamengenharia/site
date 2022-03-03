@@ -1,6 +1,6 @@
 import SortableTable from '@/components/SortableTable'
 import MemberStatistics from '@/components/MemberStatistics'
-import { IMembersStatistics } from '@/components/MemberStatistics/interfaces'
+import { IAchievementsProps, IMembersStatistics } from '@/components/MemberStatistics/interfaces'
 import { Container } from '@/styles/pages/Ranking'
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next'
 import api from '@/services/api'
@@ -11,6 +11,19 @@ interface IPosition {
   start_date_position: string
   end_date_position: string
 }
+interface ILevelProps{
+    level: number
+    maximum_points: string
+    minimum_points: string
+    _id: string
+    status: string
+    published_at: string
+    createdAt: string
+    updatedAt: string
+    __v: string,
+    id: string
+}
+
 interface IMember {
   _id: string
   course: 'CP' | 'ADS'
@@ -19,43 +32,58 @@ interface IMember {
   link_github: string
   name: string
   slug: string
+  level: ILevelProps
   output_date: string
   entry_date: string
   positions: IPosition[]
   photo: {
     url: string
   }
+  profession:string
+  achievements: IAchievementsProps[]
+  experiencePoints: number
 }
 interface IRankingProps {
   members: IMember[]
   currentMember?: IMember
 }
+
+
 const Ranking: React.FC<IRankingProps> = ({ members, currentMember }) => {
-  const memberExemple: IMembersStatistics = {
-    name: 'Jeferson Rosa de Souza',
-    profession: 'Diretor de Projetos',
-    urlImg: currentMember.photo.url,
-    level: 15,
-    conquests: [{ title: 'feliz', emoji: '🤫' }],
-    percent: 92,
-    experiencePoints: 1200,
-    ...currentMember
+  
+  if(!(JSON.stringify(currentMember) === "{}")){
+    var memberStstisttic : IMembersStatistics = {
+      profession: currentMember.profession,
+      experiencePoints: currentMember.experiencePoints,
+      conquests: currentMember.achievements,
+      link_github: currentMember.link_github,
+      link_linkedin: currentMember.link_linkedin,
+      achievements: currentMember.achievements,
+      level: currentMember.level.level,
+      name: currentMember.name,
+      percent: 30,
+      total_experience: currentMember.experiencePoints?.toString(),
+      urlImg: currentMember.photo.url
+    }
   }
-  const router = useRouter()
-  console.log(currentMember)
+
+  
 
   return (
     <Container>
       <main>
-        <MemberStatistics
-          member={memberExemple}
+        {!(JSON.stringify(currentMember) === "{}") && 
+          <MemberStatistics
+          member= {memberStstisttic}
           selectOptions={members.map(member => {
             return {
-              value: member.slug,
-              label: member.name
+              value: member?.slug,
+              label: member?.name
             }
           })}
-        />
+      />
+        }
+        
         <h3>Placar Geral</h3>
         <SortableTable
           columnHeaders={[
@@ -86,10 +114,21 @@ interface IMebersSerialized {
   members: IMember[]
 }
 export const getServerSideProps: GetServerSideProps = async context => {
-  const { slug } = context.params
+  console.log(context.params);
+  console.log(JSON.stringify(context.params) === "{}");
+  
+  
   const { data } = await api.get<IMember[]>('/members')
-  const currentMember = data.find(member => member.slug === slug)
+  let currentMember = {} as IMember
+  if(!(JSON.stringify(context.params) === "{}")){
+    const { slug } = context.params
+    console.log("entrei");
+    
+    currentMember = data.find(member => member.slug === slug[0])
+  }
+  
   const members = data.filter(member => member.active)
+  
   return {
     props: {
       members,
