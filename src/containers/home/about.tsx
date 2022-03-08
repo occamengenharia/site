@@ -7,10 +7,10 @@ export const AboutContainer: React.FC = () => (
   <About>
     <div>
       <h4>Quem somos?</h4>
-      <span>
+      <p>
         Desde 2012 trabalhando para desenvolver atividades que possam ampliar e
         melhorar a qualidade de vida da comunidade ao seu redor.
-      </span>
+      </p>
       <Link
         href="/sobre-nos"
         text="SAIBA MAIS"

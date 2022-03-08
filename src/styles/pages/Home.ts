@@ -10,7 +10,7 @@ export const Page = styled.div`
     height: 100%;
     position: relative;
     &:nth-child(even) {
-      background: linear-gradient(106.59deg, #012FB4 0%, #0773C6 100%);
+     
     }
   }
   #footer {
@@ -63,6 +63,7 @@ export const Actuation = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: ${props => props.theme.colors.primaryGradient0_100};
   @media (max-width: ${props => props.theme.breakpoints.lg}px) {
     height: 170% !important;
   }
@@ -262,11 +263,19 @@ export const Members = styled.div`
 export const About = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
-  background: linear-gradient(106.59deg,#0773C6 0%,#012FB4 0%) !important;
+  background: ${props => props.theme.colors.primary};
   color: ${props => props.theme.colors.white};
+  justify-content: space-between;
 
+  div {
+    align-items: flex-start;
+  }
+  span {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
   img {
     display: none;
   }
@@ -275,15 +284,20 @@ export const About = styled.div`
     font-size: 0.8rem;
   }
 
-  div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  p {
+    font-size: 2.4rem;
+    margin-top: 15.1rem;
+    margin-bottom: 0rem;
+    margin-left: 20.3rem;
+    width: 346px;
+    height: 143px;
   }
+
   h4 {
-    font-size: 3.2rem;
-    margin-bottom: 9.9rem;
+    font-size: 4.8rem;
+    margin-top: 9.6rem;
+    margin-bottom: 0rem;
+    margin-left: 20.3rem;
   }
   span {
     font-size: 2.4rem;
@@ -295,6 +309,22 @@ export const About = styled.div`
     color: ${props => props.theme.colors.white};
     font-size: 1.6rem;
   }
+  button {
+    width: 15rem;
+    background: white;
+    margin-top: 10.4rem;
+    margin-bottom: 0rem;
+    margin-left: 20.4rem;
+    color: ${props => props.theme.colors.secundary};
+    span {
+      font-size: 1.8rem;
+      margin-top: 13.5rem;
+      margin-bottom: 0rem;
+      padding: 2rem;
+      color: ${props => props.theme.colors.secundary};
+    }
+  }
+
   @media (min-width: ${props => props.theme.breakpoints.lg}px) {
     display: flex;
     flex-direction: row;
@@ -315,6 +345,9 @@ export const About = styled.div`
       margin-left: 20.3rem;
     }
     span {
+
+    }
+    p {
       font-size: 2.4rem;
       margin-top: 15.1rem;
       margin-bottom: 0rem;
@@ -338,8 +371,15 @@ export const About = styled.div`
     button {
       width: 15rem;
       background: white;
+      margin-top: 10.4rem;
+      margin-bottom: 0rem;
+      margin-left: 20.4rem;
       color: ${props => props.theme.colors.secundary};
       span {
+        font-size: 1.8rem;
+        margin-top: 13.5rem;
+        margin-bottom: 0rem;
+        padding: 2rem;
         color: ${props => props.theme.colors.secundary};
       }
     }
