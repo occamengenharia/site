@@ -10,7 +10,10 @@ export const modalStyles: ModalStylesProps = {
       borderRadius: 8,
       boxShadow: 'none',
       backgroundColor: light.colors.neutral100,
-      padding: 32
+      padding: 0
+    },
+    closeButton: {
+      padding: 16
     }
   }
 }
