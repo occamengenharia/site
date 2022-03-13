@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components'
+import NextLink from 'next/link'
 
 export const Page = styled.div`
   scroll-snap-type: y mandatory;
@@ -99,6 +100,9 @@ export const Actuation = styled.div`
           color: ${props => props.theme.colors.white};
         }
         > button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           margin-top: -23rem;
           width: 30rem;
           background: white;
@@ -260,13 +264,21 @@ export const Members = styled.div`
   }
 `
 
+export const LinkSocialMedias = styled(NextLink)`
+font-size: 100rem;
+  a {
+    color: red !important;
+    font-size: 100rem;
+  }
+`
+
 export const About = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: ${props => props.theme.colors.primary};
+  background: ${props => props.theme.colors.primaryGradient0_100};
   color: ${props => props.theme.colors.white};
-  justify-content: space-between;
+  justify-content: center;
 
   div {
     align-items: flex-start;
@@ -286,9 +298,9 @@ export const About = styled.div`
 
   p {
     font-size: 2.4rem;
-    margin-top: 15.1rem;
+    margin-top: 10rem;
     margin-bottom: 0rem;
-    margin-left: 20.3rem;
+    margin-left: 5rem;
     width: 346px;
     height: 143px;
   }
@@ -297,7 +309,7 @@ export const About = styled.div`
     font-size: 4.8rem;
     margin-top: 9.6rem;
     margin-bottom: 0rem;
-    margin-left: 20.3rem;
+    margin-left: 5rem;
   }
   span {
     font-size: 2.4rem;
@@ -310,11 +322,14 @@ export const About = styled.div`
     font-size: 1.6rem;
   }
   button {
-    width: 15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
     background: white;
     margin-top: 10.4rem;
     margin-bottom: 0rem;
-    margin-left: 20.4rem;
+    margin-left: 5rem;
     color: ${props => props.theme.colors.secundary};
     span {
       font-size: 1.8rem;
@@ -329,6 +344,7 @@ export const About = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background: ${props => props.theme.colors.primary};
 
     div {
       align-items: flex-start;
