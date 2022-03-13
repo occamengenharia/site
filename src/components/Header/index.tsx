@@ -80,17 +80,26 @@ const Header: React.FC = () => {
               <Link href="/servicos">
                 <a>Áreas de atuação</a>
               </Link>
-              <Link href="/membros">
-                <a>Membros</a>
+              <Link href="/projetos">
+                <a>Projetos</a>
               </Link>
               <Link href="/sobre-nos">
                 <a>Sobre nós</a>
               </Link>
+              <Link href="/redes-sociais">
+                <a>Redes sociais</a>
+              </Link>
+              <Link href="/membros">
+                <a>Membros</a>
+              </Link>
               <Link href="/contato">
                 <a>Contato</a>
               </Link>
+              <Link href="/ranking">
+                <a>Ranking</a>
+              </Link>
               <Link href={`/processo-seletivo/${selectiveProcess.processSlug}`}>
-                <a className="inactive">Processo seletivo</a>
+                <a className="inactive">PS</a>
               </Link>
             </section>
 
