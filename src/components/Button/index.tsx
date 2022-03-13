@@ -1,7 +1,9 @@
 import { IconBaseProps } from 'react-icons'
-import { Main } from './styles'
 import { ButtonHTMLAttributes } from 'react'
+
+import { Main, LoadingContainer } from './styles'
 import { ButtonColors, ButtonSizes, ButtonVariants } from './types'
+import LoadingIcon from './assets/Loading.svg'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string
@@ -9,6 +11,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: ButtonColors
   size?: ButtonSizes
   icon?: React.ComponentType<IconBaseProps>
+  isLoading?: boolean
 }
 
 /**
@@ -23,13 +26,22 @@ const Button: React.FC<ButtonProps> = ({
   color = 'primary',
   size = 'large',
   children,
+  isLoading = false,
   ...rest
 }) => {
   return (
     <Main variant={variant} color={color} size={size} {...rest}>
-      {Icon && <Icon />}
-      <span>{text}</span>
-      {children}
+      {isLoading ? (
+        <LoadingContainer>
+          <LoadingIcon />
+        </LoadingContainer>
+      ) : (
+        <>
+          {Icon && <Icon />}
+          <span>{text}</span>
+          {children}
+        </>
+      )}
     </Main>
   )
 }
