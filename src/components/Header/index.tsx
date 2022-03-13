@@ -12,6 +12,8 @@ import {
   Divider
 } from './styles'
 import api from '@/services/api'
+import { Tooltip } from '../Tooltip'
+
 interface ISelectiveProcess {
   selectiveProcessActive: boolean
   processSlug: string
@@ -66,7 +68,7 @@ const Header: React.FC = () => {
   }, [])
   return (
     <>
-      <Main hasSelectiveProcess={selectiveProcess.selectiveProcessActive}>
+      <Main>
         <HeaderContent openMenu={openDropDown}>
           <Link href="/">
             <img
@@ -75,7 +77,7 @@ const Header: React.FC = () => {
             />
           </Link>
 
-          <div>
+          <div className="links-header">
             <section>
               <Link href="/servicos">
                 <a>Áreas de atuação</a>
@@ -99,7 +101,17 @@ const Header: React.FC = () => {
                 <a>Ranking</a>
               </Link>
               <Link href={`/processo-seletivo/${selectiveProcess.processSlug}`}>
-                <a className="inactive">PS</a>
+                {selectiveProcess.selectiveProcessActive ? (
+                  <a>PS</a>
+                ) : (
+                  <Tooltip
+                    className="margin"
+                    direction="bottom"
+                    content="Parece que não é hora de um processo seletivo :/"
+                  >
+                    <a className="inactive">PS</a>
+                  </Tooltip>
+                )}
               </Link>
             </section>
 

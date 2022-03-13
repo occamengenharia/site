@@ -1,20 +1,17 @@
 import styled, { css } from 'styled-components'
-interface HeaderProps {
-  hasSelectiveProcess: boolean
-}
 
-export const Main = styled.header<HeaderProps>`
+export const Main = styled.header`
   height: 8rem;
   display: flex;
 
   .inactive {
-    ${props =>
-      !props.hasSelectiveProcess &&
-      css`
-        cursor: not-allowed;
-        pointer-events: none;
-        color: ${props => props.theme.colors.disabled} !important;
-      `}
+    cursor: not-allowed;
+    pointer-events: none;
+    color: ${props => props.theme.colors.disabled} !important;
+  }
+
+  .margin {
+    margin-left: 3.2rem;
   }
 
   top: 0;
@@ -51,7 +48,7 @@ export const HeaderContent = styled.section<MenuProps>`
     cursor: pointer;
   }
 
-  div {
+  .links-header {
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -107,7 +104,7 @@ export const HeaderContent = styled.section<MenuProps>`
       height: 4.8rem;
     }
 
-    div {
+    .links-header {
       section {
         position: initial;
         display: initial;
