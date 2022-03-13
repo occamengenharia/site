@@ -47,7 +47,7 @@ export const HeaderContent = styled.section<MenuProps>`
   overflow: hidden;
 
   img {
-    height: 3.6rem;
+    height: 3.2rem;
     cursor: pointer;
   }
 
@@ -98,13 +98,13 @@ export const HeaderContent = styled.section<MenuProps>`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.xs}px) {
     img {
-      height: 4.8rem;
+      height: 3.6rem;
     }
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
     img {
-      height: 6rem;
+      height: 4.8rem;
     }
 
     div {
