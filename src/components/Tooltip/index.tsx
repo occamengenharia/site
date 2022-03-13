@@ -1,17 +1,42 @@
-import { Container } from './styles'
+import { useState } from 'react'
 
-interface TooltipProps {
-  title: string
+import * as S from './styles'
+
+export interface ITooltipProps {
+  delay?: number
+  direction?: 'bottom' | 'top' | 'left' | 'right'
+  content: string
   className?: string
 }
 
-const Tooltip: React.FC<TooltipProps> = ({ title, className, children }) => {
+export const Tooltip: React.FC<ITooltipProps> = ({
+  delay = 400,
+  direction = 'bottom',
+  content,
+  children,
+  className
+}) => {
+  let timeout: ReturnType<typeof setTimeout>
+  const [active, setActive] = useState(false)
+
+  const showTip = () => {
+    timeout = setTimeout(() => {
+      setActive(true)
+    }, delay)
+  }
+
+  const hideTip = () => {
+    clearInterval(timeout)
+    setActive(false)
+  }
   return (
-    <Container className={className}>
+    <S.Container
+      onMouseEnter={showTip}
+      onMouseLeave={hideTip}
+      className={className}
+    >
       {children}
-      <span>{title}</span>
-    </Container>
+      {active && <S.Tip className={`${direction}`}>{content}</S.Tip>}
+    </S.Container>
   )
 }
-
-export default Tooltip
