@@ -3,14 +3,7 @@ import Link from 'next/link'
 import { FiMenu, FiX } from 'react-icons/fi'
 
 import { useTheme } from '@/hooks/theme'
-import { CgMoon, CgSun } from 'react-icons/cg'
-import {
-  Main,
-  HeaderContent,
-  Burguer,
-  ThemeSwitchButton,
-  Divider
-} from './styles'
+import { Main, HeaderContent, Burguer, Divider } from './styles'
 import api from '@/services/api'
 import { Tooltip } from '../Tooltip'
 
@@ -40,7 +33,7 @@ interface IProcessSeletive {
   link_edital: string
 }
 const Header: React.FC = () => {
-  const { toggleTheme, theme } = useTheme()
+  const { theme } = useTheme()
   const [openDropDown, setOpenDropDown] = useState(false)
 
   const handleOpenDropDown = useCallback(() => {
@@ -115,9 +108,10 @@ const Header: React.FC = () => {
               </Link>
             </section>
 
-            <ThemeSwitchButton onClick={toggleTheme}>
+            {/* will not have dark mode for now due to color organization problems */}
+            {/* <ThemeSwitchButton onClick={toggleTheme}>
               {theme === 'light' ? <CgMoon /> : <CgSun />}
-            </ThemeSwitchButton>
+            </ThemeSwitchButton> */}
 
             <Burguer onClick={handleOpenDropDown}>
               {openDropDown ? <FiX /> : <FiMenu />}
