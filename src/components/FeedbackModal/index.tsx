@@ -22,6 +22,7 @@ interface FeedbackModalProps {
   secondaryButtonText?: string
   onSecondaryButtonClick?: () => void
   isOpen: boolean
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const FeedbackModal: React.FC<FeedbackModalProps> = ({
@@ -32,12 +33,11 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
   secondaryButtonText,
   status,
   title,
-  isOpen
+  isOpen,
+  setIsOpen
 }) => {
-  const [modalIsOpen, setModalIsOpen] = useState(isOpen)
-
   return (
-    <ModalWrapper open={modalIsOpen} onClose={() => setModalIsOpen(false)}>
+    <ModalWrapper open={isOpen} onClose={() => setIsOpen(false)}>
       <Container>
         <IconContainer>
           {status === 'success' && <SuccessIcon />}

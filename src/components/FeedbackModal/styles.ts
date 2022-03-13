@@ -32,7 +32,6 @@ export const IconContainer = styled.div`
 
 export const TextContainer = styled.div`
   text-align: center;
-
   max-width: 30.4rem;
 
   h1 {
@@ -42,7 +41,7 @@ export const TextContainer = styled.div`
 
   h2 {
     font-size: 1.6rem;
-    font-weight: lighter;
+    font-weight: 300;
     color: ${({ theme }) => theme.colors.neutral15};
   }
 `
