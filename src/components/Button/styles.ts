@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 import { ButtonColors, ButtonSizes, ButtonVariants } from './types'
 
 interface ButtonStyleProps {
@@ -167,4 +167,18 @@ export const Main = styled.button<ButtonStyleProps>`
         padding: 1.6rem 4.8rem;
       `}
   }
+`
+
+const loadingAnimation = keyframes`
+  to {
+    transform: rotate(360deg);
+  }
+`
+
+export const LoadingContainer = styled.div`
+  padding: 0;
+  margin: 0;
+  outline: 0;
+  transform-origin: 50% 45%;
+  animation: ${loadingAnimation} 800ms ease infinite;
 `
