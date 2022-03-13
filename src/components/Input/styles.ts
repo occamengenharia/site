@@ -21,10 +21,6 @@ export const InputContainer = styled.div<InputContainerProps>`
 
   cursor: text;
 
-  & + div {
-    margin-top: 2.4rem;
-  }
-
   &:hover {
     background: ${props => props.theme.colors.neutral60};
   }
@@ -106,7 +102,9 @@ export const Placeholder = styled.p`
   top: 25%;
   left: 8px;
 
-  font-weight: 500;
+  margin: 8px 0 96px 16px;
+
+  font-weight: 300;
   font-size: 1.6rem;
 
   color: ${props => props.theme.colors.neutral15} !important;
@@ -121,7 +119,7 @@ export const Placeholder = styled.p`
 export const ErrorMessage = styled.p`
   position: absolute;
   left: 0;
-  bottom: -120px;
+  bottom: -24px;
   font-size: 1.6rem;
   color: ${props => props.theme.colors.warning90} !important;
 `

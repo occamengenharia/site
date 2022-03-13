@@ -1,11 +1,9 @@
 import { useCallback, useRef, useState } from 'react'
+import axios from 'axios'
 import * as Yup from 'yup'
-import { FaMailBulk } from 'react-icons/fa'
-
 import { FormHandles } from '@unform/core'
-import { MdNearMe } from 'react-icons/md'
 
-import { Container, FormStyled } from '@/styles/pages/Contact'
+import { Container, FormStyled, InputsContainer } from '@/styles/pages/Contact'
 import SEO from '@/components/SEO'
 import Input from '@/components/Input'
 import Textarea from '@/components/Textarea'
@@ -13,7 +11,7 @@ import getValidationErrors from '@/utils/getValidationErros'
 import Button from '@/components/Button'
 import ErrorModal from '@/components/Modals/ErrorModal'
 import SuccessModal from '@/components/Modals/SuccessModal'
-import axios from 'axios'
+import PageHeader from '@/components/PageHeader'
 
 interface IContactFormData {
   name: string
@@ -72,38 +70,42 @@ const Contact: React.FC = () => {
 
   return (
     <>
+      <SEO
+        title="Entre em contato"
+        image="/logo/light.svg"
+        description={description}
+      />
+      <ErrorModal
+        title="Não foi possivel enviar a mensagem"
+        subtitle="Ocorreu um erro ao tentar enviar a mensagem tente novamente mais tarde"
+        isOpened={isOpenError}
+        setOpen={setIsOpenError}
+      />
+      <SuccessModal
+        title="Mensagem enviada com sucesso"
+        subtitle="Enviamos um e-mail cópia para você. Logo entraremos em contato"
+        isOpened={isOpenSuccess}
+        setOpen={setIsOpenSuccess}
+        showCloseIcon={false}
+        timer={10000}
+      />
       <Container>
-        <SEO
-          title="Entre em contato"
-          image="/logo/light.svg"
-          description={description}
+        <PageHeader
+          title="Envie um e-mail para gente"
+          subtitle="Vamos ficar felizes em ajudar em seu projeto, ideia e / ou empresa"
         />
-        <ErrorModal
-          title="Não foi possivel enviar a mensagem"
-          subtitle="Ocorreu um erro ao tentar enviar a mensagem tente novamente mais tarde"
-          isOpened={isOpenError}
-          setOpen={setIsOpenError}
-        />
-        <SuccessModal
-          title="Mensagem enviada com sucesso"
-          subtitle="Enviamos um e-mail cópia para você. Logo entraremos em contato"
-          isOpened={isOpenSuccess}
-          setOpen={setIsOpenSuccess}
-          showCloseIcon={false}
-          timer={10000}
-        />
-
         <FormStyled ref={formRef} onSubmit={handleSubmit}>
-          <div id="titulo">
-            <FaMailBulk id="logo-email" />
-            <h3>Envie um e-mail para gente</h3>
-          </div>
-          <p>Vamos ficar felizes em ajudar o seu projeto, ideia ou empresa</p>
-          <Input name="name" placeholder="Seu nome" />
-          <Input name="email" placeholder="Seu email" />
-          <Input name="phone" placeholder="Seu telefone" />
-          <Textarea name="answer" placeholder="Detalhe sua ideia aqui" />
-          <Button icon={MdNearMe} text={!loading ? 'Enviar' : 'Enviando'} />
+          <InputsContainer>
+            <Input name="name" placeholder="Seu nome" />
+            <Input name="email" placeholder="Seu email" />
+            <Input name="phone" placeholder="Seu telefone" />
+            <Textarea name="answer" placeholder="Detalhe sua ideia aqui" />
+            <p>
+              *Após o recebimento da sua mensagem no nosso e-mail entraremos em
+              contato
+            </p>
+          </InputsContainer>
+          <Button text={!loading ? 'Enviar' : 'Enviando'} />
         </FormStyled>
       </Container>
     </>

@@ -13,6 +13,7 @@ export const Container = styled.div`
   @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
     gap: 0;
     flex-direction: row;
+    margin-bottom: 4.8rem;
   }
 `
 
