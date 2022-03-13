@@ -99,7 +99,7 @@ const Header: React.FC = () => {
                 ) : (
                   <Tooltip
                     className="margin"
-                    direction="bottom"
+                    direction="left"
                     content="Parece que não é hora de um processo seletivo :/"
                   >
                     <a className="inactive">PS</a>
