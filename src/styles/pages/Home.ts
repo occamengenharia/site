@@ -93,12 +93,6 @@ export const StyledParticles = styled(Particles)`
   }
 `
 
-export const Divider = styled.div`
-  width: 100%;
-  height: 1px;
-  background-color: ${({ theme }) => theme.colors.neutral70};
-`
-
 export const Actuation = styled.div`
   display: flex;
   align-items: center;

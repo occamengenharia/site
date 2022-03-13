@@ -131,6 +131,12 @@ export const HeaderContent = styled.section<MenuProps>`
   }
 `
 
+export const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: ${({ theme }) => theme.colors.neutral70};
+`
+
 export const ThemeSwitchButton = styled.button`
   background-color: ${props => props.theme.colors.inputBackground};
   display: flex;
