@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
-
 import SuccessIcon from './assets/SuccessIcon.svg'
 import WarningIcon from './assets/WarningIcon.svg'
+import { FeedbackModalProps } from './types'
 
 import ModalWrapper from '@/components/ModalWrapper'
 import Button from '@/components/Button'
@@ -13,54 +12,39 @@ import {
   TextContainer
 } from './styles'
 
-interface FeedbackModalProps {
-  status: 'success' | 'warning'
-  title: string
-  message: string
-  primaryButtonText: string
-  onPrimaryButtonClick: () => void
-  secondaryButtonText?: string
-  onSecondaryButtonClick?: () => void
-  isOpen: boolean
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-}
-
 const FeedbackModal: React.FC<FeedbackModalProps> = ({
-  message,
-  onPrimaryButtonClick,
-  onSecondaryButtonClick,
-  primaryButtonText,
-  secondaryButtonText,
   status,
-  title,
+  content,
   isOpen,
   setIsOpen
 }) => {
+  const handleCloseModal = () => setIsOpen(false)
+
   return (
-    <ModalWrapper open={isOpen} onClose={() => setIsOpen(false)}>
+    <ModalWrapper open={isOpen} onClose={handleCloseModal}>
       <Container>
         <IconContainer>
           {status === 'success' && <SuccessIcon />}
           {status === 'warning' && <WarningIcon />}
         </IconContainer>
         <TextContainer>
-          <h1>{title}</h1>
-          <h2>{message}</h2>
+          <h1>{content.title}</h1>
+          <h2>{content.message}</h2>
         </TextContainer>
         <ButtonsContainer>
-          {secondaryButtonText && onSecondaryButtonClick && (
+          {content.secondaryButtonText && content.onSecondaryButtonClick && (
             <Button
               color={status === 'success' ? 'primary' : 'warning'}
-              text={secondaryButtonText}
-              onClick={onSecondaryButtonClick}
+              text={content.secondaryButtonText}
+              onClick={content.onSecondaryButtonClick}
               variant="outlined"
               size="small"
             />
           )}
           <Button
             color={status === 'success' ? 'primary' : 'warning'}
-            text={primaryButtonText}
-            onClick={onPrimaryButtonClick}
+            text={content.primaryButtonText}
+            onClick={content.onPrimaryButtonClick}
             variant="contained"
             size="small"
           />

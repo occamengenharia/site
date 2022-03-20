@@ -1,4 +1,5 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useRef, useState, useMemo } from 'react'
+import Modal from 'react-responsive-modal'
 import axios from 'axios'
 import * as Yup from 'yup'
 import { FormHandles } from '@unform/core'
@@ -9,9 +10,13 @@ import Input from '@/components/Input'
 import Textarea from '@/components/Textarea'
 import getValidationErrors from '@/utils/getValidationErros'
 import Button from '@/components/Button'
-import ErrorModal from '@/components/Modals/ErrorModal'
-import SuccessModal from '@/components/Modals/SuccessModal'
 import PageHeader from '@/components/PageHeader'
+import FeedbackModal from '@/components/FeedbackModal'
+import {
+  FeedbackModalContent,
+  FeedbackStatus
+} from '@/components/FeedbackModal/types'
+import ErrorModal from '@/components/Modals/ErrorModal'
 
 interface IContactFormData {
   name: string
@@ -21,13 +26,35 @@ interface IContactFormData {
 }
 
 const description =
-  'Entre em contato com a gente - OCCAM Engenharia empresa júnior de engenharia de computação'
+  'Envie um e-mail para gente, vamos ficar felizes em ajudar em seu projeto, ideia e / ou empresa - OCCAM Engenharia empresa júnior de engenharia de computação'
 
 const Contact: React.FC = () => {
-  const [isOpenSuccess, setIsOpenSuccess] = useState(false)
-  const [isOpenError, setIsOpenError] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [feedbackModalIsOpen, setFeedbackModalIsOpen] = useState(false)
+  const [feedbackStatus, setFeedbackStatus] = useState<FeedbackStatus>(
+    'success'
+  )
+  const [isSendingMessage, setIsSendingMessage] = useState(false)
   const formRef = useRef<FormHandles>(null)
+
+  const feedbackModalContent = useMemo<FeedbackModalContent>(() => {
+    if (feedbackStatus === 'success') {
+      return {
+        title: 'Mensagem enviada com sucesso',
+        message:
+          'Enviamos um e-mail copia para você. Logo entraremos em contato',
+        primaryButtonText: 'Entendi',
+        onPrimaryButtonClick: () => setFeedbackModalIsOpen(false)
+      }
+    }
+
+    return {
+      title: 'Não foi possível enviar a mensagem',
+      message:
+        'Ocorreu um erro ao enviar a mensagem, tente novamente mais tarde',
+      primaryButtonText: 'Voltar',
+      onPrimaryButtonClick: () => console.log('aaaaaaa')
+    }
+  }, [feedbackStatus])
 
   const handleSubmit = useCallback(async (data: IContactFormData) => {
     formRef.current?.setErrors({})
@@ -45,50 +72,42 @@ const Contact: React.FC = () => {
         abortEarly: false
       })
 
-      setLoading(true)
+      setIsSendingMessage(true)
 
       const response = await axios.post('/api/contact', data)
 
-      setLoading(false)
-
       if (response.status > 399) {
-        setIsOpenError(true)
+        setFeedbackModalIsOpen(true)
+        setFeedbackStatus('warning')
         return
       }
 
       formRef.current.reset()
-      setIsOpenSuccess(true)
+      setFeedbackModalIsOpen(true)
+      setFeedbackStatus('success')
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const errors = getValidationErrors(error)
         formRef.current?.setErrors(errors)
         return
       }
-      setIsOpenError(true)
+      setFeedbackModalIsOpen(true)
+      setFeedbackStatus('warning')
+    } finally {
+      setIsSendingMessage(false)
     }
   }, [])
 
   return (
     <>
-      <SEO
-        title="Entre em contato"
-        image="/logo/light.svg"
-        description={description}
+      <SEO title="Contato" image="/logo/light.svg" description={description} />
+      <FeedbackModal
+        content={feedbackModalContent}
+        isOpen={feedbackModalIsOpen}
+        setIsOpen={setFeedbackModalIsOpen}
+        status={feedbackStatus}
       />
-      <ErrorModal
-        title="Não foi possivel enviar a mensagem"
-        subtitle="Ocorreu um erro ao tentar enviar a mensagem tente novamente mais tarde"
-        isOpened={isOpenError}
-        setOpen={setIsOpenError}
-      />
-      <SuccessModal
-        title="Mensagem enviada com sucesso"
-        subtitle="Enviamos um e-mail cópia para você. Logo entraremos em contato"
-        isOpened={isOpenSuccess}
-        setOpen={setIsOpenSuccess}
-        showCloseIcon={false}
-        timer={10000}
-      />
+
       <Container>
         <PageHeader
           title="Envie um e-mail para gente"
@@ -101,11 +120,11 @@ const Contact: React.FC = () => {
             <Input name="phone" placeholder="Seu telefone" />
             <Textarea name="answer" placeholder="Detalhe sua ideia aqui" />
             <p>
-              *Após o recebimento da sua mensagem no nosso e-mail entraremos em
+              *Após o recebimento da sua mensagem no nosso e-mail, entraremos em
               contato
             </p>
           </InputsContainer>
-          <Button text={!loading ? 'Enviar' : 'Enviando'} />
+          <Button text="Enviar" isLoading={isSendingMessage} />
         </FormStyled>
       </Container>
     </>
