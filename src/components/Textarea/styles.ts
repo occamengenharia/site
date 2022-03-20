@@ -97,7 +97,7 @@ export const TextareaContainer = styled.div<TextareaContainerProps>`
   }
 `
 
-export const Placeholder = styled.p`
+export const Placeholder = styled.div`
   position: absolute;
   top: 0.8rem;
   left: 8px;
@@ -121,6 +121,6 @@ export const ErrorMessage = styled.p`
   left: 0;
   bottom: -2.8rem;
   left: 2.4rem;
-  font-size: 1.6rem;
+  font-size: 1.6rem !important;
   color: ${props => props.theme.colors.warning90} !important;
 `
