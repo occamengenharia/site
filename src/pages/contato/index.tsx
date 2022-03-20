@@ -1,14 +1,12 @@
-import { useCallback, useRef, useState, useMemo } from 'react'
-import Modal from 'react-responsive-modal'
-import axios from 'axios'
-import * as Yup from 'yup'
+import { useRef, useState, useMemo } from 'react'
 import { FormHandles } from '@unform/core'
+
+import { submitForm, ContactFormData } from './utils/submitForm'
 
 import { Container, FormStyled, InputsContainer } from '@/styles/pages/Contact'
 import SEO from '@/components/SEO'
 import Input from '@/components/Input'
 import Textarea from '@/components/Textarea'
-import getValidationErrors from '@/utils/getValidationErros'
 import Button from '@/components/Button'
 import PageHeader from '@/components/PageHeader'
 import FeedbackModal from '@/components/FeedbackModal'
@@ -16,14 +14,6 @@ import {
   FeedbackModalContent,
   FeedbackStatus
 } from '@/components/FeedbackModal/types'
-import ErrorModal from '@/components/Modals/ErrorModal'
-
-interface IContactFormData {
-  name: string
-  email: string
-  phone: string
-  answer: string
-}
 
 const description =
   'Envie um e-mail para gente, vamos ficar felizes em ajudar em seu projeto, ideia e / ou empresa - OCCAM Engenharia empresa júnior de engenharia de computação'
@@ -34,7 +24,18 @@ const Contact: React.FC = () => {
     'success'
   )
   const [isSendingMessage, setIsSendingMessage] = useState(false)
+
   const formRef = useRef<FormHandles>(null)
+
+  const handleSubmit = async (data: ContactFormData): Promise<void> => {
+    setIsSendingMessage(true)
+    const response = await submitForm(data, formRef)
+    if (response.status !== 'incomplete') {
+      setFeedbackStatus(response.status)
+      setFeedbackModalIsOpen(true)
+    }
+    setIsSendingMessage(false)
+  }
 
   const feedbackModalContent = useMemo<FeedbackModalContent>(() => {
     if (feedbackStatus === 'success') {
@@ -52,51 +53,9 @@ const Contact: React.FC = () => {
       message:
         'Ocorreu um erro ao enviar a mensagem, tente novamente mais tarde',
       primaryButtonText: 'Voltar',
-      onPrimaryButtonClick: () => console.log('aaaaaaa')
+      onPrimaryButtonClick: () => setFeedbackModalIsOpen(false)
     }
   }, [feedbackStatus])
-
-  const handleSubmit = useCallback(async (data: IContactFormData) => {
-    formRef.current?.setErrors({})
-    try {
-      const schema = Yup.object().shape({
-        email: Yup.string()
-          .email('Informe um email válido')
-          .required('E-mail é obrigatório'),
-        name: Yup.string().required('Nome é obrigatório'),
-        phone: Yup.string().required('Telefone é obrigatório'),
-        answer: Yup.string().required('Descrição é obrigatória')
-      })
-
-      await schema.validate(data, {
-        abortEarly: false
-      })
-
-      setIsSendingMessage(true)
-
-      const response = await axios.post('/api/contact', data)
-
-      if (response.status > 399) {
-        setFeedbackModalIsOpen(true)
-        setFeedbackStatus('warning')
-        return
-      }
-
-      formRef.current.reset()
-      setFeedbackModalIsOpen(true)
-      setFeedbackStatus('success')
-    } catch (error) {
-      if (error instanceof Yup.ValidationError) {
-        const errors = getValidationErrors(error)
-        formRef.current?.setErrors(errors)
-        return
-      }
-      setFeedbackModalIsOpen(true)
-      setFeedbackStatus('warning')
-    } finally {
-      setIsSendingMessage(false)
-    }
-  }, [])
 
   return (
     <>
@@ -107,7 +66,6 @@ const Contact: React.FC = () => {
         setIsOpen={setFeedbackModalIsOpen}
         status={feedbackStatus}
       />
-
       <Container>
         <PageHeader
           title="Envie um e-mail para gente"
@@ -118,7 +76,7 @@ const Contact: React.FC = () => {
             <Input name="name" placeholder="Seu nome" />
             <Input name="email" placeholder="Seu email" />
             <Input name="phone" placeholder="Seu telefone" />
-            <Textarea name="answer" placeholder="Detalhe sua ideia aqui" />
+            <Textarea name="answer" placeholder="Escreva sua mensagem aqui" />
             <p>
               *Após o recebimento da sua mensagem no nosso e-mail, entraremos em
               contato
