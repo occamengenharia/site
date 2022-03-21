@@ -2,8 +2,7 @@ import {
   Initial,
   InitialContent,
   WelcomeMessage,
-  StyledParticles,
-  Divider
+  StyledParticles
 } from '@/styles/pages/Home'
 import { Header } from '@/components'
 import Button from '@/components/Button'
@@ -16,7 +15,6 @@ export const InitialContainer: React.FC = () => {
   return (
     <Initial>
       <Header />
-      <Divider />
       <InitialContent>
         <WelcomeMessage>
           <p className="welcome">Bem vindo(a)</p>

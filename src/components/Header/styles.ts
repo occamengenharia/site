@@ -1,20 +1,17 @@
 import styled, { css } from 'styled-components'
-interface HeaderProps {
-  hasSelectiveProcess: boolean
-}
 
-export const Main = styled.header<HeaderProps>`
+export const Main = styled.header`
   height: 8rem;
   display: flex;
 
   .inactive {
-    ${props =>
-      !props.hasSelectiveProcess &&
-      css`
-        cursor: not-allowed;
-        pointer-events: none;
-        color: ${props => props.theme.colors.disabled} !important;
-      `}
+    cursor: not-allowed;
+    pointer-events: none;
+    color: ${props => props.theme.colors.disabled} !important;
+  }
+
+  .margin {
+    margin-left: 3.2rem;
   }
 
   top: 0;
@@ -47,11 +44,11 @@ export const HeaderContent = styled.section<MenuProps>`
   overflow: hidden;
 
   img {
-    height: 3.6rem;
+    height: 3.2rem;
     cursor: pointer;
   }
 
-  div {
+  .links-header {
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -98,16 +95,16 @@ export const HeaderContent = styled.section<MenuProps>`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.xs}px) {
     img {
-      height: 4.8rem;
+      height: 3.6rem;
     }
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
     img {
-      height: 6rem;
+      height: 4.8rem;
     }
 
-    div {
+    .links-header {
       section {
         position: initial;
         display: initial;
@@ -129,6 +126,12 @@ export const HeaderContent = styled.section<MenuProps>`
       }
     }
   }
+`
+
+export const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: ${({ theme }) => theme.colors.neutral70};
 `
 
 export const ThemeSwitchButton = styled.button`

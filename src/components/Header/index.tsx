@@ -3,9 +3,10 @@ import Link from 'next/link'
 import { FiMenu, FiX } from 'react-icons/fi'
 
 import { useTheme } from '@/hooks/theme'
-import { CgMoon, CgSun } from 'react-icons/cg'
-import { Main, HeaderContent, Burguer, ThemeSwitchButton } from './styles'
+import { Main, HeaderContent, Burguer, Divider } from './styles'
 import api from '@/services/api'
+import { Tooltip } from '../Tooltip'
+
 interface ISelectiveProcess {
   selectiveProcessActive: boolean
   processSlug: string
@@ -32,7 +33,7 @@ interface IProcessSeletive {
   link_edital: string
 }
 const Header: React.FC = () => {
-  const { toggleTheme, theme } = useTheme()
+  const { theme } = useTheme()
   const [openDropDown, setOpenDropDown] = useState(false)
 
   const handleOpenDropDown = useCallback(() => {
@@ -59,44 +60,67 @@ const Header: React.FC = () => {
       })
   }, [])
   return (
-    <Main hasSelectiveProcess={selectiveProcess.selectiveProcessActive}>
-      <HeaderContent openMenu={openDropDown}>
-        <Link href="/">
-          <img
-            src={`/logo/${theme}.svg`}
-            alt="Logo da OCCAM Engenharia na navegação"
-          />
-        </Link>
+    <>
+      <Main>
+        <HeaderContent openMenu={openDropDown}>
+          <Link href="/">
+            <img
+              src={`/logo/${theme}.svg`}
+              alt="Logo da OCCAM Engenharia na navegação"
+            />
+          </Link>
 
-        <div>
-          <section>
-            <Link href="/servicos">
-              <a>Áreas de atuação</a>
-            </Link>
-            <Link href="/membros">
-              <a>Membros</a>
-            </Link>
-            <Link href="/sobre-nos">
-              <a>Sobre nós</a>
-            </Link>
-            <Link href="/contato">
-              <a>Contato</a>
-            </Link>
-            <Link href={`/processo-seletivo/${selectiveProcess.processSlug}`}>
-              <a className="inactive">Processo seletivo</a>
-            </Link>
-          </section>
+          <div className="links-header">
+            <section>
+              <Link href="/servicos">
+                <a>Áreas de atuação</a>
+              </Link>
+              <Link href="/projetos">
+                <a>Projetos</a>
+              </Link>
+              <Link href="/sobre-nos">
+                <a>Sobre nós</a>
+              </Link>
+              <Link href="/redes-sociais">
+                <a>Redes sociais</a>
+              </Link>
+              <Link href="/membros">
+                <a>Membros</a>
+              </Link>
+              <Link href="/contato">
+                <a>Contato</a>
+              </Link>
+              <Link href="/ranking">
+                <a>Ranking</a>
+              </Link>
+              <Link href={`/processo-seletivo/${selectiveProcess.processSlug}`}>
+                {selectiveProcess.selectiveProcessActive ? (
+                  <a>PS</a>
+                ) : (
+                  <Tooltip
+                    className="margin"
+                    direction="left"
+                    content="Parece que não é hora de um processo seletivo :/"
+                  >
+                    <a className="inactive">PS</a>
+                  </Tooltip>
+                )}
+              </Link>
+            </section>
 
-          <ThemeSwitchButton onClick={toggleTheme}>
-            {theme === 'light' ? <CgMoon /> : <CgSun />}
-          </ThemeSwitchButton>
+            {/* will not have dark mode for now due to color organization problems */}
+            {/* <ThemeSwitchButton onClick={toggleTheme}>
+              {theme === 'light' ? <CgMoon /> : <CgSun />}
+            </ThemeSwitchButton> */}
 
-          <Burguer onClick={handleOpenDropDown}>
-            {openDropDown ? <FiX /> : <FiMenu />}
-          </Burguer>
-        </div>
-      </HeaderContent>
-    </Main>
+            <Burguer onClick={handleOpenDropDown}>
+              {openDropDown ? <FiX /> : <FiMenu />}
+            </Burguer>
+          </div>
+        </HeaderContent>
+      </Main>
+      <Divider />
+    </>
   )
 }
 export default Header

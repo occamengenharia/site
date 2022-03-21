@@ -84,6 +84,7 @@ export const light = {
     neutral30: '#AAAAAA',
     neutral20: '#858585',
     neutral15: '#5E5E5E',
+    neutral10: '#3E3E3E',
     neutral0: '#201E1E',
 
     ...basicColors
