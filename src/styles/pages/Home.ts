@@ -315,13 +315,19 @@ export const About = styled.div`
   justify-content: center;
 
   div {
-    align-items: flex-start;
+    align-items: center;
+    div {
+      margin-top: 11rem;
+      margin-bottom: 0rem;
+      margin-left: 5rem;
+      position: absolute;
+      z-index: 1;
+      button {
+        margin-right: 1rem;
+      }
+    }
   }
-  span {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+
   img {
     display: none;
   }
@@ -332,7 +338,6 @@ export const About = styled.div`
 
   p {
     font-size: 2.4rem;
-    margin-top: 10rem;
     margin-bottom: 0rem;
     margin-left: 5rem;
     width: 346px;
@@ -341,38 +346,10 @@ export const About = styled.div`
 
   h4 {
     font-size: 4.8rem;
-    margin-top: 9.6rem;
-    margin-bottom: 0rem;
+    margin-bottom: 8rem;
     margin-left: 5rem;
   }
-  span {
-    font-size: 2.4rem;
-    margin-bottom: 14.3rem;
-    width: 27.2rem;
-    height: 19.6rem;
-  }
-  a {
-    color: ${props => props.theme.colors.white};
-    font-size: 1.6rem;
-  }
-  button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80%;
-    background: white;
-    margin-top: 10.4rem;
-    margin-bottom: 0rem;
-    margin-left: 5rem;
-    color: ${props => props.theme.colors.secundary};
-    span {
-      font-size: 1.8rem;
-      margin-top: 13.5rem;
-      margin-bottom: 0rem;
-      padding: 2rem;
-      color: ${props => props.theme.colors.secundary};
-    }
-  }
+
 
   @media (min-width: ${props => props.theme.breakpoints.lg}px) {
     display: flex;
@@ -381,57 +358,39 @@ export const About = styled.div`
     background: ${props => props.theme.colors.primary};
 
     div {
-      align-items: flex-start;
+      align-items: center;
+      div {
+        margin-top: 11rem;
+        margin-bottom: 0rem;
+        margin-left: 20.3rem;
+        position: absolute;
+        z-index: 1;
+        button {
+          margin-right: 1rem;
+        }
+      }
     }
-    span {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+
     h4 {
       font-size: 4.8rem;
-      margin-top: 9.6rem;
       margin-bottom: 0rem;
       margin-left: 20.3rem;
     }
-    span {
 
-    }
     p {
       font-size: 2.4rem;
-      margin-top: 15.1rem;
+      margin-top: 11rem;
       margin-bottom: 0rem;
       margin-left: 20.3rem;
       width: 346px;
       height: 143px;
     }
-    a {
-      font-size: 1.2rem;
-      margin-top: 10.4rem;
-      margin-bottom: 0rem;
-      margin-left: 20.4rem;
-    }
+
     img {
       display: initial;
       position: relative;
       height: 100vh;
       object-fit: cover;
-    }
-    
-    button {
-      width: 15rem;
-      background: white;
-      margin-top: 10.4rem;
-      margin-bottom: 0rem;
-      margin-left: 20.4rem;
-      color: ${props => props.theme.colors.secundary};
-      span {
-        font-size: 1.8rem;
-        margin-top: 13.5rem;
-        margin-bottom: 0rem;
-        padding: 2rem;
-        color: ${props => props.theme.colors.secundary};
-      }
     }
 
     aside {
@@ -446,6 +405,21 @@ export const About = styled.div`
       }
     }
   }
+
+  @media (max-width: ${props => props.theme.breakpoints.sm}px) {
+    div {
+      div {
+        margin-left: 0rem;
+
+      }
+    }
+
+    h4 {
+      margin-top: -10rem;
+    }
+  }
+
+
 `
 
 export const SectionFooter = styled.div`

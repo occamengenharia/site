@@ -74,7 +74,6 @@ export const light = {
     primaryGradient90_0: 'linear-gradient(-90deg, #0773C6, #014BB4)',
     primaryGradient100_90: 'linear-gradient(0deg, #0773C6, #1E8EE4)',
     primaryGradient100_45: 'linear-gradient(45deg, #0773C6, #1E8EE4)',
-    primaryGradient100_90: 'linear-gradient(90deg, #0773C6, #1E8EE4)',
     primaryGradient0_100: 'linear-gradient(100deg, #012FB4 0%, #0773C6 100%)',
 
     neutral100: '#FDFDFD',
