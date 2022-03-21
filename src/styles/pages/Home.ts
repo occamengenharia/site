@@ -410,7 +410,9 @@ export const About = styled.div`
     div {
       div {
         margin-left: 0rem;
-
+        button {
+          margin-bottom: 1rem;
+        }
       }
     }
 
