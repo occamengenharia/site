@@ -13,18 +13,22 @@ export const SuccessModalContainer = styled.div`
 
   div {
     span {
-      color: ${props => props.theme.colors.secundary};
-      font-weight: 400;
+      color: black;
+      font-weight: 300;
+      margin-bottom: 3.2rem;
+      margin-top: 0.8rem;
+      align-self: center;
     }
 
     p {
-      color: ${props => props.theme.colors.primary};
+      color: black;
       font-weight: bold;
+      
     }
 
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+  // align-items: flex-start;
     text-align: left;
   }
 
@@ -57,6 +61,10 @@ export const Check = styled(FaCheckCircle)`
   margin-bottom: 1.6rem;
 
   color: ${props => props.theme.colors.primary};
+
+  span{
+    color: white;
+  }
 `
 
 export const Link = styled.div`

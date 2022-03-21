@@ -1,5 +1,5 @@
-import React from 'react'
-import { Modal, ModalProps } from 'react-responsive-modal'
+import 'react-responsive-modal/styles.css'
+import Modal, { ModalProps } from 'react-responsive-modal'
 
 import { CloseButton } from './closeButton.styles'
 import { modalStyles } from './modal.styles'
@@ -12,7 +12,8 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
   onClose,
   open,
   showCloseButton = true,
-  children
+  children,
+  ...rest
 }) => {
   return (
     <Modal
@@ -22,6 +23,7 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({
       closeIcon={showCloseButton && <CloseButton />}
       styles={modalStyles.styles}
       center
+      {...rest}
     >
       {children}
     </Modal>

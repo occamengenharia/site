@@ -1,69 +1,48 @@
 import styled from 'styled-components'
 import { Form } from '@unform/web'
-import { Main as Button } from '@/components/Button/styles.ts'
+import { Main as Button } from '@/components/Button/styles'
 
 export const Container = styled.main`
   width: 100%;
+  max-width: 115.2rem;
+  margin: 8rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.6rem;
+  justify-content: center;
+  padding: 0 2.4rem;
+
+  @media only screen and (min-width: ${props => props.theme.breakpoints.lg}px) {
+    padding: 0;
+  }
 `
 
 export const FormStyled = styled(Form)`
-  margin-top: 1.4rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: 96%;
+  align-items: flex-end;
+  max-width: 115.2rem;
+  width: 100%;
+`
 
-  #titulo {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-  #logo-email {
-    margin-right: 16px;
-    font-size: 48px;
-    color: ${props => props.theme.colors.titles};
-  }
+export const InputsContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
 
-  h3 {
-    color: ${props => props.theme.colors.titles};
-  }
+  margin-bottom: 8rem;
 
   p {
-    color: ${props => props.theme.colors.subtitles};
-    font-weight: 400;
-    margin: 8px 0 96px 16px !important;
+    font-size: 1.2rem;
+    font-weight: 300;
   }
 
-  ${Button} {
-    margin-top: 1.6rem;
-  }
-
-  @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
-    width: 80%;
-
-    h1 {
-      margin: 4rem 0;
-      font-size: 3.2rem;
-    }
-  }
   @media only screen and (min-width: ${props => props.theme.breakpoints.lg}px) {
-    max-width: 80rem;
-    #titulo {
-      flex-direction: row;
-    }
-    ${Button} {
-      width: 300px;
-      align-self: flex-end;
-    }
+    margin-bottom: 4.8rem;
 
-    h1 {
-      width: 75rem;
-      margin: 4rem 0;
-      font-size: 5.6rem;
+    p {
+      font-size: 1.8rem;
     }
   }
 `

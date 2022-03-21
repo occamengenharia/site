@@ -21,10 +21,6 @@ export const TextareaContainer = styled.div<TextareaContainerProps>`
 
   cursor: text;
 
-  & + div {
-    margin-top: 2.4rem;
-  }
-
   &:hover {
     background: ${props => props.theme.colors.neutral60};
   }
@@ -51,7 +47,7 @@ export const TextareaContainer = styled.div<TextareaContainerProps>`
         color: ${props => props.theme.colors.primary100} !important;
         top: 2px;
         font-size: 1.2rem;
-        font-weight: 100;
+        font-weight: 400;
       }
     `}
 
@@ -61,7 +57,7 @@ export const TextareaContainer = styled.div<TextareaContainerProps>`
       ${Placeholder} {
         top: 2px;
         font-size: 1.2rem;
-        font-weight: 100;
+        font-weight: 400;
       }
     `}
 
@@ -101,13 +97,15 @@ export const TextareaContainer = styled.div<TextareaContainerProps>`
   }
 `
 
-export const Placeholder = styled.p`
+export const Placeholder = styled.div`
   position: absolute;
   top: 0.8rem;
   left: 8px;
 
-  font-weight: 500;
+  font-weight: 400 !important;
   font-size: 1.6rem;
+
+  margin: 8px 0 96px 16px;
 
   color: ${props => props.theme.colors.neutral15} !important;
 
@@ -121,7 +119,8 @@ export const Placeholder = styled.p`
 export const ErrorMessage = styled.p`
   position: absolute;
   left: 0;
-  bottom: -120px;
-  font-size: 1.6rem;
+  bottom: -2.8rem;
+  left: 2.4rem;
+  font-size: 1.6rem !important;
   color: ${props => props.theme.colors.warning90} !important;
 `
