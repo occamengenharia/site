@@ -1,6 +1,9 @@
 import SortableTable from '@/components/SortableTable'
 import MemberStatistics from '@/components/MemberStatistics'
-import { IAchievementsProps, IMembersStatistics } from '@/components/MemberStatistics/interfaces'
+import {
+  IAchievementsProps,
+  IMembersStatistics
+} from '@/components/MemberStatistics/interfaces'
 import { Container } from '@/styles/pages/Ranking'
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next'
 import api from '@/services/api'
@@ -11,17 +14,17 @@ interface IPosition {
   start_date_position: string
   end_date_position: string
 }
-interface ILevelProps{
-    level: number
-    maximum_points: string
-    minimum_points: string
-    _id: string
-    status: string
-    published_at: string
-    createdAt: string
-    updatedAt: string
-    __v: string,
-    id: string
+interface ILevelProps {
+  level: number
+  maximum_points: string
+  minimum_points: string
+  _id: string
+  status: string
+  published_at: string
+  createdAt: string
+  updatedAt: string
+  __v: string
+  id: string
 }
 
 interface IMember {
@@ -39,7 +42,7 @@ interface IMember {
   photo: {
     url: string
   }
-  profession:string
+  profession: string
   achievements: IAchievementsProps[]
   experiencePoints: number
 }
@@ -47,12 +50,10 @@ interface IRankingProps {
   members: IMember[]
   currentMember?: IMember
 }
-
-
 const Ranking: React.FC<IRankingProps> = ({ members, currentMember }) => {
-  
-  if(!(JSON.stringify(currentMember) === "{}")){
-    var memberStstisttic : IMembersStatistics = {
+  let membersStatistics = {} as IMembersStatistics
+  if (!(JSON.stringify(currentMember) === '{}')) {
+    membersStatistics = {
       profession: currentMember.profession,
       experiencePoints: currentMember.experiencePoints,
       conquests: currentMember.achievements,
@@ -67,23 +68,21 @@ const Ranking: React.FC<IRankingProps> = ({ members, currentMember }) => {
     }
   }
 
-  
-
   return (
     <Container>
       <main>
-        {!(JSON.stringify(currentMember) === "{}") && 
+        {!(JSON.stringify(currentMember) === '{}') && (
           <MemberStatistics
-          member= {memberStstisttic}
-          selectOptions={members.map(member => {
-            return {
-              value: member?.slug,
-              label: member?.name
-            }
-          })}
-      />
-        }
-        
+            member={membersStatistics}
+            selectOptions={members.map(member => {
+              return {
+                value: member?.slug,
+                label: member?.name
+              }
+            })}
+          />
+        )}
+
         <h3>Placar Geral</h3>
         <SortableTable
           columnHeaders={[
@@ -114,21 +113,19 @@ interface IMebersSerialized {
   members: IMember[]
 }
 export const getServerSideProps: GetServerSideProps = async context => {
-  console.log(context.params);
-  console.log(JSON.stringify(context.params) === "{}");
-  
-  
+  console.log(context.params)
+  console.log(JSON.stringify(context.params) === '{}')
   const { data } = await api.get<IMember[]>('/members')
   let currentMember = {} as IMember
-  if(!(JSON.stringify(context.params) === "{}")){
+  if (!(JSON.stringify(context.params) === '{}')) {
     const { slug } = context.params
-    console.log("entrei");
-    
+    console.log('entrei')
+
     currentMember = data.find(member => member.slug === slug[0])
   }
-  
+
   const members = data.filter(member => member.active)
-  
+
   return {
     props: {
       members,
