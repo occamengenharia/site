@@ -14,6 +14,7 @@ import {
   FeedbackModalContent,
   FeedbackStatus
 } from '@/components/FeedbackModal/types'
+import { Base } from '@/containers/base'
 
 const description =
   'Envie um e-mail para gente, vamos ficar felizes em ajudar em seu projeto, ideia e / ou empresa - OCCAM Engenharia empresa júnior de engenharia de computação'
@@ -66,25 +67,27 @@ const Contact: React.FC = () => {
         setIsOpen={setFeedbackModalIsOpen}
         status={feedbackStatus}
       />
-      <Container>
-        <PageHeader
-          title="Envie um e-mail para gente"
-          subtitle="Vamos ficar felizes em ajudar em seu projeto, ideia e / ou empresa"
-        />
-        <FormStyled ref={formRef} onSubmit={handleSubmit}>
-          <InputsContainer>
-            <Input name="name" placeholder="Seu nome" />
-            <Input name="email" placeholder="Seu email" />
-            <Input name="phone" placeholder="Seu telefone" />
-            <Textarea name="answer" placeholder="Escreva sua mensagem aqui" />
-            <p>
-              *Após o recebimento da sua mensagem no nosso e-mail, entraremos em
-              contato
-            </p>
-          </InputsContainer>
-          <Button text="Enviar" isLoading={isSendingMessage} />
-        </FormStyled>
-      </Container>
+      <Base>
+        <Container>
+          <PageHeader
+            title="Envie um e-mail para gente"
+            subtitle="Vamos ficar felizes em ajudar em seu projeto, ideia e / ou empresa"
+          />
+          <FormStyled ref={formRef} onSubmit={handleSubmit}>
+            <InputsContainer>
+              <Input name="name" placeholder="Seu nome" />
+              <Input name="email" placeholder="Seu email" />
+              <Input name="phone" placeholder="Seu telefone" />
+              <Textarea name="answer" placeholder="Escreva sua mensagem aqui" />
+              <p>
+                *Após o recebimento da sua mensagem no nosso e-mail, entraremos
+                em contato
+              </p>
+            </InputsContainer>
+            <Button text="Enviar" isLoading={isSendingMessage} />
+          </FormStyled>
+        </Container>
+      </Base>
     </>
   )
 }

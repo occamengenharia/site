@@ -6,7 +6,7 @@ export const Container = styled.div`
   align-items: center;
 
   main {
-    width: min(85vw, 500px);
+    width: 100%;
     display: flex;
     justify-content: center;
     section {
@@ -32,7 +32,7 @@ export const Container = styled.div`
       }
     }
     @media (min-width: ${props => props.theme.breakpoints.md}px) {
-      width: min(90vw, 1000px);
+      width: 100%;
       display: flex;
       ${Link} {
         width: 300px;
