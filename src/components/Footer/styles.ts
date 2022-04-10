@@ -1,14 +1,17 @@
 import styled from 'styled-components'
 
 export const Container = styled.footer`
-
   scroll-snap-align: inherit;
-  max-width: 120rem;
+  width: min(85vw, 600px);
   padding: 0 1.6rem;
+  margin: 0 auto;
 
   @media only screen and (min-width: ${props => props.theme.breakpoints.md}px) {
     min-height: 51.2rem;
-    margin: 0 auto;
+  }
+
+  @media only screen and (min-width: ${props => props.theme.breakpoints.lg}px) {
+    width: min(90vw, 1100px);
   }
 `
 export const InternalLinks = styled.section`
