@@ -16,6 +16,7 @@ import {
 } from 'react-icons/fa'
 import { useCallback, useEffect, useState } from 'react'
 import api from '@/services/api'
+import { Base } from '@/containers/base'
 interface IStoriesRequest {
   photo: [
     {
@@ -90,101 +91,103 @@ const AboutUs: React.FC<IAboutUsProps> = props => {
         description={description}
         image="/logo/light.svg"
       />
-      <Container>
-        <main>
-          <h2>Sobre nós</h2>
-          <p>{intro}</p>
-          <h3>Nossa missão, visão e valores</h3>
-          <MVV>
-            <button>
-              <span>
-                <FaClipboardCheck />
-                <hr />
-              </span>
-              <aside>
-                <legend>Missão</legend>
-                <p>{DescriptMission}</p>
-              </aside>
-            </button>
-            <button>
-              <span>
-                <FaEye />
-                <hr />
-              </span>
-              <aside>
-                <legend>Visão</legend>
-                <p>{DescriptVision}</p>
-              </aside>
-            </button>
-            <button>
-              <span>
-                <FaBook />
-              </span>
-              <aside>
-                <legend>Valores</legend>
-                <p>{DescriptValues}</p>
-              </aside>
-            </button>
-          </MVV>
-          <h3>Nossa história</h3>
-          <Stories>
-            <section>
-              <main>
-                {props[currentStorie.year - 1]?.imgURL ? (
-                  <img
-                    src={props[currentStorie.year - 1].imgURL}
-                    alt={`Imagem sobre a gestão da empresa em ${
-                      currentStorie.year - 1
-                    }`}
-                    className="img-left"
-                    onClick={handleMinus}
-                  />
-                ) : (
-                  <span>Nenhuma imagem registrada</span>
-                )}
-                {currentStorie?.imgURL ? (
-                  <img
-                    src={currentStorie.imgURL}
-                    alt={`Imagem sobre a gestão da empresa em ${currentStorie.year}`}
-                    className="img-main"
-                  />
-                ) : (
-                  <legend>Nenhuma imagem registrada</legend>
-                )}
-                {props[currentStorie.year + 1]?.imgURL ? (
-                  <img
-                    src={props[currentStorie.year + 1].imgURL}
-                    className="img-right"
-                    onClick={handlePlus}
-                    alt={`Imagem sobre a gestão da empresa em ${
-                      currentStorie.year + 1
-                    }`}
-                  />
-                ) : (
-                  <span>Nenhuma imagem registrada</span>
-                )}
+      <Base>
+        <Container>
+          <main>
+            <h2>Sobre nós</h2>
+            <p>{intro}</p>
+            <h3>Nossa missão, visão e valores</h3>
+            <MVV>
+              <button>
+                <span>
+                  <FaClipboardCheck />
+                  <hr />
+                </span>
+                <aside>
+                  <legend>Missão</legend>
+                  <p>{DescriptMission}</p>
+                </aside>
+              </button>
+              <button>
+                <span>
+                  <FaEye />
+                  <hr />
+                </span>
+                <aside>
+                  <legend>Visão</legend>
+                  <p>{DescriptVision}</p>
+                </aside>
+              </button>
+              <button>
+                <span>
+                  <FaBook />
+                </span>
+                <aside>
+                  <legend>Valores</legend>
+                  <p>{DescriptValues}</p>
+                </aside>
+              </button>
+            </MVV>
+            <h3>Nossa história</h3>
+            <Stories>
+              <section>
+                <main>
+                  {props[currentStorie.year - 1]?.imgURL ? (
+                    <img
+                      src={props[currentStorie.year - 1].imgURL}
+                      alt={`Imagem sobre a gestão da empresa em ${
+                        currentStorie.year - 1
+                      }`}
+                      className="img-left"
+                      onClick={handleMinus}
+                    />
+                  ) : (
+                    <span>Nenhuma imagem registrada</span>
+                  )}
+                  {currentStorie?.imgURL ? (
+                    <img
+                      src={currentStorie.imgURL}
+                      alt={`Imagem sobre a gestão da empresa em ${currentStorie.year}`}
+                      className="img-main"
+                    />
+                  ) : (
+                    <legend>Nenhuma imagem registrada</legend>
+                  )}
+                  {props[currentStorie.year + 1]?.imgURL ? (
+                    <img
+                      src={props[currentStorie.year + 1].imgURL}
+                      className="img-right"
+                      onClick={handlePlus}
+                      alt={`Imagem sobre a gestão da empresa em ${
+                        currentStorie.year + 1
+                      }`}
+                    />
+                  ) : (
+                    <span>Nenhuma imagem registrada</span>
+                  )}
 
-                <p>{currentStorie.description}</p>
-              </main>
-              <div>
-                <ArrowButton onClick={handleMinus}>
-                  <FaCaretLeft />
-                </ArrowButton>
-                <YearSelect>
-                  {yearsIndicators.map(year => (
-                    <button key={year} onClick={() => setYear(year)}>
-                      {year}
-                    </button>
-                  ))}
-                </YearSelect>
-                <ArrowButton onClick={handlePlus}>
-                  <FaCaretRight />
-                </ArrowButton>
-              </div>
-            </section>
-          </Stories>
-        </main>
-      </Container>
+                  <p>{currentStorie.description}</p>
+                </main>
+                <div>
+                  <ArrowButton onClick={handleMinus}>
+                    <FaCaretLeft />
+                  </ArrowButton>
+                  <YearSelect>
+                    {yearsIndicators.map(year => (
+                      <button key={year} onClick={() => setYear(year)}>
+                        {year}
+                      </button>
+                    ))}
+                  </YearSelect>
+                  <ArrowButton onClick={handlePlus}>
+                    <FaCaretRight />
+                  </ArrowButton>
+                </div>
+              </section>
+            </Stories>
+          </main>
+        </Container>
+      </Base>
     </>
   )
 }

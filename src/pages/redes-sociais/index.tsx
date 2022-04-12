@@ -1,3 +1,4 @@
+import { Base } from '@/containers/base'
 import {
   FaLinkedinIn,
   FaGithub,
@@ -43,20 +44,22 @@ const SOCIAL_MEDIA = [
 
 const SocialNetwork: React.FC = () => {
   return (
-    <S.Container>
-      <S.Title>Nossas redes sociais</S.Title>
-      <S.CardContainer>
-        {SOCIAL_MEDIA.map(({ title, url, theme, icon }, index) => (
-          <S.Card key={index} cardTheme={Theme[theme]}>
-            <S.CardContent>
-              <p className="title">{title}</p>
-              <p className="description">{url}</p>
-            </S.CardContent>
-            <S.CardIcon>{icon}</S.CardIcon>
-          </S.Card>
-        ))}
-      </S.CardContainer>
-    </S.Container>
+    <Base>
+      <S.Container>
+        <S.Title>Nossas redes sociais</S.Title>
+        <S.CardContainer>
+          {SOCIAL_MEDIA.map(({ title, url, theme, icon }, index) => (
+            <S.Card key={index} cardTheme={Theme[theme]}>
+              <S.CardContent>
+                <p className="title">{title}</p>
+                <p className="description">{url}</p>
+              </S.CardContent>
+              <S.CardIcon>{icon}</S.CardIcon>
+            </S.Card>
+          ))}
+        </S.CardContainer>
+      </S.Container>
+    </Base>
   )
 }
 

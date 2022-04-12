@@ -4,13 +4,11 @@ import { Main as Button } from '@/components/Button/styles'
 
 export const Container = styled.main`
   width: 100%;
-  max-width: 115.2rem;
-  margin: 8rem auto;
+  margin: 8rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0 2.4rem;
 
   @media only screen and (min-width: ${props => props.theme.breakpoints.lg}px) {
     padding: 0;

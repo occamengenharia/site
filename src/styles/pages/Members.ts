@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.main`
-  margin: 0 auto;
-  max-width: 120rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   > h2 {

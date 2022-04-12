@@ -6,11 +6,11 @@ export const Container = styled.main`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-
-  margin: 80px 144px;
+  width: 100%;
+  margin: 80px 0;
 
   @media only screen and (max-width: ${props => props.theme.breakpoints.md}px) {
-    margin: 80px 24px;
+    margin: 80px 0;
   }
 `
 export const Title = styled.h3``
@@ -20,6 +20,7 @@ export const CardContainer = styled.section`
   align-items: flex-start;
   justify-content: flex-start;
   flex-wrap: wrap;
+  width: 100%;
 
   margin-top: 48px;
   gap: 24px 36px;
@@ -36,13 +37,14 @@ export const Card = styled.article<{ cardTheme: ThemeProps }>`
   align-items: end;
   padding: 16px;
   height: 160px;
-  min-width: 360px;
+  min-width: 320px;
 
   border-radius: 8px;
   background: ${({ cardTheme }) => cardTheme.background};
 
-  @media only screen and (max-width: ${props => props.theme.breakpoints.md}px) {
+  @media only screen and (max-width: ${props => props.theme.breakpoints.lg}px) {
     height: 120px;
+    width: 100%;
   }
 `
 

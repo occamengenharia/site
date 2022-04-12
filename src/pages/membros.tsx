@@ -7,6 +7,7 @@ import { Container, GridCards, Bar } from '@/styles/pages/Members'
 
 import api from '@/services/api'
 import SEO from '@/components/SEO'
+import { Base } from '@/containers/base'
 import { useCallback, useEffect, useState } from 'react'
 
 interface IPosition {
@@ -77,36 +78,38 @@ const Members: React.FC<IMembersSerealized> = props => {
         image="/logo/light.svg"
         description={description}
       />
-      <Container>
-        <h2>Histórico de Membros</h2>
+      <Base>
+        <Container>
+          <h2>Histórico de Membros</h2>
 
-        <Bar>
-          <button onClick={handleMinus}>
-            <FaCaretLeft />
-          </button>
-          <h1> {year} </h1>
-          <button onClick={handlePlus}>
-            <FaCaretRight />
-          </button>
-        </Bar>
+          <Bar>
+            <button onClick={handleMinus}>
+              <FaCaretLeft />
+            </button>
+            <h1> {year} </h1>
+            <button onClick={handlePlus}>
+              <FaCaretRight />
+            </button>
+          </Bar>
 
-        <GridCards>
-          {members.length > 0 ? (
-            members.map(member => (
-              <Card
-                key={`${member.name}-${member.photo}`}
-                name={member.name}
-                link_github={member.link_github}
-                link_linkedin={member.link_linkedin}
-                photo={member.photo}
-                position={member.position.job}
-              />
-            ))
-          ) : (
-            <h3>Nenhum membro Registrado</h3>
-          )}
-        </GridCards>
-      </Container>
+          <GridCards>
+            {members.length > 0 ? (
+              members.map(member => (
+                <Card
+                  key={`${member.name}-${member.photo}`}
+                  name={member.name}
+                  link_github={member.link_github}
+                  link_linkedin={member.link_linkedin}
+                  photo={member.photo}
+                  position={member.position.job}
+                />
+              ))
+            ) : (
+              <h3>Nenhum membro Registrado</h3>
+            )}
+          </GridCards>
+        </Container>
+      </Base>
     </>
   )
 }

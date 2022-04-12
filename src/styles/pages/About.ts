@@ -9,7 +9,6 @@ export const Container = styled.div`
   align-items: center;
   > main {
     margin: 6rem 0 4rem;
-    width: min(90vw, 1100px);
     display: flex;
     justify-content: center;
     flex-direction: column;

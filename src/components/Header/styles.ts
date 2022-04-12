@@ -10,16 +10,15 @@ export const Main = styled.header`
     color: ${props => props.theme.colors.disabled} !important;
   }
 
-  .margin {
-    margin-left: 3.2rem;
-  }
-
   top: 0;
   z-index: 4;
   position: relative;
+  width: min(85vw, 600px);
+  margin: 0 auto;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
     position: initial;
+    width: min(90vw, 1100px);
     height: 15.6rem;
   }
 `
@@ -29,18 +28,14 @@ interface MenuProps {
 }
 
 export const HeaderContent = styled.section<MenuProps>`
-  padding: 1.6rem;
-  margin: 0 auto;
+  padding: 1.6rem 1.6rem 1.6rem 0;
+  gap: 32px;
   margin-bottom: 5.6rem;
-  width: 100vw;
-  max-width: 1032px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 120rem;
-  margin: 0 auto;
   overflow: hidden;
 
   img {
@@ -106,11 +101,11 @@ export const HeaderContent = styled.section<MenuProps>`
 
     .links-header {
       section {
-        position: initial;
-        display: initial;
-        flex-direction: row;
+        display: flex;
         align-items: center;
-        margin-right: 1.6rem;
+        justify-content: flex-start;
+        gap: 0 3.2rem;
+        flex-wrap: wrap;
         padding: 0;
         background: none;
         border: none;
@@ -118,10 +113,6 @@ export const HeaderContent = styled.section<MenuProps>`
         a {
           border: none;
           width: initial;
-
-          & + a {
-            margin-left: 3.2rem;
-          }
         }
       }
     }
