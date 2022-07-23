@@ -17,10 +17,7 @@ export const Main = styled.button`
   }
   span {
     color: ${props => props.theme.colors.background};
-    padding: 0 0.8rem;
-    margin-left: 1.6rem;
-    padding-left: 1.6rem;
-    border-left: solid 1px ${props => props.theme.colors.background};
+    padding: 0 2.8rem;
     font: 700 1.8rem Ubuntu;
   }
 
